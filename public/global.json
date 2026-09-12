@@ -4,6 +4,7 @@
     "ontology-technique-eval",
     "varuna-sme-eval-ontology",
     "dndf-scenario-evaluation",
+    "stopscan-expert-panel",
     "tutorial",
     "tutorial-replication",
     "demo-html",
@@ -277,6 +278,9 @@
     },
     "dndf-scenario-evaluation": {
       "path": "dndf-scenario-evaluation/config.json"
+    },
+    "stopscan-expert-panel": {
+      "path": "stopscan-expert-panel/config.json"
     }
   }
 }

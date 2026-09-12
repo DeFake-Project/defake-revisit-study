@@ -13,7 +13,6 @@ async function getCurrentTaskQuestion(page: Page) {
 async function answerCurrentMvnvPrompt(
   page: Page,
   taskTimeoutMs = 10000,
-  startingQuestion = '',
 ) {
   const deadline = Date.now() + taskTimeoutMs;
   const iframe = page.frameLocator('#root iframe');
@@ -74,9 +73,13 @@ async function answerCurrentMvnvPrompt(
     for (let i = 0; i < limit; i += 1) {
       const idx = (attempt + i) % limit;
       if (!clickedRects.has(idx)) {
-        await answerBoxes.nth(idx).click().catch(() => {});
-        clickedRects.add(idx);
-        return true;
+        const clicked = await answerBoxes.nth(idx).click({ force: true })
+          .then(() => true)
+          .catch(() => false);
+        if (clicked) {
+          clickedRects.add(idx);
+          return true;
+        }
       }
     }
     return false;
@@ -115,12 +118,6 @@ async function answerCurrentMvnvPrompt(
 
     let i = 0;
     while (Date.now() < deadline) {
-      if (startingQuestion) {
-        const currentQuestion = await getCurrentTaskQuestion(page);
-        if (currentQuestion && currentQuestion !== startingQuestion) {
-          return;
-        }
-      }
       if (await nextButton.isEnabled().catch(() => false)) {
         return;
       }
@@ -135,18 +132,13 @@ async function answerCurrentMvnvPrompt(
         return;
       }
       i += 1;
+      await page.waitForTimeout(100);
     }
   }
 
   // Some prompts require both a sidebar response and a graph-node selection.
   let attempt = 0;
   while (Date.now() < deadline) {
-    if (startingQuestion) {
-      const currentQuestion = await getCurrentTaskQuestion(page);
-      if (currentQuestion && currentQuestion !== startingQuestion) {
-        return;
-      }
-    }
     if (await nextButton.isEnabled().catch(() => false)) {
       return;
     }
@@ -178,27 +170,24 @@ async function answerCurrentMvnvPrompt(
       return;
     }
     attempt += 1;
+    await page.waitForTimeout(100);
   }
 
   throw new Error(`MVNV task did not enable Next within ${Math.round(taskTimeoutMs / 1000)} seconds`);
 }
 
-test('test', async ({ page, browserName }) => {
+test('test', async ({ page }) => {
   test.skip(Boolean(process.env.CI), 'Skipping the full MVNV walkthrough in CI due to headless flakiness.');
 
-  const taskTimeoutMs = browserName === 'webkit' ? 20000 : 6000;
+  // Chromium CI runners need time for the iframe selection to propagate to reVISit.
+  const taskTimeoutMs = 20000;
   const maxTaskLoops = 20;
 
-  await page.goto('/');
+  // This spec exercises the study itself; opening its route directly avoids a
+  // separate landing-card rendering race under parallel Chromium CI workers.
+  await page.goto('/example-mvnv');
 
-  await page.getByRole('tab', { name: 'Example Studies' }).click();
-
-  // Click on mvnv study
-  await page.getByLabel('Example Studies').locator('div').filter({ hasText: 'MVNV Study Replication' })
-    .getByText('Go to Study')
-    .click();
-
-  await expect(page.getByRole('heading', { name: 'Introduction' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Introduction' })).toBeVisible({ timeout: 15000 });
 
   // Click on next button
   await nextClick(page);
@@ -246,8 +235,7 @@ test('test', async ({ page, browserName }) => {
       }
       await expect(qText).toBeVisible({ timeout: 5000 });
     }
-    const questionBefore = await getCurrentTaskQuestion(page);
-    await answerCurrentMvnvPrompt(page, taskTimeoutMs, questionBefore);
+    await answerCurrentMvnvPrompt(page, taskTimeoutMs);
     if (await isFinished()) {
       break;
     }

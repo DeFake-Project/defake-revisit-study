@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Informed Consent — STOP&SCAN Expert Panel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #1c2a33;
+      --muted: #5b6b76;
+      --line: #d7e2ea;
+      --panel: #f4f8fa;
+      --accent: #0f766e;
+      --accent-soft: #e6f4f1;
+      --font-body: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      --font-heading: "Space Grotesk", "Inter", ui-sans-serif, system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      color: var(--ink);
+      font-family: var(--font-body);
+      line-height: 1.55;
+      background: linear-gradient(180deg, #f7fbfc 0%, #ffffff 220px);
+    }
+
+    .wrap { max-width: 820px; margin: 0 auto; padding: 20px 20px 40px; }
+
+    .overview {
+      background: linear-gradient(135deg, var(--accent-soft), #eef5f8);
+      border: 1px solid #cfe3dd;
+      border-radius: 14px;
+      padding: 18px 20px;
+      margin-bottom: 22px;
+    }
+
+    .overview-kicker {
+      text-transform: uppercase; letter-spacing: 0.06em; font-size: 11px;
+      color: var(--accent); font-weight: 700; margin: 0 0 6px;
+    }
+
+    .overview h1 {
+      font-family: var(--font-heading); font-weight: 600; font-size: 1.55rem;
+      margin: 0 0 8px; line-height: 1.25;
+    }
+
+    .overview-meta { font-size: 13px; color: var(--muted); margin: 0 0 12px; }
+    .overview ul { margin: 0; padding-left: 18px; font-size: 14px; }
+    .overview li { margin: 4px 0; }
+
+    h2 {
+      font-family: var(--font-heading); font-weight: 600; font-size: 1.15rem;
+      margin: 1.6rem 0 0.45rem; color: var(--ink);
+    }
+
+    p, li { font-size: 0.98rem; }
+    .muted { color: var(--muted); }
+
+    .contact {
+      background: var(--panel); border: 1px solid var(--line);
+      border-radius: 10px; padding: 12px 14px; font-size: 13px;
+    }
+
+    .eu {
+      border: 1px dashed #b7c7d4; border-radius: 10px;
+      padding: 12px 14px; background: #fcfdff;
+    }
+
+    .logos {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 22px;
+      margin: 26px 0 6px; padding-top: 18px; border-top: 1px solid var(--line);
+    }
+    .logos img { height: 34px; width: auto; max-width: 190px; object-fit: contain; }
+
+    strong { color: var(--ink); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="overview" aria-label="Study overview">
+      <p class="overview-kicker">Informed consent</p>
+      <h1>STOP&SCAN Expert Panel</h1>
+      <p class="overview-meta">
+        Rochester Institute of Technology &middot; University of Bologna &middot; AI and Multimedia Authenticity Collaboration &middot; ~45&ndash;60 minutes &middot; Online &middot; No compensation &middot; Voluntary
+      </p>
+      <ul>
+        <li>You will review four case studies of how someone might use STOP&SCAN, and tell us what you make of the reasoning.</li>
+        <li>You move through the study one page at a time and cannot return to earlier pages.</li>
+        <li>Every question is optional. You may skip anything.</li>
+        <li>We record your responses under a random code, not your name.</li>
+      </ul>
+    </section>
+
+    <p class="muted">
+      <strong>Study title:</strong> Structured Expert Evaluation of STOP&SCAN, a Framework for Evaluating Potentially Synthetic Media
+    </p>
+
+    <div class="contact">
+      <div><strong>Principal Investigators:</strong></div>
+      <div>Saniat Javid Sohrawardi &mdash; john.sohrawardi@rit.edu, Rochester Institute of Technology</div>
+      <div>Fatma Aksu &mdash; fatma.aksu2@unibo.it, University of Bologna</div>
+      <div style="margin-top:0.6rem"><strong>Research team:</strong></div>
+      <div>Y. Kelly Wu &mdash; kellywu@mail.rit.edu, Rochester Institute of Technology</div>
+      <div>Alessandra Sala &mdash; alessandra.sala@outlook.ie, AI and Multimedia Authenticity Collaboration</div>
+      <div>Luca Pietrantoni &mdash; luca.pietrantoni@unibo.it, University of Bologna</div>
+    </div>
+
+    <p>
+      You are being asked to take part in a research study. This document explains what the study involves so you can decide whether you want to participate. Please read it carefully, and email the Principal Investigators with any questions before you decide. Taking part is entirely voluntary.
+    </p>
+
+    <h2>Who we are</h2>
+    <p>
+      We are researchers at Rochester Institute of Technology, the University of Bologna, and the AI and Multimedia Authenticity Collaboration, and members of the AI and Multimedia Authenticity Standards (AMAS) Young Researcher Associate Programme, associated with ITU AI for Good.
+    </p>
+
+    <h2>Why you are being asked</h2>
+    <p>
+      You are being invited because of your professional work in digital media forensics, misinformation research, media literacy education, or fact-checking and verification journalism. We are seeking the judgment of about 25 professionals across these four areas.
+    </p>
+
+    <h2>What this study is about</h2>
+    <p>
+      We have developed a framework called STOP&SCAN, intended to help non-experts evaluate images, video, and audio that may be AI-generated or misleading. It is a short reasoning sequence: a pause to register your initial reaction (STOP), followed by four steps &mdash; Source, Content, Alignment, and Now Reflect.
+    </p>
+    <p>
+      The framework is designed around a specific idea: that dismissing authentic content is as serious an error as believing fabricated content. We derived it from the research literature and tested it on paper against documented cases. We have not yet had it evaluated by people who do this work professionally, which is what we are asking you to do.
+    </p>
+    <p>
+      We want your criticism. If the framework is unclear, impractical, or wrong, that is the most useful result you can give us, and we would rather hear it now than after publication.
+    </p>
+
+    <h2>What you will be asked to do</h2>
+    <p>
+      The study is a single online session of about 45 to 60 minutes. You can take part at whatever time and place suits you. Nobody will observe you, and there is no scheduled appointment.
+    </p>
+    <p>You will:</p>
+    <ul>
+      <li>Answer four short questions about your professional background.</li>
+      <li>Read four case studies, told from the point of view of a fictional observer, one step at a time, and judge the reasoning.</li>
+      <li>After each case, answer a few questions about the case as a whole.</li>
+      <li>Read short alternative SIFT routes through two of the cases, and tell us whether we represented them fairly.</li>
+      <li>Rate both frameworks and answer open questions about where each would fail.</li>
+    </ul>
+
+    <h2>About how the study behaves</h2>
+    <ul>
+      <li><strong>You move forward only.</strong> Pages appear one at a time and there is no way back to an earlier page. Within a case, the steps you have already read stay visible.</li>
+      <li><strong>Submitted responses cannot be edited.</strong> You will still see what you wrote, but you will not be able to change it.</li>
+    </ul>
+    <p>
+      We record your written responses, ratings, background categories, which reference cards you opened, and how long you spent on each page. We do not record audio, video, or your screen, and we do not record your IP address.
+    </p>
+
+    <h2>Is there any compensation?</h2>
+    <p>
+      No. If you would like a copy of the accepted publication or later updates, email the Principal Investigators. We do not collect your email in this study.
+    </p>
+
+    <h2>Risks</h2>
+    <ul>
+      <li><strong>Being identified.</strong> The professional community is small. We collect experience as a broad range, do not ask where you work, describe participants only by one of four broad fields, and screen quotations. We cannot promise this risk is zero. If there is anything you write that you would prefer we never quote, tell us and we will not quote it.</li>
+      <li><strong>Professional discomfort.</strong> There are no right answers, we are not scoring you, and no individual&rsquo;s responses will be reported. Critical responses are what we are hoping for.</li>
+      <li><strong>The material itself.</strong> Two cases involve politically contested content about named public figures, and one involves fraud. You can skip any question and stop at any point.</li>
+    </ul>
+
+    <h2>Benefits</h2>
+    <p>
+      We cannot promise you any direct benefit. You may find it professionally interesting. If you would like a copy of the accepted publication or later updates, email us. The broader purpose is to avoid putting flawed guidance in front of the public.
+    </p>
+
+    <h2>Your right to stop</h2>
+    <p>
+      Participation is entirely voluntary. You may skip any question. You may stop at any time by closing the browser. If you stop part-way and would like prior responses deleted, email the Principal Investigators. We can do this until we have finished analysis and removed the identity link.
+    </p>
+
+    <h2>How your information is protected</h2>
+    <p>
+      Your responses are stored under a random participant ID, not your name. Your name and email are kept in a separate file that only the Principal Investigators can open. Data are stored on RIT-managed, encrypted, MFA-protected institutional storage. No commercial AI system outside RIT processes your responses. De-identified data may be shared with collaborating researchers at the University of Bologna and the AI and Multimedia Authenticity Collaboration and may be published or deposited after screening.
+    </p>
+
+    <div class="eu">
+      <h2 style="margin-top:0">For participants in Europe (EEA, UK, or Switzerland)</h2>
+      <p>
+        Controller: Rochester Institute of Technology. Lawful basis: your explicit consent. International transfer to the United States takes place on the basis of your explicit consent. You may request access, correction, deletion, or restriction, and you may withdraw consent at any time by emailing the Principal Investigators. You may lodge a complaint with your national data protection authority.
+      </p>
+    </div>
+
+    <h2>Questions</h2>
+    <div class="contact">
+      <div>About the study: Saniat Javid Sohrawardi &mdash; john.sohrawardi@rit.edu, or Fatma Aksu &mdash; fatma.aksu2@unibo.it</div>
+      <div>About your rights: RIT Human Subjects Research Office, 141 Lomb Memorial Drive, Rochester, NY 14623 &mdash; hsro@rit.edu &mdash; 585-475-7673</div>
+    </div>
+
+    <!--
+      Logos: download each mark from its official source into
+      public/stopscan-expert-panel/assets/logos/ rather than hotlinking.
+      The re-hosted URLs collected earlier (massrobotics.org, interculturalticket.eu)
+      are third-party copies and will rot.
+    -->
+    <div class="logos" aria-label="Affiliations">
+      <img src="logos/esl-cybersec-rit-logo.svg" alt="Rochester Institute of Technology" />
+      <img src="logos/bologna-logo.png" alt="University of Bologna" />
+      <img src="logos/ai-for-good-logo.png" alt="ITU AI for Good" />
+      <img src="logos/itu-logo.svg" alt="International Telecommunication Union" />
+    </div>
+
+    <p class="muted" style="margin-top:1.2rem">
+      Please confirm in the sidebar before continuing. Selecting consent records your agreement. You may download or print this page, and we will email you a copy on request.
+    </p>
+  </div>
+</body>
+</html>

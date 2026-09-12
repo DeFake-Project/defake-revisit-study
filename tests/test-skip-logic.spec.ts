@@ -8,7 +8,7 @@ function getStudyMain(page: Page) {
   return page.getByRole('main');
 }
 
-async function selectRadioOption(page: Page, label: string, timeout = 10000) {
+async function selectRadioOption(page: Page, label: string, timeout = 20000) {
   const main = getStudyMain(page);
   await expect.poll(async () => {
     const radios = main.getByRole('radio', { name: label, exact: true });
