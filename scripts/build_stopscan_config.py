@@ -60,7 +60,11 @@ def step_component(cid, name, label_short, step_key, step_label, _step_idx):
     if step_key == "source":
         resp.append({
             "id": "stop_value",
-            "prompt": f"Was recording {name}’s first reaction worth doing in this case?",
+            "prompt": (
+                f"Was it worth pausing to name {name}’s first reaction "
+                "before anything was checked?"
+            ),
+            "secondaryText": "This is about STOP on this page, not about the source check.",
             "location": "sidebar",
             "type": "radio",
             "required": False,
@@ -75,6 +79,10 @@ def step_component(cid, name, label_short, step_key, step_label, _step_idx):
     resp.append({
         "id": "useful",
         "prompt": "How useful was this step in this case?",
+        "secondaryText": (
+            "Judge the whole step. If only part of it was useful, pick the closest "
+            "answer and say which part in the comment below."
+        ),
         "location": "sidebar",
         "type": "radio",
         "required": False,
@@ -100,24 +108,23 @@ def step_component(cid, name, label_short, step_key, step_label, _step_idx):
             "required": False,
             "options": ["Yes", "No", "I cannot tell"],
         })
+        resp.append({
+            "id": "enough_conclude",
+            "prompt": (
+                f"If you said {name} already had enough to decide, "
+                "what would they have concluded?"
+            ),
+            "location": "sidebar",
+            "type": "longText",
+            "required": False,
+        })
 
-    note_prompt = (
-        "Anything you disagree with, or that was carried out badly? What would "
-        f"{name} have missed if they had followed only this step?"
-    )
-    if step_key in ("content", "alignment"):
-        note_prompt = (
-            "Anything you disagree with, or that was carried out badly? If you "
-            "answered Yes above, what would they have concluded at this point?"
-        )
     resp.append({
         "id": "note",
-        "prompt": note_prompt,
-        "secondaryText": "Optional. Everything on this page is optional.",
+        "prompt": "Anything you disagree with, or that was done badly?",
         "location": "sidebar",
         "type": "longText",
         "required": False,
-        "placeholder": "Optional",
     })
     resp.append(LOG)
 
@@ -197,7 +204,6 @@ def after_component(cid, name, label_short, enc):
                 "location": "sidebar",
                 "type": "longText",
                 "required": False,
-                "placeholder": "Optional",
             },
             {
                 "id": "other_checks",
@@ -208,7 +214,6 @@ def after_component(cid, name, label_short, enc):
                 "location": "sidebar",
                 "type": "longText",
                 "required": False,
-                "placeholder": "Optional",
             },
             LOG,
         ],
@@ -231,11 +236,9 @@ def sift_component(cid, title):
             {
                 "id": f"{r}_note",
                 "prompt": "If yes or yes-but-unlikely, why? If no, what would a more realistic route look like?",
-                "secondaryText": "Optional. Use whichever part applies.",
                 "location": "sidebar",
                 "type": "longText",
                 "required": False,
-                "placeholder": "Optional",
             },
         ]
     return f"sift-{cid}", {
@@ -254,7 +257,6 @@ def sift_component(cid, title):
                 "location": "sidebar",
                 "type": "longText",
                 "required": False,
-                "placeholder": "Optional",
             },
             LOG,
         ],
@@ -399,7 +401,7 @@ components["ratings-stopscan"] = {
     "sidebarWidth": 460,
     "previousButton": False,
     "parameters": {"section": "stopscan"},
-    "instruction": "Rate STOP&SCAN on the statements below. Optional comments are in the sidebar.",
+    "instruction": "Rate STOP&SCAN on the statements below. Comments are in the sidebar.",
     "response": [
         {
             "id": "R_stopscan",
@@ -409,51 +411,22 @@ components["ratings-stopscan"] = {
             "required": False,
             "answerOptions": AGREE5,
             "questionOptions": [
-                "R2. The framework includes the right elements and leaves out nothing essential.",
-                "R3. It is useful to distinguish the number of steps completed from the number of independent kinds of evidence found.",
-                "R4. Requiring two independent kinds of evidence before a resolved conclusion is an appropriate threshold.",
-                "R5. A non-expert could tell whether two kinds of evidence are genuinely independent.",
-                "R7. “Unresolved” is a realistic result that people would be willing to accept.",
-                "R8. STOP&SCAN handles authentic content wrongly described as fake as well as it handles fabricated content.",
-                "R21. Separating the evidence state from the action that follows is a useful distinction for non-experts.",
-                "R22. A non-expert could tell which kind of situation they are in — information, a request, or an alert.",
+                "R1. The framework includes the right elements and leaves out nothing essential.",
+                "R2. It is useful to distinguish the number of steps completed from the number of independent kinds of evidence found.",
+                "R3. Requiring two independent kinds of evidence before a resolved conclusion is an appropriate threshold.",
+                "R4. A non-expert could tell whether two kinds of evidence are genuinely independent.",
+                "R5. “Unresolved” is a realistic result that people would be willing to accept.",
+                "R6. STOP&SCAN works as well when real content is called fake as when the content itself is fake.",
+                "R7. Separating the evidence state from the action that follows is a useful distinction for non-experts.",
+                "R8. A non-expert could tell which kind of situation they are in — information, a request, or an alert.",
             ],
         },
         {
-            "id": "R4_why",
-            "prompt": "R4 — the two-evidence threshold. Why?",
-            "secondaryText": "Optional.",
+            "id": "R_stopscan_note",
+            "prompt": "Comments on any of the statements above. Name the statement if you can.",
             "location": "sidebar",
             "type": "longText",
             "required": False,
-            "placeholder": "Optional",
-        },
-        {
-            "id": "R5_why",
-            "prompt": "R5 — judging independence. Why?",
-            "secondaryText": "Optional.",
-            "location": "sidebar",
-            "type": "longText",
-            "required": False,
-            "placeholder": "Optional",
-        },
-        {
-            "id": "R7_why",
-            "prompt": "R7 — accepting an unresolved result. Why?",
-            "secondaryText": "Optional.",
-            "location": "sidebar",
-            "type": "longText",
-            "required": False,
-            "placeholder": "Optional",
-        },
-        {
-            "id": "R22_why",
-            "prompt": "R22 — reading the kind of situation. Why?",
-            "secondaryText": "Optional.",
-            "location": "sidebar",
-            "type": "longText",
-            "required": False,
-            "placeholder": "Optional",
         },
         LOG,
     ],
@@ -467,7 +440,7 @@ components["ratings-sift"] = {
     "sidebarWidth": 460,
     "previousButton": False,
     "parameters": {"section": "sift"},
-    "instruction": "Rate SIFT on the statements below. We have not yet told you what we think. Optional comments are in the sidebar.",
+    "instruction": "Rate SIFT on the statements below. We have not yet told you what we think. Comments are in the sidebar.",
     "response": [
         {
             "id": "R_sift",
@@ -479,19 +452,17 @@ components["ratings-sift"] = {
             "questionOptions": [
                 "R9. SIFT remains useful for evaluating content that may be AI-generated or manipulated.",
                 "R10. Allowing someone to stop after one SIFT move is appropriate.",
-                "R12. SIFT gives enough guidance when a trustworthy source publishes incorrect or fabricated content.",
-                "R13. SIFT gives enough guidance when authentic content is wrongly described as AI-generated.",
-                "R14. SIFT’s newer guidance adequately addresses content that may itself have been generated by AI.",
+                "R11. SIFT gives enough guidance when a trustworthy source publishes incorrect or fabricated content.",
+                "R12. SIFT gives enough guidance when authentic content is wrongly described as AI-generated.",
+                "R13. Caulfield’s 2025 SIFT update — using language models as research tools, then checking their sources — is enough for content that may itself have been generated by AI.",
             ],
         },
         {
-            "id": "R14_why",
-            "prompt": "R14 — the AI-specific guidance. Why?",
-            "secondaryText": "Optional.",
+            "id": "R_sift_note",
+            "prompt": "Comments on any of the statements above. Name the statement if you can.",
             "location": "sidebar",
             "type": "longText",
             "required": False,
-            "placeholder": "Optional",
         },
         LOG,
     ],
@@ -505,15 +476,15 @@ components["ratings-open"] = {
     "sidebarWidth": 460,
     "previousButton": False,
     "parameters": {"section": "open"},
-    "instruction": "Open critique, before we state our own positions on SIFT. All optional.",
+    "instruction": "Open critique, before we state our own positions on SIFT.",
     "response": [
-        {"id": "O1", "prompt": "Where is STOP&SCAN most likely to fail in everyday use?", "location": "sidebar", "type": "longText", "required": False, "placeholder": "Optional"},
-        {"id": "O2", "prompt": "Which element is weakest? How would you change it?", "location": "sidebar", "type": "longText", "required": False, "placeholder": "Optional"},
-        {"id": "O3", "prompt": "STOP&SCAN asks people to visit every element, even when an earlier one seems to settle the case. Is that right?", "location": "sidebar", "type": "longText", "required": False, "placeholder": "Optional"},
-        {"id": "O4", "prompt": "What, if anything, does STOP&SCAN add that SIFT or lateral reading does not already provide?", "location": "sidebar", "type": "longText", "required": False, "placeholder": "Optional"},
-        {"id": "O5", "prompt": "What evidence would you need before recommending STOP&SCAN to non-experts?", "location": "sidebar", "type": "longText", "required": False, "placeholder": "Optional"},
-        {"id": "O6", "prompt": "Is there an approach from your own work that neither framework captures?", "location": "sidebar", "type": "longText", "required": False, "placeholder": "Optional"},
-        {"id": "O7", "prompt": "Did our worked examples represent STOP&SCAN fairly, or did they make it look better or worse than it is?", "location": "sidebar", "type": "longText", "required": False, "placeholder": "Optional"},
+        {"id": "O1", "prompt": "Where is STOP&SCAN most likely to fail in everyday use?", "location": "sidebar", "type": "longText", "required": False},
+        {"id": "O2", "prompt": "Which element is weakest? How would you change it?", "location": "sidebar", "type": "longText", "required": False},
+        {"id": "O3", "prompt": "STOP&SCAN asks people to visit every element, even when an earlier one seems to settle the case. Is that right?", "location": "sidebar", "type": "longText", "required": False},
+        {"id": "O4", "prompt": "What, if anything, does STOP&SCAN add that SIFT or lateral reading does not already provide?", "location": "sidebar", "type": "longText", "required": False},
+        {"id": "O5", "prompt": "What evidence would you need before recommending STOP&SCAN to non-experts?", "location": "sidebar", "type": "longText", "required": False},
+        {"id": "O6", "prompt": "Is there an approach from your own work that neither framework captures?", "location": "sidebar", "type": "longText", "required": False},
+        {"id": "O7", "prompt": "Did our worked examples represent STOP&SCAN fairly, or did they make it look better or worse than it is?", "location": "sidebar", "type": "longText", "required": False},
         LOG,
     ],
 }
@@ -526,11 +497,11 @@ components["ratings-critique"] = {
     "sidebarWidth": 460,
     "previousButton": False,
     "parameters": {"section": "critique"},
-    "instruction": "Read our positions in the main pane, respond to the four concerns below, then use the sidebar for the remaining questions.",
+    "instruction": "Read our positions in the main pane, respond to the five concerns below, then use the sidebar for the remaining questions.",
     "response": [
         {
             "id": "Q1",
-            "prompt": "Where do you stand on each of our four concerns about SIFT?",
+            "prompt": "Where do you stand on each of our five concerns about SIFT?",
             "location": "belowStimulus",
             "type": "matrix-radio",
             "required": False,
@@ -540,33 +511,15 @@ components["ratings-critique"] = {
                 "On Investigate the source",
                 "On Find better coverage",
                 "On Trace to the original context",
+                "On the 2025 AI guidance",
             ],
         },
         {
             "id": "Q1_note",
-            "prompt": "Anything you want to say about those four.",
-            "secondaryText": "Optional.",
+            "prompt": "Anything you want to say about those five concerns.",
             "location": "sidebar",
             "type": "longText",
             "required": False,
-            "placeholder": "Optional",
-        },
-        {
-            "id": "Q2",
-            "prompt": "Is our concern about SIFT’s AI-specific guidance fair?",
-            "location": "sidebar",
-            "type": "radio",
-            "required": False,
-            "options": ["Agree", "Agree but overstated", "Disagree", "No view"],
-        },
-        {
-            "id": "Q2_why",
-            "prompt": "Why?",
-            "secondaryText": "Optional.",
-            "location": "sidebar",
-            "type": "longText",
-            "required": False,
-            "placeholder": "Optional",
         },
         {
             "id": "Q3",
@@ -574,7 +527,6 @@ components["ratings-critique"] = {
             "location": "sidebar",
             "type": "longText",
             "required": False,
-            "placeholder": "Optional",
         },
         {
             "id": "Q4",
@@ -582,18 +534,24 @@ components["ratings-critique"] = {
             "location": "sidebar",
             "type": "longText",
             "required": False,
-            "placeholder": "Optional",
         },
         LOG,
     ],
 }
 
 compare_items = [
-    ("R15", "Which approach is more likely to produce an appropriately cautious judgment?"),
-    ("R16", "Which approach would be easier to teach?"),
-    ("R17", "Which approach is more reliable when search results contain misleading or AI-generated information?"),
-    ("R18", "Which would you recommend to someone with no training in verification?"),
-    ("R19", "Which would you recommend to a professional, and which better matches the range of cases you meet in your own work?"),
+    ("R14", "Which approach is more likely to produce an appropriately cautious judgment?"),
+    ("R15", "Which approach would be easier to teach?"),
+    ("R16", "Which approach is more reliable when search results contain misleading or AI-generated information?"),
+    ("R17", "Which would you recommend to someone with no training in verification?"),
+    ("R18", "Which would you recommend to a professional?"),
+    ("R19", "Which better matches the range of cases you meet in your own work?"),
+]
+COMPARE_OPTS = [
+    "SIFT",
+    "No preference",
+    "STOP&SCAN",
+    "I cannot make this comparison",
 ]
 compare_resp = []
 for rid, prompt in compare_items:
@@ -601,26 +559,16 @@ for rid, prompt in compare_items:
         "id": rid,
         "prompt": prompt,
         "location": "sidebar",
-        "type": "slider",
+        "type": "radio",
         "required": False,
-        "snap": True,
-        "options": [
-            {"label": "SIFT", "value": 0},
-            {"label": "No preference", "value": 50},
-            {"label": "STOP&SCAN", "value": 100},
-        ],
-        "startingValue": 50,
+        "options": COMPARE_OPTS,
     })
 compare_resp.append({
-    "id": "compare_flags",
-    "prompt": "Were there comparisons above you did not feel able to make?",
-    "secondaryText": "Optional. Select any that apply.",
+    "id": "compare_note",
+    "prompt": "Anything you want to add about these comparisons.",
     "location": "sidebar",
-    "type": "checkbox",
+    "type": "longText",
     "required": False,
-    "options": [{"label": prompt, "value": rid} for rid, prompt in compare_items] + [
-        "Neither framework is adequate for this comparison"
-    ],
 })
 compare_resp.append(LOG)
 components["ratings-compare"] = {
@@ -667,10 +615,20 @@ config = {
     "studyMetadata": {
         "title": "STOP&SCAN Expert Panel",
         "version": "v4",
-        "authors": ["Saniat Javid Sohrawardi", "Kelly Wu", "Fatma Aksu"],
+        "authors": [
+            "Saniat Javid Sohrawardi",
+            "Y. Kelly Wu",
+            "Fatma Aksu",
+            "Alessandra Sala",
+            "Luca Pietrantoni",
+        ],
         "date": "2026-08-26",
         "description": "Review how STOP&SCAN is used in four documented cases and compare it with SIFT and with detection and provenance tools.",
-        "organizations": ["Rochester Institute of Technology", "University of Bologna"],
+        "organizations": [
+            "Rochester Institute of Technology",
+            "University of Bologna",
+            "AI Office of Ireland",
+        ],
     },
     "uiConfig": {
         "contactEmail": "john.sohrawardi@rit.edu",

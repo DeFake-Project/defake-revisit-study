@@ -12,23 +12,23 @@ export type RatingStimulusParams = {
 const SECTION_COPY: Record<RatingStimulusParams['section'], { title: string; body: string }> = {
   stopscan: {
     title: 'Rating STOP&SCAN',
-    body: 'Thinking about all four cases, rate how much you agree or disagree with each statement below. Optional comments are in the sidebar.',
+    body: 'Thinking about all four cases, rate how much you agree or disagree with each statement. You can comment on any of them in the sidebar.',
   },
   sift: {
     title: 'Rating SIFT',
-    body: 'Now consider SIFT. These questions appear before we show you our own criticisms of it. Rate the statements below. Use the reference buttons if you would like to review the SIFT summary.',
+    body: 'Now consider SIFT, including Caulfield’s 2025 note on using language models as research tools. These questions appear before we show you our own criticisms. Use the reference buttons if you want the SIFT summary.',
   },
   open: {
     title: 'Open critique',
-    body: 'These questions are optional. They appear before we show you our own concerns about SIFT.',
+    body: 'These questions come before we state our own concerns about SIFT.',
   },
   critique: {
     title: 'Concerns about using SIFT with synthetic media',
-    body: 'Read each concern below, then tell us where you agree, where it is overstated, and where it is wrong. Remaining questions are in the sidebar.',
+    body: 'Read each concern below, then say where you agree, where it is overstated, and where it is wrong. Remaining questions are in the sidebar.',
   },
   compare: {
     title: 'Final comparison',
-    body: 'Compare the two approaches. The middle of each scale means that you have no preference. You may also indicate that neither approach is adequate or that you do not feel able to compare them.',
+    body: 'Compare the two approaches. If you cannot make a comparison, choose that option for that question — do not guess.',
   },
 };
 
@@ -70,17 +70,6 @@ export default function RatingStimulus({
                 <Text size="sm">{p.body}</Text>
               </Box>
             ))}
-            <Box
-              p="md"
-              style={{
-                border: '1px solid #dbe4ee',
-                borderRadius: 10,
-                background: '#f8fafc',
-              }}
-            >
-              <Text fw={700} size="sm" mb={4}>On the AI-specific extension</Text>
-              <Text size="sm">{SIFT_CRITIQUE.aiExtension}</Text>
-            </Box>
           </Stack>
         )}
       </Stack>

@@ -7,7 +7,7 @@ import {
 } from '@tabler/icons-react';
 import { StimulusParams } from '../../../store/types';
 import {
-  ACTION_CATEGORY_LABEL, CaseStepContent, STOPSCAN_OVERVIEW, getCase,
+  ACTION_CATEGORY_LABEL, CaseStepContent, getCase,
 } from './content';
 import { ReferenceHelpers } from './ReferenceHelpers';
 import { useInteractionLog } from './useInteractionLog';
@@ -89,6 +89,7 @@ function StepPanel({
       </Stack>
 
       <Divider mb={8} />
+      <Text size="xs" fw={700} c="dimmed" tt="uppercase" mb={4}>What this step shows</Text>
       <Text size="sm" c="#4a5a63">{step.narrator}</Text>
     </Box>
   );
@@ -116,7 +117,6 @@ export default function CaseStimulus({
     ensureSeeded();
   }, [ensureSeeded]);
 
-  const isFirstCaseOverall = caseContent.order === 1;
   const isFirstPageOfCase = mode === 'step' && stepKey === 'source';
 
   return (
@@ -124,26 +124,6 @@ export default function CaseStimulus({
       <ReferenceHelpers onLog={logEvent} />
 
       <Stack gap="md">
-        {isFirstPageOfCase && isFirstCaseOverall && (
-          <Box p="md" style={{ background: '#f0f7ff', border: '1px solid #cfe0f2', borderRadius: 12 }}>
-            <Text fw={700} mb={6}>Your first case study</Text>
-            <Text size="sm">
-              Four documented case studies follow. In each, we show how someone might
-              work through STOP&SCAN, one step at a time, and ask what you make of the
-              reasoning.
-              {' '}
-              {STOPSCAN_OVERVIEW.roleplayNote}
-              {' '}
-              Thank you for giving us your time on this.
-            </Text>
-          </Box>
-        )}
-        {isFirstPageOfCase && !isFirstCaseOverall && (
-          <Box p="sm" style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: 10 }}>
-            <Text size="sm">The next case study. As before, we would value your read on the reasoning.</Text>
-          </Box>
-        )}
-
         <div>
           <Group gap="xs" mb={4}>
             <Badge color="teal" variant="light">{caseContent.shortLabel}</Badge>

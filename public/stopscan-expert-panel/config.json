@@ -5,14 +5,17 @@
     "version": "v4",
     "authors": [
       "Saniat Javid Sohrawardi",
-      "Kelly Wu",
-      "Fatma Aksu"
+      "Y. Kelly Wu",
+      "Fatma Aksu",
+      "Alessandra Sala",
+      "Luca Pietrantoni"
     ],
     "date": "2026-08-26",
     "description": "Review how STOP&SCAN is used in four documented cases and compare it with SIFT and with detection and provenance tools.",
     "organizations": [
       "Rochester Institute of Technology",
-      "University of Bologna"
+      "University of Bologna",
+      "AI Office of Ireland"
     ]
   },
   "uiConfig": {
@@ -182,7 +185,8 @@
       "response": [
         {
           "id": "stop_value",
-          "prompt": "Was recording Dana’s first reaction worth doing in this case?",
+          "prompt": "Was it worth pausing to name Dana’s first reaction before anything was checked?",
+          "secondaryText": "This is about STOP on this page, not about the source check.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -196,6 +200,7 @@
         {
           "id": "useful",
           "prompt": "How useful was this step in this case?",
+          "secondaryText": "Judge the whole step. If only part of it was useful, pick the closest answer and say which part in the comment below.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -222,12 +227,10 @@
         },
         {
           "id": "note",
-          "prompt": "Anything you disagree with, or that was carried out badly? What would Dana have missed if they had followed only this step?",
-          "secondaryText": "Optional. Everything on this page is optional.",
+          "prompt": "Anything you disagree with, or that was done badly?",
           "location": "sidebar",
           "type": "longText",
-          "required": false,
-          "placeholder": "Optional"
+          "required": false
         },
         {
           "id": "interactionLog",
@@ -256,6 +259,7 @@
         {
           "id": "useful",
           "prompt": "How useful was this step in this case?",
+          "secondaryText": "Judge the whole step. If only part of it was useful, pick the closest answer and say which part in the comment below.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -293,13 +297,18 @@
           ]
         },
         {
-          "id": "note",
-          "prompt": "Anything you disagree with, or that was carried out badly? If you answered Yes above, what would they have concluded at this point?",
-          "secondaryText": "Optional. Everything on this page is optional.",
+          "id": "enough_conclude",
+          "prompt": "If you said Dana already had enough to decide, what would they have concluded?",
           "location": "sidebar",
           "type": "longText",
-          "required": false,
-          "placeholder": "Optional"
+          "required": false
+        },
+        {
+          "id": "note",
+          "prompt": "Anything you disagree with, or that was done badly?",
+          "location": "sidebar",
+          "type": "longText",
+          "required": false
         },
         {
           "id": "interactionLog",
@@ -328,6 +337,7 @@
         {
           "id": "useful",
           "prompt": "How useful was this step in this case?",
+          "secondaryText": "Judge the whole step. If only part of it was useful, pick the closest answer and say which part in the comment below.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -365,13 +375,18 @@
           ]
         },
         {
-          "id": "note",
-          "prompt": "Anything you disagree with, or that was carried out badly? If you answered Yes above, what would they have concluded at this point?",
-          "secondaryText": "Optional. Everything on this page is optional.",
+          "id": "enough_conclude",
+          "prompt": "If you said Dana already had enough to decide, what would they have concluded?",
           "location": "sidebar",
           "type": "longText",
-          "required": false,
-          "placeholder": "Optional"
+          "required": false
+        },
+        {
+          "id": "note",
+          "prompt": "Anything you disagree with, or that was done badly?",
+          "location": "sidebar",
+          "type": "longText",
+          "required": false
         },
         {
           "id": "interactionLog",
@@ -400,6 +415,7 @@
         {
           "id": "useful",
           "prompt": "How useful was this step in this case?",
+          "secondaryText": "Judge the whole step. If only part of it was useful, pick the closest answer and say which part in the comment below.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -426,12 +442,10 @@
         },
         {
           "id": "note",
-          "prompt": "Anything you disagree with, or that was carried out badly? What would Dana have missed if they had followed only this step?",
-          "secondaryText": "Optional. Everything on this page is optional.",
+          "prompt": "Anything you disagree with, or that was done badly?",
           "location": "sidebar",
           "type": "longText",
-          "required": false,
-          "placeholder": "Optional"
+          "required": false
         },
         {
           "id": "interactionLog",
@@ -509,16 +523,14 @@
           "prompt": "If Dana had checked only the source, or only run a detection or provenance tool, what would they have concluded?",
           "location": "sidebar",
           "type": "longText",
-          "required": false,
-          "placeholder": "Optional"
+          "required": false
         },
         {
           "id": "other_checks",
           "prompt": "Given what Dana concluded — including, where that applies, a decision not to conclude — would any other check have helped?",
           "location": "sidebar",
           "type": "longText",
-          "required": false,
-          "placeholder": "Optional"
+          "required": false
         },
         {
           "id": "interactionLog",
@@ -546,7 +558,8 @@
       "response": [
         {
           "id": "stop_value",
-          "prompt": "Was recording Marcus’s first reaction worth doing in this case?",
+          "prompt": "Was it worth pausing to name Marcus’s first reaction before anything was checked?",
+          "secondaryText": "This is about STOP on this page, not about the source check.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -560,6 +573,7 @@
         {
           "id": "useful",
           "prompt": "How useful was this step in this case?",
+          "secondaryText": "Judge the whole step. If only part of it was useful, pick the closest answer and say which part in the comment below.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -586,12 +600,10 @@
         },
         {
           "id": "note",
-          "prompt": "Anything you disagree with, or that was carried out badly? What would Marcus have missed if they had followed only this step?",
-          "secondaryText": "Optional. Everything on this page is optional.",
+          "prompt": "Anything you disagree with, or that was done badly?",
           "location": "sidebar",
           "type": "longText",
-          "required": false,
-          "placeholder": "Optional"
+          "required": false
         },
         {
           "id": "interactionLog",
@@ -620,6 +632,7 @@
         {
           "id": "useful",
           "prompt": "How useful was this step in this case?",
+          "secondaryText": "Judge the whole step. If only part of it was useful, pick the closest answer and say which part in the comment below.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -657,13 +670,18 @@
           ]
         },
         {
-          "id": "note",
-          "prompt": "Anything you disagree with, or that was carried out badly? If you answered Yes above, what would they have concluded at this point?",
-          "secondaryText": "Optional. Everything on this page is optional.",
+          "id": "enough_conclude",
+          "prompt": "If you said Marcus already had enough to decide, what would they have concluded?",
           "location": "sidebar",
           "type": "longText",
-          "required": false,
-          "placeholder": "Optional"
+          "required": false
+        },
+        {
+          "id": "note",
+          "prompt": "Anything you disagree with, or that was done badly?",
+          "location": "sidebar",
+          "type": "longText",
+          "required": false
         },
         {
           "id": "interactionLog",
@@ -692,6 +710,7 @@
         {
           "id": "useful",
           "prompt": "How useful was this step in this case?",
+          "secondaryText": "Judge the whole step. If only part of it was useful, pick the closest answer and say which part in the comment below.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -729,13 +748,18 @@
           ]
         },
         {
-          "id": "note",
-          "prompt": "Anything you disagree with, or that was carried out badly? If you answered Yes above, what would they have concluded at this point?",
-          "secondaryText": "Optional. Everything on this page is optional.",
+          "id": "enough_conclude",
+          "prompt": "If you said Marcus already had enough to decide, what would they have concluded?",
           "location": "sidebar",
           "type": "longText",
-          "required": false,
-          "placeholder": "Optional"
+          "required": false
+        },
+        {
+          "id": "note",
+          "prompt": "Anything you disagree with, or that was done badly?",
+          "location": "sidebar",
+          "type": "longText",
+          "required": false
         },
         {
           "id": "interactionLog",
@@ -764,6 +788,7 @@
         {
           "id": "useful",
           "prompt": "How useful was this step in this case?",
+          "secondaryText": "Judge the whole step. If only part of it was useful, pick the closest answer and say which part in the comment below.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -790,12 +815,10 @@
         },
         {
           "id": "note",
-          "prompt": "Anything you disagree with, or that was carried out badly? What would Marcus have missed if they had followed only this step?",
-          "secondaryText": "Optional. Everything on this page is optional.",
+          "prompt": "Anything you disagree with, or that was done badly?",
           "location": "sidebar",
           "type": "longText",
-          "required": false,
-          "placeholder": "Optional"
+          "required": false
         },
         {
           "id": "interactionLog",
@@ -873,16 +896,14 @@
           "prompt": "If Marcus had checked only the source, or only run a detection or provenance tool, what would they have concluded?",
           "location": "sidebar",
           "type": "longText",
-          "required": false,
-          "placeholder": "Optional"
+          "required": false
         },
         {
           "id": "other_checks",
           "prompt": "Given what Marcus concluded — including, where that applies, a decision not to conclude — would any other check have helped?",
           "location": "sidebar",
           "type": "longText",
-          "required": false,
-          "placeholder": "Optional"
+          "required": false
         },
         {
           "id": "interactionLog",
@@ -910,7 +931,8 @@
       "response": [
         {
           "id": "stop_value",
-          "prompt": "Was recording Ellen’s first reaction worth doing in this case?",
+          "prompt": "Was it worth pausing to name Ellen’s first reaction before anything was checked?",
+          "secondaryText": "This is about STOP on this page, not about the source check.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -924,6 +946,7 @@
         {
           "id": "useful",
           "prompt": "How useful was this step in this case?",
+          "secondaryText": "Judge the whole step. If only part of it was useful, pick the closest answer and say which part in the comment below.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -950,12 +973,10 @@
         },
         {
           "id": "note",
-          "prompt": "Anything you disagree with, or that was carried out badly? What would Ellen have missed if they had followed only this step?",
-          "secondaryText": "Optional. Everything on this page is optional.",
+          "prompt": "Anything you disagree with, or that was done badly?",
           "location": "sidebar",
           "type": "longText",
-          "required": false,
-          "placeholder": "Optional"
+          "required": false
         },
         {
           "id": "interactionLog",
@@ -984,6 +1005,7 @@
         {
           "id": "useful",
           "prompt": "How useful was this step in this case?",
+          "secondaryText": "Judge the whole step. If only part of it was useful, pick the closest answer and say which part in the comment below.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -1021,13 +1043,18 @@
           ]
         },
         {
-          "id": "note",
-          "prompt": "Anything you disagree with, or that was carried out badly? If you answered Yes above, what would they have concluded at this point?",
-          "secondaryText": "Optional. Everything on this page is optional.",
+          "id": "enough_conclude",
+          "prompt": "If you said Ellen already had enough to decide, what would they have concluded?",
           "location": "sidebar",
           "type": "longText",
-          "required": false,
-          "placeholder": "Optional"
+          "required": false
+        },
+        {
+          "id": "note",
+          "prompt": "Anything you disagree with, or that was done badly?",
+          "location": "sidebar",
+          "type": "longText",
+          "required": false
         },
         {
           "id": "interactionLog",
@@ -1056,6 +1083,7 @@
         {
           "id": "useful",
           "prompt": "How useful was this step in this case?",
+          "secondaryText": "Judge the whole step. If only part of it was useful, pick the closest answer and say which part in the comment below.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -1093,13 +1121,18 @@
           ]
         },
         {
-          "id": "note",
-          "prompt": "Anything you disagree with, or that was carried out badly? If you answered Yes above, what would they have concluded at this point?",
-          "secondaryText": "Optional. Everything on this page is optional.",
+          "id": "enough_conclude",
+          "prompt": "If you said Ellen already had enough to decide, what would they have concluded?",
           "location": "sidebar",
           "type": "longText",
-          "required": false,
-          "placeholder": "Optional"
+          "required": false
+        },
+        {
+          "id": "note",
+          "prompt": "Anything you disagree with, or that was done badly?",
+          "location": "sidebar",
+          "type": "longText",
+          "required": false
         },
         {
           "id": "interactionLog",
@@ -1128,6 +1161,7 @@
         {
           "id": "useful",
           "prompt": "How useful was this step in this case?",
+          "secondaryText": "Judge the whole step. If only part of it was useful, pick the closest answer and say which part in the comment below.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -1154,12 +1188,10 @@
         },
         {
           "id": "note",
-          "prompt": "Anything you disagree with, or that was carried out badly? What would Ellen have missed if they had followed only this step?",
-          "secondaryText": "Optional. Everything on this page is optional.",
+          "prompt": "Anything you disagree with, or that was done badly?",
           "location": "sidebar",
           "type": "longText",
-          "required": false,
-          "placeholder": "Optional"
+          "required": false
         },
         {
           "id": "interactionLog",
@@ -1237,16 +1269,14 @@
           "prompt": "If Ellen had checked only the source, or only run a detection or provenance tool, what would they have concluded?",
           "location": "sidebar",
           "type": "longText",
-          "required": false,
-          "placeholder": "Optional"
+          "required": false
         },
         {
           "id": "other_checks",
           "prompt": "Given what Ellen concluded — including, where that applies, a decision not to conclude — would any other check have helped?",
           "location": "sidebar",
           "type": "longText",
-          "required": false,
-          "placeholder": "Optional"
+          "required": false
         },
         {
           "id": "interactionLog",
@@ -1274,7 +1304,8 @@
       "response": [
         {
           "id": "stop_value",
-          "prompt": "Was recording Rekha’s first reaction worth doing in this case?",
+          "prompt": "Was it worth pausing to name Rekha’s first reaction before anything was checked?",
+          "secondaryText": "This is about STOP on this page, not about the source check.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -1288,6 +1319,7 @@
         {
           "id": "useful",
           "prompt": "How useful was this step in this case?",
+          "secondaryText": "Judge the whole step. If only part of it was useful, pick the closest answer and say which part in the comment below.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -1314,12 +1346,10 @@
         },
         {
           "id": "note",
-          "prompt": "Anything you disagree with, or that was carried out badly? What would Rekha have missed if they had followed only this step?",
-          "secondaryText": "Optional. Everything on this page is optional.",
+          "prompt": "Anything you disagree with, or that was done badly?",
           "location": "sidebar",
           "type": "longText",
-          "required": false,
-          "placeholder": "Optional"
+          "required": false
         },
         {
           "id": "interactionLog",
@@ -1348,6 +1378,7 @@
         {
           "id": "useful",
           "prompt": "How useful was this step in this case?",
+          "secondaryText": "Judge the whole step. If only part of it was useful, pick the closest answer and say which part in the comment below.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -1385,13 +1416,18 @@
           ]
         },
         {
-          "id": "note",
-          "prompt": "Anything you disagree with, or that was carried out badly? If you answered Yes above, what would they have concluded at this point?",
-          "secondaryText": "Optional. Everything on this page is optional.",
+          "id": "enough_conclude",
+          "prompt": "If you said Rekha already had enough to decide, what would they have concluded?",
           "location": "sidebar",
           "type": "longText",
-          "required": false,
-          "placeholder": "Optional"
+          "required": false
+        },
+        {
+          "id": "note",
+          "prompt": "Anything you disagree with, or that was done badly?",
+          "location": "sidebar",
+          "type": "longText",
+          "required": false
         },
         {
           "id": "interactionLog",
@@ -1420,6 +1456,7 @@
         {
           "id": "useful",
           "prompt": "How useful was this step in this case?",
+          "secondaryText": "Judge the whole step. If only part of it was useful, pick the closest answer and say which part in the comment below.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -1457,13 +1494,18 @@
           ]
         },
         {
-          "id": "note",
-          "prompt": "Anything you disagree with, or that was carried out badly? If you answered Yes above, what would they have concluded at this point?",
-          "secondaryText": "Optional. Everything on this page is optional.",
+          "id": "enough_conclude",
+          "prompt": "If you said Rekha already had enough to decide, what would they have concluded?",
           "location": "sidebar",
           "type": "longText",
-          "required": false,
-          "placeholder": "Optional"
+          "required": false
+        },
+        {
+          "id": "note",
+          "prompt": "Anything you disagree with, or that was done badly?",
+          "location": "sidebar",
+          "type": "longText",
+          "required": false
         },
         {
           "id": "interactionLog",
@@ -1492,6 +1534,7 @@
         {
           "id": "useful",
           "prompt": "How useful was this step in this case?",
+          "secondaryText": "Judge the whole step. If only part of it was useful, pick the closest answer and say which part in the comment below.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -1518,12 +1561,10 @@
         },
         {
           "id": "note",
-          "prompt": "Anything you disagree with, or that was carried out badly? What would Rekha have missed if they had followed only this step?",
-          "secondaryText": "Optional. Everything on this page is optional.",
+          "prompt": "Anything you disagree with, or that was done badly?",
           "location": "sidebar",
           "type": "longText",
-          "required": false,
-          "placeholder": "Optional"
+          "required": false
         },
         {
           "id": "interactionLog",
@@ -1601,16 +1642,14 @@
           "prompt": "If Rekha had checked only the source, or only run a detection or provenance tool, what would they have concluded?",
           "location": "sidebar",
           "type": "longText",
-          "required": false,
-          "placeholder": "Optional"
+          "required": false
         },
         {
           "id": "other_checks",
           "prompt": "Given what Rekha concluded — including, where that applies, a decision not to conclude — would any other check have helped?",
           "location": "sidebar",
           "type": "longText",
-          "required": false,
-          "placeholder": "Optional"
+          "required": false
         },
         {
           "id": "interactionLog",
@@ -1649,11 +1688,9 @@
         {
           "id": "routeA_note",
           "prompt": "If yes or yes-but-unlikely, why? If no, what would a more realistic route look like?",
-          "secondaryText": "Optional. Use whichever part applies.",
           "location": "sidebar",
           "type": "longText",
-          "required": false,
-          "placeholder": "Optional"
+          "required": false
         },
         {
           "id": "routeB_plausible",
@@ -1670,19 +1707,16 @@
         {
           "id": "routeB_note",
           "prompt": "If yes or yes-but-unlikely, why? If no, what would a more realistic route look like?",
-          "secondaryText": "Optional. Use whichever part applies.",
           "location": "sidebar",
           "type": "longText",
-          "required": false,
-          "placeholder": "Optional"
+          "required": false
         },
         {
           "id": "prevent",
           "prompt": "Where either route reaches a wrong conclusion, what additional check would have prevented it?",
           "location": "sidebar",
           "type": "longText",
-          "required": false,
-          "placeholder": "Optional"
+          "required": false
         },
         {
           "id": "interactionLog",
@@ -1721,11 +1755,9 @@
         {
           "id": "routeA_note",
           "prompt": "If yes or yes-but-unlikely, why? If no, what would a more realistic route look like?",
-          "secondaryText": "Optional. Use whichever part applies.",
           "location": "sidebar",
           "type": "longText",
-          "required": false,
-          "placeholder": "Optional"
+          "required": false
         },
         {
           "id": "routeB_plausible",
@@ -1742,19 +1774,16 @@
         {
           "id": "routeB_note",
           "prompt": "If yes or yes-but-unlikely, why? If no, what would a more realistic route look like?",
-          "secondaryText": "Optional. Use whichever part applies.",
           "location": "sidebar",
           "type": "longText",
-          "required": false,
-          "placeholder": "Optional"
+          "required": false
         },
         {
           "id": "prevent",
           "prompt": "Where either route reaches a wrong conclusion, what additional check would have prevented it?",
           "location": "sidebar",
           "type": "longText",
-          "required": false,
-          "placeholder": "Optional"
+          "required": false
         },
         {
           "id": "interactionLog",
@@ -1776,7 +1805,7 @@
       "parameters": {
         "section": "stopscan"
       },
-      "instruction": "Rate STOP&SCAN on the statements below. Optional comments are in the sidebar.",
+      "instruction": "Rate STOP&SCAN on the statements below. Comments are in the sidebar.",
       "response": [
         {
           "id": "R_stopscan",
@@ -1792,51 +1821,22 @@
             "Strongly agree"
           ],
           "questionOptions": [
-            "R2. The framework includes the right elements and leaves out nothing essential.",
-            "R3. It is useful to distinguish the number of steps completed from the number of independent kinds of evidence found.",
-            "R4. Requiring two independent kinds of evidence before a resolved conclusion is an appropriate threshold.",
-            "R5. A non-expert could tell whether two kinds of evidence are genuinely independent.",
-            "R7. “Unresolved” is a realistic result that people would be willing to accept.",
-            "R8. STOP&SCAN handles authentic content wrongly described as fake as well as it handles fabricated content.",
-            "R21. Separating the evidence state from the action that follows is a useful distinction for non-experts.",
-            "R22. A non-expert could tell which kind of situation they are in — information, a request, or an alert."
+            "R1. The framework includes the right elements and leaves out nothing essential.",
+            "R2. It is useful to distinguish the number of steps completed from the number of independent kinds of evidence found.",
+            "R3. Requiring two independent kinds of evidence before a resolved conclusion is an appropriate threshold.",
+            "R4. A non-expert could tell whether two kinds of evidence are genuinely independent.",
+            "R5. “Unresolved” is a realistic result that people would be willing to accept.",
+            "R6. STOP&SCAN works as well when real content is called fake as when the content itself is fake.",
+            "R7. Separating the evidence state from the action that follows is a useful distinction for non-experts.",
+            "R8. A non-expert could tell which kind of situation they are in — information, a request, or an alert."
           ]
         },
         {
-          "id": "R4_why",
-          "prompt": "R4 — the two-evidence threshold. Why?",
-          "secondaryText": "Optional.",
+          "id": "R_stopscan_note",
+          "prompt": "Comments on any of the statements above. Name the statement if you can.",
           "location": "sidebar",
           "type": "longText",
-          "required": false,
-          "placeholder": "Optional"
-        },
-        {
-          "id": "R5_why",
-          "prompt": "R5 — judging independence. Why?",
-          "secondaryText": "Optional.",
-          "location": "sidebar",
-          "type": "longText",
-          "required": false,
-          "placeholder": "Optional"
-        },
-        {
-          "id": "R7_why",
-          "prompt": "R7 — accepting an unresolved result. Why?",
-          "secondaryText": "Optional.",
-          "location": "sidebar",
-          "type": "longText",
-          "required": false,
-          "placeholder": "Optional"
-        },
-        {
-          "id": "R22_why",
-          "prompt": "R22 — reading the kind of situation. Why?",
-          "secondaryText": "Optional.",
-          "location": "sidebar",
-          "type": "longText",
-          "required": false,
-          "placeholder": "Optional"
+          "required": false
         },
         {
           "id": "interactionLog",
@@ -1858,7 +1858,7 @@
       "parameters": {
         "section": "sift"
       },
-      "instruction": "Rate SIFT on the statements below. We have not yet told you what we think. Optional comments are in the sidebar.",
+      "instruction": "Rate SIFT on the statements below. We have not yet told you what we think. Comments are in the sidebar.",
       "response": [
         {
           "id": "R_sift",
@@ -1876,19 +1876,17 @@
           "questionOptions": [
             "R9. SIFT remains useful for evaluating content that may be AI-generated or manipulated.",
             "R10. Allowing someone to stop after one SIFT move is appropriate.",
-            "R12. SIFT gives enough guidance when a trustworthy source publishes incorrect or fabricated content.",
-            "R13. SIFT gives enough guidance when authentic content is wrongly described as AI-generated.",
-            "R14. SIFT’s newer guidance adequately addresses content that may itself have been generated by AI."
+            "R11. SIFT gives enough guidance when a trustworthy source publishes incorrect or fabricated content.",
+            "R12. SIFT gives enough guidance when authentic content is wrongly described as AI-generated.",
+            "R13. Caulfield’s 2025 SIFT update — using language models as research tools, then checking their sources — is enough for content that may itself have been generated by AI."
           ]
         },
         {
-          "id": "R14_why",
-          "prompt": "R14 — the AI-specific guidance. Why?",
-          "secondaryText": "Optional.",
+          "id": "R_sift_note",
+          "prompt": "Comments on any of the statements above. Name the statement if you can.",
           "location": "sidebar",
           "type": "longText",
-          "required": false,
-          "placeholder": "Optional"
+          "required": false
         },
         {
           "id": "interactionLog",
@@ -1910,63 +1908,56 @@
       "parameters": {
         "section": "open"
       },
-      "instruction": "Open critique, before we state our own positions on SIFT. All optional.",
+      "instruction": "Open critique, before we state our own positions on SIFT.",
       "response": [
         {
           "id": "O1",
           "prompt": "Where is STOP&SCAN most likely to fail in everyday use?",
           "location": "sidebar",
           "type": "longText",
-          "required": false,
-          "placeholder": "Optional"
+          "required": false
         },
         {
           "id": "O2",
           "prompt": "Which element is weakest? How would you change it?",
           "location": "sidebar",
           "type": "longText",
-          "required": false,
-          "placeholder": "Optional"
+          "required": false
         },
         {
           "id": "O3",
           "prompt": "STOP&SCAN asks people to visit every element, even when an earlier one seems to settle the case. Is that right?",
           "location": "sidebar",
           "type": "longText",
-          "required": false,
-          "placeholder": "Optional"
+          "required": false
         },
         {
           "id": "O4",
           "prompt": "What, if anything, does STOP&SCAN add that SIFT or lateral reading does not already provide?",
           "location": "sidebar",
           "type": "longText",
-          "required": false,
-          "placeholder": "Optional"
+          "required": false
         },
         {
           "id": "O5",
           "prompt": "What evidence would you need before recommending STOP&SCAN to non-experts?",
           "location": "sidebar",
           "type": "longText",
-          "required": false,
-          "placeholder": "Optional"
+          "required": false
         },
         {
           "id": "O6",
           "prompt": "Is there an approach from your own work that neither framework captures?",
           "location": "sidebar",
           "type": "longText",
-          "required": false,
-          "placeholder": "Optional"
+          "required": false
         },
         {
           "id": "O7",
           "prompt": "Did our worked examples represent STOP&SCAN fairly, or did they make it look better or worse than it is?",
           "location": "sidebar",
           "type": "longText",
-          "required": false,
-          "placeholder": "Optional"
+          "required": false
         },
         {
           "id": "interactionLog",
@@ -1988,11 +1979,11 @@
       "parameters": {
         "section": "critique"
       },
-      "instruction": "Read our positions in the main pane, respond to the four concerns below, then use the sidebar for the remaining questions.",
+      "instruction": "Read our positions in the main pane, respond to the five concerns below, then use the sidebar for the remaining questions.",
       "response": [
         {
           "id": "Q1",
-          "prompt": "Where do you stand on each of our four concerns about SIFT?",
+          "prompt": "Where do you stand on each of our five concerns about SIFT?",
           "location": "belowStimulus",
           "type": "matrix-radio",
           "required": false,
@@ -2006,55 +1997,30 @@
             "On Stop",
             "On Investigate the source",
             "On Find better coverage",
-            "On Trace to the original context"
+            "On Trace to the original context",
+            "On the 2025 AI guidance"
           ]
         },
         {
           "id": "Q1_note",
-          "prompt": "Anything you want to say about those four.",
-          "secondaryText": "Optional.",
+          "prompt": "Anything you want to say about those five concerns.",
           "location": "sidebar",
           "type": "longText",
-          "required": false,
-          "placeholder": "Optional"
-        },
-        {
-          "id": "Q2",
-          "prompt": "Is our concern about SIFT’s AI-specific guidance fair?",
-          "location": "sidebar",
-          "type": "radio",
-          "required": false,
-          "options": [
-            "Agree",
-            "Agree but overstated",
-            "Disagree",
-            "No view"
-          ]
-        },
-        {
-          "id": "Q2_why",
-          "prompt": "Why?",
-          "secondaryText": "Optional.",
-          "location": "sidebar",
-          "type": "longText",
-          "required": false,
-          "placeholder": "Optional"
+          "required": false
         },
         {
           "id": "Q3",
           "prompt": "What concerns or weaknesses in SIFT have we missed?",
           "location": "sidebar",
           "type": "longText",
-          "required": false,
-          "placeholder": "Optional"
+          "required": false
         },
         {
           "id": "Q4",
           "prompt": "Which of these concerns do you think is mistaken, and why?",
           "location": "sidebar",
           "type": "longText",
-          "required": false,
-          "placeholder": "Optional"
+          "required": false
         },
         {
           "id": "interactionLog",
@@ -2079,150 +2045,89 @@
       "instruction": "Comparative judgments between SIFT and STOP&SCAN.",
       "response": [
         {
-          "id": "R15",
+          "id": "R14",
           "prompt": "Which approach is more likely to produce an appropriately cautious judgment?",
           "location": "sidebar",
-          "type": "slider",
+          "type": "radio",
           "required": false,
-          "snap": true,
           "options": [
-            {
-              "label": "SIFT",
-              "value": 0
-            },
-            {
-              "label": "No preference",
-              "value": 50
-            },
-            {
-              "label": "STOP&SCAN",
-              "value": 100
-            }
-          ],
-          "startingValue": 50
+            "SIFT",
+            "No preference",
+            "STOP&SCAN",
+            "I cannot make this comparison"
+          ]
+        },
+        {
+          "id": "R15",
+          "prompt": "Which approach would be easier to teach?",
+          "location": "sidebar",
+          "type": "radio",
+          "required": false,
+          "options": [
+            "SIFT",
+            "No preference",
+            "STOP&SCAN",
+            "I cannot make this comparison"
+          ]
         },
         {
           "id": "R16",
-          "prompt": "Which approach would be easier to teach?",
+          "prompt": "Which approach is more reliable when search results contain misleading or AI-generated information?",
           "location": "sidebar",
-          "type": "slider",
+          "type": "radio",
           "required": false,
-          "snap": true,
           "options": [
-            {
-              "label": "SIFT",
-              "value": 0
-            },
-            {
-              "label": "No preference",
-              "value": 50
-            },
-            {
-              "label": "STOP&SCAN",
-              "value": 100
-            }
-          ],
-          "startingValue": 50
+            "SIFT",
+            "No preference",
+            "STOP&SCAN",
+            "I cannot make this comparison"
+          ]
         },
         {
           "id": "R17",
-          "prompt": "Which approach is more reliable when search results contain misleading or AI-generated information?",
+          "prompt": "Which would you recommend to someone with no training in verification?",
           "location": "sidebar",
-          "type": "slider",
+          "type": "radio",
           "required": false,
-          "snap": true,
           "options": [
-            {
-              "label": "SIFT",
-              "value": 0
-            },
-            {
-              "label": "No preference",
-              "value": 50
-            },
-            {
-              "label": "STOP&SCAN",
-              "value": 100
-            }
-          ],
-          "startingValue": 50
+            "SIFT",
+            "No preference",
+            "STOP&SCAN",
+            "I cannot make this comparison"
+          ]
         },
         {
           "id": "R18",
-          "prompt": "Which would you recommend to someone with no training in verification?",
+          "prompt": "Which would you recommend to a professional?",
           "location": "sidebar",
-          "type": "slider",
+          "type": "radio",
           "required": false,
-          "snap": true,
           "options": [
-            {
-              "label": "SIFT",
-              "value": 0
-            },
-            {
-              "label": "No preference",
-              "value": 50
-            },
-            {
-              "label": "STOP&SCAN",
-              "value": 100
-            }
-          ],
-          "startingValue": 50
+            "SIFT",
+            "No preference",
+            "STOP&SCAN",
+            "I cannot make this comparison"
+          ]
         },
         {
           "id": "R19",
-          "prompt": "Which would you recommend to a professional, and which better matches the range of cases you meet in your own work?",
+          "prompt": "Which better matches the range of cases you meet in your own work?",
           "location": "sidebar",
-          "type": "slider",
+          "type": "radio",
           "required": false,
-          "snap": true,
           "options": [
-            {
-              "label": "SIFT",
-              "value": 0
-            },
-            {
-              "label": "No preference",
-              "value": 50
-            },
-            {
-              "label": "STOP&SCAN",
-              "value": 100
-            }
-          ],
-          "startingValue": 50
+            "SIFT",
+            "No preference",
+            "STOP&SCAN",
+            "I cannot make this comparison"
+          ]
         },
         {
-          "id": "compare_flags",
-          "prompt": "Were there comparisons above you did not feel able to make?",
-          "secondaryText": "Optional. Select any that apply.",
+          "id": "compare_note",
+          "prompt": "Anything you want to add about these comparisons.",
           "location": "sidebar",
-          "type": "checkbox",
-          "required": false,
-          "options": [
-            {
-              "label": "Which approach is more likely to produce an appropriately cautious judgment?",
-              "value": "R15"
-            },
-            {
-              "label": "Which approach would be easier to teach?",
-              "value": "R16"
-            },
-            {
-              "label": "Which approach is more reliable when search results contain misleading or AI-generated information?",
-              "value": "R17"
-            },
-            {
-              "label": "Which would you recommend to someone with no training in verification?",
-              "value": "R18"
-            },
-            {
-              "label": "Which would you recommend to a professional, and which better matches the range of cases you meet in your own work?",
-              "value": "R19"
-            },
-            "Neither framework is adequate for this comparison"
-          ]
+          "type": "longText",
+          "required": false
         },
         {
           "id": "interactionLog",

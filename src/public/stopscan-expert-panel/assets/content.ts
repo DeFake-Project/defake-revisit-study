@@ -135,7 +135,7 @@ export const STOPSCAN_OVERVIEW = {
 
   /* --- Two-level outcome model --- */
   outcomeIntro:
-    'STOP&SCAN produces two things, and they are separate. First, an evidence state: what the checks actually returned. Second, an action: what to do about it, which depends on what kind of situation you are in.',
+    'STOP&SCAN produces two separate things: what the checks found (the evidence state), and what to do next (the action). The action depends on the kind of situation you are in.',
 
   evidenceStates: [
     {
@@ -151,7 +151,7 @@ export const STOPSCAN_OVERVIEW = {
     {
       id: 'unresolved',
       title: 'Unresolved',
-      body: 'Only one useful kind of evidence is available, or the evidence conflicts. This is a complete result, not a failure to decide, and it stands even when one signal felt convincing.',
+      body: 'Only one useful kind of evidence is available, or the evidence conflicts. That is a complete result, not a failure. It still applies even if one signal felt convincing.',
     },
   ],
 
@@ -159,7 +159,7 @@ export const STOPSCAN_OVERVIEW = {
     {
       id: 'information',
       title: 'Information',
-      body: 'Nothing is being asked of you. Doing nothing costs little and can be undone.',
+      body: 'Nothing is being asked of you. Waiting costs little, and you can change your mind later.',
       actions: {
         confirmed: 'Rely on it. Pass it on.',
         unresolved: 'Hold. Do not pass it on, and do not dismiss it either.',
@@ -169,7 +169,7 @@ export const STOPSCAN_OVERVIEW = {
     {
       id: 'request',
       title: 'A request',
-      body: 'Something is being asked of you — money, a login, an action. Going along with it is costly and often cannot be undone.',
+      body: 'Someone is asking you to do something — send money, log in, or take an action. Doing it is costly and often cannot be undone.',
       actions: {
         confirmed: 'Go ahead.',
         unresolved: 'Check through a route the person asking does not control, before doing anything.',
@@ -179,7 +179,7 @@ export const STOPSCAN_OVERVIEW = {
     {
       id: 'alert',
       title: 'An alert',
-      body: 'Something may need a protective response now. Acting and not acting both carry a cost.',
+      body: 'You may need to protect yourself or someone else now. Acting and not acting both have a cost.',
       actions: {
         confirmed: 'Act as directed.',
         unresolved: 'Take the protective step you can undo, and go to the official channel.',
@@ -189,7 +189,7 @@ export const STOPSCAN_OVERVIEW = {
   ],
 
   actionRule:
-    'One rule covers all three: Unresolved never means do nothing. It means take the option you can undo. With information, the option you can undo happens to be sitting still. With a request or an alert, it is not.',
+    'If the evidence is unresolved, that does not mean ignore it. Choose the action you can still reverse. For information, that action is to wait. For a request or an alert, waiting is not enough — check another way before you commit.',
 
   coverageRule: {
     title: 'How much evidence is enough?',
@@ -204,13 +204,13 @@ export const STOPSCAN_OVERVIEW = {
     'Reporting is an action, not a separate verdict. It is available under any evidence state and is driven by possible harm to other people rather than by what the evidence showed.',
 
   progressive:
-    'Each case is shown one step at a time, so that the ending does not colour how you judge the earlier steps. Once you submit a step you cannot edit it, but it stays visible.',
+    'We show each case one step at a time. You rate each step before you see how the case ends. Once you submit a step you cannot edit it, but it stays visible.',
 
   freezeNote:
-    'Each case is presented with the evidence that was publicly available on the date shown at the top of the case. Some of these stories developed further afterwards. We say what happened in each at the end.',
+    'Each case uses only the evidence that was public on the date at the top. Some stories moved on after that. We tell you what happened at the end.',
 
   roleplayNote:
-    'These are real, publicly documented cases. The person walking through each one is invented, and given a name, so that the reasoning has somebody doing it. Real public figures and organisations are named as they were reported.',
+    'These cases are real and publicly documented. The named person in each case is fictional. We added them so you can see an ordinary person using the method, not so you can judge that person. Real public figures and organisations are named as they were reported.',
 };
 
 /* ------------------------------------------------------------------ */
@@ -258,7 +258,7 @@ export const CASES: CaseContent[] = [
           },
         ],
         narrator:
-          'Confirming who posted something confirms who posted it. It does not confirm what is in the post. A trustworthy organisation can publish something wrong.',
+          'The account is genuine. That does not mean the map is. A trustworthy organisation can still post something wrong.',
       },
       {
         key: 'content',
@@ -283,7 +283,7 @@ export const CASES: CaseContent[] = [
           },
         ],
         narrator:
-          'The check that did the work here cost nothing and used only what was already visible inside the image. An unverified claim in the replies is not yet evidence of anything.',
+          'The check that mattered used only what was already in the image. A reply with no source is not evidence yet.',
       },
       {
         key: 'alignment',
@@ -307,7 +307,7 @@ export const CASES: CaseContent[] = [
           },
         ],
         narrator:
-          'A deleted post on its own is ambiguous — accounts remove things for many reasons. What makes this a second independent kind of evidence is the outside reporting together with the agency’s own confirmation.',
+          'A deleted post can mean many things. The second kind of evidence here is the outside reporting plus the agency confirming the error.',
       },
       {
         key: 'reflect',
@@ -325,7 +325,7 @@ export const CASES: CaseContent[] = [
           },
         ],
         narrator:
-          'Nothing is being asked of Dana here, and not resharing costs her nothing. This is an information encounter.',
+          'Nobody is asking Dana to act. Not resharing costs her nothing. This is an information encounter.',
       },
     ],
     outcome: {
@@ -362,9 +362,9 @@ export const CASES: CaseContent[] = [
         actions: [
           {
             category: 'pause',
-            did: 'Recorded his starting position: he wants the allegation to be true.',
+            did: 'Noted his starting position: he wants the allegation to be true.',
             returned:
-              'A recorded starting point. He will check his conclusion against it at the end.',
+              'A starting point. He will check his conclusion against it at the end.',
             support: 'neither',
           },
           {
@@ -382,7 +382,7 @@ export const CASES: CaseContent[] = [
           },
         ],
         narrator:
-          'The trail runs out rather than turning up something damning. Failing to find an original is not evidence in either direction — it is the absence of evidence. Source is exhausted here, not defeated.',
+          'The trail runs out. Not finding an original is not evidence either way — it is missing evidence. Source is exhausted here, not disproved.',
       },
       {
         key: 'content',
@@ -413,7 +413,7 @@ export const CASES: CaseContent[] = [
           },
         ],
         narrator:
-          'The phone screens are evidence sitting inside the picture, available to anyone who enlarges it and costing nothing. The detector result is a different kind of thing: one check, of one kind, whose reliability Marcus has no way to assess.',
+          'The phone screens are in the picture itself. Anyone who zooms in can see them. The detector result is a separate kind of check, and Marcus has no way to know how reliable it is.',
       },
       {
         key: 'alignment',
@@ -445,7 +445,7 @@ export const CASES: CaseContent[] = [
           },
         ],
         narrator:
-          'The wire photographs and the video are independent of the original poster and of each other, and the video is a different kind of record altogether. The campaign statement is not independent — it comes from the interested party. The two detectors together are one check, and a wide spread between them makes it a weak one.',
+          'The wire photos and the video do not depend on the original poster, or on each other. The campaign statement does — it comes from an interested party. The two detectors count as one check. They disagree enough that the check is weak.',
       },
       {
         key: 'reflect',
@@ -456,14 +456,14 @@ export const CASES: CaseContent[] = [
         actions: [
           {
             category: 'pause',
-            did: 'Compared his conclusion against the starting position he recorded.',
+            did: 'Compared his conclusion against the starting position he noted.',
             returned:
               'His judgment moved against what he wanted, which is some reassurance he followed the evidence. The strongest evidence was the independent photographs and video, not the tools.',
             support: 'neither',
           },
         ],
         narrator:
-          'Worth separating three different claims that get run together here: whether the photograph is authentic, whether the copy going around has been altered, and whether the AI allegation is true. They are not the same question.',
+          'Three questions get mixed together here: whether the photograph is authentic, whether this copy has been altered, and whether the AI allegation is true. They are not the same question.',
       },
     ],
     outcome: {
@@ -500,7 +500,7 @@ export const CASES: CaseContent[] = [
         actions: [
           {
             category: 'pause',
-            did: 'Recorded her starting position: she expects the photograph to be real and wants the story closed.',
+            did: 'Noted her starting position: she expects the photograph to be real and wants the story closed.',
             returned: 'A starting point to check her conclusion against.',
             support: 'neither',
           },
@@ -513,7 +513,7 @@ export const CASES: CaseContent[] = [
           },
         ],
         narrator:
-          'The accounts are genuine. But the office is the subject of the claim, so what it publishes about the senator cannot independently confirm itself. Note also that the file Ellen has is not the file the office posted — hers has been through a screenshot and a re-upload.',
+          'The accounts are genuine. The office is also the subject of the rumour, so its own post cannot independently confirm itself. Ellen also does not have the file the office posted — she has a screenshot re-uploaded to X.',
       },
       {
         key: 'content',
@@ -545,7 +545,7 @@ export const CASES: CaseContent[] = [
           },
         ],
         narrator:
-          'The shirt argument is a signal that fits both explanations equally, so it separates nothing. On the detectors: Ellen is running a re-compressed copy pulled off social media, not the file the office published. She has no way of knowing whether that matters, and nothing in her tools tells her.',
+          'The matching shirt fits both “this is real” and “this is an old photo.” It does not decide anything. The detectors were run on a compressed screenshot, not the office’s file. Nothing in the tools tells her whether that matters.',
       },
       {
         key: 'alignment',
@@ -589,7 +589,7 @@ export const CASES: CaseContent[] = [
           },
         ],
         narrator:
-          'Two of Grok’s four claims fell apart the moment Ellen looked. The other two did not, and not because they were true — because there was nothing to look at. Checking that a cited source exists is straightforward. Checking that a claimed debunk does not exist is much harder, because absence returns nothing to inspect.',
+          'Two of Grok’s four claims fell apart as soon as Ellen checked. The other two could not be checked at all. It is easy to confirm that a cited source exists. It is much harder to confirm that a claimed debunk does not exist, because absence leaves nothing to inspect.',
       },
       {
         key: 'reflect',
@@ -607,7 +607,7 @@ export const CASES: CaseContent[] = [
           },
         ],
         narrator:
-          'One usable independent kind of evidence is not two. The pull to resolve is strong in both directions here — toward closing the rumour, and toward the confident-sounding assistant that said it was fake.',
+          'One usable independent kind of evidence is not two. There is a pull to close this anyway — either to kill the rumour, or to trust the assistant that called the photo fake.',
       },
     ],
     outcome: {
@@ -658,7 +658,7 @@ export const CASES: CaseContent[] = [
           },
         ],
         narrator:
-          'There is no account to inspect, no article, no file. Everything Rekha knows about who is calling has been supplied by the caller. A voice can be copied and a displayed number can be set.',
+          'There is no account, article, or file to check. Everything Rekha knows about the caller came from the call. A voice can be copied. A displayed number can be faked.',
       },
       {
         key: 'content',
@@ -676,7 +676,7 @@ export const CASES: CaseContent[] = [
           },
         ],
         narrator:
-          'None of this shows the voice is cloned. It shows the shape of the request: urgency, an irreversible payment, and a story arranged so that it cannot be checked without leaving the call. Something is being asked of Rekha here, and going along with it cannot be undone. That makes this a request, not information.',
+          'This does not prove the voice is cloned. It shows the shape of the request: urgency, a payment that is hard to reverse, and a story that cannot be checked without leaving the call. Someone is asking Rekha to act, and going along cannot be undone. This is a request, not information.',
       },
       {
         key: 'alignment',
@@ -693,7 +693,7 @@ export const CASES: CaseContent[] = [
           },
         ],
         narrator:
-          'There is nothing here to search for and no image to examine. The useful move is reaching the person through a route the caller does not control — and it is a move Rekha can make without committing to anything.',
+          'There is nothing to search and no image to inspect. The useful move is to reach Manoj through a route the caller does not control. Rekha can do that without sending money.',
       },
       {
         key: 'reflect',
@@ -711,7 +711,7 @@ export const CASES: CaseContent[] = [
           },
         ],
         narrator:
-          'Two moments, two states. Sitting still would not have been the safe option here — staying on the line while being hurried was itself the risk.',
+          'Before the callback the evidence was unresolved. Waiting on the line was not the safe option — staying on a hurried call was itself the risk.',
       },
     ],
     outcome: {
@@ -719,7 +719,7 @@ export const CASES: CaseContent[] = [
       action:
         'Before the callback: check through a route the caller does not control. After it: refuse, and report.',
       rationale:
-        'Up to the callback the evidence was unresolved, and with a request the move under unresolved evidence is the one that can be undone — not inaction. The callback supplied an independent channel the caller could not reach, and it ran against the claim. Rekha sends nothing and reports the number to the cybercrime helpline.',
+        'Up to the callback the evidence was unresolved. For a request, unresolved means take the step you can reverse — not sit still. The callback was that step, and it ran against the claim. Rekha sends nothing and reports the number to the cybercrime helpline.',
     },
   },
 ];
@@ -753,7 +753,7 @@ export const REFERENCE_CARDS = {
 };
 
 /* ------------------------------------------------------------------ */
-/* SIFT route exhibits — same characters, same cases                   */
+/* SIFT route exhibits — two routes for the same person on each case   */
 /* ------------------------------------------------------------------ */
 
 export interface SiftRoute {
@@ -827,35 +827,38 @@ export const SIFT_BLOCKS: SiftCaseBlock[] = [
 ];
 
 export const SIFT_INTRO =
-  'SIFT does not ask people to work through its moves in a fixed order. A person may use only the moves that look useful, and may stop after one if they think they have enough. The routes below are examples we wrote for this study, following the same two people through the same two cases. They are not the only ways someone could use SIFT, and we would like to know if a route strikes you as unrealistic or unfair.';
+  'SIFT does not require a fixed order. Someone may use only the moves that look useful, and may stop after one. The two routes below are examples we wrote for this study: two different ways the same person might have used SIFT on this case. They are not the only ways SIFT could go. Tell us if a route seems unrealistic or unfair.';
 
 export const SIFT_CRITIQUE = {
   intro:
-    'Below are four concerns we hold about using SIFT with synthetic media. Please tell us where you agree, where a concern is overstated, and where it is simply wrong.',
+    'Below are five concerns we hold about using SIFT with synthetic media. Tell us where you agree, where a concern is overstated, and where it is wrong.',
   positions: [
     {
       id: 'stop',
       title: 'On Stop',
-      body: 'SIFT asks people to pause and notice their reaction, but not to record where they started. Without a starting point, it is hard to tell afterwards whether evidence changed someone’s mind or whether they gathered support for what they already thought.',
+      body: 'SIFT asks people to pause and notice their reaction, but not to note where they started. Without a starting point, it is hard to tell afterwards whether evidence changed someone’s mind or whether they gathered support for what they already thought.',
     },
     {
       id: 'investigate',
       title: 'On Investigate the source',
-      body: 'This move works best when there is a source to identify and research. Some synthetic content has no original source at all. In other cases a genuine and trustworthy organisation publishes something incorrect or AI-generated under its own name, and confirming the source then supplies false reassurance.',
+      body: 'This move works best when there is a source to identify and research. Some synthetic content has no original source at all. In other cases a genuine organisation publishes something incorrect or AI-generated under its own name, and confirming the source then gives false reassurance.',
     },
     {
       id: 'coverage',
       title: 'On Find better coverage',
-      body: 'Searching for other coverage assumes the search environment holds reliable information. Results, copied claims and AI-generated summaries can repeat and reinforce a false claim, so looking elsewhere sometimes makes a judgment worse rather than better.',
+      body: 'Searching for other coverage assumes the search results are reliable. Results, copied claims, and AI-generated summaries can repeat a false claim, so looking elsewhere sometimes makes a judgment worse.',
     },
     {
       id: 'trace',
       title: 'On Trace to the original context',
-      body: 'Some synthetic media has no authentic original to find. Authentic media may have an original that cannot be reached. And the move does not address provenance systems such as Content Credentials or watermarks, which did not exist when it was written.',
+      body: 'Some synthetic media has no authentic original to find. Authentic media may have an original that cannot be reached. The move also does not address provenance systems such as Content Credentials or watermarks, which did not exist when it was written.',
+    },
+    {
+      id: 'ai',
+      title: 'On the 2025 AI guidance',
+      body: 'In 2025, Caulfield added guidance on using language models as research tools and checking the sources they supply. Our concern is an asymmetry: it is easy to check that a cited source exists, and much harder to check that a claimed article or debunk does not exist, because absence leaves nothing to inspect. A model can also steer the search before any checking begins.',
     },
   ],
-  aiExtension:
-    'Newer SIFT guidance discusses using language models as research tools and checking the sources they supply. Our concern is an asymmetry: checking whether a cited source exists is straightforward, while checking whether a claimed article or debunk does not exist is much harder, because absence returns nothing to inspect. A model can also frame the direction of a search before any checking begins.',
 };
 
 /* ------------------------------------------------------------------ */
@@ -905,11 +908,17 @@ export const DEBRIEF = {
   ],
   notes: [
     'The walkthroughs you read were written by our research team as demonstrations. They are not authoritative analyses of these incidents. They are published alongside this study so that readers can judge for themselves whether they were fair.',
-    'The people walking through each case are invented. The public figures and organisations in them are named as they were reported.',
+    'The people walking through each case are fictional. The public figures and organisations in them are named as they were reported.',
     'The positions we stated about SIFT are our arguments and they are contested. Nothing you said was scored, and no individual’s responses will be reported.',
   ],
   contacts: {
-    pi: 'Saniat Javid Sohrawardi, Principal Investigator — john.sohrawardi@rit.edu',
+    pi: 'Saniat Javid Sohrawardi, Principal Investigator — john.sohrawardi@rit.edu, Rochester Institute of Technology',
+    team: [
+      'Y. Kelly Wu — kellywu@mail.rit.edu, Rochester Institute of Technology',
+      'Fatma Aksu — fatma.aksu2@unibo.it, University of Bologna',
+      'Alessandra Sala — alessandra.sala@outlook.ie, AI Office of Ireland',
+      'Luca Pietrantoni — luca.pietrantoni@unibo.it, University of Bologna',
+    ],
     hsro: 'RIT Human Subjects Research Office — hsro@rit.edu — 585-475-7673',
   },
 };
