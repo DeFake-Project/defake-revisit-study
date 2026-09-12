@@ -4,7 +4,8 @@ import {
 } from '@mantine/core';
 import { IconRoute, IconClipboardList } from '@tabler/icons-react';
 import { StimulusParams } from '../../../store/types';
-import { SIFT_INTRO, getSiftBlock } from './content';
+import { SIFT_INTRO, getCase, getSiftBlock } from './content';
+import { PersonaCard } from './PersonaCard';
 import { ReferenceHelpers } from './ReferenceHelpers';
 import { useInteractionLog } from './useInteractionLog';
 
@@ -18,6 +19,10 @@ export default function SiftRoutes({
 }: StimulusParams<SiftRoutesParams>) {
   const block = useMemo(
     () => getSiftBlock(parameters.caseId),
+    [parameters.caseId],
+  );
+  const character = useMemo(
+    () => getCase(parameters.caseId).character,
     [parameters.caseId],
   );
   const { logEvent, ensureSeeded } = useInteractionLog(setAnswer);
@@ -35,6 +40,9 @@ export default function SiftRoutes({
         <div>
           <Badge color="blue" variant="light" mb={6}>How else this could have gone</Badge>
           <Title order={3}>{block.title}</Title>
+          <Box mt="sm">
+            <PersonaCard character={character} />
+          </Box>
           <Text size="sm" mt="sm">{SIFT_INTRO}</Text>
         </div>
 

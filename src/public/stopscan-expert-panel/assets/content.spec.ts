@@ -1,6 +1,13 @@
-import { readFileSync } from 'fs';
+import { existsSync, readFileSync } from 'fs';
+import { fileURLToPath } from 'url';
 import { describe, expect, it } from 'vitest';
-import { CASES_IN_ORDER, SIFT_CRITIQUE, STOPSCAN_OVERVIEW } from './content';
+import {
+  CASES_IN_ORDER,
+  SIFT_CRITIQUE,
+  SOCIAL_MEDIA_LABEL,
+  STOPSCAN_OVERVIEW,
+  TECH_SAVVINESS_LABEL,
+} from './content';
 
 const iframePages = ['consent.html', 'debrief.html'] as const;
 const publicDir = new URL('../../../../public/stopscan-expert-panel/', import.meta.url);
@@ -32,6 +39,27 @@ describe('STOP&SCAN participant copy', () => {
     ]);
     expect(STOPSCAN_OVERVIEW.actionRule).toContain('does not mean ignore it');
     expect(STOPSCAN_OVERVIEW.encounterTypes[0].body).toContain('Waiting costs little');
+  });
+
+  it('gives each observer a compact persona with two traits', () => {
+    const personas = CASES_IN_ORDER.map(({ character }) => ({
+      name: character.name,
+      tech: character.techSavviness,
+      social: character.socialMedia,
+      avatar: character.avatar,
+    }));
+    expect(personas).toEqual([
+      { name: 'Dana', tech: 2, social: 2, avatar: 'persona-dana.png' },
+      { name: 'Marcus', tech: 2, social: 3, avatar: 'persona-marcus.png' },
+      { name: 'Ellen', tech: 3, social: 2, avatar: 'persona-ellen.png' },
+      { name: 'Rekha', tech: 1, social: 1, avatar: 'persona-rekha.png' },
+    ]);
+    personas.forEach(({ avatar, tech, social }) => {
+      const path = fileURLToPath(new URL(`../../../../public/stopscan-expert-panel/assets/personas/${avatar}`, import.meta.url));
+      expect(existsSync(path)).toBe(true);
+      expect(TECH_SAVVINESS_LABEL[tech]).toBeTruthy();
+      expect(SOCIAL_MEDIA_LABEL[social]).toBeTruthy();
+    });
   });
 
   it('assigns each case an evidence state only after the walkthrough', () => {

@@ -9,6 +9,7 @@ import { StimulusParams } from '../../../store/types';
 import {
   ACTION_CATEGORY_LABEL, CaseStepContent, getCase,
 } from './content';
+import { PersonaCard } from './PersonaCard';
 import { ReferenceHelpers } from './ReferenceHelpers';
 import { useInteractionLog } from './useInteractionLog';
 
@@ -137,12 +138,13 @@ export default function CaseStimulus({
             {mode === 'after' && <Badge color="gray" variant="outline">After the case</Badge>}
           </Group>
           <Title order={3}>{caseContent.title}</Title>
-          <Group gap={5} mt={4}>
+          <Group gap={5} mt={4} mb="sm">
             <ThemeIcon size={15} variant="transparent" color="gray"><IconCalendar size={13} /></ThemeIcon>
             <Text size="xs" c="dimmed">
-              {`Evidence as it stood on ${caseContent.asOf}. ${caseContent.character.name} ${caseContent.character.blurb}.`}
+              {`Evidence as it stood on ${caseContent.asOf}.`}
             </Text>
           </Group>
+          <PersonaCard character={caseContent.character} />
         </div>
 
         <Box p="md" style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: 12 }}>

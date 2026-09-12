@@ -63,13 +63,35 @@ export interface CaseStepContent {
 export type EncounterType = 'information' | 'request' | 'alert';
 export type EvidenceState = 'confirmed' | 'contradicted' | 'unresolved';
 
+export type TraitLevel = 1 | 2 | 3;
+
+export const TECH_SAVVINESS_LABEL: Record<TraitLevel, string> = {
+  1: 'Everyday',
+  2: 'Comfortable',
+  3: 'Uses tools',
+};
+
+export const SOCIAL_MEDIA_LABEL: Record<TraitLevel, string> = {
+  1: 'Light',
+  2: 'Daily',
+  3: 'High',
+};
+
+export interface CharacterPersona {
+  name: string;
+  blurb: string;
+  avatar: string;
+  techSavviness: TraitLevel;
+  socialMedia: TraitLevel;
+}
+
 export interface CaseContent {
   id: string;
   /** Presentation position, 1-based. */
   order: number;
   title: string;
   shortLabel: string;
-  character: { name: string; blurb: string };
+  character: CharacterPersona;
   encounterType: EncounterType;
   /** Evidence is frozen to this date. */
   asOf: string;
@@ -227,6 +249,9 @@ export const CASES: CaseContent[] = [
     character: {
       name: 'Dana',
       blurb: 'follows a few weather accounts and reshares the interesting ones',
+      avatar: 'persona-dana.png',
+      techSavviness: 2,
+      socialMedia: 2,
     },
     encounterType: 'information',
     asOf: '5 January 2026',
@@ -345,6 +370,9 @@ export const CASES: CaseContent[] = [
     character: {
       name: 'Marcus',
       blurb: 'reads political news on his phone and argues about it in the replies',
+      avatar: 'persona-marcus.png',
+      techSavviness: 2,
+      socialMedia: 3,
     },
     encounterType: 'information',
     asOf: '12 August 2024',
@@ -483,6 +511,9 @@ export const CASES: CaseContent[] = [
     character: {
       name: 'Ellen',
       blurb: 'checks the news on X most evenings and rarely posts',
+      avatar: 'persona-ellen.png',
+      techSavviness: 3,
+      socialMedia: 2,
     },
     encounterType: 'information',
     asOf: '13 July 2026',
@@ -627,6 +658,9 @@ export const CASES: CaseContent[] = [
     character: {
       name: 'Rekha',
       blurb: 'runs a small play school in Indore',
+      avatar: 'persona-rekha.png',
+      techSavviness: 1,
+      socialMedia: 1,
     },
     encounterType: 'request',
     asOf: 'the afternoon of the call',
