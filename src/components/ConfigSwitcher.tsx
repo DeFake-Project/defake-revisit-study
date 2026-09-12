@@ -390,11 +390,12 @@ export function ConfigSwitcher({
       configName,
       globalConfig,
       isAdmin: user.isAdmin,
+      assignedStudyIds: user.studyIds,
       dataSharingEnabled: studyVisibility[configName],
       isCloudStorage: !!storageEngine && isCloudStorageEngine(storageEngine),
       showTestStudies,
     })),
-    [configsList, globalConfig, showTestStudies, storageEngine, studyVisibility, user.isAdmin],
+    [configsList, globalConfig, showTestStudies, storageEngine, studyVisibility, user.isAdmin, user.studyIds],
   );
 
   const demos = useMemo(() => configsFiltered.filter((configName) => configName.startsWith('demo-')), [configsFiltered]);

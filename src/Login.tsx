@@ -34,7 +34,7 @@ export function Login() {
   const { storageEngine } = useStorageEngine();
 
   useEffect(() => {
-    if (!user.determiningStatus && !user.isAdmin && user.adminVerification) {
+    if (!user.determiningStatus && !user.role && user.adminVerification) {
       showNotification({ title: 'Unauthorized', message: 'You are not authorized to use this application.', color: 'red' });
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -42,7 +42,7 @@ export function Login() {
 
   const engine = useMemo(() => storageEngine?.getEngine(), [storageEngine]);
 
-  if (!user.determiningStatus && user.isAdmin) {
+  if (!user.determiningStatus && user.role) {
     return <Navigate to="/" />;
   }
 
@@ -53,7 +53,7 @@ export function Login() {
           <Image maw={200} mt={50} mb={100} src={`${PREFIX}revisitAssets/defake.svg`} alt="DeFake Project" />
           <>
             <Text mb={20}>
-              To access admin settings, please sign in using
+              To access analysis and study management, please sign in using
               {' '}
               {engine === 'supabase' ? ' Supabase' : ' Google'}
               .

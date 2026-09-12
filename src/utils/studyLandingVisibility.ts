@@ -1,4 +1,5 @@
 import { GlobalConfig } from '../parser/types';
+import { studyIdsInclude } from './userPermissions';
 
 /**
  * When true, studies marked `test: true` remain visible on the landing page.
@@ -11,13 +12,15 @@ export function shouldShowTestStudiesOnLanding(): boolean {
 /**
  * Determines whether a study should appear on the landing page.
  * Studies marked `test: true` in global.json are admin-only in production,
- * unless showTestStudies is enabled (e.g. Playwright).
- * On cloud storage, non-admins also need dataSharingEnabled.
+ * unless showTestStudies is enabled (e.g. Playwright) or the user is assigned
+ * to that study.
+ * On cloud storage, unassigned non-admins also need dataSharingEnabled.
  */
 export function isStudyVisibleOnLanding({
   configName,
   globalConfig,
   isAdmin,
+  assignedStudyIds = [],
   dataSharingEnabled,
   isCloudStorage,
   showTestStudies = false,
@@ -25,18 +28,18 @@ export function isStudyVisibleOnLanding({
   configName: string;
   globalConfig: GlobalConfig;
   isAdmin: boolean;
+  assignedStudyIds?: string[];
   dataSharingEnabled?: boolean;
   isCloudStorage: boolean;
   showTestStudies?: boolean;
 }): boolean {
-  const isTestConfig = !!globalConfig.configs[configName]?.test;
-  if (isTestConfig && !isAdmin && !showTestStudies) {
-    return false;
+  if (isAdmin || showTestStudies || studyIdsInclude(assignedStudyIds, configName)) {
+    return true;
   }
 
-  // Admins and Playwright (showTestStudies) see all remaining listed studies.
-  if (isAdmin || showTestStudies) {
-    return true;
+  const isTestConfig = !!globalConfig.configs[configName]?.test;
+  if (isTestConfig) {
+    return false;
   }
 
   if (isCloudStorage) {

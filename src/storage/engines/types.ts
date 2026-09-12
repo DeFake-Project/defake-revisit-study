@@ -15,17 +15,42 @@ import {
   normalizeStoredProvenance,
   splitProvenanceFromAnswers,
 } from '../../store/provenance';
+import {
+  isLastAdmin,
+  normalizeStudyIds,
+  normalizeUserRole,
+  serializeStoredUser,
+} from '../../utils/userPermissions';
+
+export type AppRole = 'admin' | 'studyManager' | 'analyst';
 
 export interface StoredUser {
   email: string | null,
   uid: string | null,
+  /**
+   * Optional for backward compatibility. Records created before roles existed
+   * only have email/uid and must be treated as global admins.
+   */
+  role?: AppRole,
+  /**
+   * Study config keys this user can access. Ignored for admins (they see all
+   * studies). Required for studyManager and analyst.
+   */
+  studyIds?: string[],
 }
 
 export interface UserWrapped {
   user: StoredUser | null,
   determiningStatus: boolean,
   isAdmin: boolean,
-  adminVerification: boolean
+  adminVerification: boolean,
+  role: AppRole | null,
+  studyIds: string[],
+}
+
+export interface AuthorizedUserAccess {
+  role: AppRole,
+  studyIds: string[],
 }
 
 export type SequenceAssignment = {
@@ -1869,12 +1894,6 @@ export abstract class CloudStorageEngine extends StorageEngine {
   // Changes the authentication state of the storage engine. This will enable or disable authentication for the storage engine.
   abstract changeAuth(bool: boolean): Promise<void>;
 
-  // Adds an admin user to the storage engine. The user is identified by their email and UID.
-  abstract addAdminUser(user: StoredUser): Promise<void>;
-
-  // Removes the admin user with the given email from the storage engine.
-  abstract removeAdminUser(email: string): Promise<void>;
-
   abstract login(): Promise<StoredUser | null | void>;
 
   abstract unsubscribe(callback: (user: StoredUser | null) => Promise<void>): () => void;
@@ -1887,46 +1906,121 @@ export abstract class CloudStorageEngine extends StorageEngine {
   * They are built on top of the primitive methods and provide a more user-friendly interface.
   */
   /* User management --------------------------------------------------- */
-  // Gets the user management data for the given key. This is used to get the authentication
-  async validateUser(user: UserWrapped | null, refresh = false) {
+  protected async _saveUsersList(adminUsersList: StoredUser[]) {
+    this.userManagementData.adminUsers = { adminUsersList };
+    await this._updateAdminUsersList({ adminUsersList });
+  }
+
+  async getAppUsers(): Promise<StoredUser[]> {
+    const adminUsers = await this.getUserManagementData('adminUsers');
+    return adminUsers?.adminUsersList ? [...adminUsers.adminUsersList] : [];
+  }
+
+  // Adds a signed-in application user. Existing records without a role remain valid admins.
+  async addAppUser(user: StoredUser) {
+    const currentList = await this.getAppUsers();
+    if (currentList.some((storedUser) => storedUser.email === user.email)) {
+      return;
+    }
+    await this._saveUsersList([...currentList, serializeStoredUser(user)]);
+  }
+
+  async addAdminUser(user: StoredUser) {
+    await this.addAppUser({
+      email: user.email,
+      uid: user.uid,
+      role: user.role ?? 'admin',
+      studyIds: user.studyIds,
+    });
+  }
+
+  async updateAppUser(email: string, updates: Partial<Pick<StoredUser, 'role' | 'studyIds' | 'uid'>>) {
+    const currentList = await this.getAppUsers();
+    const userIndex = currentList.findIndex((storedUser) => storedUser.email === email);
+    if (userIndex === -1) {
+      return;
+    }
+
+    const currentUser = currentList[userIndex];
+    const nextRole = updates.role ?? normalizeUserRole(currentUser);
+    if (normalizeUserRole(currentUser) === 'admin' && nextRole !== 'admin' && isLastAdmin(currentList, email)) {
+      throw new Error('Cannot remove the last admin');
+    }
+
+    const nextUser: StoredUser = {
+      email: currentUser.email,
+      uid: updates.uid !== undefined ? updates.uid : currentUser.uid,
+      role: nextRole,
+    };
+    if (nextRole !== 'admin') {
+      nextUser.studyIds = updates.studyIds ?? normalizeStudyIds({ ...currentUser, role: nextRole });
+    }
+
+    const nextList = currentList.map((storedUser, index) => (index === userIndex ? nextUser : storedUser));
+    await this._saveUsersList(nextList);
+  }
+
+  async removeAppUser(email: string) {
+    const currentList = await this.getAppUsers();
+    if (!currentList.some((storedUser) => storedUser.email === email)) {
+      return;
+    }
+    if (isLastAdmin(currentList, email)) {
+      throw new Error('Cannot remove the last admin');
+    }
+    await this._saveUsersList(currentList.filter((storedUser) => storedUser.email !== email));
+  }
+
+  async removeAdminUser(email: string) {
+    await this.removeAppUser(email);
+  }
+
+  // Returns the signed-in user's role when they are on the allow list.
+  // Legacy { email, uid } records are treated as admins so existing deployments keep access.
+  async validateUser(user: UserWrapped | null, refresh = false): Promise<AuthorizedUserAccess | null> {
     if (refresh) {
       this.userManagementData = {};
     }
 
-    if (user?.user) {
-      // Case 1: Database exists
-      const authInfo = await this.getUserManagementData('authentication');
-      if (authInfo?.isEnabled) {
-        const adminUsers = await this.getUserManagementData('adminUsers');
-        if (adminUsers && adminUsers.adminUsersList) {
-          const adminUsersObject = Object.fromEntries(
-            adminUsers.adminUsersList.map((storedUser: StoredUser) => [
-              storedUser.email,
-              storedUser.uid,
-            ]),
-          );
-          // Verifies that, if the user has signed in and thus their UID is added to the Firestore, that the current UID matches the Firestore entries UID. Prevents impersonation (otherwise, users would be able to alter email to impersonate).
-          const isAdmin = user.user.email
-            && (adminUsersObject[user.user.email] === user.user.uid
-              || adminUsersObject[user.user.email] === null);
-          if (isAdmin) {
-            // Add UID to user in collection if not existent.
-            if (user.user.email && adminUsersObject[user.user.email] === null) {
-              const adminUser: StoredUser | undefined = adminUsers.adminUsersList.find(
-                (u: StoredUser) => u.email === user.user!.email,
-              );
-              if (adminUser) {
-                adminUser.uid = user.user.uid;
-              }
-              await this._updateAdminUsersList(adminUsers);
-            }
-            return true;
-          }
-          return false;
-        }
-      }
-      return true;
+    if (!user?.user) {
+      return null;
     }
-    return false;
+
+    const authInfo = await this.getUserManagementData('authentication');
+    if (!authInfo?.isEnabled) {
+      return { role: 'admin', studyIds: [] };
+    }
+
+    const adminUsers = await this.getUserManagementData('adminUsers');
+    if (!adminUsers?.adminUsersList) {
+      // Preserve the previous fail-open behavior if the users document is missing.
+      return { role: 'admin', studyIds: [] };
+    }
+
+    const storedUser = adminUsers.adminUsersList.find(
+      (candidate: StoredUser) => candidate.email === user.user!.email,
+    );
+    if (!storedUser || !user.user.email) {
+      return null;
+    }
+
+    // UID must match once the user has signed in, to prevent email impersonation.
+    if (storedUser.uid !== null && storedUser.uid !== user.user.uid) {
+      return null;
+    }
+
+    if (storedUser.uid === null) {
+      storedUser.uid = user.user.uid;
+      if (storedUser.role === undefined) {
+        storedUser.role = 'admin';
+      }
+      await this._saveUsersList(adminUsers.adminUsersList);
+    }
+
+    const role = normalizeUserRole(storedUser);
+    return {
+      role,
+      studyIds: normalizeStudyIds(storedUser),
+    };
   }
 }

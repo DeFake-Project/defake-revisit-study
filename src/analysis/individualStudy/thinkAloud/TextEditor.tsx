@@ -33,19 +33,20 @@ async function getTags(storageEngine: StorageEngine | undefined) {
 }
 
 export function TextEditor({
-  currentShownTranscription, transcriptList, setTranscriptList, onClickLine,
+  currentShownTranscription, transcriptList, setTranscriptList, onClickLine, readOnly = false,
 } : {
-  currentShownTranscription: number, transcriptList: EditedText[], setTranscriptList: (e: EditedText[]) => void, onClickLine: (focusedLine: number) => void
+  currentShownTranscription: number, transcriptList: EditedText[], setTranscriptList: (e: EditedText[]) => void, onClickLine: (focusedLine: number) => void, readOnly?: boolean
 }) {
   const { storageEngine } = useStorageEngine();
 
   const { value: tags, execute: pullTags } = useAsync(getTags, [storageEngine]);
 
   const setTags = useCallback((_tags: Tag[]) => {
-    if (storageEngine) {
-      storageEngine.saveTags(_tags, 'text').then(() => pullTags(storageEngine));
+    if (readOnly || !storageEngine) {
+      return;
     }
-  }, [pullTags, storageEngine]);
+    storageEngine.saveTags(_tags, 'text').then(() => pullTags(storageEngine));
+  }, [pullTags, readOnly, storageEngine]);
 
   const textRefs = useRef<HTMLTextAreaElement[]>([]);
 
@@ -136,6 +137,7 @@ export function TextEditor({
 
   const transcript = useMemo(() => (transcriptList.map((line, i) => (
     <TranscriptLine
+      readOnly={readOnly}
       onClickLine={onClickLine}
       editTagCallback={editTagCallback}
       createTagCallback={createTagCallback}
@@ -155,7 +157,7 @@ export function TextEditor({
       end={line.transcriptMappingEnd}
       current={currentShownTranscription === null ? 0 : currentShownTranscription}
     />
-  ))), [addRowCallback, addTagCallback, addTextRefCallback, createTagCallback, currentShownTranscription, deleteRowCallback, editTagCallback, onClickLine, setAnnotationCallback, tags, textChangeCallback, transcriptList]);
+  ))), [addRowCallback, addTagCallback, addTextRefCallback, createTagCallback, currentShownTranscription, deleteRowCallback, editTagCallback, onClickLine, readOnly, setAnnotationCallback, tags, textChangeCallback, transcriptList]);
 
   return (
     <Stack gap={0}>

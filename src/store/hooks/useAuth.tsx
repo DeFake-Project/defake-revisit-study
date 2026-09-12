@@ -6,29 +6,40 @@ import {
 import { LoadingOverlay } from '@mantine/core';
 import { useLocation, useMatch } from 'react-router';
 import { useStorageEngine } from '../../storage/storageEngineHooks';
-import { StoredUser, UserWrapped } from '../../storage/engines/types';
+import { AuthorizedUserAccess, StoredUser, UserWrapped } from '../../storage/engines/types';
 import { isCloudStorageEngine } from '../../storage/engines/utils/storageEngineHelpers';
 import { SupabaseStorageEngine } from '../../storage/engines/SupabaseStorageEngine';
+
+function withPermissions(user: Omit<UserWrapped, 'isAdmin' | 'role' | 'studyIds'> & Partial<Pick<UserWrapped, 'isAdmin' | 'role' | 'studyIds'>>): UserWrapped {
+  const role = user.role ?? null;
+  return {
+    user: user.user,
+    determiningStatus: user.determiningStatus,
+    adminVerification: user.adminVerification,
+    role,
+    studyIds: user.studyIds ?? [],
+    isAdmin: role === 'admin',
+  };
+}
 
 // Defines default AuthContextValue
 interface AuthContextValue {
   user: UserWrapped;
   logout: () => Promise<void>;
   triggerAuth: () => void;
-  verifyAdminStatus: (inputUser: UserWrapped) => Promise<boolean>;
+  verifyUserAccess: (inputUser: UserWrapped) => Promise<AuthorizedUserAccess | null>;
   }
 
 // Initializes AuthContext
 const AuthContext = createContext<AuthContextValue>({
-  user: {
+  user: withPermissions({
     user: null,
     determiningStatus: false,
-    isAdmin: false,
     adminVerification: false,
-  },
+  }),
   logout: async () => {},
   triggerAuth: () => {},
-  verifyAdminStatus: () => Promise.resolve(false),
+  verifyUserAccess: () => Promise.resolve(null),
 });
 
 // Firebase auth context
@@ -37,31 +48,30 @@ export const useAuth = () => useContext(AuthContext);
 // Defines the functions that are exposed in this hook.
 export function AuthProvider({ children } : { children: ReactNode }) {
   // Default non-user when loading
-  const loadingNullUser : UserWrapped = {
+  const loadingNullUser : UserWrapped = withPermissions({
     user: null,
     determiningStatus: true,
-    isAdmin: false,
     adminVerification: false,
-  };
+  });
 
   // Default non-user when not loading
-  const nonLoadingNullUser : UserWrapped = {
+  const nonLoadingNullUser : UserWrapped = withPermissions({
     user: null,
     determiningStatus: false,
-    isAdmin: false,
     adminVerification: false,
-  };
+  });
 
   // Non-auth User
-  const nonAuthUser : UserWrapped = {
+  const nonAuthUser : UserWrapped = withPermissions({
     user: {
       email: 'fakeEmail@fake.com',
       uid: 'fakeUid',
+      role: 'admin',
     },
     determiningStatus: false,
-    isAdmin: true,
     adminVerification: true,
-  };
+    role: 'admin',
+  });
 
   const [user, setUser] = useState(loadingNullUser);
   const [enableAuthTrigger, setEnableAuthTrigger] = useState(false);
@@ -102,12 +112,15 @@ export function AuthProvider({ children } : { children: ReactNode }) {
     checkSession();
   }, [storageEngine, triggerAuth]);
 
-  const verifyAdminStatus = async (inputUser: UserWrapped) => {
+  const verifyUserAccess = useCallback(async (inputUser: UserWrapped) => {
     if (storageEngine && isCloudStorageEngine(storageEngine)) {
-      return await storageEngine.validateUser(inputUser, true);
+      return storageEngine.validateUser(inputUser, true);
     }
-    return false;
-  };
+    if (inputUser.role) {
+      return { role: inputUser.role, studyIds: inputUser.studyIds };
+    }
+    return null;
+  }, [storageEngine]);
 
   useEffect(() => {
     // Set initialUser
@@ -116,22 +129,31 @@ export function AuthProvider({ children } : { children: ReactNode }) {
     // Handle auth state changes for Firebase
     const handleAuthStateChanged = async (cloudUser: StoredUser | null) => {
       // Reset the user. This also gets called on signOut
-      setUser((prevUser) => ({
+      setUser((prevUser) => withPermissions({
         user: prevUser.user,
-        isAdmin: prevUser.isAdmin,
         determiningStatus: true,
         adminVerification: false,
+        role: prevUser.role,
+        studyIds: prevUser.studyIds,
       }));
       if (cloudUser) {
         // Reach out to firebase to validate user
-        const currUser: UserWrapped = {
+        const currUser: UserWrapped = withPermissions({
           user: cloudUser,
           determiningStatus: false,
-          isAdmin: false,
           adminVerification: true,
-        };
-        const isAdmin = await verifyAdminStatus(currUser);
-        currUser.isAdmin = !!isAdmin;
+        });
+        const access = await verifyUserAccess(currUser);
+        if (access) {
+          currUser.role = access.role;
+          currUser.studyIds = access.studyIds;
+          currUser.isAdmin = access.role === 'admin';
+          currUser.user = {
+            ...cloudUser,
+            role: access.role,
+            studyIds: access.studyIds,
+          };
+        }
         setUser(currUser);
       } else {
         logout();
@@ -165,9 +187,9 @@ export function AuthProvider({ children } : { children: ReactNode }) {
     user,
     triggerAuth,
     logout,
-    verifyAdminStatus,
+    verifyUserAccess,
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }), [user]);
+  }), [user, verifyUserAccess]);
 
   const allowChildrenWhileDeterminingStatus = Boolean(studyRouteMatch) && !location.pathname.startsWith('/analysis');
 

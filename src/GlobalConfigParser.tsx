@@ -16,7 +16,7 @@ import { AuthProvider } from './store/hooks/useAuth';
 import { GlobalSettings } from './components/settings/GlobalSettings';
 import { NavigateWithParams } from './utils/NavigateWithParams';
 import { AppHeader } from './analysis/interface/AppHeader';
-import { fetchStudyConfigs } from './utils/fetchConfig';
+import { fetchStudyConfigs, resolveConfigKey } from './utils/fetchConfig';
 import { initializeStorageEngine } from './storage/initialize';
 import { useStorageEngine } from './storage/storageEngineHooks';
 import { PageTitle } from './utils/PageTitle';
@@ -147,7 +147,12 @@ export function GlobalConfigParser() {
               element={(
                 <>
                   <PageTitle title="DeFake Project | Analysis" />
-                  <ProtectedRoute paramToCheck="studyId" paramCallback={analysisProtectedCallback}>
+                  <ProtectedRoute
+                    requireAccess="viewStudy"
+                    paramToCheck="studyId"
+                    paramCallback={analysisProtectedCallback}
+                    resolveParam={(studyId) => resolveConfigKey(studyId, globalConfig) ?? studyId}
+                  >
                     <AppShell
                       padding="md"
                       header={{ height: 70 }}
@@ -167,7 +172,7 @@ export function GlobalConfigParser() {
             <Route
               path="/settings"
               element={(
-                <ProtectedRoute>
+                <ProtectedRoute requireAccess="admin">
                   <PageTitle title="DeFake Project | Settings" />
                   <AppShell
                     padding="md"
@@ -175,7 +180,7 @@ export function GlobalConfigParser() {
                   >
                     <AppHeader studyIds={globalConfig.configsList} />
                     <AppShell.Main>
-                      <GlobalSettings />
+                      <GlobalSettings studyIds={globalConfig.configsList} />
                     </AppShell.Main>
                   </AppShell>
                 </ProtectedRoute>

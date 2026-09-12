@@ -9,6 +9,7 @@ import { useSearchParams, useParams } from 'react-router';
 import { useStorageEngine } from '../../storage/storageEngineHooks';
 import { ParticipantData } from '../../storage/types';
 import { useAuth } from '../../store/hooks/useAuth';
+import { canManageStudy } from '../../utils/userPermissions';
 
 export function ParticipantRejectModal({
   selectedParticipants = [],
@@ -22,6 +23,7 @@ export function ParticipantRejectModal({
   const { storageEngine } = useStorageEngine();
   const { user } = useAuth();
   const { studyId } = useParams();
+  const canReject = canManageStudy(user.role, user.studyIds, studyId);
   const [searchParams] = useSearchParams();
   const participantId = useMemo(() => searchParams.get('participantId') || undefined, [searchParams]);
   const [currentParticipantData, setCurrentParticipantData] = useState<ParticipantData | null>(null);
@@ -107,16 +109,16 @@ export function ParticipantRejectModal({
   return (
     <>
       {rejectedParticipantsCount > 0 && (
-      <Tooltip label="Only admins can undo rejection" disabled={user.isAdmin}>
-        <Button disabled={!user.isAdmin} onClick={() => setModalUndoRejectOpened(true)} color="blue">
+      <Tooltip label="Only admins and study managers can undo rejection" disabled={canReject}>
+        <Button disabled={!canReject} onClick={() => setModalUndoRejectOpened(true)} color="blue">
           Undo Reject
           {!footer ? ` Participants (${rejectedParticipantsCount})` : ''}
         </Button>
       </Tooltip>
       )}
       {nonRejectedParticipantsCount > 0 && (
-      <Tooltip label="Only admins can reject participants" disabled={user.isAdmin}>
-        <Button disabled={!user.isAdmin} onClick={() => setModalRejectOpened(true)} color="red">
+      <Tooltip label="Only admins and study managers can reject participants" disabled={canReject}>
+        <Button disabled={!canReject} onClick={() => setModalRejectOpened(true)} color="red">
           Reject
           {!footer ? ` Participants (${nonRejectedParticipantsCount})` : ''}
         </Button>

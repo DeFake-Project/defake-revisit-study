@@ -754,30 +754,6 @@ export class SupabaseStorageEngine extends CloudStorageEngine {
     }
   }
 
-  async addAdminUser(user: StoredUser) {
-    await this.getUserManagementData('adminUsers');
-    const updatedData = structuredClone(this.userManagementData);
-    if (!updatedData.adminUsers) {
-      updatedData.adminUsers = { adminUsersList: [] };
-    }
-    updatedData.adminUsers.adminUsersList.push(user);
-
-    await this._updateAdminUsersList(updatedData.adminUsers);
-  }
-
-  async removeAdminUser(email: string): Promise<void> {
-    await this.getUserManagementData('adminUsers');
-    const updatedData = structuredClone(this.userManagementData);
-    if (updatedData.adminUsers) {
-      updatedData.adminUsers.adminUsersList = updatedData.adminUsers.adminUsersList.filter(
-        (user) => user.email !== email,
-      );
-      await this._updateAdminUsersList(updatedData.adminUsers);
-    } else {
-      console.warn('No admin users found to remove');
-    }
-  }
-
   async login() {
     const { error } = await this.supabase.auth.signInWithOAuth({
       provider: 'github',

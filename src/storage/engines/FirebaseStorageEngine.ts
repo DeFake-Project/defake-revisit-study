@@ -784,44 +784,6 @@ export class FirebaseStorageEngine extends CloudStorageEngine {
     });
   }
 
-  async addAdminUser(user: StoredUser) {
-    const adminUsers = await this.getUserManagementData('adminUsers');
-    if (adminUsers?.adminUsersList) {
-      const adminList = adminUsers.adminUsersList;
-      const isInList = adminList.find(
-        (storedUser: StoredUser) => storedUser.email === user.email,
-      );
-      if (!isInList) {
-        adminList.push({ email: user.email, uid: user.uid });
-        await setDoc(doc(this.firestore, 'user-management', 'adminUsers'), {
-          adminUsersList: adminList,
-        });
-      }
-    } else {
-      await setDoc(doc(this.firestore, 'user-management', 'adminUsers'), {
-        adminUsersList: [{ email: user.email, uid: user.uid }],
-      });
-    }
-  }
-
-  async removeAdminUser(email: string) {
-    const adminUsers = await this.getUserManagementData('adminUsers');
-    if (adminUsers?.adminUsersList && adminUsers.adminUsersList.length > 1) {
-      if (
-        adminUsers.adminUsersList.find(
-          (storedUser: StoredUser) => storedUser.email === email,
-        )
-      ) {
-        adminUsers.adminUsersList = adminUsers?.adminUsersList.filter(
-          (storedUser: StoredUser) => storedUser.email !== email,
-        );
-        await setDoc(doc(this.firestore, 'user-management', 'adminUsers'), {
-          adminUsersList: adminUsers?.adminUsersList,
-        });
-      }
-    }
-  }
-
   async login() {
     const provider = new GoogleAuthProvider();
     const auth = getAuth();

@@ -6,6 +6,8 @@ import { useLocation, useNavigate, useParams } from 'react-router';
 
 import { IconListCheck, IconSettings } from '@tabler/icons-react';
 import { PREFIX } from '../../utils/Prefix';
+import { useAuth } from '../../store/hooks/useAuth';
+import { canManageUsers } from '../../utils/userPermissions';
 
 export function AppHeader({
   studyIds,
@@ -19,6 +21,8 @@ export function AppHeader({
   const navigate = useNavigate();
   const { studyId } = useParams();
   const location = useLocation();
+  const { user } = useAuth();
+  const showSettings = canManageUsers(user.role);
 
   const selectorData = studyIds.map((id) => ({ value: id, label: id })).sort((a, b) => a.label.localeCompare(b.label));
 
@@ -58,7 +62,9 @@ export function AppHeader({
               </>
             )}
 
-            <IconSettings onClick={() => navigate('/settings')} style={{ cursor: 'pointer', marginTop: inAnalysis ? 6 : undefined }} />
+            {showSettings && (
+              <IconSettings onClick={() => navigate('/settings')} style={{ cursor: 'pointer', marginTop: inAnalysis ? 6 : undefined }} />
+            )}
           </Flex>
         </Grid.Col>
       </Grid>
