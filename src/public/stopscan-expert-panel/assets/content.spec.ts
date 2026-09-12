@@ -108,7 +108,13 @@ describe('STOP&SCAN participant copy', () => {
       expect(consent).toContain(email);
       expect(debrief).toContain(email);
     });
-    expect(consent).toContain('AI Office of Ireland');
+    expect(consent).toContain('AI and Multimedia Authenticity Collaboration');
+    expect(consent).not.toContain('AI Office of Ireland');
+    expect(consent).toContain('Principal Investigators');
+    expect(debrief).toContain('AI and Multimedia Authenticity Collaboration');
+    expect(debrief).toContain('fatma.aksu2@unibo.it');
+    expect(debrief).toContain('email the Principal Investigators');
+    expect(debrief).not.toContain('request that in the sidebar');
     expect(consent).toContain('45 to 60 minutes');
   });
 });
@@ -122,12 +128,12 @@ describe('STOP&SCAN generated config', () => {
   it('lists the research team in study metadata', () => {
     expect(config.studyMetadata.authors).toEqual([
       'Saniat Javid Sohrawardi',
-      'Y. Kelly Wu',
       'Fatma Aksu',
+      'Y. Kelly Wu',
       'Alessandra Sala',
       'Luca Pietrantoni',
     ]);
-    expect(config.studyMetadata.organizations).toContain('AI Office of Ireland');
+    expect(config.studyMetadata.organizations).toContain('AI and Multimedia Authenticity Collaboration');
   });
 
   it('numbers STOP&SCAN ratings R1–R8 and lets people comment on any of them', () => {
@@ -184,6 +190,18 @@ describe('STOP&SCAN generated config', () => {
     const note = content.find((item) => item.id === 'note') as { prompt: string; secondaryText?: string };
     expect(note.prompt).toBe('Anything you disagree with, or that was done badly?');
     expect(note.secondaryText).toBeUndefined();
+  });
+
+  it('does not collect an email opt-in on the debrief', () => {
+    const ids = config.components.debrief.response?.map((item) => item.id) ?? [];
+    expect(ids).not.toContain('summary_optin');
+    expect(config.components.debrief.response).toEqual([]);
+  });
+
+  it('ships a real ITU SVG logo, not a mislabeled WebP', () => {
+    const logo = readPublic('assets/logos/itu-logo.svg');
+    expect(logo).toMatch(/<svg\b/i);
+    expect(logo.slice(0, 12)).not.toBe('RIFF');
   });
 
   it('does not use filler optional language on case pages', () => {

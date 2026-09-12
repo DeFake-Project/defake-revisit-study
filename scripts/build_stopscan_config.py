@@ -590,16 +590,7 @@ components["debrief"] = {
     "previousButton": False,
     "instruction": "Thank you. Please read the debrief, then submit.",
     "instructionLocation": "sidebar",
-    "response": [
-        {
-            "id": "summary_optin",
-            "prompt": "Would you like a summary of the findings and a copy of the accepted publication?",
-            "location": "sidebar",
-            "type": "radio",
-            "required": False,
-            "options": ["Yes, please email me", "No thank you"],
-        },
-    ],
+    "response": [],
 }
 
 order = ["consent", "about-you", "orientation"]
@@ -617,8 +608,8 @@ config = {
         "version": "v4",
         "authors": [
             "Saniat Javid Sohrawardi",
-            "Y. Kelly Wu",
             "Fatma Aksu",
+            "Y. Kelly Wu",
             "Alessandra Sala",
             "Luca Pietrantoni",
         ],
@@ -627,7 +618,7 @@ config = {
         "organizations": [
             "Rochester Institute of Technology",
             "University of Bologna",
-            "AI Office of Ireland",
+            "AI and Multimedia Authenticity Collaboration",
         ],
     },
     "uiConfig": {

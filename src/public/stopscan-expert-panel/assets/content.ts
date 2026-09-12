@@ -946,11 +946,13 @@ export const DEBRIEF = {
     'The positions we stated about SIFT are our arguments and they are contested. Nothing you said was scored, and no individual’s responses will be reported.',
   ],
   contacts: {
-    pi: 'Saniat Javid Sohrawardi, Principal Investigator — john.sohrawardi@rit.edu, Rochester Institute of Technology',
+    pi: [
+      'Saniat Javid Sohrawardi, Principal Investigator — john.sohrawardi@rit.edu, Rochester Institute of Technology',
+      'Fatma Aksu, Principal Investigator — fatma.aksu2@unibo.it, University of Bologna',
+    ],
     team: [
       'Y. Kelly Wu — kellywu@mail.rit.edu, Rochester Institute of Technology',
-      'Fatma Aksu — fatma.aksu2@unibo.it, University of Bologna',
-      'Alessandra Sala — alessandra.sala@outlook.ie, AI Office of Ireland',
+      'Alessandra Sala — alessandra.sala@outlook.ie, AI and Multimedia Authenticity Collaboration',
       'Luca Pietrantoni — luca.pietrantoni@unibo.it, University of Bologna',
     ],
     hsro: 'RIT Human Subjects Research Office — hsro@rit.edu — 585-475-7673',
