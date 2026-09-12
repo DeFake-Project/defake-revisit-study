@@ -1,0 +1,46 @@
+.ot-intro h1, .ot-intro h2 {
+  color: #0A7360;
+}
+
+.ot-ontology-tag-groups {
+  min-width: 0;
+}
+
+.ot-ontology-tag-row {
+  display: grid;
+  grid-template-columns: minmax(7.5rem, 11.5rem) minmax(0, 1fr);
+  column-gap: 10px;
+  row-gap: 6px;
+  align-items: start;
+}
+
+.ot-ontology-category {
+  display: flex;
+  align-items: flex-start;
+  gap: 2px;
+  min-width: 0;
+}
+
+.ot-ontology-info-icon {
+  cursor: help;
+  flex-shrink: 0;
+}
+
+.ot-task-b-methods {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--mantine-spacing-sm);
+  min-width: 0;
+}
+
+@media (min-width: 48em) and (max-width: 1700px) {
+  .ot-task-b-methods {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1701px) {
+  .ot-task-b-methods {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}

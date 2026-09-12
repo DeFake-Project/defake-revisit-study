@@ -1,9 +1,10 @@
 {
   "$schema": "https://raw.githubusercontent.com/revisit-studies/study/v2.4.3/src/parser/GlobalConfigSchema.json",
   "configsList": [
-    "stopscan-expert-panel",
+    "ontology-technique-eval",
     "varuna-sme-eval-ontology",
     "dndf-scenario-evaluation",
+    "stopscan-expert-panel",
     "tutorial",
     "tutorial-replication",
     "demo-html",
@@ -268,6 +269,9 @@
     "example-VLAT-adaptive": {
       "path": "example-VLAT-adaptive/config.json",
       "test": true
+    },
+    "ontology-technique-eval": {
+      "path": "ontology-technique-eval/config.json"
     },
     "varuna-sme-eval-ontology": {
       "path": "varuna-sme-eval-ontology/config.json"

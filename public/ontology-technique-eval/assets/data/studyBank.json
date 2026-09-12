@@ -1,0 +1,1332 @@
+{
+  "techniques": [
+    {
+      "id": "t-a1",
+      "title": "Do Deepfakes Feel Emotions? A Semantic Approach to Detecting Deepfakes Via Emotional Inconsistencies",
+      "keywords": [
+        "Computer vision",
+        "Emotion recognition",
+        "Law",
+        "Semantics",
+        "Speech recognition",
+        "Media",
+        "Forgery"
+      ],
+      "ontologyTags": [
+        {
+          "path": [
+            "video"
+          ]
+        },
+        {
+          "path": [
+            "audio"
+          ]
+        },
+        {
+          "path": [
+            "face-swap"
+          ]
+        },
+        {
+          "path": [
+            "face"
+          ]
+        },
+        {
+          "path": [
+            "segment"
+          ]
+        },
+        {
+          "path": [
+            "acoustic-features"
+          ]
+        },
+        {
+          "path": [
+            "spatial-features"
+          ]
+        },
+        {
+          "path": [
+            "movement"
+          ]
+        },
+        {
+          "path": [
+            "audio-visual"
+          ]
+        }
+      ],
+      "abstract": "Recent advances in deep learning and computer vision have spawned a new class of media forgeries known as deepfakes, which typically consist of artificially generated human faces or voices. The creation and distribution of deepfakes raise many legal and ethical concerns. As a result, the ability to distinguish between deepfakes and authentic media is vital. While deepfakes can create plausible video and audio, it may be challenging for them to generate content that is consistent in terms of high-level semantic features, such as emotions. Unnatural displays of emotion, measured by features such as valence and arousal, can provide significant evidence that a video has been synthesized. In this paper, we propose a novel method for detecting deepfakes of a human speaker using the emotion predicted from the speaker’s face and voice. The proposed technique leverages Long Short-Term Memory (LSTM) networks that predict emotion from audio and video Low-Level Descriptors (LLDs). Predicted emotion in time is used to classify videos as authentic or deepfakes through an additional supervised classifier.",
+      "baselineSummary": "A novel method for detecting deepfakes of a human speaker using the emotion predicted from the speaker’s face and voice is proposed, which leverages Long Short-Term Memory (LSTM) networks that predict emotion from audio and video Low-Level Descriptors (LLDs).",
+      "aiSummary": "This paper detects face swap forgeries by comparing emotion expressed in video and audio. From each 10-second segment it extracts acoustic features from speech and, from the speaker's face, spatial features describing muscular movement; recurrent networks turn these into valence and arousal signals over time, which a supervised classifier uses to label the clip real or fake.",
+      "pdfPath": "https://cdn.defake.app/user-study-assets/ontology-technique-eval/Do_Deepfakes_Feel_Emotions_A_Semantic_Approach_to_Detecting_Deepfakes_Via_Emotional_Inconsistencies.pdf"
+    },
+    {
+      "id": "t-a2",
+      "title": "Forgery-aware Adaptive Transformer for Generalizable Synthetic Image Detection",
+      "keywords": [
+        "Synthetic Image Detection",
+        "Forgery Adaptation"
+      ],
+      "ontologyTags": [
+        {
+          "path": [
+            "still-image"
+          ]
+        },
+        {
+          "path": [
+            "full-synthesis"
+          ]
+        },
+        {
+          "path": [
+            "face-swap"
+          ]
+        },
+        {
+          "path": [
+            "global"
+          ]
+        },
+        {
+          "path": [
+            "spatial-features"
+          ]
+        },
+        {
+          "path": [
+            "discrete-wavelet-transform-dwt"
+          ]
+        }
+      ],
+      "abstract": "In this paper, we study the problem of generalizable syn-thetic image detection, aiming to detect forgery images from diverse generative methods, e.g., GANs and diffusion mod-els. Cutting-edge solutions start to explore the benefits of pre-trained models, and mainly follow the fixed paradigm of solely training an attached classifier, e.g., combining frozen CLIP-ViT with a learnable linear layer in UniFD [43]. However, our analysis shows that such a fixed paradigm is prone to yield detectors with insufficient learning regarding forgery representations. We attribute the key challenge to the lack of forgery adaptation, and present a novel forgery-aware adaptive transformer approach, namely FatFormer. Based on the pre-trained vision-language spaces of CLIP, FatFormer introduces two core designs for the adaption to build generalized forgery representations. First, motivated by the fact that both image and frequency analysis are essential for synthetic image detection, we develop a forgery-aware adapter to adapt image features to discern and inte-grate local forgery traces within image and frequency do-mains. Second, we find that considering the contrastive objectives between adapted image features and text prompt embeddings, a previously overlooked aspect, results in a nontrivial generalization improvement. Accordingly, we introduce language-guided alignment to supervise the forgery adaptation with image and text prompts in FatFormer. Experiments show that, by coupling these two designs, our approach tuned on 4-class ProGAN data attains a remarkable detection performance, achieving an average of 98% accu-racy to unseen GANs, and surprisingly generalizes to un-seen diffusion models with 95% accuracy.",
+      "baselineSummary": "This paper develops a forgery-aware adapter to adapt image features to discern and inte-grate local forgery traces within image and frequency do-mains, and finds that considering the contrastive objectives between adapted image features and text prompt embeddings results in a nontrivial generalization improvement.",
+      "aiSummary": "FatFormer adapts a pre-trained vision-language model into a forgery-aware transformer for detecting synthetic still image content, spanning full synthesis by GANs and diffusion models as well as face swap forgeries. Adapters in its image encoder combine spatial features such as blur textures and color mismatch with clues aggregated across Discrete Wavelet Transform DWT bands, while text prompts supervise adaptation, and the Global image is judged real or fake.",
+      "pdfPath": "https://cdn.defake.app/user-study-assets/ontology-technique-eval/Forgery-aware_Adaptive_Transformer_for_Generalizable_Synthetic_Image_Detection.pdf"
+    },
+    {
+      "id": "t-a3",
+      "title": "Multimodal Fake News Detection via CLIP-Guided Learning",
+      "keywords": [
+        "Fake news detection",
+        "multimodal learning",
+        "CLIP",
+        "multimodal fusion"
+      ],
+      "ontologyTags": [
+        {
+          "path": [
+            "still-image"
+          ]
+        },
+        {
+          "path": [
+            "text"
+          ]
+        },
+        {
+          "path": [
+            "contextual-analysis"
+          ]
+        },
+        {
+          "path": [
+            "global"
+          ]
+        },
+        {
+          "path": [
+            "contextual-scope"
+          ]
+        },
+        {
+          "path": [
+            "spatial-features"
+          ]
+        },
+        {
+          "path": [
+            "textual-features"
+          ]
+        }
+      ],
+      "abstract": "Fake news detection (FND) has attracted much research interest in social forensics. Many existing approaches introduce tailored attention mechanisms to fuse unimodal features. However, they ignore the impact of cross-modal similarity between modalities. Meanwhile, the potential of pretrained multimodal feature learning models in FND has not been well exploited. This paper proposes an FND-CLIP framework, i.e., a multimodal Fake News Detection network based on Contrastive Language-Image Pretraining (CLIP). FND-CLIP extracts the deep representations together from news using two unimodal encoders and two pair-wise CLIP encoders. The CLIP-generated multimodal features are weighted by CLIP similarity of the two modalities. We also introduce a modality-wise attention module to aggregate the features. Extensive experiments are conducted and the results indicate that the proposed framework has a better capability in mining crucial features for fake news detection. The proposed FND-CLIP can achieve better performances than previous works on three typical fake news datasets.",
+      "baselineSummary": "The proposed FND-CLIP framework, i.e., a multimodal Fake News Detection network based on Contrastive Language-Image Pretraining (CLIP), can achieve better performances than previous works on three typical fake news datasets.",
+      "aiSummary": "FND-CLIP detects fake news by jointly examining each post’s still image and text. CLIP, BERT and ResNet encode global spatial features and textual features; a cosine similarity score weights the fused representation and modality-wise attention balances the streams before classification. This contextual analysis treats the paired image and text as contextual content rather than examining either alone.",
+      "pdfPath": "https://cdn.defake.app/user-study-assets/ontology-technique-eval/Multimodal_Fake_News_Detection_via_CLIP-Guided_Learning.pdf"
+    },
+    {
+      "id": "t-a4",
+      "title": "ManiFPT: Defining and Analyzing Fingerprints of Generative Models",
+      "keywords": [
+        "Generative Models",
+        "Fingerprinting Generative Models",
+        "Manifold Learning",
+        "Model Attribution",
+        "Source Identification",
+        "Artifacts of Generative Models"
+      ],
+      "ontologyTags": [
+        {
+          "path": [
+            "still-image"
+          ]
+        },
+        {
+          "path": [
+            "gan-based"
+          ]
+        },
+        {
+          "path": [
+            "flow-based"
+          ]
+        },
+        {
+          "path": [
+            "diffusion-based"
+          ]
+        },
+        {
+          "path": [
+            "global"
+          ]
+        },
+        {
+          "path": [
+            "discrete-fourier-transform-dft"
+          ]
+        },
+        {
+          "path": [
+            "spatial-features"
+          ]
+        }
+      ],
+      "abstract": "Recent works have shown that generative models leave traces of their underlying generative process on the generated samples, broadly referred to as fingerprints of a generative model, and have studied their utility in detecting synthetic images from real ones. However, the extend to which these fingerprints can distinguish between various types of synthetic image and help identify the underlying generative process remain under-explored. In particular, the very definition of a fingerprint remains unclear, to our knowledge. To that end, in this work, we formalize the definition of artifact and fingerprint in generative models, propose an algorithm for computing them in practice, and finally study its effectiveness in distinguishing a large array of different generative models. We find that using our proposed definition can significantly improve the performance on the task of identifying the underlying generative process from samples (model attribution) compared to existing methods. Additionally, we study the structure of the fingerprints, and observe that it is very predictive of the effect of different design choices on the generative process.",
+      "baselineSummary": "This work formalizes the definition of artifact and fingerprint in generative models, proposes an algorithm for computing them in practice, and studies its effectiveness in distinguishing a large array of different generative models.",
+      "aiSummary": "This work defines a generative model’s artifacts as the deviation of each synthetic still image from the estimated manifold of real data, and its fingerprint as the whole set of such artifacts. Computed over the global image using spatial features and discrete fourier transform DFT spectra, these fingerprints let a classifier trace samples back to gan-based, flow-based and diffusion-based sources, and reveal which design choices shape them.",
+      "pdfPath": "https://cdn.defake.app/user-study-assets/ontology-technique-eval/ManiFPT_Defining_and_Analyzing_Fingerprints_of_Generative_Models.pdf"
+    },
+    {
+      "id": "t-a5",
+      "title": "Forensic Analysis of Video Files Using Metadata",
+      "keywords": [
+        "Dimensionality reduction",
+        "Social networking (online)",
+        "Forensics",
+        "Metadata",
+        "Tools",
+        "Streaming media",
+        "Media"
+      ],
+      "ontologyTags": [
+        {
+          "path": [
+            "video"
+          ]
+        },
+        {
+          "path": [
+            "source-identification-attribution"
+          ]
+        },
+        {
+          "path": [
+            "forgery-manipulation-detection"
+          ]
+        },
+        {
+          "path": [
+            "metadata"
+          ]
+        },
+        {
+          "path": [
+            "metadata-file-structure"
+          ]
+        }
+      ],
+      "abstract": "The unprecedented ease and ability to manipulate video content has led to a rapid spread of manipulated media. The availability of video editing tools greatly increased in recent years, allowing one to easily generate photo-realistic alterations. Such manipulations can leave traces in the metadata embedded in video files. This metadata information can be used to determine video manipulations, brand of video recording device, the type of video editing tool, and other important evidence. In this paper, we focus on the metadata contained in the popular MP4 video wrapper/container. We describe our method for metadata extractor that uses the MP4’s tree structure. Our approach for analyzing the video metadata produces a more compact representation. We will describe how we construct features from the metadata and then use dimensionality reduction and nearest neighbor classification for forensic analysis of a video file. Our approach allows one to visually inspect the distribution of metadata features and make decisions. The experimental results confirm that the performance of our approach surpasses other methods.",
+      "baselineSummary": "This paper describes the method for metadata extractor that uses the MP4’s tree structure and describes how it construct features from the metadata and then uses dimensionality reduction and nearest neighbor classification for forensic analysis of a video file.",
+      "aiSummary": "This work extracts the tree-structured metadata embedded in MP4 and MOV video files, converting it into compact feature vectors that are pruned by feature selection and projected into two dimensions for nearest neighbor classification. Relying on metadata & file structure rather than pixels, it supports source identification & attribution and forgery & manipulation detection, though videos from some social networks carry altered metadata that undermines such analysis.",
+      "pdfPath": "https://cdn.defake.app/user-study-assets/ontology-technique-eval/Forensic_Analysis_of_Video_Files_Using_Metadata.pdf"
+    },
+    {
+      "id": "t-a6",
+      "title": "Watch Those Words: Video Falsification Detection Using Word-Conditioned Facial Motion",
+      "keywords": [
+        "Applications: Social good",
+        "Biometrics",
+        "face",
+        "gesture",
+        "body pose"
+      ],
+      "ontologyTags": [
+        {
+          "path": [
+            "video"
+          ]
+        },
+        {
+          "path": [
+            "audio"
+          ]
+        },
+        {
+          "path": [
+            "face-swap"
+          ]
+        },
+        {
+          "path": [
+            "lip-sync-reenactment"
+          ]
+        },
+        {
+          "path": [
+            "face"
+          ]
+        },
+        {
+          "path": [
+            "segment"
+          ]
+        },
+        {
+          "path": [
+            "movement"
+          ]
+        },
+        {
+          "path": [
+            "spatial-features"
+          ]
+        },
+        {
+          "path": [
+            "audio-visual"
+          ]
+        }
+      ],
+      "abstract": "In today’s era of digital misinformation, we are increasingly faced with new threats posed by video falsification techniques. Such falsifications range from cheapfakes (e.g., lookalikes or audio dubbing) to deepfakes (e.g., sophisticated AI media synthesis methods), which are becoming perceptually indistinguishable from real videos. To tackle this challenge, we propose a multi-modal semantic forensic approach to discover clues that go beyond detecting discrepancies in visual quality, thereby handling both simpler cheapfakes and visually persuasive deepfakes. In this work, our goal is to verify that the purported person seen in the video is indeed themselves by detecting anomalous facial movements corresponding to the spoken words. We leverage the idea of attribution to learn person-specific biometric patterns that distinguish a given speaker from others. We use interpretable Action Units (AUs) to capture a person’s face and head movement as opposed to deep CNN features, and we are the first to use word-conditioned facial motion analysis. We further demonstrate our method’s effectiveness on a range of fakes not seen in training including those without video manipulation, that were not addressed in prior work.",
+      "baselineSummary": "This work verifies that the purported person seen in the video is indeed themselves by detecting anomalous facial movements corresponding to the spoken words by using a multi-modal semantic forensic approach to discover clues that go beyond detecting discrepancies in visual quality.",
+      "aiSummary": "To detect falsified videos, this work checks whether a person's face moves as it usually does when specific words are spoken. Transcribed audio aligns each word with interpretable Action Unit spatial features capturing facial and head movement, and per-word classifiers score each 10-second video segment, exposing visual-textual mismatches in dubbing, impersonator, face swap and lip-sync / reenactment fakes.",
+      "pdfPath": "https://cdn.defake.app/user-study-assets/ontology-technique-eval/Watch_Those_Words_Video_Falsification_Detection_Using_Word-Conditioned_Facial_Motion.pdf"
+    },
+    {
+      "id": "t-a7",
+      "title": "TransForensics: Image Forgery Localization with Dense Self-Attention",
+      "keywords": [
+        "Image and video manipulation detection and integrity methods",
+        "Recognition and classification",
+        "Segmentation",
+        "grouping and shape"
+      ],
+      "ontologyTags": [
+        {
+          "path": [
+            "still-image"
+          ]
+        },
+        {
+          "path": [
+            "splicing"
+          ]
+        },
+        {
+          "path": [
+            "copy-move"
+          ]
+        },
+        {
+          "path": [
+            "removal-inpainting"
+          ]
+        },
+        {
+          "path": [
+            "face-swap"
+          ]
+        },
+        {
+          "path": [
+            "global"
+          ]
+        },
+        {
+          "path": [
+            "spatial-features"
+          ]
+        }
+      ],
+      "abstract": "Nowadays advanced image editing tools and technical skills produce tampered images more realistically, which can easily evade image forensic systems and make authenticity verification of images more difficult. To tackle this challenging problem, we introduce TransForensics, a novel image forgery localization method inspired by Transformers. The two major components in our framework are dense self-attention encoders and dense correction modules. The former is to model global context and all pairwise inter-actions between local patches at different scales, while the latter is used for improving the transparency of the hidden layers and correcting the outputs from different branches. Compared to previous traditional and deep learning methods, TransForensics not only can capture discriminative representations and obtain high-quality mask predictions but is also not limited by tampering types and patch sequence orders. By conducting experiments on main bench-marks, we show that TransForensics outperforms the state-of-the-art methods by a large margin.",
+      "baselineSummary": "This work introduces TransForensics, a novel image forgery localization method inspired by Transformers that not only can capture discriminative representations and obtain high-quality mask predictions but is also not limited by tampering types and patch sequence orders.",
+      "aiSummary": "TransForensics localizes tampered regions in a still image using dense self-attention encoders that model global context and all pairwise patch interactions at multiple scales, plus dense correction modules that refine mask predictions from RGB spatial features; it addresses splicing, copy-move and removal / inpainting rather than face swap, without relying on hand-designed patch ordering.",
+      "pdfPath": "https://cdn.defake.app/user-study-assets/ontology-technique-eval/TransForensics_Image_Forgery_Localization_with_Dense_Self-Attention.pdf"
+    },
+    {
+      "id": "t-a8",
+      "title": "EditGuard: Versatile Image Watermarking for Tamper Localization and Copyright Protection",
+      "keywords": [
+        "Tamper Localization",
+        "Copyright Protection",
+        "Image Watermarking"
+      ],
+      "ontologyTags": [
+        {
+          "path": [
+            "still-image"
+          ]
+        },
+        {
+          "path": [
+            "watermark-verification"
+          ]
+        },
+        {
+          "path": [
+            "global"
+          ]
+        },
+        {
+          "path": [
+            "discrete-wavelet-transform-dwt"
+          ]
+        },
+        {
+          "path": [
+            "spatial-features"
+          ]
+        }
+      ],
+      "abstract": "In the era of AI-generated content (AIGC), malicious tampering poses imminent threats to copyright integrity and information security. Current deep image watermarking, while widely accepted for safeguarding visual content, can only protect copyright and ensure traceability. They fall short in localizing increasingly realistic image tampering, potentially leading to trust crises, privacy violations, and legal disputes. To solve this challenge, we propose an innovative proactive forensics framework EditGuard, to unify copyright protection and tamper-agnostic localization, especially for AIGC-based editing methods. It can offer a meticulous embedding of imperceptible watermarks and precise decoding of tampered areas and copyright in-formation. Leveraging our observed fragility and locality of image-into-image steganography, the realization of Edit-Guard can be converted into a united image-bit steganography issue, thus completely decoupling the training process from the tampering types. Extensive experiments verify that our EditGuard balances the tamper localization accuracy, copyright recovery precision, and generalizability to various AIGC-based tampering methods, especially for image forgery that is difficult for the naked eye to detect.",
+      "baselineSummary": "The realization of Edit-Guard can be converted into a united image-bit steganography issue, thus completely decoupling the training process from the tampering types, and balances the tamper localization accuracy, copyright recovery precision, and generalizability to various AIGC-based tampering methods.",
+      "aiSummary": "EditGuard is a proactive forensics framework that hides two invisible watermarks in a still image: a pixel-aligned localization mark and a copyright mark embedded redundantly across the global image area. Invertible blocks apply a discrete wavelet transform DWT that converts spatial features into frequency-decoupled ones, so decoding yields both a tampered-region mask and watermark verification of the claimed copyright, even after AIGC-based editing.",
+      "pdfPath": "https://cdn.defake.app/user-study-assets/ontology-technique-eval/EditGuard_Versatile_Image_Watermarking_for_Tamper_Localization_and_Copyright_Protection.pdf"
+    },
+    {
+      "id": "t-b1-target",
+      "title": "Multi-Task Wavelet Corrected Network for Image Splicing Forgery Detection and Localization",
+      "keywords": [
+        "Image splicing forgery detection",
+        "Tampered region localization",
+        "Wavelet pooling",
+        "Multi-task strategy"
+      ],
+      "ontologyTags": [
+        {
+          "path": [
+            "still-image"
+          ]
+        },
+        {
+          "path": [
+            "splicing"
+          ]
+        },
+        {
+          "path": [
+            "global"
+          ]
+        },
+        {
+          "path": [
+            "discrete-wavelet-transform-dwt"
+          ]
+        },
+        {
+          "path": [
+            "texture-based"
+          ]
+        }
+      ],
+      "abstract": "Although the existing image splicing forgery detection networks can achieve a promising performance, most of these networks utilize regular pooling operations (max-pooling and mean-pooling) and a single task strategy, which limits the comprehensiveness and representativeness of the features learned by the networks. In this paper, we propose a multi-task wavelet corrected network (MWC-Net) that can learn more comprehensive and representative features for image splicing forgery detection and localization. MWC-Net exploits wavelet-pooling and wavelet un-pooling to compress and reconstruct the features of splicing forgery images, which can reduce information loss during learning features. Mean-while, MWC-Net implements a multi-task strategy to improve its ability to learn and utilize more comprehensive and representative features. The experimental results demonstrate that MWC-Net outperforms the state-of-the-art methods in splicing forgery detection and localization on four public datasets.",
+      "baselineSummary": "Mean-while, MWC-Net implements a multi-task strategy to improve its ability to learn and utilize more comprehensive and representative features for image splicing forgery detection and localization.",
+      "aiSummary": "MWC-Net addresses splicing in a still image using the discrete wavelet transform DWT: wavelet pooling and un-pooling compress and rebuild features without information loss. A global block compares whole-image features, and three decoders respectively localize tampered regions, whose cues are texture based, detect their edges, and reconstruct the input; four public datasets are used.",
+      "pdfPath": "https://cdn.defake.app/user-study-assets/ontology-technique-eval/Multi-Task_Wavelet_Corrected_Network_for_Image_Splicing_Forgery_Detection_and_Localization.pdf"
+    },
+    {
+      "id": "t-b1-d1",
+      "title": "Object-Based Video Forgery Detection via Dual-Stream Networks",
+      "keywords": [
+        "Video forensics",
+        "object-based video forgery",
+        "multi-feature fusion",
+        "dual-stream"
+      ],
+      "ontologyTags": [
+        {
+          "path": [
+            "video"
+          ]
+        },
+        {
+          "path": [
+            "copy-move"
+          ]
+        },
+        {
+          "path": [
+            "removal-inpainting"
+          ]
+        },
+        {
+          "path": [
+            "splicing"
+          ]
+        },
+        {
+          "path": [
+            "global"
+          ]
+        },
+        {
+          "path": [
+            "full-sequence"
+          ]
+        },
+        {
+          "path": [
+            "spatial-features"
+          ]
+        },
+        {
+          "path": [
+            "srm-features"
+          ]
+        }
+      ],
+      "abstract": "The object-based video forgery detection aims to expose tampered regions from video sequences without any codec information. However, existing methods mainly focus on manually selected features and models for a specific task, either splicing or copy-move, while the general representation ability of deep learning models and the correlation of different forensic features have not been fully explored. In this paper, we propose a dual-stream framework to jointly discover and integrate effective features for object-based video forgery detection. First, two different types of branches are employed to extract discriminative features. Then, after the dual-stream feature fusion, a Conditional Random Field (CRF) layer is utilized to further refine segmentation results. Finally, we consider temporal consistency by incorporating the video tracking strategy. Extensive experiments on four datasets show that the proposed method achieves competitive performance against the state-of-the-art methods.",
+      "baselineSummary": "A dual-stream framework to jointly discover and integrate effective features for object-based video forgery detection and considers temporal consistency by incorporating the video tracking strategy is proposed.",
+      "aiSummary": "A dual-stream network locates tampered regions in video, jointly addressing copy-move, splicing, and removal / inpainting forgeries. One branch learns spatial features alongside SRM features; the other compares EXIF metadata & file structure consistency between regions. A conditional random field refines the global, frame-wide segmentation, and a video object tracking branch propagates localization across the full-sequence.",
+      "pdfPath": "https://cdn.defake.app/user-study-assets/ontology-technique-eval/Object-Based_Video_Forgery_Detection_via_Dual-Stream_Networks.pdf"
+    },
+    {
+      "id": "t-b1-d2",
+      "title": "An End-to-End Dense-InceptionNet for Image Copy-Move Forgery Detection",
+      "keywords": [
+        "Copy-move forgery detection",
+        "deep neural network",
+        "Dense-InceptionNet"
+      ],
+      "ontologyTags": [
+        {
+          "path": [
+            "still-image"
+          ]
+        },
+        {
+          "path": [
+            "copy-move"
+          ]
+        },
+        {
+          "path": [
+            "global"
+          ]
+        },
+        {
+          "path": [
+            "spatial-features"
+          ]
+        }
+      ],
+      "abstract": "A novel image copy-move forgery detection scheme using a Dense-InceptionNet is proposed in this paper. Dense-InceptionNet is an end-to-end, multi-dimensional dense-feature connection, Deep Neural Network (DNN). It is the first DNN model to autonomously learn the feature correlations and search the possible forgery snippets through the matching clues. The proposed Dense-InceptionNet consists of Pyramid Feature Extractor (PFE), Feature Correlation Matching (FCM), and Hierarchical Post-Processing (HPP) modules. The PFE module is proposed to extract multi-dimensional and multi-scale dense-features. The features of each layer in this extractor module are directly connected to the preceding layers. The FCM module is proposed to learn the high correlations of deep features and obtain three candidate matching maps. Finally, the HPP module which makes use of three matching maps to obtain a combination of cross-entropies is amenable to better training via backpropagation. Experiments demonstrate that the efficiency of the proposed Dense-InceptionNet is much better than the other state-of-the-art methods while achieving the relative best performance against most known attacks.",
+      "baselineSummary": "Experiments demonstrate that the efficiency of the proposed Dense-InceptionNet is much better than the other state-of-the-art methods while achieving the relative best performance against most known attacks.",
+      "aiSummary": "This paper introduces Dense-InceptionNet, an end-to-end deep network for locating copy-move forgeries in a still image. Three pyramid extractor blocks learn multi-scale spatial features, correlation matching blocks compare them across the whole picture to find duplicated snippets, and a hierarchical post-processing module fuses global and local matching maps into a pixel-level forgery mask.",
+      "pdfPath": "https://cdn.defake.app/user-study-assets/ontology-technique-eval/An_End-to-End_Dense-InceptionNet_for_Image_Copy-Move_Forgery_Detection.pdf"
+    },
+    {
+      "id": "t-b1-d3",
+      "title": "Image Splicing Detection, Localization and Attribution via JPEG Primary Quantization Matrix Estimation and Clustering",
+      "keywords": [
+        "Image forensics",
+        "double JPEG compression",
+        "image forgery localization",
+        "deep learning based image forensics",
+        "primary quantization matrix",
+        "spectral clustering",
+        "normalized mutual information (NMI)"
+      ],
+      "ontologyTags": [
+        {
+          "path": [
+            "still-image"
+          ]
+        },
+        {
+          "path": [
+            "splicing"
+          ]
+        },
+        {
+          "path": [
+            "global"
+          ]
+        },
+        {
+          "path": [
+            "compression-artifacts"
+          ]
+        },
+        {
+          "path": [
+            "discrete-cosine-transform-dct"
+          ]
+        }
+      ],
+      "abstract": "Detection of inconsistencies of double JPEG artifacts across different image regions is often used to detect local image manipulations, like image splicing, and to localize them. In this paper, we move one step further, proposing an end-to-end system that, in addition to detecting and localizing spliced regions, can also distinguish regions coming from different donor images. We assume that both the spliced regions and the background image have undergone a double JPEG compression, and use a local estimate of the primary quantization matrix to distinguish between spliced regions taken from different sources. To do so, we cluster the image blocks according to the estimated primary quantization matrix and refine the result by means of morphological reconstruction. The proposed method can work in a wide variety of settings including aligned and non-aligned double JPEG compression, and regardless of whether the second compression is stronger or weaker than the first one. We validated the proposed approach by means of extensive experiments showing its superior performance with respect to baseline methods working in similar conditions.",
+      "baselineSummary": "This paper proposes an end-to-end system that, in addition to detecting and localizing spliced regions, can also distinguish regions coming from different donor images, and validated the proposed approach by means of extensive experiments.",
+      "aiSummary": "To detect splicing, this work estimates each block’s JPEG primary quantization matrix with a CNN, clusters the estimates, and refines the resulting map morphologically. Since spliced and background parts of the still image are doubly compressed with different quantization steps, their compression artifacts and discrete cosine transform DCT traces differ, enabling global analysis that localizes tampered regions and attributes them to distinct donor images.",
+      "pdfPath": "https://cdn.defake.app/user-study-assets/ontology-technique-eval/Image_Splicing_Detection_Localization_and_Attribution_via_JPEG_Primary_Quantization_Matrix_Estimation_and_Clustering.pdf"
+    },
+    {
+      "id": "t-b2-target",
+      "title": "AEROBLADE: Training-Free Detection of Latent Diffusion Images Using Autoencoder Reconstruction Error",
+      "keywords": [
+        "diffusion models",
+        "deepfake detection",
+        "latent diffusion models",
+        "stable diffusion",
+        "autoencoder",
+        "fake image detection"
+      ],
+      "ontologyTags": [
+        {
+          "path": [
+            "still-image"
+          ]
+        },
+        {
+          "path": [
+            "full-synthesis"
+          ]
+        },
+        {
+          "path": [
+            "global"
+          ]
+        },
+        {
+          "path": [
+            "spatial-features"
+          ]
+        }
+      ],
+      "abstract": "With recent text-to-image models, anyone can generate deceptively realistic images with arbitrary contents, fueling the growing threat of visual disinformation. A key enabler for generating high-resolution images with low computational cost has been the development of latent diffusion models (LDMs). In contrast to conventional diffusion models, LDMs perform the denoising process in the low-dimensional latent space of a pretrained autoencoder (AE) instead of the high-dimensional image space. Despite their relevance, the forensic analysis of LDMs is still in its infancy. In this work we propose AEROBLADE, a novel detection method which exploits an inherent component of LDMs: the AE used to transform images between image and latent space. We find that generated images can be more accurately reconstructed by the AE than real images, allowing for a simple detection approach based on the reconstruction error. Most importantly, our method is easy to imple-ment and does not require any training, yet nearly matches the performance of detectors that rely on extensive training. We empirically demonstrate that AEROBLADE is effective against state-of-the-art LDMs, including Stable Diffusion and Midjourney. Beyond detection, our approach allows for the qualitative analysis of images, which can be leveraged for identifying inpainted regions.",
+      "baselineSummary": "This work proposes AEROBLADE, a novel detection method which exploits an inherent component of LDMs: the AE used to transform images between image and latent space, and finds that generated images can be more accurately reconstructed by the AE than real images, allowing for a simple detection approach based on the reconstruction error.",
+      "aiSummary": "AEROBLADE detects full synthesis in a still image by passing it through the autoencoder of a latent diffusion model and measuring how closely the reconstruction matches the original. Because generated pictures reconstruct more faithfully, comparing spatial features of the image and its reconstruction gives a training-free, global detection score; the unaveraged error map additionally highlights inpainted regions.",
+      "pdfPath": "https://cdn.defake.app/user-study-assets/ontology-technique-eval/AEROBLADE_Training-Free_Detection_of_Latent_Diffusion_Images_Using_Autoencoder_Reconstruction_Error.pdf"
+    },
+    {
+      "id": "t-b2-d1",
+      "title": "On Learning Multi-Modal Forgery Representation for Diffusion Generated Video Detection",
+      "keywords": [
+        "Applied computing; Computer forensics; Evidence collection",
+        "storage and analysis"
+      ],
+      "ontologyTags": [
+        {
+          "path": [
+            "video"
+          ]
+        },
+        {
+          "path": [
+            "full-synthesis"
+          ]
+        },
+        {
+          "path": [
+            "global"
+          ]
+        },
+        {
+          "path": [
+            "full-sequence"
+          ]
+        },
+        {
+          "path": [
+            "spatial-features"
+          ]
+        },
+        {
+          "path": [
+            "temporal-features"
+          ]
+        }
+      ],
+      "abstract": "Large numbers of synthesized videos from diffusion models pose threats to information security and authenticity, leading to an increasing demand for generated content detection. However, existing video-level detection algorithms primarily focus on detecting facial forgeries and often fail to identify diffusion-generated content with a diverse range of semantics. To advance the field of video forensics, we propose an innovative algorithm named Multi-Modal Detection(MM-Det) for detecting diffusion-generated videos. MM-Det utilizes the profound perceptual and comprehensive abilities of Large Multi-modal Models (LMMs) by generating a Multi-Modal Forgery Representation (MMFR) from LMM's multi-modal space, enhancing its ability to detect unseen forgery content. Besides, MM-Det leverages an In-and-Across Frame Attention (IAFA) mechanism for feature augmentation in the spatio-temporal domain. A dynamic fusion strategy helps refine forgery representations for the fusion. Moreover, we construct a comprehensive diffusion video dataset, called Diffusion Video Forensics (DVF), across a wide range of forgery videos. MM-Det achieves state-of-the-art performance in DVF, demonstrating the effectiveness of our algorithm.",
+      "baselineSummary": "An innovative algorithm named Multi-Modal Detection (MM-Det) for detecting diffusion-generated videos, which utilizes the profound perceptual and comprehensive abilities of Large Multi-modal Models (LMMs) by generating a Multi-Modal Forgery Representation (MMFR) from LMM's multi-modal space, enhancing its ability to detect unseen forgery content.",
+      "aiSummary": "MM-Det detects diffusion-generated video, targeting full synthesis rather than partial edits. A large multi-modal model supplies a forgery representation from its joint vision–language space, while a reconstruction branch with in-and-across-frame attention aggregates global and local patterns, combining spatial features and temporal features across the full-sequence. The authors also build Diffusion Video Forensics, a benchmark of forged videos from eight generators.",
+      "pdfPath": "https://cdn.defake.app/user-study-assets/ontology-technique-eval/NeurIPS-2024-on-learning-multi-modal-forgery-representation-for-diffusion-generated-video-detection-Paper-Conference.pdf"
+    },
+    {
+      "id": "t-b2-d2",
+      "title": "Image Inpainting Detection via Enriched Attentive Pattern with Near Original Image Augmentation",
+      "keywords": [
+        "Information systems",
+        "Information systems applications",
+        "Multimedia information systems",
+        "Multimedia content creation"
+      ],
+      "ontologyTags": [
+        {
+          "path": [
+            "still-image"
+          ]
+        },
+        {
+          "path": [
+            "removal-inpainting"
+          ]
+        },
+        {
+          "path": [
+            "global"
+          ]
+        },
+        {
+          "path": [
+            "spatial-features"
+          ]
+        }
+      ],
+      "abstract": "As deep learning-based inpainting methods have achieved increasingly better results, its malicious use, e.g. removing objects to report fake news or to provide fake evidence, is becoming threatening. Previous works have provided rich discussions on network architectures, e.g. even performing Neural Architecture Search to obtain the optimal model architecture. However, there are rooms in other aspects. In our work, we provide comprehensive efforts from data and feature aspects. From the data aspect, as harder samples in the training data usually lead to stronger detection models, we propose near original image augmentation that pushes the inpainted images closer to the original ones (without distortion and inpainting) as the input images, which is proved to improve the detection accuracy. From the feature aspect, we propose to extract the attentive pattern. With the designed attentive pattern, the knowledge of different inpainting methods can be better exploited during the training phase. Finally, extensive experiments are conducted. In our evaluation, we consider the scenarios where the inpainting masks, which are used to generate the testing set, have a distribution gap from those masks used to produce the training set. Thus, the comparisons are conducted on a newly proposed dataset, where testing masks are inconsistent with the training ones. The experimental results show the superiority of the proposed method and the effectiveness of each component. All our codes and data will be online available.",
+      "baselineSummary": "This work formalizes the definition of artifact and fingerprint in generative models, proposes an algorithm for computing them in practice, and studies its effectiveness in distinguishing a large array of different generative models.",
+      "aiSummary": "To counter malicious removal / inpainting of objects, this work detects and localizes edited regions in a still image. It blends inpainted and original images to create harder training samples, and learns an attentive pattern alongside conventional filters, drawing spatial features from the global image so knowledge from diverse inpainting methods transfers when test-time masks differ from training ones.",
+      "pdfPath": "https://cdn.defake.app/user-study-assets/ontology-technique-eval/3503161.3547921.pdf"
+    },
+    {
+      "id": "t-b2-d3",
+      "title": "CYBORG: Blending Human Saliency Into the Loss Improves Deep Learning-Based Synthetic Face Detection",
+      "keywords": [
+        "Algorithms",
+        "Biometrics",
+        "face",
+        "gesture",
+        "body pose",
+        "Machine learning architectures",
+        "formulations",
+        "and algorithms (including transfer",
+        "low-shot",
+        "semi-",
+        "self-",
+        "and un-supervised learning)",
+        "Psychology and cognitive science"
+      ],
+      "ontologyTags": [
+        {
+          "path": [
+            "still-image"
+          ]
+        },
+        {
+          "path": [
+            "full-synthesis"
+          ]
+        },
+        {
+          "path": [
+            "face"
+          ]
+        },
+        {
+          "path": [
+            "spatial-features"
+          ]
+        }
+      ],
+      "abstract": "Can deep learning models achieve greater generalization if their training is guided by reference to human perceptual abilities? And how can we implement this in a practical manner? This paper proposes a training strategy to ConveY Brain Oversight to Raise Generalization (CYBORG). This new approach incorporates human-annotated saliency maps into a loss function that guides the model’s learning to focus on image regions that humans deem salient for the task. The Class Activation Mapping (CAM) mechanism is used to probe the model’s current saliency in each training batch, juxtapose this model saliency with human saliency, and penalize large differences. Results on the task of synthetic face detection, selected to illustrate the effectiveness of the approach, show that CYBORG leads to significant improvement in accuracy on unseen samples consisting of face images generated from six Generative Adversarial Networks across multiple classification network architectures. We also show that scaling to even seven times the training data, or using non-human-saliency auxiliary information, such as segmentation masks, and standard loss cannot beat the performance of CYBORG-trained models. As a side effect of this work, we observe that the addition of explicit region annotation to the task of synthetic face detection increased human classification accuracy. This work opens a new area of research on how to incorporate human visual saliency into loss functions in practice. All data, code and trained models used in this work are offered with this paper.",
+      "baselineSummary": "A training strategy to ConveY Brain Oversight to Raise Generalization (CYBORG) is proposed, which incorporates human-annotated saliency maps into a loss function that guides the model’s learning to focus on image regions that humans deem salient for the task.",
+      "aiSummary": "This work adds human-annotated saliency maps to the training loss, penalizing disagreement with the model's class activation maps so learning attends to regions people find informative. Applied to detecting full synthesis in a still image of a face produced by six unseen GANs, it steers networks toward the spatial features human annotators used; requiring annotation also raised human accuracy.",
+      "pdfPath": "https://cdn.defake.app/user-study-assets/ontology-technique-eval/CYBORG_Blending_Human_Saliency_Into_the_Loss_Improves_Deep_Learning-Based_Synthetic_Face_Detection.pdf"
+    },
+    {
+      "id": "t-b3-target",
+      "title": "AltFreezing for More General Video Face Forgery Detection",
+      "keywords": [
+        "Transparency",
+        "fairness",
+        "accountability",
+        "privacy",
+        "ethics in vision"
+      ],
+      "ontologyTags": [
+        {
+          "path": [
+            "video"
+          ]
+        },
+        {
+          "path": [
+            "face-swap"
+          ]
+        },
+        {
+          "path": [
+            "lip-sync-reenactment"
+          ]
+        },
+        {
+          "path": [
+            "face"
+          ]
+        },
+        {
+          "path": [
+            "segment"
+          ]
+        },
+        {
+          "path": [
+            "spatial-features"
+          ]
+        },
+        {
+          "path": [
+            "temporal-features"
+          ]
+        }
+      ],
+      "abstract": "Existing face forgery detection models try to discriminate fake images by detecting only spatial artifacts (e.g., generative artifacts, blending) or mainly temporal artifacts (e.g., flickering, discontinuity). They may experience significant performance degradation when facing out-domain artifacts. In this paper, we propose to capture both spatial and temporal artifacts in one model for face forgery detection. A simple idea is to leverage a spatiotemporal model (3D ConvNet). However, we find that it may easily rely on one type of artifact and ignore the other. To address this issue, we present a novel training strategy called AltFreezing for more general face forgery detection. The AltFreezing aims to encourage the model to detect both spatial and temporal artifacts. It divides the weights of a spatiotemporal network into two groups: spatial-related and temporal-related. Then the two groups of weights are alternately frozen during the training process so that the model can learn spatial and temporal features to distinguish real or fake videos. Furthermore, we introduce various video-level data augmentation methods to improve the generalization capability of the forgery detection model. Extensive experiments show that our framework outperforms existing methods in terms of generalization to unseen manipulations and datasets.",
+      "baselineSummary": "A novel training strategy called AltFreezing is presented, which aims to encourage the model to detect both spatial and temporal artifacts in one model for face forgery detection, and outperforms existing methods in terms of generalization to unseen manipulations and datasets.",
+      "aiSummary": "This work targets video face forgery detection, where face swap and lip-sync / reenactment manipulations are caught by learning both spatial features and temporal features. Spatial and temporal weights of a 3D network are alternately frozen during training, and clips are augmented by dropping, repeating, or blending frames, so each analysed segment is judged on artifacts localized to the face.",
+      "pdfPath": "https://cdn.defake.app/user-study-assets/ontology-technique-eval/AltFreezing_for_More_General_Video_Face_Forgery_Detection.pdf"
+    },
+    {
+      "id": "t-b3-d1",
+      "title": "Self-Supervised Video Forensics by Audio-Visual Anomaly Detection",
+      "keywords": [
+        "Multi-modal learning"
+      ],
+      "ontologyTags": [
+        {
+          "path": [
+            "video"
+          ]
+        },
+        {
+          "path": [
+            "audio"
+          ]
+        },
+        {
+          "path": [
+            "face-swap"
+          ]
+        },
+        {
+          "path": [
+            "lip-sync-reenactment"
+          ]
+        },
+        {
+          "path": [
+            "face"
+          ]
+        },
+        {
+          "path": [
+            "segment"
+          ]
+        },
+        {
+          "path": [
+            "spatial-features"
+          ]
+        },
+        {
+          "path": [
+            "acoustic-features"
+          ]
+        },
+        {
+          "path": [
+            "temporal-features"
+          ]
+        },
+        {
+          "path": [
+            "audio-visual"
+          ]
+        }
+      ],
+      "abstract": "Manipulated videos often contain subtle inconsistencies between their visual and audio signals. We propose a video forensics method, based on anomaly detection, that can identify these inconsistencies, and that can be trained solely using real, unlabeled data. We train an autoregressive model to generate sequences of audio-visual features, using feature sets that capture the temporal synchronization between video frames and sound. At test time, we then flag videos that the model assigns low probability. Despite being trained entirely on real videos, our model obtains strong performance on the task of detecting manipulated speech videos.",
+      "baselineSummary": "An autoregressive model is trained to generate sequences of audio-visual features, using feature sets that capture the temporal synchronization between video frames and sound, and obtains strong performance on the task of detecting manipulated speech videos",
+      "aiSummary": "This work detects manipulated speech videos by treating forensics as anomaly detection. An autoregressive model, trained only on real, unlabeled video, learns sequences of synchronization descriptors extracted per segment from a network aligning face crops with sound, then flags improbable clips. Feature sets combine spatial features and acoustic features from the visual and audio streams with temporal features of audio-visual delay, covering face swap and lip-sync / face reenactment fakes.",
+      "pdfPath": "https://cdn.defake.app/user-study-assets/ontology-technique-eval/Self-Supervised_Video_Forensics_by_Audio-Visual_Anomaly_Detection.pdf"
+    },
+    {
+      "id": "t-b3-d2",
+      "title": "Adaptive Texture and Spectrum Clue Mining for Generalizable Face Forgery Detection",
+      "keywords": [
+        "Face forgery detection",
+        "domain generalization",
+        "adaptive learning"
+      ],
+      "ontologyTags": [
+        {
+          "path": [
+            "still-image"
+          ]
+        },
+        {
+          "path": [
+            "video"
+          ]
+        },
+        {
+          "path": [
+            "face-swap"
+          ]
+        },
+        {
+          "path": [
+            "lip-sync-reenactment"
+          ]
+        },
+        {
+          "path": [
+            "face"
+          ]
+        },
+        {
+          "path": [
+            "single-frame"
+          ]
+        },
+        {
+          "path": [
+            "discrete-cosine-transform-dct"
+          ]
+        },
+        {
+          "path": [
+            "spatial-features"
+          ]
+        }
+      ],
+      "abstract": "Although existing face forgery detection methods achieve satisfactory performance under closed within-dataset scenario where training and testing sets are created by the same manipulation technique, they are vulnerable to samples created by unseen manipulation techniques under cross-dataset scenario. To solve this problem, in this work, we propose a novel adaptive texture and spectral clue mining (ATSC) approach for generalizable face forgery detection. It adaptively adjusts the parameters depended on input images to mine specific intrinsic forgery clues on both spatial and frequency domains. Specifically, ATSC customizes a Texture Clue Mining Module and a Spectrum Clue Selecting Module. The former module exploits instance-aware dynamic convolution on spatial domain to dynamically assemble multiple parallel convolutional kernels based on the learned image-dependent attention maps for effectively capturing subtle texture artifacts on spatial domain. A customized attention loss is also applied to the attention maps as supervision to precisely localize forgery artifacts whilst retain useful background information from suspicious and non-suspicious regions, which drives the module to explore all potential crucial clues and learning robust texture-related forgery feature. Moreover, the latter module applies adaptive frequency filtering mechanism on DCT-based frequency signals, which selects frequency information of interest to capture refined spectrum clues on frequency domain in an input-adaptive manner. Equipped with the above two modules, ATSC can learn more generalizable forgery features for face forgery detection. Extensive experimental results demonstrate the superior generalization ability of the proposed ATSC over various state-of-the-art methods on the challenging benchmarks.",
+      "baselineSummary": "A novel adaptive texture and spectral clue mining (ATSC) approach for generalizable face forgery detection that adaptively adjusts the parameters depended on input images to mine specific intrinsic forgery clues on both spatial and frequency domains is proposed.",
+      "aiSummary": "To detect forgeries created by unseen techniques, the authors propose ATSC, which adapts its parameters to each input. Working on a single frame from a still image or video, it uses attention-guided dynamic convolution to mine spatial features from the cropped face, and learnable filters over discrete cosine transform DCT signals to select informative frequency bands. Training and evaluation cover face swap and lip-sync / face reenactment forgeries.",
+      "pdfPath": "https://cdn.defake.app/user-study-assets/ontology-technique-eval/Adaptive_Texture_and_Spectrum_Clue_Mining_for_Generalizable_Face_Forgery_Detection.pdf"
+    },
+    {
+      "id": "t-b3-d3",
+      "title": "Lips Don’t Lie: A Generalisable and Robust Approach to Face Forgery Detection",
+      "keywords": [
+        "Visualization",
+        "Face recognition",
+        "Perturbation methods",
+        "Semantics",
+        "Meetings",
+        "Mouth",
+        "Speech recognition"
+      ],
+      "ontologyTags": [
+        {
+          "path": [
+            "video"
+          ]
+        },
+        {
+          "path": [
+            "face-swap"
+          ]
+        },
+        {
+          "path": [
+            "lip-sync-reenactment"
+          ]
+        },
+        {
+          "path": [
+            "mouth"
+          ]
+        },
+        {
+          "path": [
+            "segment"
+          ]
+        },
+        {
+          "path": [
+            "spatial-features"
+          ]
+        },
+        {
+          "path": [
+            "temporal-features"
+          ]
+        },
+        {
+          "path": [
+            "movement"
+          ]
+        }
+      ],
+      "abstract": "Although current deep learning-based face forgery detectors achieve impressive performance in constrained scenarios, they are vulnerable to samples created by unseen manipulation methods. Some recent works show improvements in generalisation but rely on cues that are easily corrupted by common post-processing operations such as compression. In this paper, we propose LipForensics, a detection approach capable of both generalising to novel manipulations and withstanding various distortions. LipForensics targets high-level semantic irregularities in mouth movements, which are common in many generated videos. It consists in first pretraining a spatio-temporal network to perform visual speech recognition (lipreading), thus learning rich internal representations related to natural mouth motion. A temporal network is subsequently finetuned on fixed mouth embeddings of real and forged data in order to detect fake videos based on mouth movements without overfitting to low-level, manipulation-specific artefacts. Extensive experiments show that this simple approach significantly surpasses the state-of-the-art in terms of generalisation to unseen manipulations and robustness to perturbations, as well as shed light on the factors responsible for its performance.",
+      "baselineSummary": "Extensive experiments show that this simple approach significantly surpasses the state-of-the-art in terms of generalisation to unseen manipulations and robustness to perturbations, as well as shed light on the factors responsible for its performance.",
+      "aiSummary": "Most face forgeries in video, whether face swap or lip-sync / reenactment, alter the mouth. LipForensics pretrains a spatio-temporal network on lipreading, so its spatial features capture each frame and its temporal features model how they evolve across a short segment of 25 frames, then finetunes only the temporal part to flag unnatural mouth movement instead of low-level artefacts.",
+      "pdfPath": "https://cdn.defake.app/user-study-assets/ontology-technique-eval/Lips_Dont_Lie_A_Generalisable_and_Robust_Approach_to_Face_Forgery_Detection.pdf"
+    },
+    {
+      "id": "t-b4-target",
+      "title": "Where Deepfakes Gaze at? Spatial–Temporal Gaze Inconsistency Analysis for Video Face Forgery Detection",
+      "keywords": [
+        "Face forgery detection",
+        "physiological signals",
+        "gaze features",
+        "attribute features",
+        "texture features"
+      ],
+      "ontologyTags": [
+        {
+          "path": [
+            "video"
+          ]
+        },
+        {
+          "path": [
+            "face-swap"
+          ]
+        },
+        {
+          "path": [
+            "lip-sync-reenactment"
+          ]
+        },
+        {
+          "path": [
+            "eyes"
+          ]
+        },
+        {
+          "path": [
+            "face"
+          ]
+        },
+        {
+          "path": [
+            "segment"
+          ]
+        },
+        {
+          "path": [
+            "spatial-features"
+          ]
+        },
+        {
+          "path": [
+            "temporal-features"
+          ]
+        },
+        {
+          "path": [
+            "movement"
+          ]
+        }
+      ],
+      "abstract": "With the continuous development of generative models on face generation, how to distinguish the real and fake face has become an important problem for security. Because of the continuous improvement on the detection accuracy by facial physiological signals, video face forgery detection based on facial physiological signal analysis has received more and more attention, which has become an important research branch in the field of face forgery detection. Currently, most of the research on forgery detection based on physiological signal analysis use biometric features such as blinking patterns, head swings, heart rate signals, and lip movements. However, there hasn’t been much exploration on the usage of gaze features in face forgery detection. Through the analysis of gaze directions in face videos, we have observed differences in the distribution of gaze direction pattern between the real and forged videos. Specifically, real videos tend to have more concentrated gaze distribution within a short period of time, while forged videos have more dispersed gaze distributions. In this paper, we present a novel Deepfake gaze analysis method named DFGaze, to explore spatial-temporal gaze inconsistency for video face forgery detection. Our method uses the gaze analysis model (GAM) to analyze the gaze features of face video frames, and then applies a spatial-temporal feature aggregator to realize authenticity classification based on gaze features. In order to better mine the authenticity clues in the videos, we further use the texture analysis model (TAM) and attribute analysis model (AAM) to improve the representation ability of spatial-temporal feature differences between real and forged faces. Extensive experiments show that our method can achieve state-of-the-art performance with the help of gaze analysis.",
+      "baselineSummary": "This paper presents a novel Deepfake gaze analysis method named DFGaze, to explore spatial-temporal gaze inconsistency for video face forgery detection, and uses the gaze analysis model to analyze the gaze features of face video frames, and applies a spatial-temporal feature aggregator to realize authenticity classification based on gaze features.",
+      "aiSummary": "This work spots forged video by tracking where the eyes look: real clips show tightly clustered gaze, while fake ones scatter. Pitch and yaw eye movement is measured over each short segment of a face video, then combined with spatial features from texture and facial attributes plus temporal features, addressing face swap and lip-sync / reenactment forgeries.",
+      "pdfPath": "https://cdn.defake.app/user-study-assets/ontology-technique-eval/Where_Deepfakes_Gaze_at_SpatialTemporal_Gaze_Inconsistency_Analysis_for_Video_Face_Forgery_Detection.pdf"
+    },
+    {
+      "id": "t-b4-d1",
+      "title": "FSSPOTTER: Spotting Face-Swapped Video by Spatial and Temporal Clues",
+      "keywords": [
+        "DeepFakes",
+        "Face-swapped video",
+        "DeepFakes detection",
+        "Face Forensics"
+      ],
+      "ontologyTags": [
+        {
+          "path": [
+            "video"
+          ]
+        },
+        {
+          "path": [
+            "face-swap"
+          ]
+        },
+        {
+          "path": [
+            "face"
+          ]
+        },
+        {
+          "path": [
+            "segment"
+          ]
+        },
+        {
+          "path": [
+            "temporal-features"
+          ]
+        },
+        {
+          "path": [
+            "spatial-features"
+          ]
+        }
+      ],
+      "abstract": "Recent advances in face generation and manipulation have enabled the creation of sophisticated face-swapped videos, also known as DeepFakes, which brings great potential threats to our society. Hence, it is crucial to develop effective approaches to distinguish them. Currently, face-swapped videos produced by existing methods are prone to exhibit some subtle spatial and temporal manipulated traces, which can be utilized as distinctive clues for face-swapped video detection. In this paper, we propose a unified framework, named FSSpotter, to explore rich spatial and temporal information in the video simultaneously. It consists of a Spatial Feature Extractor (SFE), which aims to discover spatial evidences within a single frame, and a Temporal Feature Aggregator (TFA), which is responsible for capturing temporal inconsistencies between frames. Moreover, a novel data processing strategy is adopted to highlight the inconsistencies of forged face with its surrounding regions. The evaluations on Deepfakes of FaceForensics++, DeepfakeTIMIT, UADFV and Celeb-DF datasets demonstrate that the proposed approach achieves better or comparable performance on AUC scores.",
+      "baselineSummary": "A unified framework, named FSSpotter, to explore rich spatial and temporal information in the video simultaneously, which consists of a Spatial Feature Extractor (SFE), which aims to discover spatial evidences within a single frame, and a Temporal Feature Aggregator (TFA), which is responsible for capturing temporal inconsistencies between frames.",
+      "aiSummary": "FSSpotter detects face swap manipulation in video by combining spatial features and temporal features in one framework: a CNN backbone with a superpixel-wise classifier examines each cropped face and its surroundings for within-frame evidence, while a bidirectional LSTM aggregates inconsistencies across each clip, a short segment of consecutive frames. Fake training data is simulated automatically from authentic images.",
+      "pdfPath": "https://cdn.defake.app/user-study-assets/ontology-technique-eval/FSSPOTTER_Spotting_Face-Swapped_Video_by_Spatial_and_Temporal_Clues.pdf"
+    },
+    {
+      "id": "t-b4-d2",
+      "title": "Not made for each other — Audio-Visual Dissonance-based Deepfake Detection and Localization",
+      "keywords": [
+        "Applied computing",
+        "Computer forensics",
+        "Investigation techniques",
+        "System forensics"
+      ],
+      "ontologyTags": [
+        {
+          "path": [
+            "video"
+          ]
+        },
+        {
+          "path": [
+            "audio"
+          ]
+        },
+        {
+          "path": [
+            "face-swap"
+          ]
+        },
+        {
+          "path": [
+            "face"
+          ]
+        },
+        {
+          "path": [
+            "segment"
+          ]
+        },
+        {
+          "path": [
+            "mel-frequency-cepstral-coefficients-mfcc"
+          ]
+        },
+        {
+          "path": [
+            "spatial-features"
+          ]
+        },
+        {
+          "path": [
+            "temporal-features"
+          ]
+        },
+        {
+          "path": [
+            "audio-visual"
+          ]
+        }
+      ],
+      "abstract": "We propose detection of deepfake videos based on the dissimilarity between the audio and visual modalities, termed as the Modality Dissonance Score (MDS). We hypothesize that manipulation of either modality will lead to dis-harmony between the two modalities, e.g., loss of lip-sync, unnatural facial and lip movements, etc. MDS is computed as the mean aggregate of dissimilarity scores between audio and visual segments in a video. Discriminative features are learnt for the audio and visual channels in a chunk-wise manner, employing the cross-entropy loss for individual modalities, and a contrastive loss that models inter-modality similarity. Extensive experiments on the DFDC and DeepFake-TIMIT Datasets show that our approach outperforms the state-of-the-art by up to 7%. We also demonstrate temporal forgery localization, and show how our technique identifies the manipulated video segments.",
+      "baselineSummary": "The proposed detection of deepfake videos based on the dissimilarity between the audio and visual modalities, termed as the Modality Dissonance Score (MDS), outperforms the state-of-the-art by up to 7%",
+      "aiSummary": "This work detects deepfakes by scoring dissonance between the video and audio channels of face swap footage. A 3D-CNN learns spatial features and temporal features from face crops, while a second stream encodes MFCC audio; contrastive and cross-entropy losses compare one-second chunks, so audio-visual dissimilarity aggregated over a clip labels a video real or fake and flags each forged segment.",
+      "pdfPath": "https://cdn.defake.app/user-study-assets/ontology-technique-eval/3394171.3413700.pdf"
+    },
+    {
+      "id": "t-b4-d3",
+      "title": "Exposing Lip-syncing Deepfakes from Mouth Inconsistencies Analysis",
+      "keywords": [
+        "DeepFake detection",
+        "Lip-syncing deepfakes",
+        "Spatial-temporal inconsistency"
+      ],
+      "ontologyTags": [
+        {
+          "path": [
+            "video"
+          ]
+        },
+        {
+          "path": [
+            "lip-sync-reenactment"
+          ]
+        },
+        {
+          "path": [
+            "mouth"
+          ]
+        },
+        {
+          "path": [
+            "segment"
+          ]
+        },
+        {
+          "path": [
+            "spatial-features"
+          ]
+        },
+        {
+          "path": [
+            "temporal-features"
+          ]
+        }
+      ],
+      "abstract": "A lip-syncing deepfake is a digitally manipulated video in which a person’s lip movements are created convincingly using AI models to match altered or entirely new audio. Lipsyncing deepfakes are a dangerous type of deepfakes as the artifacts are limited to the lip region and more difficult to discern. In this paper, we describe a novel approach, LIP-syncing detection based on mouth INConsistency (LIPINC), for lip-syncing deepfake detection by identifying temporal inconsistencies in the mouth region. These inconsistencies are seen in the adjacent frames and throughout the video. Our model can successfully capture these irregularities and outperforms the state-of-the-art methods on several benchmark deepfake datasets.",
+      "baselineSummary": "This paper describes a novel approach, LIP-syncing detection based on mouth INConsistency (LIPINC), for lip-syncing deepfake detection by identifying temporal inconsistencies in the mouth region and outperforms the state-of-the-art methods on several benchmark deepfake datasets.",
+      "aiSummary": "This work targets lip-sync / face reenactment deepfakes, where only a speaker's mouth is altered. The LIPINC method crops the mouth region, pairing each short adjacent-frame segment with similarly posed frames from elsewhere in the video. A 3D convolutional network with cross-attention fuses appearance and frame-difference streams, learning spatial features and temporal features whose inconsistencies separate manipulated clips from authentic ones.",
+      "pdfPath": "https://cdn.defake.app/user-study-assets/ontology-technique-eval/Exposing_Lip-syncing_Deepfakes_from_Mouth_Inconsistencies.pdf"
+    }
+  ],
+  "taskAVignettes": [
+    {
+      "id": "task-a-1",
+      "set": "A",
+      "title": "The Councillor at the Fundraiser",
+      "scenario": "You are a verification editor at a news outlet. A tipster sent your desk a two-minute clip said to show a city council member at a private fundraiser last spring. It arrived as a single file with sound, apparently shot on a phone held at one of the tables. For about fifty seconds in the middle, the councillor is a couple of meters from the camera under the room’s lights, turned toward it, talking without interruption and clearly audible over the other guests. In that stretch she appears to promise a contractor favorable treatment on an upcoming bid. Her office disputes that she was present at the fundraiser, and the speech is falsified, but the person depicted in the video looks just like her.",
+      "target": "ALL_HOLD",
+      "techniqueId": "t-a1"
+    },
+    {
+      "id": "task-a-2",
+      "set": "A",
+      "title": "Disputed Hunting Lodge Photo Report",
+      "scenario": "You moderate reports for a large social network. A photo posted by an anonymous account has spread widely: it shows a popular cooking-video creator sitting at a table in a hunting lodge beside a mounted animal, holding a rifle. Her followers point out that she has been vegetarian and openly anti-hunting for years. She says she has never set foot in such a place and that the whole picture was made up. Reshared copies are small and grainy, but the report queue shows the original post itself, large and sharp down to the stitching on her sleeve. The team has to settle whether the photograph is real.",
+      "target": "ALL_HOLD",
+      "techniqueId": "t-a2"
+    },
+    {
+      "id": "task-a-3",
+      "set": "A",
+      "title": "Hail Claim Garage Roof Photo",
+      "scenario": "A claims adjuster at a home insurance company is working through a hail claim on a detached garage. The homeowner submitted a single photograph, a JPEG from a phone, showing the whole garage roof from the driveway in flat daylight, shingles scattered across it and one gutter dented. A line of white text sits across the bottom of the image giving a date, a time and the street address, and the homeowner attached a short typed caption naming the storm and describing the roof. The same homeowner withdrew a claim two years ago after admitting he had edited a photo of a fence. The adjuster believes the scattered shingles were added into this picture and the date and address across the bottom changed.",
+      "target": "FAIL_C2",
+      "techniqueId": "t-a3"
+    },
+    {
+      "id": "task-a-4",
+      "set": "A",
+      "title": "Disputed Commissioned Book Cover",
+      "scenario": "You are a novelist who commissioned cover art from a freelance illustrator for a substantial flat fee, under a contract stating the work would be drawn entirely by hand. She sent you one finished piece, a full-resolution file exported straight from her own software. It shows a lone figure on a windswept cliff at dusk. You follow the newer AI image generation tools closely and have seen much of the output from them, and the picture looks to you like something one of them produced. Before you raise the contract with her, you want to establish which model the image came out of, if any.",
+      "target": "ALL_HOLD",
+      "techniqueId": "t-a4"
+    },
+    {
+      "id": "task-a-5",
+      "set": "A",
+      "title": "Journalism Club Flight Video Verification",
+      "scenario": "You run the verification desk at your college journalism club. A twenty-second clip circulating on X shows a classmate in an aircraft cabin, seemingly holding a lit cigarette and blowing smoke while passengers sit around him. Some replies insist the whole thing was generated; others demand he be punished. The college has opened a disciplinary hearing and expulsion is possible, and the student says he was never on that flight. No one has a copy from whoever recorded it; a club member pulled the video off the post with a browser downloader, and what came down is the platform's re-encoded version. The club wants to establish whether the video is real or AI generated.",
+      "target": "FAIL_C4",
+      "techniqueId": "t-a5"
+    },
+    {
+      "id": "task-a-6",
+      "set": "A",
+      "title": "Celebrity Call Dispute",
+      "scenario": "You work for the defense team of a well-known musician facing charges brought after a fifteen-year-old fan told police the two had spoken face to face on a group video call that involved use of inappropriate language. The musician maintains he only ever replied to fan messages and never joined any call. Prosecutors have entered a two-minute screen recording made on the complainant’s phone, captured without sound, showing a call window with three tiles; the musician's tile fills most of the frame, well lit and close, with his mouth moving as though talking, and the platform’s participant name and running call timer displayed beneath it. He has already made statements claiming that the video is not real.",
+      "target": "FAIL_C1",
+      "techniqueId": "t-a6"
+    },
+    {
+      "id": "task-a-7",
+      "set": "A",
+      "title": "Disputed Dissertation Tissue Figure",
+      "scenario": "A university integrity panel is reviewing a dissertation accepted 20 years ago, after a former lab member wrote to the dean claiming misconduct. The electronic submission was lost when the campus repository was retired, so the only version anyone can obtain is the bound volume on the library shelf, run off by an old commercial printer. A panel member scanned the page carrying the disputed figure containing a wide view of a stained tissue section (a microscopic slide view of biological cells), and in that scanned copy the figure comes out as the mesh of dense printing dots that the press laid down. The letter to the dean claims the original author forged the figure by taking one patch of tissue and repeating it in the same frame to imply a second specimen. With the scan copy in hand, the panel must decide whether the figure used in the dissertation is unaltered.",
+      "target": "FAIL_C3",
+      "techniqueId": "t-a7"
+    },
+    {
+      "id": "task-a-8",
+      "set": "A",
+      "title": "Processing NewsGlobal Takedown Request",
+      "scenario": "You handle rights disputes at NewsGlobal, a large news organization. Last week the newsroom published a photograph of a protest outside City Hall, shot by a staff photographer and released through the in-house distribution system, which conceals an ownership mark inside every picture it sends out. Politikz, a smaller independent outlet, is now running what looks like the same protest photograph with no credit line and no licence on record. Their copy, downloaded at full size from their own site, but one of the signs held up in the crowd carries different wording. Before the legal team sends a takedown notice, they need to settle whether the picture Politikz is running is NewsGlobal's photograph.",
+      "target": "ALL_HOLD",
+      "techniqueId": "t-a8"
+    }
+  ],
+  "taskBVignettes": [
+    {
+      "id": "task-b-1",
+      "set": "B",
+      "title": "Trench Photograph in Payment Dispute",
+      "scenario": "You are the county engineer on a municipal parking lot job, and a general contractor has disputed a payment claim from its drainage subcontractor. The subcontractor’s evidence is one photograph, uploaded from a crew tablet through the site-documentation app the project requires, which saves every capture as a lossless PNG and keeps that original. The picture shows a run of perforated pipe seated in an open trench with gravel bedding, dated the afternoon before the trench was backfilled. The contractor’s superintendent says he walked that trench that day and the pipe was not in it yet; he believes the pipe here came from a photograph of the subcontractor’s job across town and was added into this shot. The subcontractor insists it is exactly as it came off the tablet. The payment application is on your desk, unsigned, with the photograph attached.",
+      "techniqueIds": [
+        "t-b1-target",
+        "t-b1-d1",
+        "t-b1-d2",
+        "t-b1-d3"
+      ],
+      "correctTechniqueId": "t-b1-target"
+    },
+    {
+      "id": "task-b-2",
+      "set": "B",
+      "title": "Fake Ice House Image Debate",
+      "scenario": "You are a moderator on a forum for people who explore abandoned buildings. A member has posted what he calls the interior of the old Lowell ice house: one wide photograph of a sawdust floor, ranks of iron hooks, daylight through a gap in the roof. He says he went in alone through a side door and that this is the only shot he took. Several longtime members have replied that he was never in the building because the picture shows a room that has never existed, and that he made it on a computer instead of taking it himself. One of them has posted town records showing the ice house was even pulled down years before the visit he describes.",
+      "techniqueIds": [
+        "t-b2-target",
+        "t-b2-d1",
+        "t-b2-d2",
+        "t-b2-d3"
+      ],
+      "correctTechniqueId": "t-b2-target"
+    },
+    {
+      "id": "task-b-3",
+      "set": "B",
+      "title": "Disputed Dismissal at a Supermarket",
+      "scenario": "You are the shift supervisor at a supermarket distribution depot, and HR has handed you the appeal file of a picker dismissed last month. The evidence is a three-hour recording from the camera at the end of the chill aisle, which records video but not sound. In one 30s stretch a woman lifts two trays off a cage tagged for return and sets them on the outbound belt, then walks the length of the aisle to the terminal to close the cage off on the system, standing with her face clearly visible to the camera for a few seconds, then going back to her station. She is alone in the aisle; the second picker was on break. The dismissed worker says the woman at the cage is not her, and that the footage was doctored to put her face on it. The supermarket's automated CCTV software moderately compresses footage to optimize disk space, and applies a second round of compression upon exporting the file for HR.",
+      "techniqueIds": [
+        "t-b3-target",
+        "t-b3-d1",
+        "t-b3-d2",
+        "t-b3-d3"
+      ],
+      "correctTechniqueId": "t-b3-target"
+    },
+    {
+      "id": "task-b-4",
+      "set": "B",
+      "title": "Truck Driver Highway Accident",
+      "scenario": "You are a law enforcement investigator examining a serious highway collision involving a truck. Investigators obtained the original recording from an in-cab camera mounted near the windshield and facing the driver. The recording clearly shows the driver’s face and upper body and includes ambient cab sound. The driver does not speak during the relevant portion. The person shown throughout the recording is confirmed to be the truck driver. Although the collision would be difficult to explain if he had been closely watching the road, the video shows him facing forward and apparently remaining attentive in the seconds before another vehicle merges into his lane. Investigators therefore suspect that the video may have been manipulated and need to determine whether it is authentic.",
+      "techniqueIds": [
+        "t-b4-target",
+        "t-b4-d1",
+        "t-b4-d2",
+        "t-b4-d3"
+      ],
+      "correctTechniqueId": "t-b4-target"
+    }
+  ],
+  "attentionAVignette": {
+    "id": "attention-a",
+    "title": "Public figure clip on a messaging app",
+    "scenario": "A short video clip is circulating on a messaging app. The clip shows a public figure making a statement; the original file is unavailable and only a re-encoded copy remains. To confirm you are reading each scenario in full rather than skimming, please answer “Not determinable” and set confidence to 1 for this item only. The investigator wants to know whether the speaker's face was replaced.",
+    "techniqueId": "t-a1"
+  },
+  "attentionBVignette": {
+    "id": "attention-b",
+    "title": "Warehouse loading-bay clip",
+    "scenario": "You are reviewing a loading-bay camera clip from a warehouse. The clip shows a worker signing for a pallet; the original file is unavailable and only a compressed copy remains. To confirm you are reading each case in full rather than skimming, please select Technique 2 and set confidence to 1 for this item only. The investigator wants to know which of the listed methods would best test whether the worker’s face was inserted into the footage.",
+    "techniqueIds": [
+      "t-b1-target",
+      "t-b1-d1",
+      "t-b1-d2",
+      "t-b1-d3"
+    ]
+  }
+}

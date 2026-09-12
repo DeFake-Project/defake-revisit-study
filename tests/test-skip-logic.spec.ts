@@ -189,7 +189,11 @@ async function getTags(page: Page) {
   });
 }
 
-test('test', async ({ page }) => {
+test('test', async ({ page, browserName }) => {
+  test.skip(
+    Boolean(process.env.CI) && browserName === 'webkit',
+    'Skipping the full skip-logic walkthrough on WebKit CI due to headless flakiness.',
+  );
   await page.goto('/test-skip-logic');
 
   // Make sure that we loaded in

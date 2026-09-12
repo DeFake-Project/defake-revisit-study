@@ -1,18 +1,22 @@
 /* eslint-disable no-await-in-loop */
-import { test, expect } from '@playwright/test';
-import { nextClick, waitForStudyEndMessage } from './utils';
+import { test, expect, Page } from '@playwright/test';
+import { nextClick, openStudyFromLanding, waitForStudyEndMessage } from './utils';
+
+async function expectChartMarks(page: Page, markSelector: string) {
+  const vis = page.getByRole('main').locator('svg').first();
+  await expect(vis).toBeVisible();
+  // Wait for D3/layout to paint marks. A one-shot count() does not retry.
+  await expect(vis.locator(markSelector).first()).toBeVisible();
+}
 
 test('Test example cleveland', async ({ page }) => {
-  await page.goto('/');
+  await openStudyFromLanding(
+    page,
+    'Example Studies',
+    'Dynamic React.js Stimuli: A Graphical Perception Experiment',
+  );
 
-  await page.getByRole('tab', { name: 'Example Studies' }).click();
-
-  // Click on cleveland
-  await page.getByLabel('Example Studies').locator('div').filter({ hasText: 'Dynamic React.js Stimuli: A Graphical Perception Experiment' })
-    .getByText('Go to Study')
-    .click();
-
-  await expect(page.getByRole('heading', { name: 'Introduction' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Introduction' })).toBeVisible({ timeout: 15000 });
 
   // Click on the next button
   await nextClick(page);
@@ -44,11 +48,7 @@ test('Test example cleveland', async ({ page }) => {
     const questionText = await page.getByText('Task:Two values are marked with dots. What percentage do you believe the smaller');
     await expect(questionText).toBeVisible();
 
-    // Check that the visualization is visible
-    const vis = await page.getByRole('main').getByRole('img');
-    await expect(vis).toBeVisible();
-    const visChildren = page.locator(visSearchArray[idx]);
-    await expect.poll(async () => visChildren.count(), { timeout: 10000 }).toBeGreaterThan(0);
+    await expectChartMarks(page, visSearchArray[idx]);
 
     // Fill in answer guess
     await page.getByPlaceholder('0-100').fill('66');
@@ -62,7 +62,6 @@ test('Test example cleveland', async ({ page }) => {
 
     // Click on the next button
     await nextClick(page);
-    await page.waitForTimeout(100);
   }
 
   // Check that the next question does not have a check answer button
@@ -76,18 +75,13 @@ test('Test example cleveland', async ({ page }) => {
     const questionText = await page.getByText('Task:Two values are marked with dots. What percentage do you believe the smaller');
     await expect(questionText).toBeVisible();
 
-    // Check that the visualization is visible
-    const vis = await page.getByRole('main').getByRole('img');
-    await expect(vis).toBeVisible();
-    const visChildren = page.locator(visSearchArray2[idx]);
-    await expect.poll(async () => visChildren.count(), { timeout: 10000 }).toBeGreaterThan(0);
+    await expectChartMarks(page, visSearchArray2[idx]);
 
     // Fill in answer
     await page.getByPlaceholder('0-100').fill('66');
 
     // Click on the next button
     await nextClick(page);
-    await page.waitForTimeout(200);
   }
 
   // Check for the post study survey and fill it out

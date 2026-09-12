@@ -133,7 +133,7 @@ test('Test questionnaire component with responses and randomizing questions and 
   await nextClick(page);
 
   // Custom Response page
-  await expect(page.getByText('Custom Response')).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Custom Response', exact: true })).toBeVisible();
   const customResponseNextButton = page.getByRole('button', { name: 'Next', exact: true });
   await expect(customResponseNextButton).toBeDisabled();
   await page.getByRole('button', { name: 'Bar', exact: true }).click();

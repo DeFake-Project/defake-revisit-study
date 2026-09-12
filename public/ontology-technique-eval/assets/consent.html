@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Informed Consent</title>
+  <style>
+    :root {
+      --teal: #0FB194;
+      --teal-dark: #0A7360;
+      --teal-soft: #F1FEFB;
+      --ink: #1b2423;
+      --muted: #5b6b68;
+      --line: #d7e7e2;
+      --warn: #EAB308;
+      --warn-bg: #FEFBF0;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--ink);
+      line-height: 1.55;
+      margin: 0;
+      padding: 1rem 1.25rem 2rem;
+      max-width: 980px;
+    }
+
+    h1 {
+      font-family: "Space Grotesk", Inter, sans-serif;
+      font-size: 1.45rem;
+      margin: 0 0 0.35rem;
+      color: var(--teal-dark);
+    }
+
+    .lede {
+      margin: 0 0 1rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    h2 {
+      font-size: 1.05rem;
+      margin: 1.4rem 0 0.45rem;
+      color: var(--teal-dark);
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 0.25rem;
+    }
+
+    p, li { font-size: 0.92rem; }
+    p { margin: 0.45rem 0; }
+
+    .glance {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.6rem;
+      margin: 0.75rem 0 1rem;
+    }
+
+    .glance-item {
+      background: var(--teal-soft);
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--teal);
+      border-radius: 8px;
+      padding: 0.65rem 0.7rem;
+    }
+
+    .glance-item .label {
+      display: block;
+      font-size: 0.68rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--teal-dark);
+      font-weight: 700;
+    }
+
+    .glance-item .value {
+      display: block;
+      margin-top: 0.15rem;
+      font-weight: 600;
+      font-size: 0.92rem;
+    }
+
+    .people {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.6rem;
+    }
+
+    .person {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 0.6rem 0.7rem;
+    }
+
+    .person .role {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--teal-dark);
+      font-weight: 700;
+    }
+
+    .person strong { display: block; font-size: 0.92rem; }
+    .person .meta { color: var(--muted); font-size: 0.8rem; line-height: 1.4; }
+
+    a { color: var(--teal-dark); }
+
+    .highlight {
+      background: var(--warn-bg);
+      border-left: 4px solid var(--warn);
+      padding: 0.65rem 0.8rem;
+      border-radius: 6px;
+      margin: 0.8rem 0;
+    }
+
+    .consent-box {
+      background: var(--teal-soft);
+      border: 2px solid var(--teal);
+      border-radius: 8px;
+      padding: 0.9rem 1rem;
+      margin-top: 1rem;
+    }
+
+    @media (max-width: 800px) {
+      .glance, .people { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 520px) {
+      .glance, .people { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <h1>Developing an Ontology-based Framework for Digital Media Forensics</h1>
+  <p class="lede">Informed Consent Document &mdash; please read the summary, then scroll for full detail before answering on the left.</p>
+
+  <div class="glance">
+    <div class="glance-item">
+      <span class="label">Duration</span>
+      <span class="value">About 45 minutes</span>
+    </div>
+    <div class="glance-item">
+      <span class="label">Compensation</span>
+      <span class="value">$15 via Prolific</span>
+    </div>
+    <div class="glance-item">
+      <span class="label">Participation</span>
+      <span class="value">Voluntary, you may stop</span>
+    </div>
+    <div class="glance-item">
+      <span class="label">Privacy</span>
+      <span class="value">No name or contact collected</span>
+    </div>
+  </div>
+
+  <h2>Research team</h2>
+  <div class="people">
+    <div class="person">
+      <span class="role">Principal investigator</span>
+      <strong>Y. Kelly Wu</strong>
+      <div class="meta">ESL Global Cybersecurity Institute, RIT<br>Office: CYB-3735<br><a href="mailto:kellywu@mail.rit.edu">kellywu@mail.rit.edu</a></div>
+    </div>
+    <div class="person">
+      <span class="role">Collaborator</span>
+      <strong>Saniat J. Sohrawardi</strong>
+      <div class="meta">ESL Global Cybersecurity Institute, RIT<br>Office: CYB-3735<br><a href="mailto:john.sohrawardi@rit.edu">john.sohrawardi@rit.edu</a></div>
+    </div>
+    <div class="person">
+      <span class="role">Collaborator</span>
+      <strong>Dr. Ersin Uzun</strong>
+      <div class="meta">ESL Global Cybersecurity Institute, RIT<br>Office: CYB-1787<br><a href="mailto:ersin.uzun@rit.edu">ersin.uzun@rit.edu</a></div>
+    </div>
+    <div class="person">
+      <span class="role">Collaborator</span>
+      <strong>Dr. Matthew Wright</strong>
+      <div class="meta">ESL Global Cybersecurity Institute, RIT<br>Office: CYB-1781<br><a href="mailto:matthew.wright@rit.edu">matthew.wright@rit.edu</a></div>
+    </div>
+  </div>
+
+  <h2>Introduction</h2>
+  <p>We invite you to participate in a research study on how descriptions of digital media forensic techniques are understood by readers. These are computational methods for analyzing images and videos as evidence, for example, to judge whether a video has been altered or AI-generated, to trace the model that produced it, or to check whether it is being used misleadingly. You will read a short introduction of the technique description formats, read several technique descriptions, and decide their fits to the described scenarios. The survey takes about 45 minutes and is designed to be completed online.</p>
+  <p>Participation is entirely voluntary. If any part of this form or the study is unclear, please contact the research team using the e-mail addresses or phone numbers listed at the end of this document.</p>
+
+  <h2>Purpose</h2>
+  <p>The goal of this study is to understand how effectively written descriptions of digital media forensic techniques communicate what those techniques can and cannot do. You will read descriptions presented in different formats and judge whether each technique applies to a described scenario; your responses will help us identify where such descriptions support sound judgments and where they leave readers uncertain. The aggregated findings will be used to evaluate and refine a proposed Visual Media Forensics Ontology, a structured vocabulary for describing forensic techniques, and to guide how technique capabilities are documented in research and practice.</p>
+
+  <h2>Duration</h2>
+  <p>We expect the study session to take around 45 minutes.</p>
+
+  <h2>Procedures</h2>
+  <p>Participants in this study will be asked to complete an online survey hosted on ReVISit, lasting approximately 45 minutes in a single session without interruption. After you provide consent, you will read about how technique descriptions are presented in this study. You will then complete three sections. In the first, you will read eight short scenarios, each paired with one technique, and judge whether that technique applies to the scenario. In the second, you will read four scenarios and select the most suitable technique from four options. In the third, you will answer Likert-scale and open-ended questions about your experience. There is no time limit for this survey. When you finish, you will receive payment through Prolific after the research team approves your submission.</p>
+
+  <h2>Possible risks / discomforts</h2>
+  <p>No personally identifying information will be collected through the survey. We do not anticipate any risks or discomforts associated with participation beyond those encountered in everyday life. However, if you experience any discomfort while completing the survey, you may choose to skip any question or stop participating at any time.</p>
+
+  <h2>Benefits</h2>
+  <p>There are no direct benefits to you from taking part in this study. The information you provide will help researchers understand how the capabilities of digital media forensic techniques can be described more clearly, which may benefit people who need to select appropriate techniques for their work in the future.</p>
+
+  <h2>Compensation</h2>
+  <p>You will receive $15 through Prolific for completing this survey, in addition to the $0.50 paid for the eligibility screener.</p>
+  <p>The survey has three sections. If you are unable to finish, you can message the research team through Prolific to request payment for the sections you completed ($5 per completed section).</p>
+  <p>In line with Prolific's policies, a submission may be rejected without payment only if it contains no study data or shows clear evidence that the study was not genuinely attempted.</p>
+
+  <h2>Voluntary participation</h2>
+  <p>Participation in this research study is voluntary. You have the right to decline participation in any or all study procedures or quit at any time with no consequence.</p>
+  <p>Furthermore, please note that you are not required to answer any questions that you do not feel comfortable answering during the course of this study. Brief explanations, however, make your answer especially valuable. If you’re willing, we would appreciate a sentence or two wherever the survey invites you to share the reasons behind your selections or provide feedback to us.</p>
+
+  <h2>Confidentiality</h2>
+  <p>Only Y. Kelly Wu, Saniat Sohrawardi, Dr. Ersin Uzun, and Dr. Matthew Wright will have access to all of the data collected from participants. In any publications or presentations of our research, we will use a coded name for your answers. Data associated with this study will be maintained for 3 years after the work gets published and will be stored in the ESL Global Cybersecurity Institute at RIT.</p>
+  <p>If in the unlikely event, it becomes necessary for the RIT Institutional Review Board to review your research records, then RIT will protect the confidentiality of those records to the extent permitted by law.</p>
+
+  <h2>Contact for questions</h2>
+  <p>You are encouraged to contact us with any questions or concerns that you might have, even after leaving this study. Furthermore, we will gladly provide you with a debriefing regarding this form, the program, or the research if you desire.</p>
+  <div class="people">
+    <div class="person">
+      <strong>Y. Kelly Wu</strong>
+      <div class="meta">267 303 4546<br><a href="mailto:kellywu@mail.rit.edu">kellywu@mail.rit.edu</a></div>
+    </div>
+    <div class="person">
+      <strong>Saniat J. Sohrawardi</strong>
+      <div class="meta">585 465 6427<br><a href="mailto:john.sohrawardi@rit.edu">john.sohrawardi@rit.edu</a></div>
+    </div>
+    <div class="person">
+      <strong>Dr. Ersin Uzun</strong>
+      <div class="meta">585 475 5142<br><a href="mailto:ersin.uzun@rit.edu">ersin.uzun@rit.edu</a></div>
+    </div>
+    <div class="person">
+      <strong>Dr. Matthew Wright</strong>
+      <div class="meta">585 475 5432<br><a href="mailto:matthew.wright@rit.edu">matthew.wright@rit.edu</a></div>
+    </div>
+  </div>
+  <p>Any questions you may have about your rights as a research participant may be directed to Heather Foti, Assistant Director of the Office of Human Subjects Research at Rochester Institute of Technology at 585 475 7673 or <a href="mailto:hmfsrs@rit.edu">hmfsrs@rit.edu</a>.</p>
+
+  <div class="consent-box">
+    <h2 style="margin-top:0;border:0;">Consent</h2>
+    <p>By accepting this Informed Consent Document, you indicate your consent to participate in this survey study. You also confirm that you are 18 years of age or older, you are the legal guardian of yourself, you have read or had this document read to you, and you are in an appropriate physical and mental state to complete the study procedures. You have been informed about this study’s purpose, procedures, possible benefits and risks, and you have retained a copy of this form. You have been given the opportunity to ask questions before you sign, and you have been told that you can ask other questions at any time.</p>
+    <p>You voluntarily agree to participate in this study. By accepting this Informed Consent Document, you are not waiving any of your legal rights. Refusal to participate will involve no penalty or loss of benefits to which you are otherwise entitled. You may discontinue participation at any time without penalty or loss of benefits to which you are otherwise entitled.</p>
+    <div class="highlight">Please use the question in the left sidebar to accept or decline.</div>
+  </div>
+</body>
+</html>
