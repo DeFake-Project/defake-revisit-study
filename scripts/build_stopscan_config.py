@@ -423,7 +423,7 @@ components["ratings-stopscan"] = {
         },
         {
             "id": "R_stopscan_note",
-            "prompt": "Comments on any of the statements above. Name the statement if you can.",
+            "prompt": "Comments on any of these statements. Name which one if you can.",
             "location": "sidebar",
             "type": "longText",
             "required": False,
@@ -459,7 +459,7 @@ components["ratings-sift"] = {
         },
         {
             "id": "R_sift_note",
-            "prompt": "Comments on any of the statements above. Name the statement if you can.",
+            "prompt": "Comments on any of these statements. Name which one if you can.",
             "location": "sidebar",
             "type": "longText",
             "required": False,
