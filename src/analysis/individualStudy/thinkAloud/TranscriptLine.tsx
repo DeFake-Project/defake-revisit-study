@@ -9,8 +9,8 @@ import { Tag } from './types';
 import { TagSelector } from './tags/TagSelector';
 
 export function TranscriptLine({
-  annotation, setAnnotation, start, current, end, text, tags, selectedTags, onTextChange, deleteRowCallback, addRowCallback, onSelectTags, addRef, index, editTagCallback, createTagCallback, onClickLine,
-} : {annotation: string; setAnnotation: (i: number, s: string) => void; start: number, end: number, current: number, text: string, tags: Tag[], selectedTags: Tag[], onTextChange: (i: number, v: string) => void, deleteRowCallback: (i: number) => void, addRowCallback: (i: number, textIndex: number) => void, onSelectTags: (i: number, t: Tag[]) => void, addRef: (i: number, ref: HTMLTextAreaElement) => void, index: number, editTagCallback: (oldTag: Tag, newTag: Tag) => void, createTagCallback: (t: Tag) => void, onClickLine: (focusedLine: number) => void }) {
+  annotation, setAnnotation, start, current, end, text, tags, selectedTags, onTextChange, deleteRowCallback, addRowCallback, onSelectTags, addRef, index, editTagCallback, createTagCallback, onClickLine, readOnly = false,
+} : {annotation: string; setAnnotation: (i: number, s: string) => void; start: number, end: number, current: number, text: string, tags: Tag[], selectedTags: Tag[], onTextChange: (i: number, v: string) => void, deleteRowCallback: (i: number) => void, addRowCallback: (i: number, textIndex: number) => void, onSelectTags: (i: number, t: Tag[]) => void, addRef: (i: number, ref: HTMLTextAreaElement) => void, index: number, editTagCallback: (oldTag: Tag, newTag: Tag) => void, createTagCallback: (t: Tag) => void, onClickLine: (focusedLine: number) => void, readOnly?: boolean }) {
   const [annotationVal, setAnnotationVal] = useState<string>(annotation);
 
   const indexRef = useRef<number>(0);
@@ -34,9 +34,13 @@ export function TranscriptLine({
             style={{ width: '100%' }}
             variant="unstyled"
             value={text}
+            readOnly={readOnly}
             onFocus={() => onClickLine(indexRef.current)}
-            onChange={(e) => { onTextChange(indexRef.current, e.currentTarget.value); }}
+            onChange={(e) => { if (!readOnly) onTextChange(indexRef.current, e.currentTarget.value); }}
             onKeyDown={((e) => {
+              if (readOnly) {
+                return;
+              }
               if (e.key === 'Enter' && e.currentTarget.selectionStart !== null) {
                 addRowCallback(indexRef.current, e.currentTarget.selectionStart);
                 e.preventDefault();
@@ -53,7 +57,7 @@ export function TranscriptLine({
         </Group>
       </Grid.Col>
       <Grid.Col ref={ref} span={2}>
-        <TagSelector width={width - 20} createTagCallback={createTagCallback} editTagCallback={editTagCallback} onSelectTags={(t) => onSelectTags(indexRef.current, t)} selectedTags={selectedTags} tags={tags} tagsEmptyText="Add Text Tags" />
+        <TagSelector disabled={readOnly} width={width - 20} createTagCallback={createTagCallback} editTagCallback={editTagCallback} onSelectTags={(t) => onSelectTags(indexRef.current, t)} selectedTags={selectedTags} tags={tags} tagsEmptyText="Add Text Tags" />
       </Grid.Col>
       <Grid.Col span={2}>
         <Textarea
@@ -62,13 +66,14 @@ export function TranscriptLine({
           minRows={1}
           maxRows={4}
           value={annotationVal}
-          onChange={(event) => setAnnotationVal(event.currentTarget.value)}
+          readOnly={readOnly}
+          onChange={(event) => { if (!readOnly) setAnnotationVal(event.currentTarget.value); }}
           placeholder="Add Annotation"
           onBlur={() => setAnnotation(indexRef.current, annotationVal)}
         />
       </Grid.Col>
     </Grid>
-  ), [addRef, addRowCallback, annotationVal, createTagCallback, current, deleteRowCallback, editTagCallback, end, onClickLine, onSelectTags, onTextChange, ref, selectedTags, setAnnotation, start, tags, text, width]);
+  ), [addRef, addRowCallback, annotationVal, createTagCallback, current, deleteRowCallback, editTagCallback, end, onClickLine, onSelectTags, onTextChange, readOnly, ref, selectedTags, setAnnotation, start, tags, text, width]);
 
   return memoizedRender;
 }

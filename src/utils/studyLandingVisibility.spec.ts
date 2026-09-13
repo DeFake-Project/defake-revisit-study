@@ -18,9 +18,21 @@ describe('isStudyVisibleOnLanding', () => {
       configName: 'demo-html',
       globalConfig,
       isAdmin: false,
+      assignedStudyIds: [],
       dataSharingEnabled: true,
       isCloudStorage: true,
     })).toBe(false);
+  });
+
+  it('shows assigned test studies to study managers and analysts', () => {
+    expect(isStudyVisibleOnLanding({
+      configName: 'demo-html',
+      globalConfig,
+      isAdmin: false,
+      assignedStudyIds: ['demo-html'],
+      dataSharingEnabled: false,
+      isCloudStorage: true,
+    })).toBe(true);
   });
 
   it('shows test studies to non-admins when showTestStudies is enabled', () => {
@@ -58,6 +70,17 @@ describe('isStudyVisibleOnLanding', () => {
       globalConfig,
       isAdmin: false,
       dataSharingEnabled: true,
+      isCloudStorage: true,
+    })).toBe(true);
+  });
+
+  it('shows assigned private studies on the landing page', () => {
+    expect(isStudyVisibleOnLanding({
+      configName: 'varuna-sme-eval-ontology',
+      globalConfig,
+      isAdmin: false,
+      assignedStudyIds: ['varuna-sme-eval-ontology'],
+      dataSharingEnabled: false,
       isCloudStorage: true,
     })).toBe(true);
   });

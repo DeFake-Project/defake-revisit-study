@@ -1,0 +1,3 @@
+# Allow the Google sign-in popup to return a credential to this origin.
+/*
+  Cross-Origin-Opener-Policy: same-origin-allow-popups

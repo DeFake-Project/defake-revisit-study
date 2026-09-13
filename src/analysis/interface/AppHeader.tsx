@@ -1,4 +1,5 @@
 import {
+  ActionIcon,
   Flex, Image, Select, Title, Space, Grid, AppShell, Button,
 } from '@mantine/core';
 
@@ -6,6 +7,8 @@ import { useLocation, useNavigate, useParams } from 'react-router';
 
 import { IconListCheck, IconSettings } from '@tabler/icons-react';
 import { PREFIX } from '../../utils/Prefix';
+import { useAuth } from '../../store/hooks/useAuth';
+import { canManageUsers } from '../../utils/userPermissions';
 
 export function AppHeader({
   studyIds,
@@ -19,6 +22,10 @@ export function AppHeader({
   const navigate = useNavigate();
   const { studyId } = useParams();
   const location = useLocation();
+  const { user } = useAuth();
+  const isSignedInAppUser = Boolean(user.role);
+  const showSettings = !isSignedInAppUser || canManageUsers(user.role);
+  const showSignIn = !user.determiningStatus && !isSignedInAppUser && !location.pathname.startsWith('/login');
 
   const selectorData = studyIds.map((id) => ({ value: id, label: id })).sort((a, b) => a.label.localeCompare(b.label));
 
@@ -40,6 +47,7 @@ export function AppHeader({
         <Grid.Col span={6}>
           <Flex
             justify="flex-end"
+            align="center"
             direction="row"
           >
             {inAnalysis && (
@@ -58,7 +66,22 @@ export function AppHeader({
               </>
             )}
 
-            <IconSettings onClick={() => navigate('/settings')} style={{ cursor: 'pointer', marginTop: inAnalysis ? 6 : undefined }} />
+            {showSignIn && (
+              <Button variant="subtle" onClick={() => navigate('/login')} mr="sm">
+                Sign in
+              </Button>
+            )}
+
+            {showSettings && (
+              <ActionIcon
+                variant="subtle"
+                color="gray"
+                aria-label="Settings"
+                onClick={() => navigate('/settings')}
+              >
+                <IconSettings />
+              </ActionIcon>
+            )}
           </Flex>
         </Grid.Col>
       </Grid>

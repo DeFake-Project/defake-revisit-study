@@ -13,6 +13,7 @@ import debounce from 'lodash.debounce';
 import { useResizeObserver } from '@mantine/hooks';
 import { useAsync } from '../../../store/hooks/useAsync';
 import { useAuth } from '../../../store/hooks/useAuth';
+import { canManageStudy } from '../../../utils/userPermissions';
 import { ParticipantData } from '../../../storage/types';
 import {
   EditedText,
@@ -93,6 +94,7 @@ export function ThinkAloudAnalysis({ visibleParticipants, storageEngine } : { vi
 
   const participantId = useMemo(() => searchParams.get('participantId') || '', [searchParams]);
   const { studyId, trialId } = useParams();
+  const canEdit = canManageStudy(auth.user.role, auth.user.studyIds, studyId);
   const currentTrial = useMemo(() => trialId || '', [trialId]);
 
   const [currentShownTranscription, setCurrentShownTranscription] = useState(0);
@@ -110,12 +112,12 @@ export function ThinkAloudAnalysis({ visibleParticipants, storageEngine } : { vi
   const { value: rawTranscript, status: rawTranscriptStatus } = useAsync(getRawTranscript, [storageEngine, currentTrial, participantId, studyId]);
 
   const debouncedSave = useMemo(() => {
-    if (storageEngine && participantId && currentTrial) {
+    if (canEdit && storageEngine && participantId && currentTrial) {
       return debounce((editedText: EditedText[]) => storageEngine.saveEditedTranscript(participantId, auth.user.user?.email || 'temp', currentTrial, editedText), 1000, { maxWait: 5000 });
     }
 
     return (_editedText: EditedText[]) => null;
-  }, [currentTrial, auth.user.user?.email, storageEngine, participantId]);
+  }, [canEdit, currentTrial, auth.user.user?.email, storageEngine, participantId]);
 
   useEffect(() => {
     if (!participantId && visibleParticipants.length > 0) {
@@ -227,11 +229,11 @@ export function ThinkAloudAnalysis({ visibleParticipants, storageEngine } : { vi
             : !hasAudio || (rawTranscriptStatus === 'success' && rawTranscript === null) ? <Center><Text c="dimmed" size="24">No transcripts found for this task</Text></Center> : (
 
               <Stack>
-                <TextEditor onClickLine={changeLine} transcriptList={editedTranscript} setTranscriptList={setEditedTranscript} currentShownTranscription={currentShownTranscription} />
+                <TextEditor readOnly={!canEdit} onClickLine={changeLine} transcriptList={editedTranscript} setTranscriptList={setEditedTranscript} currentShownTranscription={currentShownTranscription} />
               </Stack>
             )}
 
-          <ThinkAloudFooter key={`${participantId}-${currentTrial}`} setHasAudio={setHasAudio} saveProvenance={() => null} studyId={studyId || ''} jumpedToLine={jumpedToLine} editedTranscript={editedTranscript} currentTrial={currentTrial} isReplay={false} visibleParticipants={visibleParticipants.map((v) => v.participantId)} rawTranscript={rawTranscript} onTimeUpdate={onTimeUpdate} currentShownTranscription={currentShownTranscription} width={width} storageEngine={storageEngine} />
+          <ThinkAloudFooter key={`${participantId}-${currentTrial}`} readOnly={!canEdit} setHasAudio={setHasAudio} saveProvenance={() => null} studyId={studyId || ''} jumpedToLine={jumpedToLine} editedTranscript={editedTranscript} currentTrial={currentTrial} isReplay={false} visibleParticipants={visibleParticipants.map((v) => v.participantId)} rawTranscript={rawTranscript} onTimeUpdate={onTimeUpdate} currentShownTranscription={currentShownTranscription} width={width} storageEngine={storageEngine} />
         </Stack>
 
       </Group>

@@ -34,6 +34,8 @@ import 'mantine-react-table/styles.css';
 import { ThinkAloudAnalysis } from './thinkAloud/ThinkAloudAnalysis';
 import { FirebaseStorageEngine } from '../../storage/engines/FirebaseStorageEngine';
 import { ConfigView } from './config/ConfigView';
+import { canManageStudy, isStudyVisibleInAnalysis } from '../../utils/userPermissions';
+import { isCloudStorageEngine } from '../../storage/engines/utils/storageEngineHelpers';
 
 const TABLE_HEADER_HEIGHT = 37; // Height of the tabs header
 
@@ -101,6 +103,7 @@ export function StudyAnalysisTabs({ globalConfig }: { globalConfig: GlobalConfig
   const { analysisTab } = useParams();
   const { user } = useAuth();
   const [ref, { width }] = useResizeObserver();
+  const [studyVisibility, setStudyVisibility] = useState<Record<string, boolean>>({});
   const canonicalStudyId = useMemo(() => {
     if (!routeStudyId || routeStudyId === '__revisit-widget') {
       return routeStudyId;
@@ -109,6 +112,44 @@ export function StudyAnalysisTabs({ globalConfig }: { globalConfig: GlobalConfig
     return resolveConfigKey(routeStudyId, globalConfig);
   }, [globalConfig, routeStudyId]);
   const displayStudyId = canonicalStudyId ?? routeStudyId;
+  const canManageCurrentStudy = canManageStudy(user.role, user.studyIds, canonicalStudyId ?? routeStudyId);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function loadStudyVisibility() {
+      if (!storageEngine) {
+        return;
+      }
+
+      const visibility: Record<string, boolean> = {};
+      await Promise.all(globalConfig.configsList.map(async (configName) => {
+        const modes = await storageEngine.getModes(configName);
+        visibility[configName] = modes.dataSharingEnabled;
+      }));
+
+      if (!cancelled) {
+        setStudyVisibility(visibility);
+      }
+    }
+
+    loadStudyVisibility();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [globalConfig.configsList, storageEngine]);
+
+  const accessibleStudyIds = useMemo(
+    () => globalConfig.configsList.filter((configName) => isStudyVisibleInAnalysis({
+      configName,
+      isAdmin: user.isAdmin,
+      assignedStudyIds: user.studyIds,
+      dataSharingEnabled: studyVisibility[configName],
+      isCloudStorage: !!storageEngine && isCloudStorageEngine(storageEngine),
+    })),
+    [globalConfig.configsList, storageEngine, studyVisibility, user.isAdmin, user.studyIds],
+  );
 
   // 0-1 percentage of scroll height
 
@@ -365,7 +406,7 @@ export function StudyAnalysisTabs({ globalConfig }: { globalConfig: GlobalConfig
   if (!routeStudyId) {
     return (
       <>
-        <AppHeader studyIds={globalConfig.configsList} />
+        <AppHeader studyIds={accessibleStudyIds} />
         <AppShell.Main style={{ height: '100dvh' }}>
           <Center style={{ height: '100%' }}>
             <Text>Select a study from the header menu to view analysis data.</Text>
@@ -377,7 +418,7 @@ export function StudyAnalysisTabs({ globalConfig }: { globalConfig: GlobalConfig
 
   return (
     <>
-      <AppHeader studyIds={globalConfig.configsList} selectedStudyId={displayStudyId} studyHref={routeStudyId ? `/${routeStudyId}` : undefined} />
+      <AppHeader studyIds={accessibleStudyIds} selectedStudyId={displayStudyId} studyHref={routeStudyId ? `/${routeStudyId}` : undefined} />
       <AppShell.Main style={{ height: '100dvh' }}>
         <Stack ref={ref} style={{ height: '100%', maxHeight: '100dvh', overflow: 'hidden' }} justify="space-between">
           <Flex direction="row" align="center" justify="space-between" p="sm" gap="md">
@@ -575,7 +616,14 @@ export function StudyAnalysisTabs({ globalConfig }: { globalConfig: GlobalConfig
                   </span>
                 </Tooltip>
                 <Tabs.Tab value="config" leftSection={<IconFileCode size={16} />}>Config</Tabs.Tab>
-                <Tabs.Tab value="manage" leftSection={<IconSettings size={16} />} disabled={!user.isAdmin}>Manage</Tabs.Tab>
+                <Tooltip
+                  label="Only admins and study managers can manage this study"
+                  disabled={canManageCurrentStudy}
+                >
+                  <span>
+                    <Tabs.Tab value="manage" leftSection={<IconSettings size={16} />} disabled={!canManageCurrentStudy}>Manage</Tabs.Tab>
+                  </span>
+                </Tooltip>
               </Tabs.List>
               <Tabs.Panel style={{ overflow: 'auto' }} value="summary" pt="xs">
                 {studyConfig && (
@@ -622,7 +670,7 @@ export function StudyAnalysisTabs({ globalConfig }: { globalConfig: GlobalConfig
                 {studyConfig && <ConfigView visibleParticipants={visibleParticipants} studyId={canonicalStudyId ?? undefined} currentConfigHash={currentConfigHash} />}
               </Tabs.Panel>
               <Tabs.Panel style={{ overflow: 'auto' }} value="manage" pt="xs">
-                {canonicalStudyId && user.isAdmin ? <ManageView studyId={canonicalStudyId} refresh={() => execute(studyConfig, storageEngine, canonicalStudyId)} /> : <Container mt={20}><Alert title="Unauthorized Access" variant="light" color="red" icon={<IconInfoCircle />}>You are not authorized to manage the data for this study.</Alert></Container>}
+                {canonicalStudyId && canManageCurrentStudy ? <ManageView studyId={canonicalStudyId} refresh={() => execute(studyConfig, storageEngine, canonicalStudyId)} /> : <Container mt={20}><Alert title="Unauthorized Access" variant="light" color="red" icon={<IconInfoCircle />}>You are not authorized to manage the data for this study.</Alert></Container>}
               </Tabs.Panel>
             </Tabs>
           ) : null}

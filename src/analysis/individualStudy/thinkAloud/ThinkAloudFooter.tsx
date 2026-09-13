@@ -95,9 +95,9 @@ async function getTags(storageEngine: StorageEngine | undefined, type: 'particip
 }
 
 export function ThinkAloudFooter({
-  visibleParticipants, rawTranscript, currentShownTranscription, width, onTimeUpdate, isReplay, editedTranscript, currentTrial, saveProvenance, jumpedToLine = 0, studyId, setHasAudio, storageEngine,
+  visibleParticipants, rawTranscript, currentShownTranscription, width, onTimeUpdate, isReplay, editedTranscript, currentTrial, saveProvenance, jumpedToLine = 0, studyId, setHasAudio, storageEngine, readOnly = false,
 }: {
-  visibleParticipants: string[], rawTranscript: TranscribedAudio | null, currentShownTranscription: number | null, width: number, onTimeUpdate: (n: number) => void, isReplay: boolean, editedTranscript?: EditedText[], currentTrial: string, saveProvenance: (prov: unknown) => void, jumpedToLine?: number, studyId: string, setHasAudio: (b: boolean) => void, storageEngine: StorageEngine | undefined,
+  visibleParticipants: string[], rawTranscript: TranscribedAudio | null, currentShownTranscription: number | null, width: number, onTimeUpdate: (n: number) => void, isReplay: boolean, editedTranscript?: EditedText[], currentTrial: string, saveProvenance: (prov: unknown) => void, jumpedToLine?: number, studyId: string, setHasAudio: (b: boolean) => void, storageEngine: StorageEngine | undefined, readOnly?: boolean,
 }) {
   const auth = useAuth();
 
@@ -329,10 +329,11 @@ export function ThinkAloudFooter({
   }, [currentTrial, navigateToTask, orderedAnswers]);
 
   const setTags = useCallback((_tags: Tag[], type: 'task' | 'participant') => {
-    if (storageEngine) {
-      storageEngine.saveTags(_tags, type).then(() => { type === 'task' ? pullTags(storageEngine, type) : pullAllParticipantTags(storageEngine, type); });
+    if (readOnly || !storageEngine) {
+      return;
     }
-  }, [pullAllParticipantTags, pullTags, storageEngine]);
+    storageEngine.saveTags(_tags, type).then(() => { type === 'task' ? pullTags(storageEngine, type) : pullAllParticipantTags(storageEngine, type); });
+  }, [pullAllParticipantTags, pullTags, readOnly, storageEngine]);
 
   const editTaskTagCallback = useCallback((oldTag: Tag, newTag: Tag) => {
     if (!taskTags) {
@@ -497,24 +498,26 @@ export function ThinkAloudFooter({
               </Group>
               <TagSelector
                 width={200}
+                disabled={readOnly}
                 tags={allParticipantTags || []}
                 editTagCallback={editParticipantTagCallback}
                 createTagCallback={createParticipantTagCallback}
                 tagsEmptyText="Add Participant Tags"
                 onSelectTags={(tempTags) => {
-                  if (storageEngine && participantTags) {
-                    let copy = structuredClone(participantTags);
-                    if (copy) {
-                      copy.participantTags = tempTags;
-                    } else {
-                      copy = { participantTags: [], taskTags: {} };
-                      copy.participantTags = tempTags;
-                    }
-                    setLocalParticipantTags(copy);
-                    storageEngine.saveAllParticipantAndTaskTags(auth.user.user?.email || 'temp', participantId, copy).then(() => {
-                      pullParticipantTags(auth.user.user?.email || 'temp', participantId, studyId, storageEngine);
-                    });
+                  if (readOnly || !storageEngine || !participantTags) {
+                    return;
                   }
+                  let copy = structuredClone(participantTags);
+                  if (copy) {
+                    copy.participantTags = tempTags;
+                  } else {
+                    copy = { participantTags: [], taskTags: {} };
+                    copy.participantTags = tempTags;
+                  }
+                  setLocalParticipantTags(copy);
+                  storageEngine.saveAllParticipantAndTaskTags(auth.user.user?.email || 'temp', participantId, copy).then(() => {
+                    pullParticipantTags(auth.user.user?.email || 'temp', participantId, studyId, storageEngine);
+                  });
                 }}
                 selectedTags={localParticipantTags ? localParticipantTags.participantTags : []}
               />
@@ -556,25 +559,27 @@ export function ThinkAloudFooter({
               </Group>
               <TagSelector
                 width={200}
+                disabled={readOnly}
                 tags={taskTags || []}
                 editTagCallback={editTaskTagCallback}
                 createTagCallback={createTaskTagCallback}
                 tagsEmptyText="Add Task Tags"
                 onSelectTags={(tempTag) => {
-                  if (storageEngine && participantTags) {
-                    let copy = structuredClone(participantTags);
-                    if (copy) {
-                      copy.taskTags[currentTrial] = tempTag;
-                    } else {
-                      copy = { participantTags: [], taskTags: {} };
-                      copy.taskTags[currentTrial] = tempTag;
-                    }
-                    setLocalParticipantTags(copy);
-
-                    storageEngine.saveAllParticipantAndTaskTags(auth.user.user?.email || 'temp', participantId, copy).then(() => {
-                      pullParticipantTags(auth.user.user?.email || 'temp', participantId, studyId, storageEngine);
-                    });
+                  if (readOnly || !storageEngine || !participantTags) {
+                    return;
                   }
+                  let copy = structuredClone(participantTags);
+                  if (copy) {
+                    copy.taskTags[currentTrial] = tempTag;
+                  } else {
+                    copy = { participantTags: [], taskTags: {} };
+                    copy.taskTags[currentTrial] = tempTag;
+                  }
+                  setLocalParticipantTags(copy);
+
+                  storageEngine.saveAllParticipantAndTaskTags(auth.user.user?.email || 'temp', participantId, copy).then(() => {
+                    pullParticipantTags(auth.user.user?.email || 'temp', participantId, studyId, storageEngine);
+                  });
                 }}
                 selectedTags={localParticipantTags ? localParticipantTags.taskTags[currentTrial] || [] : []}
               />
