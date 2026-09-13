@@ -128,16 +128,18 @@ export function AuthProvider({ children } : { children: ReactNode }) {
 
     // Handle auth state changes for Firebase
     const handleAuthStateChanged = async (cloudUser: StoredUser | null) => {
-      // Reset the user. This also gets called on signOut
-      setUser((prevUser) => withPermissions({
-        user: prevUser.user,
-        determiningStatus: true,
-        adminVerification: false,
-        role: prevUser.role,
-        studyIds: prevUser.studyIds,
-      }));
       if (cloudUser) {
-        // Reach out to firebase to validate user
+        // Anonymous participant sessions have a uid but no email. Do not treat
+        // them as a failed admin login, and do not run the admin allow-list check.
+        if (!cloudUser.email) {
+          setUser(withPermissions({
+            user: cloudUser,
+            determiningStatus: false,
+            adminVerification: false,
+          }));
+          return;
+        }
+
         const currUser: UserWrapped = withPermissions({
           user: cloudUser,
           determiningStatus: false,
@@ -155,9 +157,12 @@ export function AuthProvider({ children } : { children: ReactNode }) {
           };
         }
         setUser(currUser);
-      } else {
-        logout();
+        return;
       }
+
+      // A null auth user happens while switching from anonymous auth to Google.
+      // Calling signOut() here cancels an in-progress Google popup.
+      setUser(nonLoadingNullUser);
     };
 
     // Determine authentication listener based on storageEngine and authEnabled variable

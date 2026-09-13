@@ -10,6 +10,7 @@ import { useStorageEngine } from './storage/storageEngineHooks';
 import { StorageEngine } from './storage/engines/types';
 import { showNotification } from './utils/notifications';
 import { isCloudStorageEngine } from './storage/engines/utils/storageEngineHelpers';
+import { getSignInErrorMessage } from './utils/signInErrors';
 
 export async function signIn(storageEngine: StorageEngine | undefined, setLoading: (val: boolean) => void) {
   if (storageEngine && isCloudStorageEngine(storageEngine)) {
@@ -19,7 +20,7 @@ export async function signIn(storageEngine: StorageEngine | undefined, setLoadin
       return user;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
-      showNotification({ title: 'Error', message: error.message, color: 'red' });
+      showNotification({ title: 'Error', message: getSignInErrorMessage(error), color: 'red' });
     } finally {
       setLoading(false);
     }
@@ -34,11 +35,11 @@ export function Login() {
   const { storageEngine } = useStorageEngine();
 
   useEffect(() => {
-    if (!user.determiningStatus && !user.role && user.adminVerification) {
+    if (!user.determiningStatus && !user.role && user.adminVerification && user.user?.email) {
       showNotification({ title: 'Unauthorized', message: 'You are not authorized to use this application.', color: 'red' });
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user.adminVerification]);
+  }, [user.adminVerification, user.role, user.user?.email]);
 
   const engine = useMemo(() => storageEngine?.getEngine(), [storageEngine]);
 

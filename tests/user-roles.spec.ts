@@ -2,7 +2,9 @@ import { expect, test } from '@playwright/test';
 
 test.describe('user roles with local storage admin', () => {
   test('settings page remains available to the local admin', async ({ page }) => {
-    await page.goto('/settings');
+    await page.goto('/');
+    await expect(page.getByRole('button', { name: 'Settings' })).toBeVisible({ timeout: 15000 });
+    await page.getByRole('button', { name: 'Settings' }).click();
     await expect(page.getByText('Authentication is currently disabled.')).toBeVisible({ timeout: 15000 });
   });
 

@@ -787,11 +787,11 @@ export class FirebaseStorageEngine extends CloudStorageEngine {
   async login() {
     const provider = new GoogleAuthProvider();
     const auth = getAuth();
-    signInWithPopup(auth, provider, browserPopupRedirectResolver);
+    const result = await signInWithPopup(auth, provider, browserPopupRedirectResolver);
 
     return {
-      email: auth.currentUser?.email || null,
-      uid: auth.currentUser?.uid || null,
+      email: result.user.email || null,
+      uid: result.user.uid || null,
     };
   }
 
