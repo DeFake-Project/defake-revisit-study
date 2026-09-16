@@ -184,26 +184,26 @@
         "caseId": "case2",
         "stepKey": "source"
       },
-      "instruction": "**Case 1 — STOP and Source.** This is a worked example we wrote. Judge the STOP&SCAN step, not Dana. In the sidebar, say whether this step helped in this case, and whether we applied it as the framework describes.",
+      "instruction": "**Case 1 — STOP and Source.** Judge this STOP&SCAN step, not Dana.",
       "response": [
         {
           "id": "stop_value",
-          "prompt": "In this example, Dana names a first reaction before checking anything (the STOP step). Did that step add anything useful here, or could the example have skipped it?",
-          "secondaryText": "You are judging the STOP step in our worked example, not whether Dana behaved well, and not the source check on this page.",
+          "prompt": "Before resharing this or treating it as a real forecast, was there a good reason to pause?",
+          "secondaryText": "This is the STOP step, not the source check on this page.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
           "options": [
-            "Yes — it did real work here",
-            "Only slightly",
-            "No — it added nothing in this case",
+            "Yes — there was a good reason to pause here",
+            "Only slightly — the situation did not strongly call for it",
+            "No — pausing here did not make much sense",
             "I cannot tell"
           ]
         },
         {
           "id": "useful",
           "prompt": "How useful was this step in this case?",
-          "secondaryText": "Judge whether this STOP&SCAN step helped in this case, not whether Dana behaved well. If only part of it helped, pick the closest answer and say which part in the comment below.",
+          "secondaryText": "Judge this step, not Dana. If only part helped, say which part below.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -217,7 +217,7 @@
         {
           "id": "fidelity",
           "prompt": "Was this step carried out as STOP&SCAN describes it?",
-          "secondaryText": "Judge whether we applied this step as STOP&SCAN describes it. This is not a score of Dana, and not a score of the framework as a whole.",
+          "secondaryText": "How we applied the step, not a score of Dana.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -230,8 +230,8 @@
         },
         {
           "id": "note",
-          "prompt": "Anything in how we applied this step that you disagree with, or that was done badly?",
-          "secondaryText": "This is how we catch mistakes in our write-up of this step.",
+          "prompt": "Anything wrong in how we applied this step?",
+          "secondaryText": "Mistakes in this step’s write-up.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -258,12 +258,12 @@
         "caseId": "case2",
         "stepKey": "content"
       },
-      "instruction": "**Case 1 — Content.** This is a worked example we wrote. Judge the STOP&SCAN step, not Dana. In the sidebar, say whether this step helped in this case, and whether we applied it as the framework describes.",
+      "instruction": "**Case 1 — Content.** Judge this STOP&SCAN step, not Dana.",
       "response": [
         {
           "id": "useful",
           "prompt": "How useful was this step in this case?",
-          "secondaryText": "Judge whether this STOP&SCAN step helped in this case, not whether Dana behaved well. If only part of it helped, pick the closest answer and say which part in the comment below.",
+          "secondaryText": "Judge this step, not Dana. If only part helped, say which part below.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -277,7 +277,7 @@
         {
           "id": "fidelity",
           "prompt": "Was this step carried out as STOP&SCAN describes it?",
-          "secondaryText": "Judge whether we applied this step as STOP&SCAN describes it. This is not a score of Dana, and not a score of the framework as a whole.",
+          "secondaryText": "How we applied the step, not a score of Dana.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -290,8 +290,8 @@
         },
         {
           "id": "enough",
-          "prompt": "Given what has been shown so far, is this enough for someone in Dana’s situation to stop and decide?",
-          "secondaryText": "STOP&SCAN is meant to say when there is enough to stop. We need to know if that point had already been reached here for someone in Dana’s situation — not whether Dana personally should have stopped.",
+          "prompt": "Given what has been shown so far, is there already enough to stop and decide?",
+          "secondaryText": "Whether STOP&SCAN could have stopped here — not whether Dana personally should have.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -303,16 +303,16 @@
         },
         {
           "id": "enough_conclude",
-          "prompt": "If you said there was already enough to decide, what should someone in Dana’s situation have concluded?",
-          "secondaryText": "Only if you answered yes above. We want the conclusion the method should have reached if it stopped here.",
+          "prompt": "If yes, what should the conclusion have been?",
+          "secondaryText": "Only if you answered yes above.",
           "location": "sidebar",
           "type": "longText",
           "required": false
         },
         {
           "id": "note",
-          "prompt": "Anything in how we applied this step that you disagree with, or that was done badly?",
-          "secondaryText": "This is how we catch mistakes in our write-up of this step.",
+          "prompt": "Anything wrong in how we applied this step?",
+          "secondaryText": "Mistakes in this step’s write-up.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -339,12 +339,12 @@
         "caseId": "case2",
         "stepKey": "alignment"
       },
-      "instruction": "**Case 1 — Alignment.** This is a worked example we wrote. Judge the STOP&SCAN step, not Dana. In the sidebar, say whether this step helped in this case, and whether we applied it as the framework describes.",
+      "instruction": "**Case 1 — Alignment.** Judge this STOP&SCAN step, not Dana.",
       "response": [
         {
           "id": "useful",
           "prompt": "How useful was this step in this case?",
-          "secondaryText": "Judge whether this STOP&SCAN step helped in this case, not whether Dana behaved well. If only part of it helped, pick the closest answer and say which part in the comment below.",
+          "secondaryText": "Judge this step, not Dana. If only part helped, say which part below.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -358,7 +358,7 @@
         {
           "id": "fidelity",
           "prompt": "Was this step carried out as STOP&SCAN describes it?",
-          "secondaryText": "Judge whether we applied this step as STOP&SCAN describes it. This is not a score of Dana, and not a score of the framework as a whole.",
+          "secondaryText": "How we applied the step, not a score of Dana.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -371,8 +371,8 @@
         },
         {
           "id": "enough",
-          "prompt": "Given what has been shown so far, is this enough for someone in Dana’s situation to stop and decide?",
-          "secondaryText": "STOP&SCAN is meant to say when there is enough to stop. We need to know if that point had already been reached here for someone in Dana’s situation — not whether Dana personally should have stopped.",
+          "prompt": "Given what has been shown so far, is there already enough to stop and decide?",
+          "secondaryText": "Whether STOP&SCAN could have stopped here — not whether Dana personally should have.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -384,16 +384,16 @@
         },
         {
           "id": "enough_conclude",
-          "prompt": "If you said there was already enough to decide, what should someone in Dana’s situation have concluded?",
-          "secondaryText": "Only if you answered yes above. We want the conclusion the method should have reached if it stopped here.",
+          "prompt": "If yes, what should the conclusion have been?",
+          "secondaryText": "Only if you answered yes above.",
           "location": "sidebar",
           "type": "longText",
           "required": false
         },
         {
           "id": "note",
-          "prompt": "Anything in how we applied this step that you disagree with, or that was done badly?",
-          "secondaryText": "This is how we catch mistakes in our write-up of this step.",
+          "prompt": "Anything wrong in how we applied this step?",
+          "secondaryText": "Mistakes in this step’s write-up.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -420,12 +420,12 @@
         "caseId": "case2",
         "stepKey": "reflect"
       },
-      "instruction": "**Case 1 — Now Reflect.** This is a worked example we wrote. Judge the STOP&SCAN step, not Dana. In the sidebar, say whether this step helped in this case, and whether we applied it as the framework describes.",
+      "instruction": "**Case 1 — Now Reflect.** Judge this STOP&SCAN step, not Dana.",
       "response": [
         {
           "id": "useful",
           "prompt": "How useful was this step in this case?",
-          "secondaryText": "Judge whether this STOP&SCAN step helped in this case, not whether Dana behaved well. If only part of it helped, pick the closest answer and say which part in the comment below.",
+          "secondaryText": "Judge this step, not Dana. If only part helped, say which part below.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -439,7 +439,7 @@
         {
           "id": "fidelity",
           "prompt": "Was this step carried out as STOP&SCAN describes it?",
-          "secondaryText": "Judge whether we applied this step as STOP&SCAN describes it. This is not a score of Dana, and not a score of the framework as a whole.",
+          "secondaryText": "How we applied the step, not a score of Dana.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -452,8 +452,8 @@
         },
         {
           "id": "note",
-          "prompt": "Anything in how we applied this step that you disagree with, or that was done badly?",
-          "secondaryText": "This is how we catch mistakes in our write-up of this step.",
+          "prompt": "Anything wrong in how we applied this step?",
+          "secondaryText": "Mistakes in this step’s write-up.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -478,12 +478,12 @@
       "meta": {
         "caseId": "case2"
       },
-      "instruction": "**Case 1 — after the case.** Rank the five elements below the recap, then answer the remaining questions in the sidebar.",
+      "instruction": "**Case 1 — after the case.** Rank the five elements, then answer in the sidebar.",
       "response": [
         {
           "id": "contribution",
           "prompt": "Rank the five elements by how much each contributed in this case.",
-          "secondaryText": "The list starts in the framework’s own order. Drag to reorder. Most contribution at the top; least at the bottom.",
+          "secondaryText": "Drag to reorder. Most contribution at the top.",
           "location": "belowStimulus",
           "type": "ranking-sublist",
           "required": false,
@@ -505,8 +505,8 @@
         },
         {
           "id": "direction",
-          "prompt": "At the end of this worked example, what did the evidence support?",
-          "secondaryText": "STOP&SCAN ends in an evidence state. We need yours for this example, to compare with the one we wrote.",
+          "prompt": "What did the evidence support at the end of this case?",
+          "secondaryText": "Compare with the evidence state shown in the recap.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -517,31 +517,17 @@
           ]
         },
         {
-          "id": "encounter",
-          "prompt": "This example treats the situation as information — nothing was being asked of them. Would a reasonable person have read it the same way?",
-          "secondaryText": "STOP&SCAN uses this reading to decide what action follows from the evidence.",
-          "location": "sidebar",
-          "type": "radio",
-          "required": false,
-          "options": [
-            "Yes",
-            "Some would read it differently",
-            "No — most people would read it differently",
-            "I cannot tell"
-          ]
-        },
-        {
           "id": "narrow",
           "prompt": "If this case had used only a source check, or only a detection or provenance tool, what would the conclusion have been?",
-          "secondaryText": "We want to know what a narrower check would have produced in this case, compared with the full STOP&SCAN sequence.",
+          "secondaryText": "What a narrower check would have produced, compared with the full sequence.",
           "location": "sidebar",
           "type": "longText",
           "required": false
         },
         {
           "id": "other_checks",
-          "prompt": "Given the conclusion this example reached — including a decision not to conclude, if that applies — would any other check have helped?",
-          "secondaryText": "We are looking for checks the example missed that would have changed its result.",
+          "prompt": "Would any other check have changed the conclusion?",
+          "secondaryText": "A check the example missed.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -568,26 +554,26 @@
         "caseId": "case3",
         "stepKey": "source"
       },
-      "instruction": "**Case 2 — STOP and Source.** This is a worked example we wrote. Judge the STOP&SCAN step, not Marcus. In the sidebar, say whether this step helped in this case, and whether we applied it as the framework describes.",
+      "instruction": "**Case 2 — STOP and Source.** Judge this STOP&SCAN step, not Marcus.",
       "response": [
         {
           "id": "stop_value",
-          "prompt": "In this example, Marcus names a first reaction before checking anything (the STOP step). Did that step add anything useful here, or could the example have skipped it?",
-          "secondaryText": "You are judging the STOP step in our worked example, not whether Marcus behaved well, and not the source check on this page.",
+          "prompt": "Before repeating or sharing the claim that the crowd was fake, was there a good reason to pause?",
+          "secondaryText": "This is the STOP step, not the source check on this page.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
           "options": [
-            "Yes — it did real work here",
-            "Only slightly",
-            "No — it added nothing in this case",
+            "Yes — there was a good reason to pause here",
+            "Only slightly — the situation did not strongly call for it",
+            "No — pausing here did not make much sense",
             "I cannot tell"
           ]
         },
         {
           "id": "useful",
           "prompt": "How useful was this step in this case?",
-          "secondaryText": "Judge whether this STOP&SCAN step helped in this case, not whether Marcus behaved well. If only part of it helped, pick the closest answer and say which part in the comment below.",
+          "secondaryText": "Judge this step, not Marcus. If only part helped, say which part below.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -601,7 +587,7 @@
         {
           "id": "fidelity",
           "prompt": "Was this step carried out as STOP&SCAN describes it?",
-          "secondaryText": "Judge whether we applied this step as STOP&SCAN describes it. This is not a score of Marcus, and not a score of the framework as a whole.",
+          "secondaryText": "How we applied the step, not a score of Marcus.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -614,8 +600,8 @@
         },
         {
           "id": "note",
-          "prompt": "Anything in how we applied this step that you disagree with, or that was done badly?",
-          "secondaryText": "This is how we catch mistakes in our write-up of this step.",
+          "prompt": "Anything wrong in how we applied this step?",
+          "secondaryText": "Mistakes in this step’s write-up.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -642,12 +628,12 @@
         "caseId": "case3",
         "stepKey": "content"
       },
-      "instruction": "**Case 2 — Content.** This is a worked example we wrote. Judge the STOP&SCAN step, not Marcus. In the sidebar, say whether this step helped in this case, and whether we applied it as the framework describes.",
+      "instruction": "**Case 2 — Content.** Judge this STOP&SCAN step, not Marcus.",
       "response": [
         {
           "id": "useful",
           "prompt": "How useful was this step in this case?",
-          "secondaryText": "Judge whether this STOP&SCAN step helped in this case, not whether Marcus behaved well. If only part of it helped, pick the closest answer and say which part in the comment below.",
+          "secondaryText": "Judge this step, not Marcus. If only part helped, say which part below.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -661,7 +647,7 @@
         {
           "id": "fidelity",
           "prompt": "Was this step carried out as STOP&SCAN describes it?",
-          "secondaryText": "Judge whether we applied this step as STOP&SCAN describes it. This is not a score of Marcus, and not a score of the framework as a whole.",
+          "secondaryText": "How we applied the step, not a score of Marcus.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -674,8 +660,8 @@
         },
         {
           "id": "enough",
-          "prompt": "Given what has been shown so far, is this enough for someone in Marcus’s situation to stop and decide?",
-          "secondaryText": "STOP&SCAN is meant to say when there is enough to stop. We need to know if that point had already been reached here for someone in Marcus’s situation — not whether Marcus personally should have stopped.",
+          "prompt": "Given what has been shown so far, is there already enough to stop and decide?",
+          "secondaryText": "Whether STOP&SCAN could have stopped here — not whether Marcus personally should have.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -687,16 +673,16 @@
         },
         {
           "id": "enough_conclude",
-          "prompt": "If you said there was already enough to decide, what should someone in Marcus’s situation have concluded?",
-          "secondaryText": "Only if you answered yes above. We want the conclusion the method should have reached if it stopped here.",
+          "prompt": "If yes, what should the conclusion have been?",
+          "secondaryText": "Only if you answered yes above.",
           "location": "sidebar",
           "type": "longText",
           "required": false
         },
         {
           "id": "note",
-          "prompt": "Anything in how we applied this step that you disagree with, or that was done badly?",
-          "secondaryText": "This is how we catch mistakes in our write-up of this step.",
+          "prompt": "Anything wrong in how we applied this step?",
+          "secondaryText": "Mistakes in this step’s write-up.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -723,12 +709,12 @@
         "caseId": "case3",
         "stepKey": "alignment"
       },
-      "instruction": "**Case 2 — Alignment.** This is a worked example we wrote. Judge the STOP&SCAN step, not Marcus. In the sidebar, say whether this step helped in this case, and whether we applied it as the framework describes.",
+      "instruction": "**Case 2 — Alignment.** Judge this STOP&SCAN step, not Marcus.",
       "response": [
         {
           "id": "useful",
           "prompt": "How useful was this step in this case?",
-          "secondaryText": "Judge whether this STOP&SCAN step helped in this case, not whether Marcus behaved well. If only part of it helped, pick the closest answer and say which part in the comment below.",
+          "secondaryText": "Judge this step, not Marcus. If only part helped, say which part below.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -742,7 +728,7 @@
         {
           "id": "fidelity",
           "prompt": "Was this step carried out as STOP&SCAN describes it?",
-          "secondaryText": "Judge whether we applied this step as STOP&SCAN describes it. This is not a score of Marcus, and not a score of the framework as a whole.",
+          "secondaryText": "How we applied the step, not a score of Marcus.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -755,8 +741,8 @@
         },
         {
           "id": "enough",
-          "prompt": "Given what has been shown so far, is this enough for someone in Marcus’s situation to stop and decide?",
-          "secondaryText": "STOP&SCAN is meant to say when there is enough to stop. We need to know if that point had already been reached here for someone in Marcus’s situation — not whether Marcus personally should have stopped.",
+          "prompt": "Given what has been shown so far, is there already enough to stop and decide?",
+          "secondaryText": "Whether STOP&SCAN could have stopped here — not whether Marcus personally should have.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -768,16 +754,16 @@
         },
         {
           "id": "enough_conclude",
-          "prompt": "If you said there was already enough to decide, what should someone in Marcus’s situation have concluded?",
-          "secondaryText": "Only if you answered yes above. We want the conclusion the method should have reached if it stopped here.",
+          "prompt": "If yes, what should the conclusion have been?",
+          "secondaryText": "Only if you answered yes above.",
           "location": "sidebar",
           "type": "longText",
           "required": false
         },
         {
           "id": "note",
-          "prompt": "Anything in how we applied this step that you disagree with, or that was done badly?",
-          "secondaryText": "This is how we catch mistakes in our write-up of this step.",
+          "prompt": "Anything wrong in how we applied this step?",
+          "secondaryText": "Mistakes in this step’s write-up.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -804,12 +790,12 @@
         "caseId": "case3",
         "stepKey": "reflect"
       },
-      "instruction": "**Case 2 — Now Reflect.** This is a worked example we wrote. Judge the STOP&SCAN step, not Marcus. In the sidebar, say whether this step helped in this case, and whether we applied it as the framework describes.",
+      "instruction": "**Case 2 — Now Reflect.** Judge this STOP&SCAN step, not Marcus.",
       "response": [
         {
           "id": "useful",
           "prompt": "How useful was this step in this case?",
-          "secondaryText": "Judge whether this STOP&SCAN step helped in this case, not whether Marcus behaved well. If only part of it helped, pick the closest answer and say which part in the comment below.",
+          "secondaryText": "Judge this step, not Marcus. If only part helped, say which part below.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -823,7 +809,7 @@
         {
           "id": "fidelity",
           "prompt": "Was this step carried out as STOP&SCAN describes it?",
-          "secondaryText": "Judge whether we applied this step as STOP&SCAN describes it. This is not a score of Marcus, and not a score of the framework as a whole.",
+          "secondaryText": "How we applied the step, not a score of Marcus.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -836,8 +822,8 @@
         },
         {
           "id": "note",
-          "prompt": "Anything in how we applied this step that you disagree with, or that was done badly?",
-          "secondaryText": "This is how we catch mistakes in our write-up of this step.",
+          "prompt": "Anything wrong in how we applied this step?",
+          "secondaryText": "Mistakes in this step’s write-up.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -862,12 +848,12 @@
       "meta": {
         "caseId": "case3"
       },
-      "instruction": "**Case 2 — after the case.** Rank the five elements below the recap, then answer the remaining questions in the sidebar.",
+      "instruction": "**Case 2 — after the case.** Rank the five elements, then answer in the sidebar.",
       "response": [
         {
           "id": "contribution",
           "prompt": "Rank the five elements by how much each contributed in this case.",
-          "secondaryText": "The list starts in the framework’s own order. Drag to reorder. Most contribution at the top; least at the bottom.",
+          "secondaryText": "Drag to reorder. Most contribution at the top.",
           "location": "belowStimulus",
           "type": "ranking-sublist",
           "required": false,
@@ -889,8 +875,8 @@
         },
         {
           "id": "direction",
-          "prompt": "At the end of this worked example, what did the evidence support?",
-          "secondaryText": "STOP&SCAN ends in an evidence state. We need yours for this example, to compare with the one we wrote.",
+          "prompt": "What did the evidence support at the end of this case?",
+          "secondaryText": "Compare with the evidence state shown in the recap.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -901,31 +887,17 @@
           ]
         },
         {
-          "id": "encounter",
-          "prompt": "This example treats the situation as information — nothing was being asked of them. Would a reasonable person have read it the same way?",
-          "secondaryText": "STOP&SCAN uses this reading to decide what action follows from the evidence.",
-          "location": "sidebar",
-          "type": "radio",
-          "required": false,
-          "options": [
-            "Yes",
-            "Some would read it differently",
-            "No — most people would read it differently",
-            "I cannot tell"
-          ]
-        },
-        {
           "id": "narrow",
           "prompt": "If this case had used only a source check, or only a detection or provenance tool, what would the conclusion have been?",
-          "secondaryText": "We want to know what a narrower check would have produced in this case, compared with the full STOP&SCAN sequence.",
+          "secondaryText": "What a narrower check would have produced, compared with the full sequence.",
           "location": "sidebar",
           "type": "longText",
           "required": false
         },
         {
           "id": "other_checks",
-          "prompt": "Given the conclusion this example reached — including a decision not to conclude, if that applies — would any other check have helped?",
-          "secondaryText": "We are looking for checks the example missed that would have changed its result.",
+          "prompt": "Would any other check have changed the conclusion?",
+          "secondaryText": "A check the example missed.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -952,26 +924,26 @@
         "caseId": "case4",
         "stepKey": "source"
       },
-      "instruction": "**Case 3 — STOP and Source.** This is a worked example we wrote. Judge the STOP&SCAN step, not Ellen. In the sidebar, say whether this step helped in this case, and whether we applied it as the framework describes.",
+      "instruction": "**Case 3 — STOP and Source.** Judge this STOP&SCAN step, not Ellen.",
       "response": [
         {
           "id": "stop_value",
-          "prompt": "In this example, Ellen names a first reaction before checking anything (the STOP step). Did that step add anything useful here, or could the example have skipped it?",
-          "secondaryText": "You are judging the STOP step in our worked example, not whether Ellen behaved well, and not the source check on this page.",
+          "prompt": "Before treating this photograph as settling the rumours, was there a good reason to pause?",
+          "secondaryText": "This is the STOP step, not the source check on this page.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
           "options": [
-            "Yes — it did real work here",
-            "Only slightly",
-            "No — it added nothing in this case",
+            "Yes — there was a good reason to pause here",
+            "Only slightly — the situation did not strongly call for it",
+            "No — pausing here did not make much sense",
             "I cannot tell"
           ]
         },
         {
           "id": "useful",
           "prompt": "How useful was this step in this case?",
-          "secondaryText": "Judge whether this STOP&SCAN step helped in this case, not whether Ellen behaved well. If only part of it helped, pick the closest answer and say which part in the comment below.",
+          "secondaryText": "Judge this step, not Ellen. If only part helped, say which part below.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -985,7 +957,7 @@
         {
           "id": "fidelity",
           "prompt": "Was this step carried out as STOP&SCAN describes it?",
-          "secondaryText": "Judge whether we applied this step as STOP&SCAN describes it. This is not a score of Ellen, and not a score of the framework as a whole.",
+          "secondaryText": "How we applied the step, not a score of Ellen.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -998,8 +970,8 @@
         },
         {
           "id": "note",
-          "prompt": "Anything in how we applied this step that you disagree with, or that was done badly?",
-          "secondaryText": "This is how we catch mistakes in our write-up of this step.",
+          "prompt": "Anything wrong in how we applied this step?",
+          "secondaryText": "Mistakes in this step’s write-up.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -1026,12 +998,12 @@
         "caseId": "case4",
         "stepKey": "content"
       },
-      "instruction": "**Case 3 — Content.** This is a worked example we wrote. Judge the STOP&SCAN step, not Ellen. In the sidebar, say whether this step helped in this case, and whether we applied it as the framework describes.",
+      "instruction": "**Case 3 — Content.** Judge this STOP&SCAN step, not Ellen.",
       "response": [
         {
           "id": "useful",
           "prompt": "How useful was this step in this case?",
-          "secondaryText": "Judge whether this STOP&SCAN step helped in this case, not whether Ellen behaved well. If only part of it helped, pick the closest answer and say which part in the comment below.",
+          "secondaryText": "Judge this step, not Ellen. If only part helped, say which part below.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -1045,7 +1017,7 @@
         {
           "id": "fidelity",
           "prompt": "Was this step carried out as STOP&SCAN describes it?",
-          "secondaryText": "Judge whether we applied this step as STOP&SCAN describes it. This is not a score of Ellen, and not a score of the framework as a whole.",
+          "secondaryText": "How we applied the step, not a score of Ellen.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -1058,8 +1030,8 @@
         },
         {
           "id": "enough",
-          "prompt": "Given what has been shown so far, is this enough for someone in Ellen’s situation to stop and decide?",
-          "secondaryText": "STOP&SCAN is meant to say when there is enough to stop. We need to know if that point had already been reached here for someone in Ellen’s situation — not whether Ellen personally should have stopped.",
+          "prompt": "Given what has been shown so far, is there already enough to stop and decide?",
+          "secondaryText": "Whether STOP&SCAN could have stopped here — not whether Ellen personally should have.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -1071,16 +1043,16 @@
         },
         {
           "id": "enough_conclude",
-          "prompt": "If you said there was already enough to decide, what should someone in Ellen’s situation have concluded?",
-          "secondaryText": "Only if you answered yes above. We want the conclusion the method should have reached if it stopped here.",
+          "prompt": "If yes, what should the conclusion have been?",
+          "secondaryText": "Only if you answered yes above.",
           "location": "sidebar",
           "type": "longText",
           "required": false
         },
         {
           "id": "note",
-          "prompt": "Anything in how we applied this step that you disagree with, or that was done badly?",
-          "secondaryText": "This is how we catch mistakes in our write-up of this step.",
+          "prompt": "Anything wrong in how we applied this step?",
+          "secondaryText": "Mistakes in this step’s write-up.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -1107,12 +1079,12 @@
         "caseId": "case4",
         "stepKey": "alignment"
       },
-      "instruction": "**Case 3 — Alignment.** This is a worked example we wrote. Judge the STOP&SCAN step, not Ellen. In the sidebar, say whether this step helped in this case, and whether we applied it as the framework describes.",
+      "instruction": "**Case 3 — Alignment.** Judge this STOP&SCAN step, not Ellen.",
       "response": [
         {
           "id": "useful",
           "prompt": "How useful was this step in this case?",
-          "secondaryText": "Judge whether this STOP&SCAN step helped in this case, not whether Ellen behaved well. If only part of it helped, pick the closest answer and say which part in the comment below.",
+          "secondaryText": "Judge this step, not Ellen. If only part helped, say which part below.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -1126,7 +1098,7 @@
         {
           "id": "fidelity",
           "prompt": "Was this step carried out as STOP&SCAN describes it?",
-          "secondaryText": "Judge whether we applied this step as STOP&SCAN describes it. This is not a score of Ellen, and not a score of the framework as a whole.",
+          "secondaryText": "How we applied the step, not a score of Ellen.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -1139,8 +1111,8 @@
         },
         {
           "id": "enough",
-          "prompt": "Given what has been shown so far, is this enough for someone in Ellen’s situation to stop and decide?",
-          "secondaryText": "STOP&SCAN is meant to say when there is enough to stop. We need to know if that point had already been reached here for someone in Ellen’s situation — not whether Ellen personally should have stopped.",
+          "prompt": "Given what has been shown so far, is there already enough to stop and decide?",
+          "secondaryText": "Whether STOP&SCAN could have stopped here — not whether Ellen personally should have.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -1152,16 +1124,16 @@
         },
         {
           "id": "enough_conclude",
-          "prompt": "If you said there was already enough to decide, what should someone in Ellen’s situation have concluded?",
-          "secondaryText": "Only if you answered yes above. We want the conclusion the method should have reached if it stopped here.",
+          "prompt": "If yes, what should the conclusion have been?",
+          "secondaryText": "Only if you answered yes above.",
           "location": "sidebar",
           "type": "longText",
           "required": false
         },
         {
           "id": "note",
-          "prompt": "Anything in how we applied this step that you disagree with, or that was done badly?",
-          "secondaryText": "This is how we catch mistakes in our write-up of this step.",
+          "prompt": "Anything wrong in how we applied this step?",
+          "secondaryText": "Mistakes in this step’s write-up.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -1188,12 +1160,12 @@
         "caseId": "case4",
         "stepKey": "reflect"
       },
-      "instruction": "**Case 3 — Now Reflect.** This is a worked example we wrote. Judge the STOP&SCAN step, not Ellen. In the sidebar, say whether this step helped in this case, and whether we applied it as the framework describes.",
+      "instruction": "**Case 3 — Now Reflect.** Judge this STOP&SCAN step, not Ellen.",
       "response": [
         {
           "id": "useful",
           "prompt": "How useful was this step in this case?",
-          "secondaryText": "Judge whether this STOP&SCAN step helped in this case, not whether Ellen behaved well. If only part of it helped, pick the closest answer and say which part in the comment below.",
+          "secondaryText": "Judge this step, not Ellen. If only part helped, say which part below.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -1207,7 +1179,7 @@
         {
           "id": "fidelity",
           "prompt": "Was this step carried out as STOP&SCAN describes it?",
-          "secondaryText": "Judge whether we applied this step as STOP&SCAN describes it. This is not a score of Ellen, and not a score of the framework as a whole.",
+          "secondaryText": "How we applied the step, not a score of Ellen.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -1220,8 +1192,8 @@
         },
         {
           "id": "note",
-          "prompt": "Anything in how we applied this step that you disagree with, or that was done badly?",
-          "secondaryText": "This is how we catch mistakes in our write-up of this step.",
+          "prompt": "Anything wrong in how we applied this step?",
+          "secondaryText": "Mistakes in this step’s write-up.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -1246,12 +1218,12 @@
       "meta": {
         "caseId": "case4"
       },
-      "instruction": "**Case 3 — after the case.** Rank the five elements below the recap, then answer the remaining questions in the sidebar.",
+      "instruction": "**Case 3 — after the case.** Rank the five elements, then answer in the sidebar.",
       "response": [
         {
           "id": "contribution",
           "prompt": "Rank the five elements by how much each contributed in this case.",
-          "secondaryText": "The list starts in the framework’s own order. Drag to reorder. Most contribution at the top; least at the bottom.",
+          "secondaryText": "Drag to reorder. Most contribution at the top.",
           "location": "belowStimulus",
           "type": "ranking-sublist",
           "required": false,
@@ -1273,8 +1245,8 @@
         },
         {
           "id": "direction",
-          "prompt": "At the end of this worked example, what did the evidence support?",
-          "secondaryText": "STOP&SCAN ends in an evidence state. We need yours for this example, to compare with the one we wrote.",
+          "prompt": "What did the evidence support at the end of this case?",
+          "secondaryText": "Compare with the evidence state shown in the recap.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -1285,31 +1257,17 @@
           ]
         },
         {
-          "id": "encounter",
-          "prompt": "This example treats the situation as information — nothing was being asked of them. Would a reasonable person have read it the same way?",
-          "secondaryText": "STOP&SCAN uses this reading to decide what action follows from the evidence.",
-          "location": "sidebar",
-          "type": "radio",
-          "required": false,
-          "options": [
-            "Yes",
-            "Some would read it differently",
-            "No — most people would read it differently",
-            "I cannot tell"
-          ]
-        },
-        {
           "id": "narrow",
           "prompt": "If this case had used only a source check, or only a detection or provenance tool, what would the conclusion have been?",
-          "secondaryText": "We want to know what a narrower check would have produced in this case, compared with the full STOP&SCAN sequence.",
+          "secondaryText": "What a narrower check would have produced, compared with the full sequence.",
           "location": "sidebar",
           "type": "longText",
           "required": false
         },
         {
           "id": "other_checks",
-          "prompt": "Given the conclusion this example reached — including a decision not to conclude, if that applies — would any other check have helped?",
-          "secondaryText": "We are looking for checks the example missed that would have changed its result.",
+          "prompt": "Would any other check have changed the conclusion?",
+          "secondaryText": "A check the example missed.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -1336,26 +1294,26 @@
         "caseId": "case1",
         "stepKey": "source"
       },
-      "instruction": "**Case 4 — STOP and Source.** This is a worked example we wrote. Judge the STOP&SCAN step, not Rekha. In the sidebar, say whether this step helped in this case, and whether we applied it as the framework describes.",
+      "instruction": "**Case 4 — STOP and Source.** Judge this STOP&SCAN step, not Rekha.",
       "response": [
         {
           "id": "stop_value",
-          "prompt": "In this example, Rekha names a first reaction before checking anything (the STOP step). Did that step add anything useful here, or could the example have skipped it?",
-          "secondaryText": "You are judging the STOP step in our worked example, not whether Rekha behaved well, and not the source check on this page.",
+          "prompt": "Before sending the money, was there a good reason to pause?",
+          "secondaryText": "This is the STOP step, not the source check on this page.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
           "options": [
-            "Yes — it did real work here",
-            "Only slightly",
-            "No — it added nothing in this case",
+            "Yes — there was a good reason to pause here",
+            "Only slightly — the situation did not strongly call for it",
+            "No — pausing here did not make much sense",
             "I cannot tell"
           ]
         },
         {
           "id": "useful",
           "prompt": "How useful was this step in this case?",
-          "secondaryText": "Judge whether this STOP&SCAN step helped in this case, not whether Rekha behaved well. If only part of it helped, pick the closest answer and say which part in the comment below.",
+          "secondaryText": "Judge this step, not Rekha. If only part helped, say which part below.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -1369,7 +1327,7 @@
         {
           "id": "fidelity",
           "prompt": "Was this step carried out as STOP&SCAN describes it?",
-          "secondaryText": "Judge whether we applied this step as STOP&SCAN describes it. This is not a score of Rekha, and not a score of the framework as a whole.",
+          "secondaryText": "How we applied the step, not a score of Rekha.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -1382,8 +1340,8 @@
         },
         {
           "id": "note",
-          "prompt": "Anything in how we applied this step that you disagree with, or that was done badly?",
-          "secondaryText": "This is how we catch mistakes in our write-up of this step.",
+          "prompt": "Anything wrong in how we applied this step?",
+          "secondaryText": "Mistakes in this step’s write-up.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -1410,12 +1368,12 @@
         "caseId": "case1",
         "stepKey": "content"
       },
-      "instruction": "**Case 4 — Content.** This is a worked example we wrote. Judge the STOP&SCAN step, not Rekha. In the sidebar, say whether this step helped in this case, and whether we applied it as the framework describes.",
+      "instruction": "**Case 4 — Content.** Judge this STOP&SCAN step, not Rekha.",
       "response": [
         {
           "id": "useful",
           "prompt": "How useful was this step in this case?",
-          "secondaryText": "Judge whether this STOP&SCAN step helped in this case, not whether Rekha behaved well. If only part of it helped, pick the closest answer and say which part in the comment below.",
+          "secondaryText": "Judge this step, not Rekha. If only part helped, say which part below.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -1429,7 +1387,7 @@
         {
           "id": "fidelity",
           "prompt": "Was this step carried out as STOP&SCAN describes it?",
-          "secondaryText": "Judge whether we applied this step as STOP&SCAN describes it. This is not a score of Rekha, and not a score of the framework as a whole.",
+          "secondaryText": "How we applied the step, not a score of Rekha.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -1442,8 +1400,8 @@
         },
         {
           "id": "enough",
-          "prompt": "Given what has been shown so far, is this enough for someone in Rekha’s situation to stop and decide?",
-          "secondaryText": "STOP&SCAN is meant to say when there is enough to stop. We need to know if that point had already been reached here for someone in Rekha’s situation — not whether Rekha personally should have stopped.",
+          "prompt": "Given what has been shown so far, is there already enough to stop and decide?",
+          "secondaryText": "Whether STOP&SCAN could have stopped here — not whether Rekha personally should have.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -1455,16 +1413,16 @@
         },
         {
           "id": "enough_conclude",
-          "prompt": "If you said there was already enough to decide, what should someone in Rekha’s situation have concluded?",
-          "secondaryText": "Only if you answered yes above. We want the conclusion the method should have reached if it stopped here.",
+          "prompt": "If yes, what should the conclusion have been?",
+          "secondaryText": "Only if you answered yes above.",
           "location": "sidebar",
           "type": "longText",
           "required": false
         },
         {
           "id": "note",
-          "prompt": "Anything in how we applied this step that you disagree with, or that was done badly?",
-          "secondaryText": "This is how we catch mistakes in our write-up of this step.",
+          "prompt": "Anything wrong in how we applied this step?",
+          "secondaryText": "Mistakes in this step’s write-up.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -1491,12 +1449,12 @@
         "caseId": "case1",
         "stepKey": "alignment"
       },
-      "instruction": "**Case 4 — Alignment.** This is a worked example we wrote. Judge the STOP&SCAN step, not Rekha. In the sidebar, say whether this step helped in this case, and whether we applied it as the framework describes.",
+      "instruction": "**Case 4 — Alignment.** Judge this STOP&SCAN step, not Rekha.",
       "response": [
         {
           "id": "useful",
           "prompt": "How useful was this step in this case?",
-          "secondaryText": "Judge whether this STOP&SCAN step helped in this case, not whether Rekha behaved well. If only part of it helped, pick the closest answer and say which part in the comment below.",
+          "secondaryText": "Judge this step, not Rekha. If only part helped, say which part below.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -1510,7 +1468,7 @@
         {
           "id": "fidelity",
           "prompt": "Was this step carried out as STOP&SCAN describes it?",
-          "secondaryText": "Judge whether we applied this step as STOP&SCAN describes it. This is not a score of Rekha, and not a score of the framework as a whole.",
+          "secondaryText": "How we applied the step, not a score of Rekha.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -1523,8 +1481,8 @@
         },
         {
           "id": "enough",
-          "prompt": "Given what has been shown so far, is this enough for someone in Rekha’s situation to stop and decide?",
-          "secondaryText": "STOP&SCAN is meant to say when there is enough to stop. We need to know if that point had already been reached here for someone in Rekha’s situation — not whether Rekha personally should have stopped.",
+          "prompt": "Given what has been shown so far, is there already enough to stop and decide?",
+          "secondaryText": "Whether STOP&SCAN could have stopped here — not whether Rekha personally should have.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -1536,16 +1494,16 @@
         },
         {
           "id": "enough_conclude",
-          "prompt": "If you said there was already enough to decide, what should someone in Rekha’s situation have concluded?",
-          "secondaryText": "Only if you answered yes above. We want the conclusion the method should have reached if it stopped here.",
+          "prompt": "If yes, what should the conclusion have been?",
+          "secondaryText": "Only if you answered yes above.",
           "location": "sidebar",
           "type": "longText",
           "required": false
         },
         {
           "id": "note",
-          "prompt": "Anything in how we applied this step that you disagree with, or that was done badly?",
-          "secondaryText": "This is how we catch mistakes in our write-up of this step.",
+          "prompt": "Anything wrong in how we applied this step?",
+          "secondaryText": "Mistakes in this step’s write-up.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -1572,12 +1530,12 @@
         "caseId": "case1",
         "stepKey": "reflect"
       },
-      "instruction": "**Case 4 — Now Reflect.** This is a worked example we wrote. Judge the STOP&SCAN step, not Rekha. In the sidebar, say whether this step helped in this case, and whether we applied it as the framework describes.",
+      "instruction": "**Case 4 — Now Reflect.** Judge this STOP&SCAN step, not Rekha.",
       "response": [
         {
           "id": "useful",
           "prompt": "How useful was this step in this case?",
-          "secondaryText": "Judge whether this STOP&SCAN step helped in this case, not whether Rekha behaved well. If only part of it helped, pick the closest answer and say which part in the comment below.",
+          "secondaryText": "Judge this step, not Rekha. If only part helped, say which part below.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -1591,7 +1549,7 @@
         {
           "id": "fidelity",
           "prompt": "Was this step carried out as STOP&SCAN describes it?",
-          "secondaryText": "Judge whether we applied this step as STOP&SCAN describes it. This is not a score of Rekha, and not a score of the framework as a whole.",
+          "secondaryText": "How we applied the step, not a score of Rekha.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -1604,8 +1562,8 @@
         },
         {
           "id": "note",
-          "prompt": "Anything in how we applied this step that you disagree with, or that was done badly?",
-          "secondaryText": "This is how we catch mistakes in our write-up of this step.",
+          "prompt": "Anything wrong in how we applied this step?",
+          "secondaryText": "Mistakes in this step’s write-up.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -1630,12 +1588,12 @@
       "meta": {
         "caseId": "case1"
       },
-      "instruction": "**Case 4 — after the case.** Rank the five elements below the recap, then answer the remaining questions in the sidebar.",
+      "instruction": "**Case 4 — after the case.** Rank the five elements, then answer in the sidebar.",
       "response": [
         {
           "id": "contribution",
           "prompt": "Rank the five elements by how much each contributed in this case.",
-          "secondaryText": "The list starts in the framework’s own order. Drag to reorder. Most contribution at the top; least at the bottom.",
+          "secondaryText": "Drag to reorder. Most contribution at the top.",
           "location": "belowStimulus",
           "type": "ranking-sublist",
           "required": false,
@@ -1657,8 +1615,8 @@
         },
         {
           "id": "direction",
-          "prompt": "At the end of this worked example, what did the evidence support?",
-          "secondaryText": "STOP&SCAN ends in an evidence state. We need yours for this example, to compare with the one we wrote.",
+          "prompt": "What did the evidence support at the end of this case?",
+          "secondaryText": "Compare with the evidence state shown in the recap.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -1669,31 +1627,17 @@
           ]
         },
         {
-          "id": "encounter",
-          "prompt": "This example treats the situation as a request — something was being asked of them. Would a reasonable person have read it the same way?",
-          "secondaryText": "STOP&SCAN uses this reading to decide what action follows from the evidence.",
-          "location": "sidebar",
-          "type": "radio",
-          "required": false,
-          "options": [
-            "Yes",
-            "Some would read it differently",
-            "No — most people would read it differently",
-            "I cannot tell"
-          ]
-        },
-        {
           "id": "narrow",
           "prompt": "If this case had used only a source check, or only a detection or provenance tool, what would the conclusion have been?",
-          "secondaryText": "We want to know what a narrower check would have produced in this case, compared with the full STOP&SCAN sequence.",
+          "secondaryText": "What a narrower check would have produced, compared with the full sequence.",
           "location": "sidebar",
           "type": "longText",
           "required": false
         },
         {
           "id": "other_checks",
-          "prompt": "Given the conclusion this example reached — including a decision not to conclude, if that applies — would any other check have helped?",
-          "secondaryText": "We are looking for checks the example missed that would have changed its result.",
+          "prompt": "Would any other check have changed the conclusion?",
+          "secondaryText": "A check the example missed.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -1723,7 +1667,7 @@
         {
           "id": "routeA_plausible",
           "prompt": "**Route A.** Could a competent non-expert reasonably follow this route?",
-          "secondaryText": "We wrote this SIFT route for the study. Tell us if it is a fair picture of how a non-expert would use SIFT here.",
+          "secondaryText": "A fair picture of how a non-expert would use SIFT here?",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -1736,7 +1680,7 @@
         {
           "id": "routeA_note",
           "prompt": "If yes or yes-but-unlikely, why? If no, what would a more realistic route look like?",
-          "secondaryText": "Your reason tells us whether to treat this route as usable evidence.",
+          "secondaryText": "Why this route is or is not realistic.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -1744,7 +1688,7 @@
         {
           "id": "routeB_plausible",
           "prompt": "**Route B.** Could a competent non-expert reasonably follow this route?",
-          "secondaryText": "We wrote this SIFT route for the study. Tell us if it is a fair picture of how a non-expert would use SIFT here.",
+          "secondaryText": "A fair picture of how a non-expert would use SIFT here?",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -1757,7 +1701,7 @@
         {
           "id": "routeB_note",
           "prompt": "If yes or yes-but-unlikely, why? If no, what would a more realistic route look like?",
-          "secondaryText": "Your reason tells us whether to treat this route as usable evidence.",
+          "secondaryText": "Why this route is or is not realistic.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -1765,7 +1709,7 @@
         {
           "id": "prevent",
           "prompt": "Where either route reaches a wrong conclusion, what additional check would have prevented it?",
-          "secondaryText": "Only if you think a route ended wrongly. We want the check that would have blocked that ending.",
+          "secondaryText": "Only if a route ended wrongly.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -1795,7 +1739,7 @@
         {
           "id": "routeA_plausible",
           "prompt": "**Route A.** Could a competent non-expert reasonably follow this route?",
-          "secondaryText": "We wrote this SIFT route for the study. Tell us if it is a fair picture of how a non-expert would use SIFT here.",
+          "secondaryText": "A fair picture of how a non-expert would use SIFT here?",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -1808,7 +1752,7 @@
         {
           "id": "routeA_note",
           "prompt": "If yes or yes-but-unlikely, why? If no, what would a more realistic route look like?",
-          "secondaryText": "Your reason tells us whether to treat this route as usable evidence.",
+          "secondaryText": "Why this route is or is not realistic.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -1816,7 +1760,7 @@
         {
           "id": "routeB_plausible",
           "prompt": "**Route B.** Could a competent non-expert reasonably follow this route?",
-          "secondaryText": "We wrote this SIFT route for the study. Tell us if it is a fair picture of how a non-expert would use SIFT here.",
+          "secondaryText": "A fair picture of how a non-expert would use SIFT here?",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -1829,7 +1773,7 @@
         {
           "id": "routeB_note",
           "prompt": "If yes or yes-but-unlikely, why? If no, what would a more realistic route look like?",
-          "secondaryText": "Your reason tells us whether to treat this route as usable evidence.",
+          "secondaryText": "Why this route is or is not realistic.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -1837,7 +1781,7 @@
         {
           "id": "prevent",
           "prompt": "Where either route reaches a wrong conclusion, what additional check would have prevented it?",
-          "secondaryText": "Only if you think a route ended wrongly. We want the check that would have blocked that ending.",
+          "secondaryText": "Only if a route ended wrongly.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -1867,7 +1811,7 @@
         {
           "id": "R_stopscan",
           "prompt": "How far do you agree with each statement about STOP&SCAN?",
-          "secondaryText": "These statements are about STOP&SCAN as a method, not about the person in any case.",
+          "secondaryText": "About STOP&SCAN as a method, not the person in any case.",
           "location": "belowStimulus",
           "type": "matrix-radio",
           "required": false,
@@ -1892,7 +1836,7 @@
         {
           "id": "R_stopscan_note",
           "prompt": "Comments on any of these statements. Name which one if you can.",
-          "secondaryText": "Name the statement if you can, so we can attach the comment.",
+          "secondaryText": "Name the statement if you can.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -1922,7 +1866,7 @@
         {
           "id": "R_sift",
           "prompt": "How far do you agree with each statement about SIFT?",
-          "secondaryText": "These statements are about SIFT as a method. We have not yet told you our own view.",
+          "secondaryText": "About SIFT as a method. We have not yet given our own view.",
           "location": "belowStimulus",
           "type": "matrix-radio",
           "required": false,
@@ -1944,7 +1888,7 @@
         {
           "id": "R_sift_note",
           "prompt": "Comments on any of these statements. Name which one if you can.",
-          "secondaryText": "Name the statement if you can, so we can attach the comment.",
+          "secondaryText": "Name the statement if you can.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -1974,7 +1918,7 @@
         {
           "id": "O1",
           "prompt": "Where is STOP&SCAN most likely to fail in everyday use?",
-          "secondaryText": "We want failure modes in ordinary use, including outside these four cases.",
+          "secondaryText": "Including outside these four cases.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -1982,7 +1926,7 @@
         {
           "id": "O2",
           "prompt": "Which element is weakest? How would you change it?",
-          "secondaryText": "We want the element you would change first, and how.",
+          "secondaryText": "The element you would change first, and how.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -1990,7 +1934,7 @@
         {
           "id": "O3",
           "prompt": "STOP&SCAN asks people to visit every element, even when an earlier one seems to settle the case. Is that right?",
-          "secondaryText": "The framework currently requires visiting every element. We need to know if that requirement is justified.",
+          "secondaryText": "The framework currently requires visiting every element.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -1998,7 +1942,7 @@
         {
           "id": "O4",
           "prompt": "What, if anything, does STOP&SCAN add that SIFT or lateral reading does not already provide?",
-          "secondaryText": "We are asking what is new, if anything, relative to methods you may already use.",
+          "secondaryText": "What is new, if anything, compared with SIFT or lateral reading.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -2006,7 +1950,7 @@
         {
           "id": "O5",
           "prompt": "What evidence would you need before recommending STOP&SCAN to non-experts?",
-          "secondaryText": "We need to know what would make a recommendation responsible.",
+          "secondaryText": "What would make a recommendation responsible.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -2014,7 +1958,7 @@
         {
           "id": "O6",
           "prompt": "Is there an approach from your own work that neither framework captures?",
-          "secondaryText": "We do not want to miss a practice from your field that neither method covers.",
+          "secondaryText": "A practice from your field that neither method covers.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -2022,7 +1966,7 @@
         {
           "id": "O7",
           "prompt": "Did our worked examples represent STOP&SCAN fairly, or did they make it look better or worse than it is?",
-          "secondaryText": "This is about whether our four cases were a fair test of the method.",
+          "secondaryText": "Whether our four cases were a fair test.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -2052,7 +1996,7 @@
         {
           "id": "Q1",
           "prompt": "Where do you stand on each of our five concerns about SIFT?",
-          "secondaryText": "These are our concerns, not SIFT’s own claims. We need where you agree, where we overstated, and where we are wrong.",
+          "secondaryText": "Where you agree, where we overstated, and where we are wrong.",
           "location": "belowStimulus",
           "type": "matrix-radio",
           "required": false,
@@ -2081,7 +2025,7 @@
         {
           "id": "Q3",
           "prompt": "What concerns or weaknesses in SIFT have we missed?",
-          "secondaryText": "We do not want to treat our five concerns as a complete list.",
+          "secondaryText": "Concerns we missed.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -2089,7 +2033,7 @@
         {
           "id": "Q4",
           "prompt": "Which of these concerns do you think is mistaken, and why?",
-          "secondaryText": "If none is mistaken, say so. We need to know where our critique of SIFT is wrong.",
+          "secondaryText": "If none is mistaken, say so.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -2119,7 +2063,7 @@
         {
           "id": "R14",
           "prompt": "Which approach is more likely to produce an appropriately cautious judgment?",
-          "secondaryText": "Compare the two methods on this criterion. You can skip if you cannot make the comparison.",
+          "secondaryText": "Skip if you cannot make this comparison.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -2133,7 +2077,7 @@
         {
           "id": "R15",
           "prompt": "Which approach would be easier to teach?",
-          "secondaryText": "Compare the two methods on this criterion. You can skip if you cannot make the comparison.",
+          "secondaryText": "Skip if you cannot make this comparison.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -2147,7 +2091,7 @@
         {
           "id": "R16",
           "prompt": "Which approach is more reliable when search results contain misleading or AI-generated information?",
-          "secondaryText": "Compare the two methods on this criterion. You can skip if you cannot make the comparison.",
+          "secondaryText": "Skip if you cannot make this comparison.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -2161,7 +2105,7 @@
         {
           "id": "R17",
           "prompt": "Which would you recommend to someone with no training in verification?",
-          "secondaryText": "Compare the two methods on this criterion. You can skip if you cannot make the comparison.",
+          "secondaryText": "Skip if you cannot make this comparison.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -2175,7 +2119,7 @@
         {
           "id": "R18",
           "prompt": "Which would you recommend to a professional?",
-          "secondaryText": "Compare the two methods on this criterion. You can skip if you cannot make the comparison.",
+          "secondaryText": "Skip if you cannot make this comparison.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -2189,7 +2133,7 @@
         {
           "id": "R19",
           "prompt": "Which better matches the range of cases you meet in your own work?",
-          "secondaryText": "Compare the two methods on this criterion. You can skip if you cannot make the comparison.",
+          "secondaryText": "Skip if you cannot make this comparison.",
           "location": "sidebar",
           "type": "radio",
           "required": false,

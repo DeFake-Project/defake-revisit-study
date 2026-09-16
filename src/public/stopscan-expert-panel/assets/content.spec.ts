@@ -179,27 +179,34 @@ describe('STOP&SCAN generated config', () => {
     );
   });
 
-  it('asks whether the STOP step added anything, not whether pausing was worth it', () => {
-    const source = config.components['case2-source'].response?.find((item) => item.id === 'stop_value') as {
-      prompt: string;
-      secondaryText?: string;
+  it('asks STOP about pausing before a case-specific act, on every scenario', () => {
+    const expected: Record<string, string> = {
+      'case2-source': 'resharing this or treating it as a real forecast',
+      'case3-source': 'repeating or sharing the claim that the crowd was fake',
+      'case4-source': 'treating this photograph as settling the rumours',
+      'case1-source': 'sending the money',
     };
-    expect(source.prompt).toContain('Dana names a first reaction');
-    expect(source.prompt).toContain('the STOP step');
-    expect(source.prompt).toContain('could the example have skipped it');
-    expect(source.prompt).not.toMatch(/worth pausing/i);
-    expect(source.prompt).not.toMatch(/recording/i);
-    expect(source.secondaryText).toContain('not whether Dana behaved well');
+    Object.entries(expected).forEach(([id, act]) => {
+      const stop = config.components[id].response?.find((item) => item.id === 'stop_value') as {
+        prompt: string;
+        secondaryText?: string;
+        options?: string[];
+      };
+      expect(stop.prompt).toBe(`Before ${act}, was there a good reason to pause?`);
+      expect(stop.prompt).not.toMatch(/going further/i);
+      expect(stop.prompt).not.toMatch(/worth pausing/i);
+      expect(stop.prompt).not.toMatch(/first reaction/i);
+      expect(stop.secondaryText).toContain('not the source check');
+      expect(stop.options).toContain('Yes — there was a good reason to pause here');
+    });
   });
 
-  it('tells people to judge the worked example, not the fictional person', () => {
+  it('tells people to judge the step, not the fictional person', () => {
     const source = config.components['case2-source'];
-    expect(source.instruction).toContain('worked example we wrote');
-    expect(source.instruction).toContain('not Dana');
-    expect(source.instruction).toContain('whether this step helped in this case');
+    expect(source.instruction).toContain('Judge this STOP&SCAN step, not Dana');
     const useful = source.response?.find((item) => item.id === 'useful') as { secondaryText?: string };
     const fidelity = source.response?.find((item) => item.id === 'fidelity') as { secondaryText?: string };
-    expect(useful.secondaryText).toContain('not whether Dana behaved well');
+    expect(useful.secondaryText).toContain('not Dana');
     expect(fidelity.secondaryText).toContain('not a score of Dana');
   });
 
@@ -210,51 +217,43 @@ describe('STOP&SCAN generated config', () => {
     expect(ids).toContain('enough_conclude');
     expect(ids).toContain('note');
     const note = content.find((item) => item.id === 'note') as { prompt: string; secondaryText?: string };
-    expect(note.prompt).toBe(
-      'Anything in how we applied this step that you disagree with, or that was done badly?',
-    );
-    expect(note.secondaryText).toBe('This is how we catch mistakes in our write-up of this step.');
+    expect(note.prompt).toBe('Anything wrong in how we applied this step?');
+    expect(note.secondaryText).toContain('Mistakes in this step');
     const enough = content.find((item) => item.id === 'enough') as { prompt: string; secondaryText?: string };
     const enoughConclude = content.find((item) => item.id === 'enough_conclude') as {
       prompt: string;
       secondaryText?: string;
     };
     expect(enough.prompt).toBe(
-      'Given what has been shown so far, is this enough for someone in Dana’s situation to stop and decide?',
+      'Given what has been shown so far, is there already enough to stop and decide?',
     );
-    expect(enough.secondaryText).toContain('not whether Dana personally should have stopped');
-    expect(enoughConclude.prompt).toBe(
-      'If you said there was already enough to decide, what should someone in Dana’s situation have concluded?',
-    );
+    expect(enough.secondaryText).toContain('not whether Dana personally should have');
+    expect(enoughConclude.prompt).toBe('If yes, what should the conclusion have been?');
     expect(enoughConclude.secondaryText).toContain('Only if you answered yes above');
   });
 
-  it('asks after-case questions about the worked example, not the fictional person', () => {
+  it('asks after-case questions about the evidence, without repeating encounter type', () => {
     const after = config.components['case2-after'].response ?? [];
     const rekha = config.components['case1-after'].response ?? [];
     expect(after.find((item) => item.id === 'direction')?.prompt).toBe(
-      'At the end of this worked example, what did the evidence support?',
+      'What did the evidence support at the end of this case?',
     );
-    expect(after.find((item) => item.id === 'encounter')?.prompt).toBe(
-      'This example treats the situation as information — nothing was being asked of them. Would a reasonable person have read it the same way?',
-    );
-    expect(rekha.find((item) => item.id === 'encounter')?.prompt).toBe(
-      'This example treats the situation as a request — something was being asked of them. Would a reasonable person have read it the same way?',
-    );
+    expect(after.find((item) => item.id === 'encounter')).toBeUndefined();
+    expect(rekha.find((item) => item.id === 'encounter')).toBeUndefined();
     expect(after.find((item) => item.id === 'narrow')?.prompt).toBe(
       'If this case had used only a source check, or only a detection or provenance tool, what would the conclusion have been?',
     );
     expect(after.find((item) => item.id === 'other_checks')?.prompt).toBe(
-      'Given the conclusion this example reached — including a decision not to conclude, if that applies — would any other check have helped?',
+      'Would any other check have changed the conclusion?',
     );
     expect(after.find((item) => item.id === 'direction')?.secondaryText).toContain(
-      'We need yours for this example',
+      'evidence state shown in the recap',
     );
     expect(after.find((item) => item.id === 'narrow')?.secondaryText).toContain(
       'narrower check',
     );
     expect(after.find((item) => item.id === 'other_checks')?.secondaryText).toContain(
-      'checks the example missed',
+      'check the example missed',
     );
   });
 

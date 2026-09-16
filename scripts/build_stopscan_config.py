@@ -47,11 +47,20 @@ FIDELITY_OPTS = [
 ELEMENTS = ["STOP", "Source", "Content", "Alignment", "Now Reflect"]
 RANK_DEFAULT = {el: str(i) for i, el in enumerate(ELEMENTS)}
 
-ENCOUNTER_LABEL = {
-    "information": "information — nothing was being asked of them",
-    "request": "a request — something was being asked of them",
-    "alert": "an alert — a protective response might be needed now",
+# The act STOP is meant to interrupt in each case — not “going further” in general.
+STOP_BEFORE = {
+    "case2": "resharing this or treating it as a real forecast",
+    "case3": "repeating or sharing the claim that the crowd was fake",
+    "case4": "treating this photograph as settling the rumours",
+    "case1": "sending the money",
 }
+
+STOP_VALUE_OPTS = [
+    "Yes — there was a good reason to pause here",
+    "Only slightly — the situation did not strongly call for it",
+    "No — pausing here did not make much sense",
+    "I cannot tell",
+]
 
 
 def step_component(cid, name, label_short, step_key, step_label, _step_idx):
@@ -61,32 +70,22 @@ def step_component(cid, name, label_short, step_key, step_label, _step_idx):
         resp.append({
             "id": "stop_value",
             "prompt": (
-                f"In this example, {name} names a first reaction before checking "
-                "anything (the STOP step). Did that step add anything useful here, "
-                "or could the example have skipped it?"
+                f"Before {STOP_BEFORE[cid]}, was there a good reason to pause?"
             ),
             "secondaryText": (
-                "You are judging the STOP step in our worked example, not whether "
-                f"{name} behaved well, and not the source check on this page."
+                "This is the STOP step, not the source check on this page."
             ),
             "location": "sidebar",
             "type": "radio",
             "required": False,
-            "options": [
-                "Yes — it did real work here",
-                "Only slightly",
-                "No — it added nothing in this case",
-                "I cannot tell",
-            ],
+            "options": STOP_VALUE_OPTS,
         })
 
     resp.append({
         "id": "useful",
         "prompt": "How useful was this step in this case?",
         "secondaryText": (
-            f"Judge whether this STOP&SCAN step helped in this case, not whether "
-            f"{name} behaved well. If only part of it helped, pick the closest "
-            "answer and say which part in the comment below."
+            f"Judge this step, not {name}. If only part helped, say which part below."
         ),
         "location": "sidebar",
         "type": "radio",
@@ -97,10 +96,7 @@ def step_component(cid, name, label_short, step_key, step_label, _step_idx):
     resp.append({
         "id": "fidelity",
         "prompt": "Was this step carried out as STOP&SCAN describes it?",
-        "secondaryText": (
-            "Judge whether we applied this step as STOP&SCAN describes it. "
-            f"This is not a score of {name}, and not a score of the framework as a whole."
-        ),
+        "secondaryText": f"How we applied the step, not a score of {name}.",
         "location": "sidebar",
         "type": "radio",
         "required": False,
@@ -110,15 +106,10 @@ def step_component(cid, name, label_short, step_key, step_label, _step_idx):
     if step_key in ("content", "alignment"):
         resp.append({
             "id": "enough",
-            "prompt": (
-                "Given what has been shown so far, is this enough for someone "
-                f"in {name}’s situation to stop and decide?"
-            ),
+            "prompt": "Given what has been shown so far, is there already enough to stop and decide?",
             "secondaryText": (
-                "STOP&SCAN is meant to say when there is enough to stop. "
-                "We need to know if that point had already been reached here "
-                f"for someone in {name}’s situation — not whether {name} "
-                "personally should have stopped."
+                "Whether STOP&SCAN could have stopped here — not whether "
+                f"{name} personally should have."
             ),
             "location": "sidebar",
             "type": "radio",
@@ -127,14 +118,8 @@ def step_component(cid, name, label_short, step_key, step_label, _step_idx):
         })
         resp.append({
             "id": "enough_conclude",
-            "prompt": (
-                "If you said there was already enough to decide, "
-                f"what should someone in {name}’s situation have concluded?"
-            ),
-            "secondaryText": (
-                "Only if you answered yes above. We want the conclusion the "
-                "method should have reached if it stopped here."
-            ),
+            "prompt": "If yes, what should the conclusion have been?",
+            "secondaryText": "Only if you answered yes above.",
             "location": "sidebar",
             "type": "longText",
             "required": False,
@@ -142,11 +127,8 @@ def step_component(cid, name, label_short, step_key, step_label, _step_idx):
 
     resp.append({
         "id": "note",
-        "prompt": (
-            "Anything in how we applied this step that you disagree with, "
-            "or that was done badly?"
-        ),
-        "secondaryText": "This is how we catch mistakes in our write-up of this step.",
+        "prompt": "Anything wrong in how we applied this step?",
+        "secondaryText": "Mistakes in this step’s write-up.",
         "location": "sidebar",
         "type": "longText",
         "required": False,
@@ -159,32 +141,26 @@ def step_component(cid, name, label_short, step_key, step_label, _step_idx):
         "parameters": {"caseId": cid, "stepKey": step_key, "mode": "step"},
         "meta": {"caseId": cid, "stepKey": step_key},
         "instruction": (
-            f"**{label_short} — {step_label}.** This is a worked example we wrote. "
-            f"Judge the STOP&SCAN step, not {name}. In the sidebar, say whether this "
-            "step helped in this case, and whether we applied it as the framework describes."
+            f"**{label_short} — {step_label}.** Judge this STOP&SCAN step, not {name}."
         ),
         "response": resp,
     }
 
 
-def after_component(cid, _name, label_short, enc):
+def after_component(cid, _name, label_short):
     return f"{cid}-after", {
         "baseComponent": "case-after",
         "previousButton": False,
         "parameters": {"caseId": cid, "mode": "after"},
         "meta": {"caseId": cid},
         "instruction": (
-            f"**{label_short} — after the case.** Rank the five elements below the recap, "
-            "then answer the remaining questions in the sidebar."
+            f"**{label_short} — after the case.** Rank the five elements, then answer in the sidebar."
         ),
         "response": [
             {
                 "id": "contribution",
                 "prompt": "Rank the five elements by how much each contributed in this case.",
-                "secondaryText": (
-                    "The list starts in the framework’s own order. Drag to reorder. "
-                    "Most contribution at the top; least at the bottom."
-                ),
+                "secondaryText": "Drag to reorder. Most contribution at the top.",
                 "location": "belowStimulus",
                 "type": "ranking-sublist",
                 "required": False,
@@ -194,11 +170,8 @@ def after_component(cid, _name, label_short, enc):
             },
             {
                 "id": "direction",
-                "prompt": "At the end of this worked example, what did the evidence support?",
-                "secondaryText": (
-                    "STOP&SCAN ends in an evidence state. We need yours for this "
-                    "example, to compare with the one we wrote."
-                ),
+                "prompt": "What did the evidence support at the end of this case?",
+                "secondaryText": "Compare with the evidence state shown in the recap.",
                 "location": "sidebar",
                 "type": "radio",
                 "required": False,
@@ -209,47 +182,20 @@ def after_component(cid, _name, label_short, enc):
                 ],
             },
             {
-                "id": "encounter",
-                "prompt": (
-                    f"This example treats the situation as {ENCOUNTER_LABEL[enc]}. "
-                    "Would a reasonable person have read it the same way?"
-                ),
-                "secondaryText": "STOP&SCAN uses this reading to decide what action follows from the evidence.",
-                "location": "sidebar",
-                "type": "radio",
-                "required": False,
-                "options": [
-                    "Yes",
-                    "Some would read it differently",
-                    "No — most people would read it differently",
-                    "I cannot tell",
-                ],
-            },
-            {
                 "id": "narrow",
                 "prompt": (
                     "If this case had used only a source check, or only a detection "
                     "or provenance tool, what would the conclusion have been?"
                 ),
-                "secondaryText": (
-                    "We want to know what a narrower check would have produced "
-                    "in this case, compared with the full STOP&SCAN sequence."
-                ),
+                "secondaryText": "What a narrower check would have produced, compared with the full sequence.",
                 "location": "sidebar",
                 "type": "longText",
                 "required": False,
             },
             {
                 "id": "other_checks",
-                "prompt": (
-                    "Given the conclusion this example reached — including a "
-                    "decision not to conclude, if that applies — would any other "
-                    "check have helped?"
-                ),
-                "secondaryText": (
-                    "We are looking for checks the example missed that would "
-                    "have changed its result."
-                ),
+                "prompt": "Would any other check have changed the conclusion?",
+                "secondaryText": "A check the example missed.",
                 "location": "sidebar",
                 "type": "longText",
                 "required": False,
@@ -267,10 +213,7 @@ def sift_component(cid, title):
             {
                 "id": f"{r}_plausible",
                 "prompt": f"**{label}.** Could a competent non-expert reasonably follow this route?",
-                "secondaryText": (
-                    "We wrote this SIFT route for the study. Tell us if it is a "
-                    "fair picture of how a non-expert would use SIFT here."
-                ),
+                "secondaryText": "A fair picture of how a non-expert would use SIFT here?",
                 "location": "sidebar",
                 "type": "radio",
                 "required": False,
@@ -279,7 +222,7 @@ def sift_component(cid, title):
             {
                 "id": f"{r}_note",
                 "prompt": "If yes or yes-but-unlikely, why? If no, what would a more realistic route look like?",
-                "secondaryText": "Your reason tells us whether to treat this route as usable evidence.",
+                "secondaryText": "Why this route is or is not realistic.",
                 "location": "sidebar",
                 "type": "longText",
                 "required": False,
@@ -298,10 +241,7 @@ def sift_component(cid, title):
             {
                 "id": "prevent",
                 "prompt": "Where either route reaches a wrong conclusion, what additional check would have prevented it?",
-                "secondaryText": (
-                    "Only if you think a route ended wrongly. We want the check "
-                    "that would have blocked that ending."
-                ),
+                "secondaryText": "Only if a route ended wrongly.",
                 "location": "sidebar",
                 "type": "longText",
                 "required": False,
@@ -428,11 +368,11 @@ components["orientation"] = {
     "response": [LOG],
 }
 
-for cid, name, short, enc in CASES:
+for cid, name, short, _enc in CASES:
     for skey, slabel, sidx in STEPS:
         key, val = step_component(cid, name, short, skey, slabel, sidx)
         components[key] = val
-    key, val = after_component(cid, name, short, enc)
+    key, val = after_component(cid, name, short)
     components[key] = val
 
 key, val = sift_component("case2", "The wind forecast map — if Dana had used SIFT.")
@@ -453,7 +393,7 @@ components["ratings-stopscan"] = {
         {
             "id": "R_stopscan",
             "prompt": "How far do you agree with each statement about STOP&SCAN?",
-            "secondaryText": "These statements are about STOP&SCAN as a method, not about the person in any case.",
+            "secondaryText": "About STOP&SCAN as a method, not the person in any case.",
             "location": "belowStimulus",
             "type": "matrix-radio",
             "required": False,
@@ -472,7 +412,7 @@ components["ratings-stopscan"] = {
         {
             "id": "R_stopscan_note",
             "prompt": "Comments on any of these statements. Name which one if you can.",
-            "secondaryText": "Name the statement if you can, so we can attach the comment.",
+            "secondaryText": "Name the statement if you can.",
             "location": "sidebar",
             "type": "longText",
             "required": False,
@@ -494,7 +434,7 @@ components["ratings-sift"] = {
         {
             "id": "R_sift",
             "prompt": "How far do you agree with each statement about SIFT?",
-            "secondaryText": "These statements are about SIFT as a method. We have not yet told you our own view.",
+            "secondaryText": "About SIFT as a method. We have not yet given our own view.",
             "location": "belowStimulus",
             "type": "matrix-radio",
             "required": False,
@@ -510,7 +450,7 @@ components["ratings-sift"] = {
         {
             "id": "R_sift_note",
             "prompt": "Comments on any of these statements. Name which one if you can.",
-            "secondaryText": "Name the statement if you can, so we can attach the comment.",
+            "secondaryText": "Name the statement if you can.",
             "location": "sidebar",
             "type": "longText",
             "required": False,
@@ -529,13 +469,13 @@ components["ratings-open"] = {
     "parameters": {"section": "open"},
     "instruction": "Open critique, before we state our own positions on SIFT.",
     "response": [
-        {"id": "O1", "prompt": "Where is STOP&SCAN most likely to fail in everyday use?", "secondaryText": "We want failure modes in ordinary use, including outside these four cases.", "location": "sidebar", "type": "longText", "required": False},
-        {"id": "O2", "prompt": "Which element is weakest? How would you change it?", "secondaryText": "We want the element you would change first, and how.", "location": "sidebar", "type": "longText", "required": False},
-        {"id": "O3", "prompt": "STOP&SCAN asks people to visit every element, even when an earlier one seems to settle the case. Is that right?", "secondaryText": "The framework currently requires visiting every element. We need to know if that requirement is justified.", "location": "sidebar", "type": "longText", "required": False},
-        {"id": "O4", "prompt": "What, if anything, does STOP&SCAN add that SIFT or lateral reading does not already provide?", "secondaryText": "We are asking what is new, if anything, relative to methods you may already use.", "location": "sidebar", "type": "longText", "required": False},
-        {"id": "O5", "prompt": "What evidence would you need before recommending STOP&SCAN to non-experts?", "secondaryText": "We need to know what would make a recommendation responsible.", "location": "sidebar", "type": "longText", "required": False},
-        {"id": "O6", "prompt": "Is there an approach from your own work that neither framework captures?", "secondaryText": "We do not want to miss a practice from your field that neither method covers.", "location": "sidebar", "type": "longText", "required": False},
-        {"id": "O7", "prompt": "Did our worked examples represent STOP&SCAN fairly, or did they make it look better or worse than it is?", "secondaryText": "This is about whether our four cases were a fair test of the method.", "location": "sidebar", "type": "longText", "required": False},
+        {"id": "O1", "prompt": "Where is STOP&SCAN most likely to fail in everyday use?", "secondaryText": "Including outside these four cases.", "location": "sidebar", "type": "longText", "required": False},
+        {"id": "O2", "prompt": "Which element is weakest? How would you change it?", "secondaryText": "The element you would change first, and how.", "location": "sidebar", "type": "longText", "required": False},
+        {"id": "O3", "prompt": "STOP&SCAN asks people to visit every element, even when an earlier one seems to settle the case. Is that right?", "secondaryText": "The framework currently requires visiting every element.", "location": "sidebar", "type": "longText", "required": False},
+        {"id": "O4", "prompt": "What, if anything, does STOP&SCAN add that SIFT or lateral reading does not already provide?", "secondaryText": "What is new, if anything, compared with SIFT or lateral reading.", "location": "sidebar", "type": "longText", "required": False},
+        {"id": "O5", "prompt": "What evidence would you need before recommending STOP&SCAN to non-experts?", "secondaryText": "What would make a recommendation responsible.", "location": "sidebar", "type": "longText", "required": False},
+        {"id": "O6", "prompt": "Is there an approach from your own work that neither framework captures?", "secondaryText": "A practice from your field that neither method covers.", "location": "sidebar", "type": "longText", "required": False},
+        {"id": "O7", "prompt": "Did our worked examples represent STOP&SCAN fairly, or did they make it look better or worse than it is?", "secondaryText": "Whether our four cases were a fair test.", "location": "sidebar", "type": "longText", "required": False},
         LOG,
     ],
 }
@@ -553,7 +493,7 @@ components["ratings-critique"] = {
         {
             "id": "Q1",
             "prompt": "Where do you stand on each of our five concerns about SIFT?",
-            "secondaryText": "These are our concerns, not SIFT’s own claims. We need where you agree, where we overstated, and where we are wrong.",
+            "secondaryText": "Where you agree, where we overstated, and where we are wrong.",
             "location": "belowStimulus",
             "type": "matrix-radio",
             "required": False,
@@ -577,7 +517,7 @@ components["ratings-critique"] = {
         {
             "id": "Q3",
             "prompt": "What concerns or weaknesses in SIFT have we missed?",
-            "secondaryText": "We do not want to treat our five concerns as a complete list.",
+            "secondaryText": "Concerns we missed.",
             "location": "sidebar",
             "type": "longText",
             "required": False,
@@ -585,7 +525,7 @@ components["ratings-critique"] = {
         {
             "id": "Q4",
             "prompt": "Which of these concerns do you think is mistaken, and why?",
-            "secondaryText": "If none is mistaken, say so. We need to know where our critique of SIFT is wrong.",
+            "secondaryText": "If none is mistaken, say so.",
             "location": "sidebar",
             "type": "longText",
             "required": False,
@@ -613,10 +553,7 @@ for rid, prompt in compare_items:
     compare_resp.append({
         "id": rid,
         "prompt": prompt,
-        "secondaryText": (
-            "Compare the two methods on this criterion. "
-            "You can skip if you cannot make the comparison."
-        ),
+        "secondaryText": "Skip if you cannot make this comparison.",
         "location": "sidebar",
         "type": "radio",
         "required": False,
