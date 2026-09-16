@@ -213,15 +213,20 @@ describe('STOP&SCAN generated config', () => {
     expect(note.prompt).toBe(
       'Anything in how we applied this step that you disagree with, or that was done badly?',
     );
-    expect(note.secondaryText).toBeUndefined();
-    const enough = content.find((item) => item.id === 'enough') as { prompt: string };
-    const enoughConclude = content.find((item) => item.id === 'enough_conclude') as { prompt: string };
+    expect(note.secondaryText).toBe('This is how we catch mistakes in our write-up of this step.');
+    const enough = content.find((item) => item.id === 'enough') as { prompt: string; secondaryText?: string };
+    const enoughConclude = content.find((item) => item.id === 'enough_conclude') as {
+      prompt: string;
+      secondaryText?: string;
+    };
     expect(enough.prompt).toBe(
       'Given what has been shown so far, is this enough for someone in Dana’s situation to stop and decide?',
     );
+    expect(enough.secondaryText).toContain('not whether Dana personally should have stopped');
     expect(enoughConclude.prompt).toBe(
       'If you said there was already enough to decide, what should someone in Dana’s situation have concluded?',
     );
+    expect(enoughConclude.secondaryText).toContain('Only if you answered yes above');
   });
 
   it('asks after-case questions about the worked example, not the fictional person', () => {
@@ -242,6 +247,27 @@ describe('STOP&SCAN generated config', () => {
     expect(after.find((item) => item.id === 'other_checks')?.prompt).toBe(
       'Given the conclusion this example reached — including a decision not to conclude, if that applies — would any other check have helped?',
     );
+    expect(after.find((item) => item.id === 'direction')?.secondaryText).toContain(
+      'We need yours for this example',
+    );
+    expect(after.find((item) => item.id === 'narrow')?.secondaryText).toContain(
+      'narrower check',
+    );
+    expect(after.find((item) => item.id === 'other_checks')?.secondaryText).toContain(
+      'checks the example missed',
+    );
+  });
+
+  it('gives a why-we-are-asking line on visible questions that did not already have one', () => {
+    const skip = new Set(['consent', 'about-you', 'orientation', 'debrief']);
+    Object.entries(config.components).forEach(([id, component]) => {
+      if (skip.has(id)) return;
+      (component.response ?? []).forEach((item) => {
+        if (item.type === 'reactive' || item.hidden === true) return;
+        expect(item.secondaryText, `${id}.${String(item.id)}`).toEqual(expect.any(String));
+        expect(String(item.secondaryText).length, `${id}.${String(item.id)}`).toBeGreaterThan(10);
+      });
+    });
   });
 
   it('does not collect an email opt-in on the debrief', () => {

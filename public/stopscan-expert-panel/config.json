@@ -231,6 +231,7 @@
         {
           "id": "note",
           "prompt": "Anything in how we applied this step that you disagree with, or that was done badly?",
+          "secondaryText": "This is how we catch mistakes in our write-up of this step.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -290,6 +291,7 @@
         {
           "id": "enough",
           "prompt": "Given what has been shown so far, is this enough for someone in Dana’s situation to stop and decide?",
+          "secondaryText": "STOP&SCAN is meant to say when there is enough to stop. We need to know if that point had already been reached here for someone in Dana’s situation — not whether Dana personally should have stopped.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -302,6 +304,7 @@
         {
           "id": "enough_conclude",
           "prompt": "If you said there was already enough to decide, what should someone in Dana’s situation have concluded?",
+          "secondaryText": "Only if you answered yes above. We want the conclusion the method should have reached if it stopped here.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -309,6 +312,7 @@
         {
           "id": "note",
           "prompt": "Anything in how we applied this step that you disagree with, or that was done badly?",
+          "secondaryText": "This is how we catch mistakes in our write-up of this step.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -368,6 +372,7 @@
         {
           "id": "enough",
           "prompt": "Given what has been shown so far, is this enough for someone in Dana’s situation to stop and decide?",
+          "secondaryText": "STOP&SCAN is meant to say when there is enough to stop. We need to know if that point had already been reached here for someone in Dana’s situation — not whether Dana personally should have stopped.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -380,6 +385,7 @@
         {
           "id": "enough_conclude",
           "prompt": "If you said there was already enough to decide, what should someone in Dana’s situation have concluded?",
+          "secondaryText": "Only if you answered yes above. We want the conclusion the method should have reached if it stopped here.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -387,6 +393,7 @@
         {
           "id": "note",
           "prompt": "Anything in how we applied this step that you disagree with, or that was done badly?",
+          "secondaryText": "This is how we catch mistakes in our write-up of this step.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -446,6 +453,7 @@
         {
           "id": "note",
           "prompt": "Anything in how we applied this step that you disagree with, or that was done badly?",
+          "secondaryText": "This is how we catch mistakes in our write-up of this step.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -498,6 +506,7 @@
         {
           "id": "direction",
           "prompt": "At the end of this worked example, what did the evidence support?",
+          "secondaryText": "STOP&SCAN ends in an evidence state. We need yours for this example, to compare with the one we wrote.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -524,6 +533,7 @@
         {
           "id": "narrow",
           "prompt": "If this case had used only a source check, or only a detection or provenance tool, what would the conclusion have been?",
+          "secondaryText": "We want to know what a narrower check would have produced in this case, compared with the full STOP&SCAN sequence.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -531,6 +541,7 @@
         {
           "id": "other_checks",
           "prompt": "Given the conclusion this example reached — including a decision not to conclude, if that applies — would any other check have helped?",
+          "secondaryText": "We are looking for checks the example missed that would have changed its result.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -604,6 +615,7 @@
         {
           "id": "note",
           "prompt": "Anything in how we applied this step that you disagree with, or that was done badly?",
+          "secondaryText": "This is how we catch mistakes in our write-up of this step.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -663,6 +675,7 @@
         {
           "id": "enough",
           "prompt": "Given what has been shown so far, is this enough for someone in Marcus’s situation to stop and decide?",
+          "secondaryText": "STOP&SCAN is meant to say when there is enough to stop. We need to know if that point had already been reached here for someone in Marcus’s situation — not whether Marcus personally should have stopped.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -675,6 +688,7 @@
         {
           "id": "enough_conclude",
           "prompt": "If you said there was already enough to decide, what should someone in Marcus’s situation have concluded?",
+          "secondaryText": "Only if you answered yes above. We want the conclusion the method should have reached if it stopped here.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -682,6 +696,7 @@
         {
           "id": "note",
           "prompt": "Anything in how we applied this step that you disagree with, or that was done badly?",
+          "secondaryText": "This is how we catch mistakes in our write-up of this step.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -741,6 +756,7 @@
         {
           "id": "enough",
           "prompt": "Given what has been shown so far, is this enough for someone in Marcus’s situation to stop and decide?",
+          "secondaryText": "STOP&SCAN is meant to say when there is enough to stop. We need to know if that point had already been reached here for someone in Marcus’s situation — not whether Marcus personally should have stopped.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -753,6 +769,7 @@
         {
           "id": "enough_conclude",
           "prompt": "If you said there was already enough to decide, what should someone in Marcus’s situation have concluded?",
+          "secondaryText": "Only if you answered yes above. We want the conclusion the method should have reached if it stopped here.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -760,6 +777,7 @@
         {
           "id": "note",
           "prompt": "Anything in how we applied this step that you disagree with, or that was done badly?",
+          "secondaryText": "This is how we catch mistakes in our write-up of this step.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -819,6 +837,7 @@
         {
           "id": "note",
           "prompt": "Anything in how we applied this step that you disagree with, or that was done badly?",
+          "secondaryText": "This is how we catch mistakes in our write-up of this step.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -871,6 +890,7 @@
         {
           "id": "direction",
           "prompt": "At the end of this worked example, what did the evidence support?",
+          "secondaryText": "STOP&SCAN ends in an evidence state. We need yours for this example, to compare with the one we wrote.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -897,6 +917,7 @@
         {
           "id": "narrow",
           "prompt": "If this case had used only a source check, or only a detection or provenance tool, what would the conclusion have been?",
+          "secondaryText": "We want to know what a narrower check would have produced in this case, compared with the full STOP&SCAN sequence.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -904,6 +925,7 @@
         {
           "id": "other_checks",
           "prompt": "Given the conclusion this example reached — including a decision not to conclude, if that applies — would any other check have helped?",
+          "secondaryText": "We are looking for checks the example missed that would have changed its result.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -977,6 +999,7 @@
         {
           "id": "note",
           "prompt": "Anything in how we applied this step that you disagree with, or that was done badly?",
+          "secondaryText": "This is how we catch mistakes in our write-up of this step.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -1036,6 +1059,7 @@
         {
           "id": "enough",
           "prompt": "Given what has been shown so far, is this enough for someone in Ellen’s situation to stop and decide?",
+          "secondaryText": "STOP&SCAN is meant to say when there is enough to stop. We need to know if that point had already been reached here for someone in Ellen’s situation — not whether Ellen personally should have stopped.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -1048,6 +1072,7 @@
         {
           "id": "enough_conclude",
           "prompt": "If you said there was already enough to decide, what should someone in Ellen’s situation have concluded?",
+          "secondaryText": "Only if you answered yes above. We want the conclusion the method should have reached if it stopped here.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -1055,6 +1080,7 @@
         {
           "id": "note",
           "prompt": "Anything in how we applied this step that you disagree with, or that was done badly?",
+          "secondaryText": "This is how we catch mistakes in our write-up of this step.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -1114,6 +1140,7 @@
         {
           "id": "enough",
           "prompt": "Given what has been shown so far, is this enough for someone in Ellen’s situation to stop and decide?",
+          "secondaryText": "STOP&SCAN is meant to say when there is enough to stop. We need to know if that point had already been reached here for someone in Ellen’s situation — not whether Ellen personally should have stopped.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -1126,6 +1153,7 @@
         {
           "id": "enough_conclude",
           "prompt": "If you said there was already enough to decide, what should someone in Ellen’s situation have concluded?",
+          "secondaryText": "Only if you answered yes above. We want the conclusion the method should have reached if it stopped here.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -1133,6 +1161,7 @@
         {
           "id": "note",
           "prompt": "Anything in how we applied this step that you disagree with, or that was done badly?",
+          "secondaryText": "This is how we catch mistakes in our write-up of this step.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -1192,6 +1221,7 @@
         {
           "id": "note",
           "prompt": "Anything in how we applied this step that you disagree with, or that was done badly?",
+          "secondaryText": "This is how we catch mistakes in our write-up of this step.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -1244,6 +1274,7 @@
         {
           "id": "direction",
           "prompt": "At the end of this worked example, what did the evidence support?",
+          "secondaryText": "STOP&SCAN ends in an evidence state. We need yours for this example, to compare with the one we wrote.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -1270,6 +1301,7 @@
         {
           "id": "narrow",
           "prompt": "If this case had used only a source check, or only a detection or provenance tool, what would the conclusion have been?",
+          "secondaryText": "We want to know what a narrower check would have produced in this case, compared with the full STOP&SCAN sequence.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -1277,6 +1309,7 @@
         {
           "id": "other_checks",
           "prompt": "Given the conclusion this example reached — including a decision not to conclude, if that applies — would any other check have helped?",
+          "secondaryText": "We are looking for checks the example missed that would have changed its result.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -1350,6 +1383,7 @@
         {
           "id": "note",
           "prompt": "Anything in how we applied this step that you disagree with, or that was done badly?",
+          "secondaryText": "This is how we catch mistakes in our write-up of this step.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -1409,6 +1443,7 @@
         {
           "id": "enough",
           "prompt": "Given what has been shown so far, is this enough for someone in Rekha’s situation to stop and decide?",
+          "secondaryText": "STOP&SCAN is meant to say when there is enough to stop. We need to know if that point had already been reached here for someone in Rekha’s situation — not whether Rekha personally should have stopped.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -1421,6 +1456,7 @@
         {
           "id": "enough_conclude",
           "prompt": "If you said there was already enough to decide, what should someone in Rekha’s situation have concluded?",
+          "secondaryText": "Only if you answered yes above. We want the conclusion the method should have reached if it stopped here.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -1428,6 +1464,7 @@
         {
           "id": "note",
           "prompt": "Anything in how we applied this step that you disagree with, or that was done badly?",
+          "secondaryText": "This is how we catch mistakes in our write-up of this step.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -1487,6 +1524,7 @@
         {
           "id": "enough",
           "prompt": "Given what has been shown so far, is this enough for someone in Rekha’s situation to stop and decide?",
+          "secondaryText": "STOP&SCAN is meant to say when there is enough to stop. We need to know if that point had already been reached here for someone in Rekha’s situation — not whether Rekha personally should have stopped.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -1499,6 +1537,7 @@
         {
           "id": "enough_conclude",
           "prompt": "If you said there was already enough to decide, what should someone in Rekha’s situation have concluded?",
+          "secondaryText": "Only if you answered yes above. We want the conclusion the method should have reached if it stopped here.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -1506,6 +1545,7 @@
         {
           "id": "note",
           "prompt": "Anything in how we applied this step that you disagree with, or that was done badly?",
+          "secondaryText": "This is how we catch mistakes in our write-up of this step.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -1565,6 +1605,7 @@
         {
           "id": "note",
           "prompt": "Anything in how we applied this step that you disagree with, or that was done badly?",
+          "secondaryText": "This is how we catch mistakes in our write-up of this step.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -1617,6 +1658,7 @@
         {
           "id": "direction",
           "prompt": "At the end of this worked example, what did the evidence support?",
+          "secondaryText": "STOP&SCAN ends in an evidence state. We need yours for this example, to compare with the one we wrote.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -1643,6 +1685,7 @@
         {
           "id": "narrow",
           "prompt": "If this case had used only a source check, or only a detection or provenance tool, what would the conclusion have been?",
+          "secondaryText": "We want to know what a narrower check would have produced in this case, compared with the full STOP&SCAN sequence.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -1650,6 +1693,7 @@
         {
           "id": "other_checks",
           "prompt": "Given the conclusion this example reached — including a decision not to conclude, if that applies — would any other check have helped?",
+          "secondaryText": "We are looking for checks the example missed that would have changed its result.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -1679,6 +1723,7 @@
         {
           "id": "routeA_plausible",
           "prompt": "**Route A.** Could a competent non-expert reasonably follow this route?",
+          "secondaryText": "We wrote this SIFT route for the study. Tell us if it is a fair picture of how a non-expert would use SIFT here.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -1691,6 +1736,7 @@
         {
           "id": "routeA_note",
           "prompt": "If yes or yes-but-unlikely, why? If no, what would a more realistic route look like?",
+          "secondaryText": "Your reason tells us whether to treat this route as usable evidence.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -1698,6 +1744,7 @@
         {
           "id": "routeB_plausible",
           "prompt": "**Route B.** Could a competent non-expert reasonably follow this route?",
+          "secondaryText": "We wrote this SIFT route for the study. Tell us if it is a fair picture of how a non-expert would use SIFT here.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -1710,6 +1757,7 @@
         {
           "id": "routeB_note",
           "prompt": "If yes or yes-but-unlikely, why? If no, what would a more realistic route look like?",
+          "secondaryText": "Your reason tells us whether to treat this route as usable evidence.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -1717,6 +1765,7 @@
         {
           "id": "prevent",
           "prompt": "Where either route reaches a wrong conclusion, what additional check would have prevented it?",
+          "secondaryText": "Only if you think a route ended wrongly. We want the check that would have blocked that ending.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -1746,6 +1795,7 @@
         {
           "id": "routeA_plausible",
           "prompt": "**Route A.** Could a competent non-expert reasonably follow this route?",
+          "secondaryText": "We wrote this SIFT route for the study. Tell us if it is a fair picture of how a non-expert would use SIFT here.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -1758,6 +1808,7 @@
         {
           "id": "routeA_note",
           "prompt": "If yes or yes-but-unlikely, why? If no, what would a more realistic route look like?",
+          "secondaryText": "Your reason tells us whether to treat this route as usable evidence.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -1765,6 +1816,7 @@
         {
           "id": "routeB_plausible",
           "prompt": "**Route B.** Could a competent non-expert reasonably follow this route?",
+          "secondaryText": "We wrote this SIFT route for the study. Tell us if it is a fair picture of how a non-expert would use SIFT here.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -1777,6 +1829,7 @@
         {
           "id": "routeB_note",
           "prompt": "If yes or yes-but-unlikely, why? If no, what would a more realistic route look like?",
+          "secondaryText": "Your reason tells us whether to treat this route as usable evidence.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -1784,6 +1837,7 @@
         {
           "id": "prevent",
           "prompt": "Where either route reaches a wrong conclusion, what additional check would have prevented it?",
+          "secondaryText": "Only if you think a route ended wrongly. We want the check that would have blocked that ending.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -1813,6 +1867,7 @@
         {
           "id": "R_stopscan",
           "prompt": "How far do you agree with each statement about STOP&SCAN?",
+          "secondaryText": "These statements are about STOP&SCAN as a method, not about the person in any case.",
           "location": "belowStimulus",
           "type": "matrix-radio",
           "required": false,
@@ -1837,6 +1892,7 @@
         {
           "id": "R_stopscan_note",
           "prompt": "Comments on any of these statements. Name which one if you can.",
+          "secondaryText": "Name the statement if you can, so we can attach the comment.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -1866,6 +1922,7 @@
         {
           "id": "R_sift",
           "prompt": "How far do you agree with each statement about SIFT?",
+          "secondaryText": "These statements are about SIFT as a method. We have not yet told you our own view.",
           "location": "belowStimulus",
           "type": "matrix-radio",
           "required": false,
@@ -1887,6 +1944,7 @@
         {
           "id": "R_sift_note",
           "prompt": "Comments on any of these statements. Name which one if you can.",
+          "secondaryText": "Name the statement if you can, so we can attach the comment.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -1916,6 +1974,7 @@
         {
           "id": "O1",
           "prompt": "Where is STOP&SCAN most likely to fail in everyday use?",
+          "secondaryText": "We want failure modes in ordinary use, including outside these four cases.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -1923,6 +1982,7 @@
         {
           "id": "O2",
           "prompt": "Which element is weakest? How would you change it?",
+          "secondaryText": "We want the element you would change first, and how.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -1930,6 +1990,7 @@
         {
           "id": "O3",
           "prompt": "STOP&SCAN asks people to visit every element, even when an earlier one seems to settle the case. Is that right?",
+          "secondaryText": "The framework currently requires visiting every element. We need to know if that requirement is justified.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -1937,6 +1998,7 @@
         {
           "id": "O4",
           "prompt": "What, if anything, does STOP&SCAN add that SIFT or lateral reading does not already provide?",
+          "secondaryText": "We are asking what is new, if anything, relative to methods you may already use.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -1944,6 +2006,7 @@
         {
           "id": "O5",
           "prompt": "What evidence would you need before recommending STOP&SCAN to non-experts?",
+          "secondaryText": "We need to know what would make a recommendation responsible.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -1951,6 +2014,7 @@
         {
           "id": "O6",
           "prompt": "Is there an approach from your own work that neither framework captures?",
+          "secondaryText": "We do not want to miss a practice from your field that neither method covers.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -1958,6 +2022,7 @@
         {
           "id": "O7",
           "prompt": "Did our worked examples represent STOP&SCAN fairly, or did they make it look better or worse than it is?",
+          "secondaryText": "This is about whether our four cases were a fair test of the method.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -1987,6 +2052,7 @@
         {
           "id": "Q1",
           "prompt": "Where do you stand on each of our five concerns about SIFT?",
+          "secondaryText": "These are our concerns, not SIFT’s own claims. We need where you agree, where we overstated, and where we are wrong.",
           "location": "belowStimulus",
           "type": "matrix-radio",
           "required": false,
@@ -2007,6 +2073,7 @@
         {
           "id": "Q1_note",
           "prompt": "Anything you want to say about those five concerns.",
+          "secondaryText": "Use this if a single agree/disagree rating is not enough.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -2014,6 +2081,7 @@
         {
           "id": "Q3",
           "prompt": "What concerns or weaknesses in SIFT have we missed?",
+          "secondaryText": "We do not want to treat our five concerns as a complete list.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -2021,6 +2089,7 @@
         {
           "id": "Q4",
           "prompt": "Which of these concerns do you think is mistaken, and why?",
+          "secondaryText": "If none is mistaken, say so. We need to know where our critique of SIFT is wrong.",
           "location": "sidebar",
           "type": "longText",
           "required": false
@@ -2050,6 +2119,7 @@
         {
           "id": "R14",
           "prompt": "Which approach is more likely to produce an appropriately cautious judgment?",
+          "secondaryText": "Compare the two methods on this criterion. You can skip if you cannot make the comparison.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -2063,6 +2133,7 @@
         {
           "id": "R15",
           "prompt": "Which approach would be easier to teach?",
+          "secondaryText": "Compare the two methods on this criterion. You can skip if you cannot make the comparison.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -2076,6 +2147,7 @@
         {
           "id": "R16",
           "prompt": "Which approach is more reliable when search results contain misleading or AI-generated information?",
+          "secondaryText": "Compare the two methods on this criterion. You can skip if you cannot make the comparison.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -2089,6 +2161,7 @@
         {
           "id": "R17",
           "prompt": "Which would you recommend to someone with no training in verification?",
+          "secondaryText": "Compare the two methods on this criterion. You can skip if you cannot make the comparison.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -2102,6 +2175,7 @@
         {
           "id": "R18",
           "prompt": "Which would you recommend to a professional?",
+          "secondaryText": "Compare the two methods on this criterion. You can skip if you cannot make the comparison.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -2115,6 +2189,7 @@
         {
           "id": "R19",
           "prompt": "Which better matches the range of cases you meet in your own work?",
+          "secondaryText": "Compare the two methods on this criterion. You can skip if you cannot make the comparison.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -2128,6 +2203,7 @@
         {
           "id": "compare_note",
           "prompt": "Anything you want to add about these comparisons.",
+          "secondaryText": "Name which comparison if you can.",
           "location": "sidebar",
           "type": "longText",
           "required": false
