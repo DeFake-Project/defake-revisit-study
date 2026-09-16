@@ -104,6 +104,8 @@
           "required": false,
           "options": [
             "Digital media forensics",
+            "Other forensic fields",
+            "Computer science",
             "Misinformation or disinformation research",
             "Media literacy education",
             "Fact-checking or verification journalism"
@@ -117,6 +119,8 @@
           "required": false,
           "options": [
             "Digital media forensics",
+            "Other forensic fields",
+            "Computer science",
             "Misinformation or disinformation research",
             "Media literacy education",
             "Fact-checking or verification journalism"

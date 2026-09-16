@@ -311,6 +311,15 @@ components["consent"] = {
     ],
 }
 
+PROFESSIONAL_AREAS = [
+    "Digital media forensics",
+    "Other forensic fields",
+    "Computer science",
+    "Misinformation or disinformation research",
+    "Media literacy education",
+    "Fact-checking or verification journalism",
+]
+
 components["about-you"] = {
     "type": "markdown",
     "path": "stopscan-expert-panel/assets/about-you.md",
@@ -326,12 +335,7 @@ components["about-you"] = {
             "location": "sidebar",
             "type": "radio",
             "required": False,
-            "options": [
-                "Digital media forensics",
-                "Misinformation or disinformation research",
-                "Media literacy education",
-                "Fact-checking or verification journalism",
-            ],
+            "options": PROFESSIONAL_AREAS,
         },
         {
             "id": "B2",
@@ -339,12 +343,7 @@ components["about-you"] = {
             "location": "sidebar",
             "type": "checkbox",
             "required": False,
-            "options": [
-                "Digital media forensics",
-                "Misinformation or disinformation research",
-                "Media literacy education",
-                "Fact-checking or verification journalism",
-            ],
+            "options": PROFESSIONAL_AREAS,
         },
         {
             "id": "B3",

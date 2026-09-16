@@ -116,6 +116,10 @@ describe('STOP&SCAN participant copy', () => {
     expect(debrief).toContain('email the Principal Investigators');
     expect(debrief).not.toContain('request that in the sidebar');
     expect(consent).toContain('45 to 60 minutes');
+    expect(consent).toContain('computer science');
+    expect(consent).toContain('other forensic fields');
+    expect(consent).toContain('describe participants only by a broad professional field');
+    expect(consent).not.toContain('one of four broad fields');
   });
 });
 
@@ -207,5 +211,21 @@ describe('STOP&SCAN generated config', () => {
   it('does not use filler optional language on case pages', () => {
     const json = readPublic('config.json');
     expect(json).not.toContain('Everything on this page is optional');
+  });
+
+  it('includes computer science and other forensic fields in background options', () => {
+    const about = config.components['about-you'].response ?? [];
+    const expected = [
+      'Digital media forensics',
+      'Other forensic fields',
+      'Computer science',
+      'Misinformation or disinformation research',
+      'Media literacy education',
+      'Fact-checking or verification journalism',
+    ];
+    const b1 = about.find((item) => item.id === 'B1') as { options: string[] };
+    const b2 = about.find((item) => item.id === 'B2') as { options: string[] };
+    expect(b1.options).toEqual(expected);
+    expect(b2.options).toEqual(expected);
   });
 });
