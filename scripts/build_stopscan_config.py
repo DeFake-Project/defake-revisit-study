@@ -322,7 +322,6 @@ components["consent"] = {
 
 PROFESSIONAL_AREAS = [
     "Digital media forensics",
-    "Other forensic fields",
     "Computer science",
     "Misinformation or disinformation research",
     "Media literacy education",
@@ -345,6 +344,7 @@ components["about-you"] = {
             "type": "radio",
             "required": False,
             "options": PROFESSIONAL_AREAS,
+            "withOther": True,
         },
         {
             "id": "B2",

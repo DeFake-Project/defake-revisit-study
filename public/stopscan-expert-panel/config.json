@@ -104,12 +104,12 @@
           "required": false,
           "options": [
             "Digital media forensics",
-            "Other forensic fields",
             "Computer science",
             "Misinformation or disinformation research",
             "Media literacy education",
             "Fact-checking or verification journalism"
-          ]
+          ],
+          "withOther": true
         },
         {
           "id": "B2",
@@ -119,7 +119,6 @@
           "required": false,
           "options": [
             "Digital media forensics",
-            "Other forensic fields",
             "Computer science",
             "Misinformation or disinformation research",
             "Media literacy education",
