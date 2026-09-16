@@ -185,12 +185,12 @@
         "caseId": "case2",
         "stepKey": "source"
       },
-      "instruction": "**Case 1 — STOP and Source.** Read what Dana did at this step, then tell us what you think in the sidebar.",
+      "instruction": "**Case 1 — STOP and Source.** This is a worked example we wrote. Judge the STOP&SCAN step, not Dana. In the sidebar, say whether this step helped in this case, and whether we applied it as the framework describes.",
       "response": [
         {
           "id": "stop_value",
-          "prompt": "Was it worth pausing to name Dana’s first reaction before anything was checked?",
-          "secondaryText": "This is about STOP on this page, not about the source check.",
+          "prompt": "In this example, Dana names a first reaction before checking anything (the STOP step). Did that step add anything useful here, or could the example have skipped it?",
+          "secondaryText": "You are judging the STOP step in our worked example, not whether Dana behaved well, and not the source check on this page.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -204,7 +204,7 @@
         {
           "id": "useful",
           "prompt": "How useful was this step in this case?",
-          "secondaryText": "Judge the whole step. If only part of it was useful, pick the closest answer and say which part in the comment below.",
+          "secondaryText": "Judge whether this STOP&SCAN step helped in this case, not whether Dana behaved well. If only part of it helped, pick the closest answer and say which part in the comment below.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -218,7 +218,7 @@
         {
           "id": "fidelity",
           "prompt": "Was this step carried out as STOP&SCAN describes it?",
-          "secondaryText": "This asks about our worked example, not about the framework itself.",
+          "secondaryText": "Judge whether we applied this step as STOP&SCAN describes it. This is not a score of Dana, and not a score of the framework as a whole.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -258,12 +258,12 @@
         "caseId": "case2",
         "stepKey": "content"
       },
-      "instruction": "**Case 1 — Content.** Read what Dana did at this step, then tell us what you think in the sidebar.",
+      "instruction": "**Case 1 — Content.** This is a worked example we wrote. Judge the STOP&SCAN step, not Dana. In the sidebar, say whether this step helped in this case, and whether we applied it as the framework describes.",
       "response": [
         {
           "id": "useful",
           "prompt": "How useful was this step in this case?",
-          "secondaryText": "Judge the whole step. If only part of it was useful, pick the closest answer and say which part in the comment below.",
+          "secondaryText": "Judge whether this STOP&SCAN step helped in this case, not whether Dana behaved well. If only part of it helped, pick the closest answer and say which part in the comment below.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -277,7 +277,7 @@
         {
           "id": "fidelity",
           "prompt": "Was this step carried out as STOP&SCAN describes it?",
-          "secondaryText": "This asks about our worked example, not about the framework itself.",
+          "secondaryText": "Judge whether we applied this step as STOP&SCAN describes it. This is not a score of Dana, and not a score of the framework as a whole.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -336,12 +336,12 @@
         "caseId": "case2",
         "stepKey": "alignment"
       },
-      "instruction": "**Case 1 — Alignment.** Read what Dana did at this step, then tell us what you think in the sidebar.",
+      "instruction": "**Case 1 — Alignment.** This is a worked example we wrote. Judge the STOP&SCAN step, not Dana. In the sidebar, say whether this step helped in this case, and whether we applied it as the framework describes.",
       "response": [
         {
           "id": "useful",
           "prompt": "How useful was this step in this case?",
-          "secondaryText": "Judge the whole step. If only part of it was useful, pick the closest answer and say which part in the comment below.",
+          "secondaryText": "Judge whether this STOP&SCAN step helped in this case, not whether Dana behaved well. If only part of it helped, pick the closest answer and say which part in the comment below.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -355,7 +355,7 @@
         {
           "id": "fidelity",
           "prompt": "Was this step carried out as STOP&SCAN describes it?",
-          "secondaryText": "This asks about our worked example, not about the framework itself.",
+          "secondaryText": "Judge whether we applied this step as STOP&SCAN describes it. This is not a score of Dana, and not a score of the framework as a whole.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -414,12 +414,12 @@
         "caseId": "case2",
         "stepKey": "reflect"
       },
-      "instruction": "**Case 1 — Now Reflect.** Read what Dana did at this step, then tell us what you think in the sidebar.",
+      "instruction": "**Case 1 — Now Reflect.** This is a worked example we wrote. Judge the STOP&SCAN step, not Dana. In the sidebar, say whether this step helped in this case, and whether we applied it as the framework describes.",
       "response": [
         {
           "id": "useful",
           "prompt": "How useful was this step in this case?",
-          "secondaryText": "Judge the whole step. If only part of it was useful, pick the closest answer and say which part in the comment below.",
+          "secondaryText": "Judge whether this STOP&SCAN step helped in this case, not whether Dana behaved well. If only part of it helped, pick the closest answer and say which part in the comment below.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -433,7 +433,7 @@
         {
           "id": "fidelity",
           "prompt": "Was this step carried out as STOP&SCAN describes it?",
-          "secondaryText": "This asks about our worked example, not about the framework itself.",
+          "secondaryText": "Judge whether we applied this step as STOP&SCAN describes it. This is not a score of Dana, and not a score of the framework as a whole.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -558,12 +558,12 @@
         "caseId": "case3",
         "stepKey": "source"
       },
-      "instruction": "**Case 2 — STOP and Source.** Read what Marcus did at this step, then tell us what you think in the sidebar.",
+      "instruction": "**Case 2 — STOP and Source.** This is a worked example we wrote. Judge the STOP&SCAN step, not Marcus. In the sidebar, say whether this step helped in this case, and whether we applied it as the framework describes.",
       "response": [
         {
           "id": "stop_value",
-          "prompt": "Was it worth pausing to name Marcus’s first reaction before anything was checked?",
-          "secondaryText": "This is about STOP on this page, not about the source check.",
+          "prompt": "In this example, Marcus names a first reaction before checking anything (the STOP step). Did that step add anything useful here, or could the example have skipped it?",
+          "secondaryText": "You are judging the STOP step in our worked example, not whether Marcus behaved well, and not the source check on this page.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -577,7 +577,7 @@
         {
           "id": "useful",
           "prompt": "How useful was this step in this case?",
-          "secondaryText": "Judge the whole step. If only part of it was useful, pick the closest answer and say which part in the comment below.",
+          "secondaryText": "Judge whether this STOP&SCAN step helped in this case, not whether Marcus behaved well. If only part of it helped, pick the closest answer and say which part in the comment below.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -591,7 +591,7 @@
         {
           "id": "fidelity",
           "prompt": "Was this step carried out as STOP&SCAN describes it?",
-          "secondaryText": "This asks about our worked example, not about the framework itself.",
+          "secondaryText": "Judge whether we applied this step as STOP&SCAN describes it. This is not a score of Marcus, and not a score of the framework as a whole.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -631,12 +631,12 @@
         "caseId": "case3",
         "stepKey": "content"
       },
-      "instruction": "**Case 2 — Content.** Read what Marcus did at this step, then tell us what you think in the sidebar.",
+      "instruction": "**Case 2 — Content.** This is a worked example we wrote. Judge the STOP&SCAN step, not Marcus. In the sidebar, say whether this step helped in this case, and whether we applied it as the framework describes.",
       "response": [
         {
           "id": "useful",
           "prompt": "How useful was this step in this case?",
-          "secondaryText": "Judge the whole step. If only part of it was useful, pick the closest answer and say which part in the comment below.",
+          "secondaryText": "Judge whether this STOP&SCAN step helped in this case, not whether Marcus behaved well. If only part of it helped, pick the closest answer and say which part in the comment below.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -650,7 +650,7 @@
         {
           "id": "fidelity",
           "prompt": "Was this step carried out as STOP&SCAN describes it?",
-          "secondaryText": "This asks about our worked example, not about the framework itself.",
+          "secondaryText": "Judge whether we applied this step as STOP&SCAN describes it. This is not a score of Marcus, and not a score of the framework as a whole.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -709,12 +709,12 @@
         "caseId": "case3",
         "stepKey": "alignment"
       },
-      "instruction": "**Case 2 — Alignment.** Read what Marcus did at this step, then tell us what you think in the sidebar.",
+      "instruction": "**Case 2 — Alignment.** This is a worked example we wrote. Judge the STOP&SCAN step, not Marcus. In the sidebar, say whether this step helped in this case, and whether we applied it as the framework describes.",
       "response": [
         {
           "id": "useful",
           "prompt": "How useful was this step in this case?",
-          "secondaryText": "Judge the whole step. If only part of it was useful, pick the closest answer and say which part in the comment below.",
+          "secondaryText": "Judge whether this STOP&SCAN step helped in this case, not whether Marcus behaved well. If only part of it helped, pick the closest answer and say which part in the comment below.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -728,7 +728,7 @@
         {
           "id": "fidelity",
           "prompt": "Was this step carried out as STOP&SCAN describes it?",
-          "secondaryText": "This asks about our worked example, not about the framework itself.",
+          "secondaryText": "Judge whether we applied this step as STOP&SCAN describes it. This is not a score of Marcus, and not a score of the framework as a whole.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -787,12 +787,12 @@
         "caseId": "case3",
         "stepKey": "reflect"
       },
-      "instruction": "**Case 2 — Now Reflect.** Read what Marcus did at this step, then tell us what you think in the sidebar.",
+      "instruction": "**Case 2 — Now Reflect.** This is a worked example we wrote. Judge the STOP&SCAN step, not Marcus. In the sidebar, say whether this step helped in this case, and whether we applied it as the framework describes.",
       "response": [
         {
           "id": "useful",
           "prompt": "How useful was this step in this case?",
-          "secondaryText": "Judge the whole step. If only part of it was useful, pick the closest answer and say which part in the comment below.",
+          "secondaryText": "Judge whether this STOP&SCAN step helped in this case, not whether Marcus behaved well. If only part of it helped, pick the closest answer and say which part in the comment below.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -806,7 +806,7 @@
         {
           "id": "fidelity",
           "prompt": "Was this step carried out as STOP&SCAN describes it?",
-          "secondaryText": "This asks about our worked example, not about the framework itself.",
+          "secondaryText": "Judge whether we applied this step as STOP&SCAN describes it. This is not a score of Marcus, and not a score of the framework as a whole.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -931,12 +931,12 @@
         "caseId": "case4",
         "stepKey": "source"
       },
-      "instruction": "**Case 3 — STOP and Source.** Read what Ellen did at this step, then tell us what you think in the sidebar.",
+      "instruction": "**Case 3 — STOP and Source.** This is a worked example we wrote. Judge the STOP&SCAN step, not Ellen. In the sidebar, say whether this step helped in this case, and whether we applied it as the framework describes.",
       "response": [
         {
           "id": "stop_value",
-          "prompt": "Was it worth pausing to name Ellen’s first reaction before anything was checked?",
-          "secondaryText": "This is about STOP on this page, not about the source check.",
+          "prompt": "In this example, Ellen names a first reaction before checking anything (the STOP step). Did that step add anything useful here, or could the example have skipped it?",
+          "secondaryText": "You are judging the STOP step in our worked example, not whether Ellen behaved well, and not the source check on this page.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -950,7 +950,7 @@
         {
           "id": "useful",
           "prompt": "How useful was this step in this case?",
-          "secondaryText": "Judge the whole step. If only part of it was useful, pick the closest answer and say which part in the comment below.",
+          "secondaryText": "Judge whether this STOP&SCAN step helped in this case, not whether Ellen behaved well. If only part of it helped, pick the closest answer and say which part in the comment below.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -964,7 +964,7 @@
         {
           "id": "fidelity",
           "prompt": "Was this step carried out as STOP&SCAN describes it?",
-          "secondaryText": "This asks about our worked example, not about the framework itself.",
+          "secondaryText": "Judge whether we applied this step as STOP&SCAN describes it. This is not a score of Ellen, and not a score of the framework as a whole.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -1004,12 +1004,12 @@
         "caseId": "case4",
         "stepKey": "content"
       },
-      "instruction": "**Case 3 — Content.** Read what Ellen did at this step, then tell us what you think in the sidebar.",
+      "instruction": "**Case 3 — Content.** This is a worked example we wrote. Judge the STOP&SCAN step, not Ellen. In the sidebar, say whether this step helped in this case, and whether we applied it as the framework describes.",
       "response": [
         {
           "id": "useful",
           "prompt": "How useful was this step in this case?",
-          "secondaryText": "Judge the whole step. If only part of it was useful, pick the closest answer and say which part in the comment below.",
+          "secondaryText": "Judge whether this STOP&SCAN step helped in this case, not whether Ellen behaved well. If only part of it helped, pick the closest answer and say which part in the comment below.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -1023,7 +1023,7 @@
         {
           "id": "fidelity",
           "prompt": "Was this step carried out as STOP&SCAN describes it?",
-          "secondaryText": "This asks about our worked example, not about the framework itself.",
+          "secondaryText": "Judge whether we applied this step as STOP&SCAN describes it. This is not a score of Ellen, and not a score of the framework as a whole.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -1082,12 +1082,12 @@
         "caseId": "case4",
         "stepKey": "alignment"
       },
-      "instruction": "**Case 3 — Alignment.** Read what Ellen did at this step, then tell us what you think in the sidebar.",
+      "instruction": "**Case 3 — Alignment.** This is a worked example we wrote. Judge the STOP&SCAN step, not Ellen. In the sidebar, say whether this step helped in this case, and whether we applied it as the framework describes.",
       "response": [
         {
           "id": "useful",
           "prompt": "How useful was this step in this case?",
-          "secondaryText": "Judge the whole step. If only part of it was useful, pick the closest answer and say which part in the comment below.",
+          "secondaryText": "Judge whether this STOP&SCAN step helped in this case, not whether Ellen behaved well. If only part of it helped, pick the closest answer and say which part in the comment below.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -1101,7 +1101,7 @@
         {
           "id": "fidelity",
           "prompt": "Was this step carried out as STOP&SCAN describes it?",
-          "secondaryText": "This asks about our worked example, not about the framework itself.",
+          "secondaryText": "Judge whether we applied this step as STOP&SCAN describes it. This is not a score of Ellen, and not a score of the framework as a whole.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -1160,12 +1160,12 @@
         "caseId": "case4",
         "stepKey": "reflect"
       },
-      "instruction": "**Case 3 — Now Reflect.** Read what Ellen did at this step, then tell us what you think in the sidebar.",
+      "instruction": "**Case 3 — Now Reflect.** This is a worked example we wrote. Judge the STOP&SCAN step, not Ellen. In the sidebar, say whether this step helped in this case, and whether we applied it as the framework describes.",
       "response": [
         {
           "id": "useful",
           "prompt": "How useful was this step in this case?",
-          "secondaryText": "Judge the whole step. If only part of it was useful, pick the closest answer and say which part in the comment below.",
+          "secondaryText": "Judge whether this STOP&SCAN step helped in this case, not whether Ellen behaved well. If only part of it helped, pick the closest answer and say which part in the comment below.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -1179,7 +1179,7 @@
         {
           "id": "fidelity",
           "prompt": "Was this step carried out as STOP&SCAN describes it?",
-          "secondaryText": "This asks about our worked example, not about the framework itself.",
+          "secondaryText": "Judge whether we applied this step as STOP&SCAN describes it. This is not a score of Ellen, and not a score of the framework as a whole.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -1304,12 +1304,12 @@
         "caseId": "case1",
         "stepKey": "source"
       },
-      "instruction": "**Case 4 — STOP and Source.** Read what Rekha did at this step, then tell us what you think in the sidebar.",
+      "instruction": "**Case 4 — STOP and Source.** This is a worked example we wrote. Judge the STOP&SCAN step, not Rekha. In the sidebar, say whether this step helped in this case, and whether we applied it as the framework describes.",
       "response": [
         {
           "id": "stop_value",
-          "prompt": "Was it worth pausing to name Rekha’s first reaction before anything was checked?",
-          "secondaryText": "This is about STOP on this page, not about the source check.",
+          "prompt": "In this example, Rekha names a first reaction before checking anything (the STOP step). Did that step add anything useful here, or could the example have skipped it?",
+          "secondaryText": "You are judging the STOP step in our worked example, not whether Rekha behaved well, and not the source check on this page.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -1323,7 +1323,7 @@
         {
           "id": "useful",
           "prompt": "How useful was this step in this case?",
-          "secondaryText": "Judge the whole step. If only part of it was useful, pick the closest answer and say which part in the comment below.",
+          "secondaryText": "Judge whether this STOP&SCAN step helped in this case, not whether Rekha behaved well. If only part of it helped, pick the closest answer and say which part in the comment below.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -1337,7 +1337,7 @@
         {
           "id": "fidelity",
           "prompt": "Was this step carried out as STOP&SCAN describes it?",
-          "secondaryText": "This asks about our worked example, not about the framework itself.",
+          "secondaryText": "Judge whether we applied this step as STOP&SCAN describes it. This is not a score of Rekha, and not a score of the framework as a whole.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -1377,12 +1377,12 @@
         "caseId": "case1",
         "stepKey": "content"
       },
-      "instruction": "**Case 4 — Content.** Read what Rekha did at this step, then tell us what you think in the sidebar.",
+      "instruction": "**Case 4 — Content.** This is a worked example we wrote. Judge the STOP&SCAN step, not Rekha. In the sidebar, say whether this step helped in this case, and whether we applied it as the framework describes.",
       "response": [
         {
           "id": "useful",
           "prompt": "How useful was this step in this case?",
-          "secondaryText": "Judge the whole step. If only part of it was useful, pick the closest answer and say which part in the comment below.",
+          "secondaryText": "Judge whether this STOP&SCAN step helped in this case, not whether Rekha behaved well. If only part of it helped, pick the closest answer and say which part in the comment below.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -1396,7 +1396,7 @@
         {
           "id": "fidelity",
           "prompt": "Was this step carried out as STOP&SCAN describes it?",
-          "secondaryText": "This asks about our worked example, not about the framework itself.",
+          "secondaryText": "Judge whether we applied this step as STOP&SCAN describes it. This is not a score of Rekha, and not a score of the framework as a whole.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -1455,12 +1455,12 @@
         "caseId": "case1",
         "stepKey": "alignment"
       },
-      "instruction": "**Case 4 — Alignment.** Read what Rekha did at this step, then tell us what you think in the sidebar.",
+      "instruction": "**Case 4 — Alignment.** This is a worked example we wrote. Judge the STOP&SCAN step, not Rekha. In the sidebar, say whether this step helped in this case, and whether we applied it as the framework describes.",
       "response": [
         {
           "id": "useful",
           "prompt": "How useful was this step in this case?",
-          "secondaryText": "Judge the whole step. If only part of it was useful, pick the closest answer and say which part in the comment below.",
+          "secondaryText": "Judge whether this STOP&SCAN step helped in this case, not whether Rekha behaved well. If only part of it helped, pick the closest answer and say which part in the comment below.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -1474,7 +1474,7 @@
         {
           "id": "fidelity",
           "prompt": "Was this step carried out as STOP&SCAN describes it?",
-          "secondaryText": "This asks about our worked example, not about the framework itself.",
+          "secondaryText": "Judge whether we applied this step as STOP&SCAN describes it. This is not a score of Rekha, and not a score of the framework as a whole.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -1533,12 +1533,12 @@
         "caseId": "case1",
         "stepKey": "reflect"
       },
-      "instruction": "**Case 4 — Now Reflect.** Read what Rekha did at this step, then tell us what you think in the sidebar.",
+      "instruction": "**Case 4 — Now Reflect.** This is a worked example we wrote. Judge the STOP&SCAN step, not Rekha. In the sidebar, say whether this step helped in this case, and whether we applied it as the framework describes.",
       "response": [
         {
           "id": "useful",
           "prompt": "How useful was this step in this case?",
-          "secondaryText": "Judge the whole step. If only part of it was useful, pick the closest answer and say which part in the comment below.",
+          "secondaryText": "Judge whether this STOP&SCAN step helped in this case, not whether Rekha behaved well. If only part of it helped, pick the closest answer and say which part in the comment below.",
           "location": "sidebar",
           "type": "radio",
           "required": false,
@@ -1552,7 +1552,7 @@
         {
           "id": "fidelity",
           "prompt": "Was this step carried out as STOP&SCAN describes it?",
-          "secondaryText": "This asks about our worked example, not about the framework itself.",
+          "secondaryText": "Judge whether we applied this step as STOP&SCAN describes it. This is not a score of Rekha, and not a score of the framework as a whole.",
           "location": "sidebar",
           "type": "radio",
           "required": false,

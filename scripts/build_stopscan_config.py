@@ -61,10 +61,14 @@ def step_component(cid, name, label_short, step_key, step_label, _step_idx):
         resp.append({
             "id": "stop_value",
             "prompt": (
-                f"Was it worth pausing to name {name}’s first reaction "
-                "before anything was checked?"
+                f"In this example, {name} names a first reaction before checking "
+                "anything (the STOP step). Did that step add anything useful here, "
+                "or could the example have skipped it?"
             ),
-            "secondaryText": "This is about STOP on this page, not about the source check.",
+            "secondaryText": (
+                "You are judging the STOP step in our worked example, not whether "
+                f"{name} behaved well, and not the source check on this page."
+            ),
             "location": "sidebar",
             "type": "radio",
             "required": False,
@@ -80,7 +84,8 @@ def step_component(cid, name, label_short, step_key, step_label, _step_idx):
         "id": "useful",
         "prompt": "How useful was this step in this case?",
         "secondaryText": (
-            "Judge the whole step. If only part of it was useful, pick the closest "
+            f"Judge whether this STOP&SCAN step helped in this case, not whether "
+            f"{name} behaved well. If only part of it helped, pick the closest "
             "answer and say which part in the comment below."
         ),
         "location": "sidebar",
@@ -92,7 +97,10 @@ def step_component(cid, name, label_short, step_key, step_label, _step_idx):
     resp.append({
         "id": "fidelity",
         "prompt": "Was this step carried out as STOP&SCAN describes it?",
-        "secondaryText": "This asks about our worked example, not about the framework itself.",
+        "secondaryText": (
+            "Judge whether we applied this step as STOP&SCAN describes it. "
+            f"This is not a score of {name}, and not a score of the framework as a whole."
+        ),
         "location": "sidebar",
         "type": "radio",
         "required": False,
@@ -134,8 +142,9 @@ def step_component(cid, name, label_short, step_key, step_label, _step_idx):
         "parameters": {"caseId": cid, "stepKey": step_key, "mode": "step"},
         "meta": {"caseId": cid, "stepKey": step_key},
         "instruction": (
-            f"**{label_short} — {step_label}.** Read what {name} did at this step, "
-            "then tell us what you think in the sidebar."
+            f"**{label_short} — {step_label}.** This is a worked example we wrote. "
+            f"Judge the STOP&SCAN step, not {name}. In the sidebar, say whether this "
+            "step helped in this case, and whether we applied it as the framework describes."
         ),
         "response": resp,
     }

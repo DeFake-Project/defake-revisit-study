@@ -39,6 +39,8 @@ describe('STOP&SCAN participant copy', () => {
     ]);
     expect(STOPSCAN_OVERVIEW.actionRule).toContain('does not mean ignore it');
     expect(STOPSCAN_OVERVIEW.encounterTypes[0].body).toContain('Waiting costs little');
+    expect(STOPSCAN_OVERVIEW.taskNote).toContain('You do not need to already use this method');
+    expect(STOPSCAN_OVERVIEW.taskNote).toContain('not the fictional person');
   });
 
   it('gives each observer a compact persona with two traits', () => {
@@ -126,7 +128,7 @@ describe('STOP&SCAN participant copy', () => {
 describe('STOP&SCAN generated config', () => {
   const config = JSON.parse(readPublic('config.json')) as {
     studyMetadata: { authors: string[]; organizations: string[] };
-    components: Record<string, { response?: Array<Record<string, unknown>> }>;
+    components: Record<string, { instruction?: string; response?: Array<Record<string, unknown>> }>;
   };
 
   it('lists the research team in study metadata', () => {
@@ -177,12 +179,28 @@ describe('STOP&SCAN generated config', () => {
     );
   });
 
-  it('asks about pausing to name a first reaction, not recording it', () => {
+  it('asks whether the STOP step added anything, not whether pausing was worth it', () => {
     const source = config.components['case2-source'].response?.find((item) => item.id === 'stop_value') as {
       prompt: string;
+      secondaryText?: string;
     };
-    expect(source.prompt).toContain('pausing to name Dana');
+    expect(source.prompt).toContain('Dana names a first reaction');
+    expect(source.prompt).toContain('the STOP step');
+    expect(source.prompt).toContain('could the example have skipped it');
+    expect(source.prompt).not.toMatch(/worth pausing/i);
     expect(source.prompt).not.toMatch(/recording/i);
+    expect(source.secondaryText).toContain('not whether Dana behaved well');
+  });
+
+  it('tells people to judge the worked example, not the fictional person', () => {
+    const source = config.components['case2-source'];
+    expect(source.instruction).toContain('worked example we wrote');
+    expect(source.instruction).toContain('not Dana');
+    expect(source.instruction).toContain('whether this step helped in this case');
+    const useful = source.response?.find((item) => item.id === 'useful') as { secondaryText?: string };
+    const fidelity = source.response?.find((item) => item.id === 'fidelity') as { secondaryText?: string };
+    expect(useful.secondaryText).toContain('not whether Dana behaved well');
+    expect(fidelity.secondaryText).toContain('not a score of Dana');
   });
 
   it('splits the enough follow-up from the general comment', () => {

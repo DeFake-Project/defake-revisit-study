@@ -96,7 +96,8 @@ export default function Orientation({ setAnswer }: StimulusParams<Record<string,
           <Title order={4} mb="sm">How this study works</Title>
           <Text size="sm" mb="sm">{STOPSCAN_OVERVIEW.progressive}</Text>
           <Text size="sm" mb="sm">{STOPSCAN_OVERVIEW.freezeNote}</Text>
-          <Text size="sm">{STOPSCAN_OVERVIEW.roleplayNote}</Text>
+          <Text size="sm" mb="sm">{STOPSCAN_OVERVIEW.roleplayNote}</Text>
+          <Text size="sm">{STOPSCAN_OVERVIEW.taskNote}</Text>
         </Box>
 
         <div>
