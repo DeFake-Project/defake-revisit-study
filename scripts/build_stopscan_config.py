@@ -110,7 +110,10 @@ def step_component(cid, name, label_short, step_key, step_label, _step_idx):
     if step_key in ("content", "alignment"):
         resp.append({
             "id": "enough",
-            "prompt": f"Is everything up to this point enough for {name} to stop and decide?",
+            "prompt": (
+                "Given what has been shown so far, is this enough for someone "
+                f"in {name}’s situation to stop and decide?"
+            ),
             "location": "sidebar",
             "type": "radio",
             "required": False,
@@ -119,8 +122,8 @@ def step_component(cid, name, label_short, step_key, step_label, _step_idx):
         resp.append({
             "id": "enough_conclude",
             "prompt": (
-                f"If you said {name} already had enough to decide, "
-                "what would they have concluded?"
+                "If you said there was already enough to decide, "
+                f"what should someone in {name}’s situation have concluded?"
             ),
             "location": "sidebar",
             "type": "longText",
@@ -129,7 +132,10 @@ def step_component(cid, name, label_short, step_key, step_label, _step_idx):
 
     resp.append({
         "id": "note",
-        "prompt": "Anything you disagree with, or that was done badly?",
+        "prompt": (
+            "Anything in how we applied this step that you disagree with, "
+            "or that was done badly?"
+        ),
         "location": "sidebar",
         "type": "longText",
         "required": False,
@@ -150,7 +156,7 @@ def step_component(cid, name, label_short, step_key, step_label, _step_idx):
     }
 
 
-def after_component(cid, name, label_short, enc):
+def after_component(cid, _name, label_short, enc):
     return f"{cid}-after", {
         "baseComponent": "case-after",
         "previousButton": False,
@@ -177,7 +183,7 @@ def after_component(cid, name, label_short, enc):
             },
             {
                 "id": "direction",
-                "prompt": f"At the point {name} stopped, what did the evidence support?",
+                "prompt": "At the end of this worked example, what did the evidence support?",
                 "location": "sidebar",
                 "type": "radio",
                 "required": False,
@@ -190,8 +196,8 @@ def after_component(cid, name, label_short, enc):
             {
                 "id": "encounter",
                 "prompt": (
-                    f"{name} treated this as {ENCOUNTER_LABEL[enc]}. "
-                    "Would a reasonable person have read the situation the same way?"
+                    f"This example treats the situation as {ENCOUNTER_LABEL[enc]}. "
+                    "Would a reasonable person have read it the same way?"
                 ),
                 "secondaryText": "STOP&SCAN uses this reading to decide what action follows from the evidence.",
                 "location": "sidebar",
@@ -207,8 +213,8 @@ def after_component(cid, name, label_short, enc):
             {
                 "id": "narrow",
                 "prompt": (
-                    f"If {name} had checked only the source, or only run a detection "
-                    "or provenance tool, what would they have concluded?"
+                    "If this case had used only a source check, or only a detection "
+                    "or provenance tool, what would the conclusion have been?"
                 ),
                 "location": "sidebar",
                 "type": "longText",
@@ -217,8 +223,9 @@ def after_component(cid, name, label_short, enc):
             {
                 "id": "other_checks",
                 "prompt": (
-                    f"Given what {name} concluded — including, where that applies, a "
-                    "decision not to conclude — would any other check have helped?"
+                    "Given the conclusion this example reached — including a "
+                    "decision not to conclude, if that applies — would any other "
+                    "check have helped?"
                 ),
                 "location": "sidebar",
                 "type": "longText",

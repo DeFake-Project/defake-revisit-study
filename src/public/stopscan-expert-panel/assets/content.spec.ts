@@ -210,8 +210,38 @@ describe('STOP&SCAN generated config', () => {
     expect(ids).toContain('enough_conclude');
     expect(ids).toContain('note');
     const note = content.find((item) => item.id === 'note') as { prompt: string; secondaryText?: string };
-    expect(note.prompt).toBe('Anything you disagree with, or that was done badly?');
+    expect(note.prompt).toBe(
+      'Anything in how we applied this step that you disagree with, or that was done badly?',
+    );
     expect(note.secondaryText).toBeUndefined();
+    const enough = content.find((item) => item.id === 'enough') as { prompt: string };
+    const enoughConclude = content.find((item) => item.id === 'enough_conclude') as { prompt: string };
+    expect(enough.prompt).toBe(
+      'Given what has been shown so far, is this enough for someone in Dana’s situation to stop and decide?',
+    );
+    expect(enoughConclude.prompt).toBe(
+      'If you said there was already enough to decide, what should someone in Dana’s situation have concluded?',
+    );
+  });
+
+  it('asks after-case questions about the worked example, not the fictional person', () => {
+    const after = config.components['case2-after'].response ?? [];
+    const rekha = config.components['case1-after'].response ?? [];
+    expect(after.find((item) => item.id === 'direction')?.prompt).toBe(
+      'At the end of this worked example, what did the evidence support?',
+    );
+    expect(after.find((item) => item.id === 'encounter')?.prompt).toBe(
+      'This example treats the situation as information — nothing was being asked of them. Would a reasonable person have read it the same way?',
+    );
+    expect(rekha.find((item) => item.id === 'encounter')?.prompt).toBe(
+      'This example treats the situation as a request — something was being asked of them. Would a reasonable person have read it the same way?',
+    );
+    expect(after.find((item) => item.id === 'narrow')?.prompt).toBe(
+      'If this case had used only a source check, or only a detection or provenance tool, what would the conclusion have been?',
+    );
+    expect(after.find((item) => item.id === 'other_checks')?.prompt).toBe(
+      'Given the conclusion this example reached — including a decision not to conclude, if that applies — would any other check have helped?',
+    );
   });
 
   it('does not collect an email opt-in on the debrief', () => {
