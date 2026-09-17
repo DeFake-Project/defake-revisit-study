@@ -43,9 +43,10 @@ vi.mock('../../../storage/engines/SupabaseStorageEngine', () => ({
 vi.mock('@mantine/form', () => ({
   useForm: () => ({
     values: { email: '' },
+    errors: {},
     getInputProps: () => ({}),
     onSubmit: (fn: () => void) => fn,
-    setValues: vi.fn(),
+    reset: vi.fn(),
   }),
   isEmail: () => () => null,
 }));
@@ -80,11 +81,20 @@ vi.mock('@mantine/core', () => ({
   TextInput: ({ label }: { label?: ReactNode }) => <input aria-label={label?.toString() ?? ''} />,
   Title: ({ children }: { children: ReactNode }) => <h3>{children}</h3>,
   Tooltip: ({ children }: { children: ReactNode }) => <div>{children}</div>,
+  Stack: ({ children }: { children: ReactNode }) => <div>{children}</div>,
+  Badge: ({ children }: { children: ReactNode }) => <span>{children}</span>,
+  Select: ({ label, value }: { label?: ReactNode; value?: string }) => (
+    <input aria-label={label?.toString() ?? 'Role'} value={value ?? ''} readOnly />
+  ),
+  MultiSelect: ({ label }: { label?: ReactNode }) => (
+    <input aria-label={label?.toString() ?? 'Studies'} readOnly />
+  ),
 }));
 
 vi.mock('@tabler/icons-react', () => ({
   IconAt: () => null,
-  IconTrashX: () => null,
+  IconPencil: () => <span data-testid="icon-pencil" />,
+  IconTrashX: () => <span data-testid="icon-trash" />,
   IconUserPlus: ({ onClick }: { onClick?: () => void }) => <button type="button" data-testid="icon-user-plus" onClick={onClick} />,
 }));
 
@@ -96,6 +106,10 @@ describe('GlobalSettings', () => {
     mockGetUserManagementData = vi.fn().mockResolvedValue(null);
     mockStorageEngine = {
       getUserManagementData: mockGetUserManagementData,
+      getAppUsers: vi.fn(async () => {
+        const data = await mockGetUserManagementData('adminUsers');
+        return data?.adminUsersList ?? [];
+      }),
       getEngine: vi.fn().mockReturnValue('supabase'),
     };
   });
@@ -106,13 +120,13 @@ describe('GlobalSettings', () => {
   });
 
   test('shows "disabled" state initially (no effects in static render)', () => {
-    const html = renderToStaticMarkup(<GlobalSettings />);
+    const html = renderToStaticMarkup(<GlobalSettings studyIds={['demo-html']} />);
     expect(html).toContain('Authentication is currently disabled');
     expect(html).toContain('Enable Authentication');
   });
 
   test('does not show loading overlay initially', () => {
-    const html = renderToStaticMarkup(<GlobalSettings />);
+    const html = renderToStaticMarkup(<GlobalSettings studyIds={['demo-html']} />);
     expect(html).not.toContain('data-testid="loading-overlay"');
   });
 
@@ -124,7 +138,7 @@ describe('GlobalSettings', () => {
     });
 
     await act(async () => {
-      render(<GlobalSettings />);
+      render(<GlobalSettings studyIds={['demo-html']} />);
     });
 
     expect(screen.getByText('Authentication is enabled.')).toBeDefined();
@@ -138,7 +152,7 @@ describe('GlobalSettings', () => {
     });
 
     await act(async () => {
-      render(<GlobalSettings />);
+      render(<GlobalSettings studyIds={['demo-html']} />);
     });
 
     expect(screen.getByText('Authentication is currently disabled.')).toBeDefined();
@@ -148,7 +162,7 @@ describe('GlobalSettings', () => {
     mockIsCloud = false;
 
     await act(async () => {
-      render(<GlobalSettings />);
+      render(<GlobalSettings studyIds={['demo-html']} />);
     });
 
     expect(screen.getByText('Authentication is currently disabled.')).toBeDefined();
@@ -158,6 +172,10 @@ describe('GlobalSettings', () => {
   test('opens enable-auth confirm modal via supabase session on button click', async () => {
     mockStorageEngine = {
       getUserManagementData: mockGetUserManagementData,
+      getAppUsers: vi.fn(async () => {
+        const data = await mockGetUserManagementData('adminUsers');
+        return data?.adminUsersList ?? [];
+      }),
       getEngine: vi.fn().mockReturnValue('supabase'),
       getSession: vi.fn().mockResolvedValue({
         data: { session: { user: { email: 'test@test.com', id: '123' } } },
@@ -169,7 +187,7 @@ describe('GlobalSettings', () => {
     });
 
     await act(async () => {
-      render(<GlobalSettings />);
+      render(<GlobalSettings studyIds={['demo-html']} />);
     });
 
     await act(async () => {
@@ -183,21 +201,24 @@ describe('GlobalSettings', () => {
     mockGetUserManagementData.mockImplementation(async (key: string) => {
       if (key === 'authentication') return { isEnabled: true };
       if (key === 'adminUsers') {
-        return { adminUsersList: [{ email: 'other@test.com', uid: '2' }] };
+        return {
+          adminUsersList: [
+            { email: 'test@test.com', uid: '1', role: 'admin' },
+            { email: 'other@test.com', uid: '2', role: 'admin' },
+          ],
+        };
       }
       return null;
     });
 
     await act(async () => {
-      render(<GlobalSettings />);
+      render(<GlobalSettings studyIds={['demo-html']} />);
     });
 
     expect(screen.getByText('other@test.com')).toBeDefined();
 
     await act(async () => {
-      const buttons = screen.getAllByRole('button');
-      const trashButton = buttons.find((b) => !b.textContent && b.getAttribute('type') === 'button' && !b.getAttribute('data-testid'));
-      if (trashButton) fireEvent.click(trashButton);
+      fireEvent.click(screen.getByTestId('icon-trash').closest('button') as HTMLButtonElement);
     });
 
     // Remove modal should be open (has "Are you sure" text)
@@ -205,30 +226,37 @@ describe('GlobalSettings', () => {
     expect(dialogs.length).toBeGreaterThan(0);
   });
 
-  test('confirmRemoveUser calls removeAdminUser and refreshes list', async () => {
-    const mockRemoveAdminUser = vi.fn().mockResolvedValue(undefined);
+  test('confirmRemoveUser calls removeAppUser and refreshes list', async () => {
+    const mockRemoveAppUser = vi.fn().mockResolvedValue(undefined);
     mockStorageEngine = {
       getUserManagementData: mockGetUserManagementData,
+      getAppUsers: vi.fn(async () => {
+        const data = await mockGetUserManagementData('adminUsers');
+        return data?.adminUsersList ?? [];
+      }),
       getEngine: vi.fn().mockReturnValue('supabase'),
-      removeAdminUser: mockRemoveAdminUser,
+      removeAppUser: mockRemoveAppUser,
     };
     mockGetUserManagementData.mockImplementation(async (key: string) => {
       if (key === 'authentication') return { isEnabled: true };
       if (key === 'adminUsers') {
-        return { adminUsersList: [{ email: 'other@test.com', uid: '2' }] };
+        return {
+          adminUsersList: [
+            { email: 'test@test.com', uid: '1', role: 'admin' },
+            { email: 'other@test.com', uid: '2', role: 'admin' },
+          ],
+        };
       }
       return null;
     });
 
     await act(async () => {
-      render(<GlobalSettings />);
+      render(<GlobalSettings studyIds={['demo-html']} />);
     });
 
     // Open remove modal
     await act(async () => {
-      const buttons = screen.getAllByRole('button');
-      const trashButton = buttons.find((b) => !b.textContent && b.getAttribute('type') === 'button' && !b.getAttribute('data-testid'));
-      if (trashButton) fireEvent.click(trashButton);
+      fireEvent.click(screen.getByTestId('icon-trash').closest('button') as HTMLButtonElement);
     });
 
     // Click "Yes, I'm sure."
@@ -236,15 +264,19 @@ describe('GlobalSettings', () => {
       fireEvent.click(screen.getByText(/yes.*sure/i));
     });
 
-    expect(mockRemoveAdminUser).toHaveBeenCalledWith('other@test.com');
+    expect(mockRemoveAppUser).toHaveBeenCalledWith('other@test.com');
   });
 
-  test('handleAddUser calls addAdminUser and refreshes list', async () => {
-    const mockAddAdminUser = vi.fn().mockResolvedValue(undefined);
+  test('handleAddUser calls addAppUser and refreshes list', async () => {
+    const mockAddAppUser = vi.fn().mockResolvedValue(undefined);
     mockStorageEngine = {
       getUserManagementData: mockGetUserManagementData,
+      getAppUsers: vi.fn(async () => {
+        const data = await mockGetUserManagementData('adminUsers');
+        return data?.adminUsersList ?? [];
+      }),
       getEngine: vi.fn().mockReturnValue('supabase'),
-      addAdminUser: mockAddAdminUser,
+      addAppUser: mockAddAppUser,
     };
     mockGetUserManagementData.mockImplementation(async (key: string) => {
       if (key === 'authentication') return { isEnabled: true };
@@ -253,7 +285,7 @@ describe('GlobalSettings', () => {
     });
 
     await act(async () => {
-      render(<GlobalSettings />);
+      render(<GlobalSettings studyIds={['demo-html']} />);
     });
 
     // Open the add-user modal
@@ -266,7 +298,7 @@ describe('GlobalSettings', () => {
       fireEvent.click(screen.getByText('Save'));
     });
 
-    expect(mockAddAdminUser).toHaveBeenCalled();
+    expect(mockAddAppUser).toHaveBeenCalled();
   });
 
   test('Log out button is present when auth is enabled', async () => {
@@ -279,7 +311,7 @@ describe('GlobalSettings', () => {
     });
 
     await act(async () => {
-      render(<GlobalSettings />);
+      render(<GlobalSettings studyIds={['demo-html']} />);
     });
 
     expect(screen.getByRole('button', { name: 'Log out' })).toBeDefined();

@@ -9,7 +9,7 @@ import { ParticipantRejectModal } from '../individualStudy/ParticipantRejectModa
 import { ParticipantData } from '../../storage/types';
 import { makeParticipant as _makeParticipant } from '../../tests/utils';
 
-let mockUser: { isAdmin: boolean };
+let mockUser: { isAdmin: boolean; role: 'admin' | 'analyst' | null; studyIds: string[] };
 let mockStorageEngine: {
   getParticipantData: ReturnType<typeof vi.fn>;
   rejectParticipant: ReturnType<typeof vi.fn>;
@@ -75,7 +75,7 @@ function makeParticipant(overrides: Partial<ParticipantData> = {}): ParticipantD
 
 describe('ParticipantRejectModal', () => {
   beforeEach(() => {
-    mockUser = { isAdmin: true };
+    mockUser = { isAdmin: true, role: 'admin', studyIds: [] };
     mockSearchParams = new URLSearchParams();
     mockStorageEngine = {
       getParticipantData: vi.fn().mockResolvedValue(null),
@@ -118,7 +118,7 @@ describe('ParticipantRejectModal', () => {
   });
 
   test('Reject button is disabled when user is not admin', async () => {
-    mockUser = { isAdmin: false };
+    mockUser = { isAdmin: false, role: 'analyst', studyIds: [] };
     const participants = [makeParticipant({ participantId: 'p1' })];
     await act(async () => {
       render(<ParticipantRejectModal selectedParticipants={participants} />);

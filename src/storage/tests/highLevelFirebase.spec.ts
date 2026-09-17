@@ -44,7 +44,7 @@ vi.mock('@firebase/auth', () => ({
     authState.currentUser = { email: null, uid: 'anon-uid' };
     return Promise.resolve();
   }),
-  signInWithPopup: vi.fn(() => Promise.resolve()),
+  signInWithPopup: vi.fn(() => Promise.resolve({ user: authState.currentUser })),
   signOut: vi.fn(() => Promise.resolve()),
   GoogleAuthProvider: vi.fn(),
   browserPopupRedirectResolver: {},
@@ -1198,7 +1198,8 @@ describe.each([
 
   test('removeAdminUser does not remove user when they are the only admin', async () => {
     await (storageEngine as FirebaseStorageEngine).addAdminUser({ email: 'a@a.com', uid: 'u0' });
-    await (storageEngine as FirebaseStorageEngine).removeAdminUser('a@a.com');
+    await expect((storageEngine as FirebaseStorageEngine).removeAdminUser('a@a.com'))
+      .rejects.toThrow('Cannot remove the last admin');
     const result = await (storageEngine as FirebaseStorageEngine).getUserManagementData('adminUsers') as { adminUsersList: StoredUser[] };
     expect(result.adminUsersList).toHaveLength(1);
   });

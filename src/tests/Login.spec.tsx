@@ -9,7 +9,14 @@ import { showNotification } from '../utils/notifications';
 
 // ── mutable state ─────────────────────────────────────────────────────────────
 
-let mockUser = { isAdmin: false, determiningStatus: false, adminVerification: false };
+let mockUser: {
+  isAdmin: boolean;
+  determiningStatus: boolean;
+  adminVerification: boolean;
+  role: 'admin' | 'studyManager' | 'analyst' | null;
+} = {
+  isAdmin: false, determiningStatus: false, adminVerification: false, role: null,
+};
 let mockEngine = 'localStorage';
 let mockIsCloud = false;
 
@@ -70,13 +77,17 @@ vi.mock('@tabler/icons-react', () => ({
 
 describe('Login', () => {
   beforeEach(() => {
-    mockUser = { isAdmin: false, determiningStatus: false, adminVerification: false };
+    mockUser = {
+      isAdmin: false, determiningStatus: false, adminVerification: false, role: null,
+    };
     mockEngine = 'localStorage';
     mockIsCloud = false;
   });
 
   test('redirects to "/" when user is already admin', () => {
-    mockUser = { isAdmin: true, determiningStatus: false, adminVerification: false };
+    mockUser = {
+      isAdmin: true, determiningStatus: false, adminVerification: false, role: 'admin',
+    };
     const html = renderToStaticMarkup(<Login />);
     expect(html).toContain('data-testid="navigate-"');
   });

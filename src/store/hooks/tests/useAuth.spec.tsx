@@ -236,8 +236,9 @@ describe('AuthProvider — non-null storage engine paths', () => {
     expect(logoutSpy).toHaveBeenCalled();
   });
 
-  test('verifyAdminStatus with cloud engine calls validateUser', async () => {
-    const validateSpy = vi.fn().mockResolvedValue(true);
+  test('verifyUserAccess with cloud engine calls validateUser', async () => {
+    const access = { role: 'admin' as const, studyIds: [] };
+    const validateSpy = vi.fn().mockResolvedValue(access);
     mockStorageEngineVal = {
       getEngine: vi.fn(() => 'firebase'),
       validateUser: validateSpy,
@@ -251,24 +252,26 @@ describe('AuthProvider — non-null storage engine paths', () => {
       ),
     });
 
-    await waitFor(() => expect(result.current?.verifyAdminStatus).toBeDefined(), { timeout: 2000 });
+    await waitFor(() => expect(result.current?.verifyUserAccess).toBeDefined(), { timeout: 2000 });
 
     await act(async () => {
-      const isAdmin = await result.current.verifyAdminStatus({
+      const authorized = await result.current.verifyUserAccess({
         user: { email: 'a@b.com', uid: '123' },
         isAdmin: false,
         determiningStatus: false,
         adminVerification: false,
+        role: null,
+        studyIds: [],
       });
-      expect(isAdmin).toBe(true);
+      expect(authorized).toEqual(access);
     });
 
     expect(validateSpy).toHaveBeenCalled();
   });
 
-  test('verifyAdminStatus without cloud engine returns false (covers else at line 106)', async () => {
-    // Non-null, non-cloud engine: AuthProvider sets nonAuthUser (else-if branch) so
-    // children render, but verifyAdminStatus still returns false (isCloudStorageEngine=false).
+  test('verifyUserAccess without cloud engine returns null when the user has no role', async () => {
+    // Non-null, non-cloud engine: AuthProvider sets nonAuthUser so children render,
+    // but a signed-in record without a role is not treated as authorized.
     mockStorageEngineVal = { getEngine: vi.fn(() => 'localStorage') };
     mockIsCloudStorage = false;
 
@@ -278,15 +281,17 @@ describe('AuthProvider — non-null storage engine paths', () => {
       ),
     });
 
-    await waitFor(() => expect(result.current?.verifyAdminStatus).toBeDefined(), { timeout: 2000 });
+    await waitFor(() => expect(result.current?.verifyUserAccess).toBeDefined(), { timeout: 2000 });
 
-    const isAdmin = await act(async () => result.current.verifyAdminStatus({
+    const authorized = await act(async () => result.current.verifyUserAccess({
       user: null,
       isAdmin: false,
       determiningStatus: false,
       adminVerification: false,
+      role: null,
+      studyIds: [],
     }));
 
-    expect(isAdmin).toBe(false);
+    expect(authorized).toBeNull();
   });
 });

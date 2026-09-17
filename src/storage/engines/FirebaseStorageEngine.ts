@@ -893,8 +893,8 @@ export class FirebaseStorageEngine extends CloudStorageEngine {
     const result = await signInWithPopup(auth, provider, browserPopupRedirectResolver);
 
     return {
-      email: result.user.email || null,
-      uid: result.user.uid || null,
+      email: result?.user?.email || null,
+      uid: result?.user?.uid || null,
     };
   }
 

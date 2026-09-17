@@ -56,9 +56,13 @@ vi.mock('@mantine/core', () => ({
   LoadingOverlay: () => <div>LoadingOverlay</div>,
 }));
 
-vi.mock('@tabler/icons-react', () => ({
-  IconPlugConnectedX: () => <span>icon-plug-x</span>,
-}));
+vi.mock('@tabler/icons-react', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@tabler/icons-react')>();
+  return {
+    ...actual,
+    IconPlugConnectedX: () => <span>icon-plug-x</span>,
+  };
+});
 
 vi.mock('../../ResourceNotFound', () => ({
   ResourceNotFound: ({ path, email }: { path?: string; email?: string }) => (

@@ -862,10 +862,13 @@ describe.each([
     // @ts-expect-error accessing CloudStorageEngine method
     await storageEngine.addAdminUser({ email: 'test@test.com', uid: 'uid-1' });
     // @ts-expect-error accessing CloudStorageEngine method
+    await storageEngine.addAdminUser({ email: 'other@test.com', uid: 'uid-2' });
+    // @ts-expect-error accessing CloudStorageEngine method
     await storageEngine.removeAdminUser('test@test.com');
     // @ts-expect-error accessing CloudStorageEngine method
     const adminData = await storageEngine.getUserManagementData('adminUsers');
-    expect(adminData?.adminUsersList.length).toBe(0);
+    expect(adminData?.adminUsersList.length).toBe(1);
+    expect(adminData?.adminUsersList[0].email).toBe('other@test.com');
   });
 
   test('removeAdminUser handles missing adminUsers gracefully (no-op)', async () => {
@@ -1111,7 +1114,7 @@ describe.each([
     // @ts-expect-error accessing CloudStorageEngine method
     const result = await storageEngine.getUserManagementData('adminUsers');
     expect(result).toBeDefined();
-    expect((result as { adminUsersList: StoredUser[] }).adminUsersList).toHaveLength(1);
+    expect((result as { adminUsersList: StoredUser[] }).adminUsersList.map((user) => user.email)).toContain('test@test.com');
   });
 
   test('getUserManagementData uses cached data on second call', async () => {

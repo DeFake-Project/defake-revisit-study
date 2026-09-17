@@ -32,6 +32,10 @@ vi.mock('@mantine/core', () => {
     Title: ({ children }: { children?: ReactNode }) => <h1>{children}</h1>,
     Select: ({ value }: { value?: string }) => <select><option>{value}</option></select>,
     Button: ({ children }: { children?: ReactNode }) => <button type="button">{children}</button>,
+    Text: ({ children }: { children?: ReactNode }) => <span>{children}</span>,
+    ActionIcon: ({ children, onClick }: { children?: ReactNode; onClick?: () => void }) => (
+      <button type="button" onClick={onClick} aria-label="Settings">{children}</button>
+    ),
   };
 });
 
@@ -47,18 +51,18 @@ beforeEach(() => {
 describe('AppHeader', () => {
   test('shows analytics platform title when in analysis route', () => {
     const html = renderToStaticMarkup(<AppHeader studyIds={['my-study']} />);
-    expect(html).toContain('ReVISit Analytics Platform');
+    expect(html).toContain('DeFake Project Analytics Platform');
   });
 
   test('shows studies title when not in analysis route', () => {
     mockPathname = '/';
     const html = renderToStaticMarkup(<AppHeader studyIds={['my-study']} />);
-    expect(html).toContain('ReVISit Studies');
+    expect(html).toContain('DeFake Project Studies');
   });
 
   test('renders the logo image', () => {
     const html = renderToStaticMarkup(<AppHeader studyIds={['my-study']} />);
-    expect(html).toContain('Revisit Logo');
+    expect(html).toContain('DeFake Project Logo');
   });
 
   test('renders Go to Study button in analysis route', () => {
