@@ -233,6 +233,9 @@ export const STOPSCAN_OVERVIEW = {
 
   roleplayNote:
     'These cases are real and publicly documented. The named person in each case is fictional. We added them so you can see an ordinary person using the method, not so you can judge that person. Real public figures and organisations are named as they were reported.',
+
+  taskNote:
+    'You do not need to already use this method. We want your judgment of the worked examples, including if a step is unclear, unnecessary, or wrong. On each case page, judge the STOP&SCAN step as we applied it — not the fictional person.',
 };
 
 /* ------------------------------------------------------------------ */

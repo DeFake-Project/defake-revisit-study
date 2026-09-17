@@ -39,6 +39,8 @@ describe('STOP&SCAN participant copy', () => {
     ]);
     expect(STOPSCAN_OVERVIEW.actionRule).toContain('does not mean ignore it');
     expect(STOPSCAN_OVERVIEW.encounterTypes[0].body).toContain('Waiting costs little');
+    expect(STOPSCAN_OVERVIEW.taskNote).toContain('You do not need to already use this method');
+    expect(STOPSCAN_OVERVIEW.taskNote).toContain('not the fictional person');
   });
 
   it('gives each observer a compact persona with two traits', () => {
@@ -116,13 +118,17 @@ describe('STOP&SCAN participant copy', () => {
     expect(debrief).toContain('email the Principal Investigators');
     expect(debrief).not.toContain('request that in the sidebar');
     expect(consent).toContain('45 to 60 minutes');
+    expect(consent).toContain('computer science');
+    expect(consent).not.toContain('other forensic fields');
+    expect(consent).toContain('describe participants only by a broad professional field');
+    expect(consent).not.toContain('one of four broad fields');
   });
 });
 
 describe('STOP&SCAN generated config', () => {
   const config = JSON.parse(readPublic('config.json')) as {
     studyMetadata: { authors: string[]; organizations: string[] };
-    components: Record<string, { response?: Array<Record<string, unknown>> }>;
+    components: Record<string, { instruction?: string; response?: Array<Record<string, unknown>> }>;
   };
 
   it('lists the research team in study metadata', () => {
@@ -173,12 +179,35 @@ describe('STOP&SCAN generated config', () => {
     );
   });
 
-  it('asks about pausing to name a first reaction, not recording it', () => {
-    const source = config.components['case2-source'].response?.find((item) => item.id === 'stop_value') as {
-      prompt: string;
+  it('asks STOP about pausing before a case-specific act, on every scenario', () => {
+    const expected: Record<string, string> = {
+      'case2-source': 'resharing this or treating it as a real forecast',
+      'case3-source': 'repeating or sharing the claim that the crowd was fake',
+      'case4-source': 'treating this photograph as settling the rumours',
+      'case1-source': 'sending the money',
     };
-    expect(source.prompt).toContain('pausing to name Dana');
-    expect(source.prompt).not.toMatch(/recording/i);
+    Object.entries(expected).forEach(([id, act]) => {
+      const stop = config.components[id].response?.find((item) => item.id === 'stop_value') as {
+        prompt: string;
+        secondaryText?: string;
+        options?: string[];
+      };
+      expect(stop.prompt).toBe(`Before ${act}, was there a good reason to pause?`);
+      expect(stop.prompt).not.toMatch(/going further/i);
+      expect(stop.prompt).not.toMatch(/worth pausing/i);
+      expect(stop.prompt).not.toMatch(/first reaction/i);
+      expect(stop.secondaryText).toContain('not the source check');
+      expect(stop.options).toContain('Yes — there was a good reason to pause here');
+    });
+  });
+
+  it('tells people to judge the step, not the fictional person', () => {
+    const source = config.components['case2-source'];
+    expect(source.instruction).toContain('Judge this STOP&SCAN step, not Dana');
+    const useful = source.response?.find((item) => item.id === 'useful') as { secondaryText?: string };
+    const fidelity = source.response?.find((item) => item.id === 'fidelity') as { secondaryText?: string };
+    expect(useful.secondaryText).toContain('not Dana');
+    expect(fidelity.secondaryText).toContain('not a score of Dana');
   });
 
   it('splits the enough follow-up from the general comment', () => {
@@ -188,8 +217,56 @@ describe('STOP&SCAN generated config', () => {
     expect(ids).toContain('enough_conclude');
     expect(ids).toContain('note');
     const note = content.find((item) => item.id === 'note') as { prompt: string; secondaryText?: string };
-    expect(note.prompt).toBe('Anything you disagree with, or that was done badly?');
-    expect(note.secondaryText).toBeUndefined();
+    expect(note.prompt).toBe('Anything wrong in how we applied this step?');
+    expect(note.secondaryText).toContain('Mistakes in this step');
+    const enough = content.find((item) => item.id === 'enough') as { prompt: string; secondaryText?: string };
+    const enoughConclude = content.find((item) => item.id === 'enough_conclude') as {
+      prompt: string;
+      secondaryText?: string;
+    };
+    expect(enough.prompt).toBe(
+      'Given what has been shown so far, is there already enough to stop and decide?',
+    );
+    expect(enough.secondaryText).toContain('not whether Dana personally should have');
+    expect(enoughConclude.prompt).toBe('If yes, what should the conclusion have been?');
+    expect(enoughConclude.secondaryText).toContain('Only if you answered yes above');
+  });
+
+  it('asks after-case questions about the evidence, without repeating encounter type', () => {
+    const after = config.components['case2-after'].response ?? [];
+    const rekha = config.components['case1-after'].response ?? [];
+    expect(after.find((item) => item.id === 'direction')?.prompt).toBe(
+      'What did the evidence support at the end of this case?',
+    );
+    expect(after.find((item) => item.id === 'encounter')).toBeUndefined();
+    expect(rekha.find((item) => item.id === 'encounter')).toBeUndefined();
+    expect(after.find((item) => item.id === 'narrow')?.prompt).toBe(
+      'If this case had used only a source check, or only a detection or provenance tool, what would the conclusion have been?',
+    );
+    expect(after.find((item) => item.id === 'other_checks')?.prompt).toBe(
+      'Would any other check have changed the conclusion?',
+    );
+    expect(after.find((item) => item.id === 'direction')?.secondaryText).toContain(
+      'evidence state shown in the recap',
+    );
+    expect(after.find((item) => item.id === 'narrow')?.secondaryText).toContain(
+      'narrower check',
+    );
+    expect(after.find((item) => item.id === 'other_checks')?.secondaryText).toContain(
+      'check the example missed',
+    );
+  });
+
+  it('gives a why-we-are-asking line on visible questions that did not already have one', () => {
+    const skip = new Set(['consent', 'about-you', 'orientation', 'debrief']);
+    Object.entries(config.components).forEach(([id, component]) => {
+      if (skip.has(id)) return;
+      (component.response ?? []).forEach((item) => {
+        if (item.type === 'reactive' || item.hidden === true) return;
+        expect(item.secondaryText, `${id}.${String(item.id)}`).toEqual(expect.any(String));
+        expect(String(item.secondaryText).length, `${id}.${String(item.id)}`).toBeGreaterThan(10);
+      });
+    });
   });
 
   it('does not collect an email opt-in on the debrief', () => {
@@ -207,5 +284,29 @@ describe('STOP&SCAN generated config', () => {
   it('does not use filler optional language on case pages', () => {
     const json = readPublic('config.json');
     expect(json).not.toContain('Everything on this page is optional');
+  });
+
+  it('adds computer science and an Other write-in on the main-area question', () => {
+    const about = config.components['about-you'].response ?? [];
+    const expected = [
+      'Digital media forensics',
+      'Computer science',
+      'Misinformation or disinformation research',
+      'Media literacy education',
+      'Fact-checking or verification journalism',
+    ];
+    const b1 = about.find((item) => item.id === 'B1') as {
+      options: string[];
+      withOther?: boolean;
+    };
+    const b2 = about.find((item) => item.id === 'B2') as {
+      options: string[];
+      withOther?: boolean;
+    };
+    expect(b1.options).toEqual(expected);
+    expect(b1.withOther).toBe(true);
+    expect(b2.options).toEqual(expected);
+    expect(b2.withOther).toBeUndefined();
+    expect(JSON.stringify(about)).not.toContain('Other forensic fields');
   });
 });
