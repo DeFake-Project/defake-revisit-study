@@ -14,9 +14,7 @@ export function shouldShowTestStudiesOnLanding(): boolean {
  * Studies marked `test: true` in global.json are admin-only in production,
  * unless showTestStudies is enabled (e.g. Playwright) or the user is assigned
  * to that study.
- * On cloud storage, unassigned non-admins need dataSharingEnabled or
- * developmentModeEnabled. Development mode is treated as public so preview
- * branches remain reviewable without making analytics public.
+ * On cloud storage, unassigned non-admins also need dataSharingEnabled.
  */
 export function isStudyVisibleOnLanding({
   configName,
@@ -24,7 +22,6 @@ export function isStudyVisibleOnLanding({
   isAdmin,
   assignedStudyIds = [],
   dataSharingEnabled,
-  developmentModeEnabled,
   isCloudStorage,
   showTestStudies = false,
 }: {
@@ -33,7 +30,6 @@ export function isStudyVisibleOnLanding({
   isAdmin: boolean;
   assignedStudyIds?: string[];
   dataSharingEnabled?: boolean;
-  developmentModeEnabled?: boolean;
   isCloudStorage: boolean;
   showTestStudies?: boolean;
 }): boolean {
@@ -47,7 +43,7 @@ export function isStudyVisibleOnLanding({
   }
 
   if (isCloudStorage) {
-    return !!dataSharingEnabled || !!developmentModeEnabled;
+    return !!dataSharingEnabled;
   }
 
   return true;
