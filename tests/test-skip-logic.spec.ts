@@ -189,7 +189,7 @@ async function getTags(page: Page) {
   });
 }
 
-test('test', async ({ page, browserName }) => {
+test('evaluates response, block, nested, and attention-check skip conditions', async ({ page, browserName }) => {
   test.skip(
     Boolean(process.env.CI) && browserName === 'webkit',
     'Skipping the full skip-logic walkthrough on WebKit CI due to headless flakiness.',
