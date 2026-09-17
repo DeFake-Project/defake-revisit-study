@@ -70,7 +70,7 @@ export function RevisitModesItem({ studyId }: { studyId: string }) {
           />
         </Flex>
         <Text mb="sm">
-          Debug and development mode enables the study navigator, letting visitors jump between tasks. It also disables device checks, such as minimum screen size, and lets you navigate to the analytics interface.
+          Debug and development mode enables the study navigator, letting visitors jump between tasks. It also disables device checks, such as minimum screen size, and lets you navigate to the analytics interface. While it is on, the study is listed on the public home page, so preview branches can be reviewed without turning on data sharing.
         </Text>
 
         <Flex gap="xs">

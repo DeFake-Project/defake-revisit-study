@@ -85,12 +85,37 @@ describe('isStudyVisibleOnLanding', () => {
     })).toBe(true);
   });
 
-  it('hides non-test studies from non-admins when data sharing is disabled on cloud', () => {
+  it('hides non-test studies from non-admins when data sharing and development mode are disabled on cloud', () => {
     expect(isStudyVisibleOnLanding({
       configName: 'varuna-sme-eval-ontology',
       globalConfig,
       isAdmin: false,
       dataSharingEnabled: false,
+      developmentModeEnabled: false,
+      isCloudStorage: true,
+    })).toBe(false);
+  });
+
+  it('shows non-test studies to non-admins when development mode is enabled on cloud', () => {
+    expect(isStudyVisibleOnLanding({
+      configName: 'varuna-sme-eval-ontology',
+      globalConfig,
+      isAdmin: false,
+      assignedStudyIds: [],
+      dataSharingEnabled: false,
+      developmentModeEnabled: true,
+      isCloudStorage: true,
+    })).toBe(true);
+  });
+
+  it('does not list test studies publicly just because development mode is on', () => {
+    expect(isStudyVisibleOnLanding({
+      configName: 'demo-html',
+      globalConfig,
+      isAdmin: false,
+      assignedStudyIds: [],
+      dataSharingEnabled: false,
+      developmentModeEnabled: true,
       isCloudStorage: true,
     })).toBe(false);
   });
