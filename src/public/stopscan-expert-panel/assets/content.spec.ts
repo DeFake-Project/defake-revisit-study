@@ -119,6 +119,9 @@ describe('STOP&SCAN participant copy', () => {
     expect(debrief).not.toContain('request that in the sidebar');
     expect(consent).toContain('45 to 60 minutes');
     expect(consent).toContain('computer science');
+    expect(consent).toContain('human factors');
+    expect(consent).toContain('user experience');
+    expect(consent).toContain('social sciences');
     expect(consent).not.toContain('other forensic fields');
     expect(consent).toContain('describe participants only by a broad professional field');
     expect(consent).not.toContain('one of four broad fields');
@@ -286,11 +289,12 @@ describe('STOP&SCAN generated config', () => {
     expect(json).not.toContain('Everything on this page is optional');
   });
 
-  it('adds computer science and an Other write-in on the main-area question', () => {
+  it('adds computer science, a human-centered cluster, and an Other write-in on the main-area question', () => {
     const about = config.components['about-you'].response ?? [];
     const expected = [
       'Digital media forensics',
       'Computer science',
+      'Human factors, user experience, or social sciences',
       'Misinformation or disinformation research',
       'Media literacy education',
       'Fact-checking or verification journalism',

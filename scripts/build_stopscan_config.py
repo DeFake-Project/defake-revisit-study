@@ -302,6 +302,7 @@ components["consent"] = {
 PROFESSIONAL_AREAS = [
     "Digital media forensics",
     "Computer science",
+    "Human factors, user experience, or social sciences",
     "Misinformation or disinformation research",
     "Media literacy education",
     "Fact-checking or verification journalism",
