@@ -1,5 +1,5 @@
 import { existsSync, readFileSync } from 'fs';
-import { fileURLToPath } from 'url';
+import { join } from 'path';
 import { describe, expect, it } from 'vitest';
 import {
   CASES_IN_ORDER,
@@ -10,10 +10,10 @@ import {
 } from './content';
 
 const iframePages = ['consent.html', 'debrief.html'] as const;
-const publicDir = new URL('../../../../public/stopscan-expert-panel/', import.meta.url);
+const publicDir = join(process.cwd(), 'public/stopscan-expert-panel');
 
 function readPublic(name: string) {
-  return readFileSync(new URL(name, publicDir), 'utf8');
+  return readFileSync(join(publicDir, name), 'utf8');
 }
 
 describe('STOP&SCAN participant copy', () => {
@@ -57,7 +57,7 @@ describe('STOP&SCAN participant copy', () => {
       { name: 'Rekha', tech: 1, social: 1, avatar: 'persona-rekha.png' },
     ]);
     personas.forEach(({ avatar, tech, social }) => {
-      const path = fileURLToPath(new URL(`../../../../public/stopscan-expert-panel/assets/personas/${avatar}`, import.meta.url));
+      const path = join(publicDir, 'assets/personas', avatar);
       expect(existsSync(path)).toBe(true);
       expect(TECH_SAVVINESS_LABEL[tech]).toBeTruthy();
       expect(SOCIAL_MEDIA_LABEL[social]).toBeTruthy();

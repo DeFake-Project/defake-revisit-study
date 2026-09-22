@@ -15,7 +15,9 @@ import {
 } from 'react';
 import { useResizeObserver } from '@mantine/hooks';
 import { AppHeader } from '../interface/AppHeader';
-import { GlobalConfig, ParticipantDataWithStatus, StudyConfig } from '../../parser/types';
+import {
+  GlobalConfig, ParticipantDataWithStatus, ParsedConfig, StudyConfig,
+} from '../../parser/types';
 import { getStudyConfig, resolveConfigKey } from '../../utils/fetchConfig';
 import { LiveMonitorView } from './LiveMonitor/LiveMonitorView';
 import { SummaryView } from './summary/SummaryView';
@@ -36,6 +38,7 @@ import { FirebaseStorageEngine } from '../../storage/engines/FirebaseStorageEngi
 import { ConfigView } from './config/ConfigView';
 import { canManageStudy, isStudyVisibleInAnalysis } from '../../utils/userPermissions';
 import { isCloudStorageEngine } from '../../storage/engines/utils/storageEngineHelpers';
+import { StartupErrorScreen } from '../../components/StartupErrorScreen';
 
 const TABLE_HEADER_HEIGHT = 37; // Height of the tabs header
 
@@ -82,7 +85,8 @@ async function getCurrentConfigHashForStudy(
 
 export function StudyAnalysisTabs({ globalConfig }: { globalConfig: GlobalConfig; }) {
   const { studyId: routeStudyId } = useParams();
-  const [studyConfig, setStudyConfig] = useState<StudyConfig | undefined>(undefined);
+  const [studyConfig, setStudyConfig] = useState<ParsedConfig<StudyConfig> | undefined>(undefined);
+  const [startupError, setStartupError] = useState<{ error: unknown } | null>(null);
 
   const [includedParticipants, setIncludedParticipants] = useState<string[]>(['completed', 'inProgress', 'rejected']);
 
@@ -204,16 +208,6 @@ export function StudyAnalysisTabs({ globalConfig }: { globalConfig: GlobalConfig
       rejected: selectedParticipants.filter((d) => d.rejected).length,
     };
   }, [selectedParticipants]);
-
-  const showStoredCountMismatch = useMemo(() => {
-    const hasStageFilter = !(selectedStages.length === 1 && selectedStages[0] === 'ALL');
-    const hasConfigFilter = !(selectedConfigs.length === 1 && selectedConfigs[0] === 'ALL');
-    const hasConditionFilter = availableConditions.length > 0 && !(selectedConditions.length === 1 && selectedConditions[0] === 'ALL');
-
-    return !hasStageFilter
-      && !hasConfigFilter
-      && !hasConditionFilter;
-  }, [selectedStages, selectedConfigs, selectedConditions, availableConditions.length]);
 
   const currentConfigHash = currentConfigHashValue ?? undefined;
   const isFirebaseEngine = storageEngine?.getEngine() === 'firebase';
@@ -379,29 +373,58 @@ export function StudyAnalysisTabs({ globalConfig }: { globalConfig: GlobalConfig
   }, [allConditions]);
 
   useEffect(() => {
+    let cancelled = false;
+    setStartupError(null);
+    setStudyConfig(undefined);
+
     if (!routeStudyId) return () => { };
     if (routeStudyId === '__revisit-widget') {
-      const messageListener = async (event: MessageEvent) => {
+      const messageListener = (event: MessageEvent) => {
         if (event.data.type === 'revisitWidget/CONFIG' && storageEngine) {
-          const cf = await parseStudyConfig(event.data.payload);
-          setStudyConfig(cf);
+          parseStudyConfig(event.data.payload)
+            .then((cf) => {
+              if (!cancelled) {
+                setStudyConfig(cf);
+              }
+            })
+            .catch((error) => {
+              console.error('Failed to load widget study config for analysis:', error);
+              if (!cancelled) {
+                setStartupError({ error });
+              }
+            });
         }
       };
 
       window.addEventListener('message', messageListener);
       window.parent.postMessage({ type: 'revisitWidget/READY' }, '*');
       return () => {
+        cancelled = true;
         window.removeEventListener('message', messageListener);
       };
     }
-    getStudyConfig(routeStudyId, globalConfig).then((cf) => {
-      if (cf) {
-        setStudyConfig(cf);
-      }
-    });
 
-    return () => { };
+    getStudyConfig(routeStudyId, globalConfig)
+      .then((cf) => {
+        if (!cancelled && cf) {
+          setStudyConfig(cf);
+        }
+      })
+      .catch((error) => {
+        console.error('Failed to load study config for analysis:', error);
+        if (!cancelled) {
+          setStartupError({ error });
+        }
+      });
+
+    return () => {
+      cancelled = true;
+    };
   }, [routeStudyId, globalConfig, storageEngine]);
+
+  if (startupError) {
+    return <StartupErrorScreen error={startupError.error} />;
+  }
 
   if (!routeStudyId) {
     return (
@@ -418,7 +441,7 @@ export function StudyAnalysisTabs({ globalConfig }: { globalConfig: GlobalConfig
 
   return (
     <>
-      <AppHeader studyIds={accessibleStudyIds} selectedStudyId={displayStudyId} studyHref={routeStudyId ? `/${routeStudyId}` : undefined} />
+      <AppHeader studyIds={accessibleStudyIds} selectedStudyId={displayStudyId} studyHref={routeStudyId ? `/${routeStudyId}` : undefined} studyConfigs={studyConfig && displayStudyId ? { [displayStudyId]: studyConfig } : undefined} />
       <AppShell.Main style={{ height: '100dvh' }}>
         <Stack ref={ref} style={{ height: '100%', maxHeight: '100dvh', overflow: 'hidden' }} justify="space-between">
           <Flex direction="row" align="center" justify="space-between" p="sm" gap="md">
@@ -631,9 +654,6 @@ export function StudyAnalysisTabs({ globalConfig }: { globalConfig: GlobalConfig
                     studyConfig={studyConfig}
                     visibleParticipants={visibleParticipants}
                     allConfigs={allConfigs}
-                    studyId={canonicalStudyId ?? undefined}
-                    showStoredCountMismatch={showStoredCountMismatch}
-                    includedParticipants={includedParticipants}
                     currentConfigLabel={currentConfigLabel}
                   />
                 )}
@@ -642,7 +662,7 @@ export function StudyAnalysisTabs({ globalConfig }: { globalConfig: GlobalConfig
                 {studyConfig && <TableView width={width} stageColors={stageColors} visibleParticipants={visibleParticipants} studyConfig={studyConfig} allConfigs={allConfigs} refresh={() => execute(studyConfig, storageEngine, canonicalStudyId ?? undefined)} selectedParticipants={selectedParticipants} onSelectionChange={setSelectedParticipants} />}
               </Tabs.Panel>
               <Tabs.Panel style={{ overflow: 'auto' }} value="stats" pt="xs">
-                {studyConfig && <StatsView studyConfig={studyConfig} visibleParticipants={visibleParticipants} allConfigs={allConfigs} studyId={canonicalStudyId ?? undefined} />}
+                {studyConfig && <StatsView studyConfig={studyConfig} visibleParticipants={visibleParticipants} allConfigs={allConfigs} />}
               </Tabs.Panel>
               <Tabs.Panel value="tagging" pt="xs">
                 {studyConfig && codingEnabled

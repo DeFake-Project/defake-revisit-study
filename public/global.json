@@ -1,5 +1,5 @@
 {
-  "$schema": "https://raw.githubusercontent.com/revisit-studies/study/v2.4.3/src/parser/GlobalConfigSchema.json",
+  "$schema": "https://raw.githubusercontent.com/revisit-studies/study/v2.4.4/src/parser/GlobalConfigSchema.json",
   "configsList": [
     "ontology-technique-eval",
     "varuna-sme-eval-ontology",
@@ -12,6 +12,7 @@
     "demo-form-elements",
     "demo-training",
     "demo-html-trrack",
+    "demo-svelte-trrack",
     "demo-react-trrack",
     "demo-screen-recording",
     "demo-image",
@@ -45,6 +46,8 @@
     "library-screen-recording",
     "library-smeq",
     "library-sus",
+    "library-ueq",
+    "library-ueq-s",
     "library-umux",
     "library-umux-lite",
     "library-virtual-chinrest",
@@ -67,88 +70,70 @@
       "path": "tutorial/replication-config.json"
     },
     "demo-html": {
-      "path": "demo-html/config.json",
-      "test": true
+      "path": "demo-html/config.json"
     },
     "demo-screen-recording": {
-      "path": "demo-screen-recording/config.json",
-      "test": true
+      "path": "demo-screen-recording/config.json"
     },
     "demo-html-input": {
-      "path": "demo-html-input/config.json",
-      "test": true
+      "path": "demo-html-input/config.json"
     },
     "demo-form-elements": {
-      "path": "demo-form-elements/config.json",
-      "test": true
+      "path": "demo-form-elements/config.json"
     },
     "demo-training": {
-      "path": "demo-training/config.json",
-      "test": true
+      "path": "demo-training/config.json"
     },
     "demo-upset": {
-      "path": "demo-upset/config.json",
-      "test": true
+      "path": "demo-upset/config.json"
     },
     "demo-video": {
-      "path": "demo-video/config.json",
-      "test": true
+      "path": "demo-video/config.json"
     },
     "demo-dynamic": {
-      "path": "demo-dynamic/config.json",
-      "test": true
+      "path": "demo-dynamic/config.json"
     },
     "demo-condition": {
-      "path": "demo-condition/config.json",
-      "test": true
+      "path": "demo-condition/config.json"
     },
     "demo-html-trrack": {
-      "path": "demo-html-trrack/config.json",
-      "test": true
+      "path": "demo-html-trrack/config.json"
+    },
+    "demo-svelte-trrack": {
+      "path": "demo-svelte-trrack/config.json"
     },
     "demo-react-trrack": {
-      "path": "demo-react-trrack/config.json",
-      "test": true
+      "path": "demo-react-trrack/config.json"
     },
     "demo-image": {
-      "path": "demo-image/config.json",
-      "test": true
+      "path": "demo-image/config.json"
     },
     "demo-style": {
-      "path": "demo-style/config.json",
-      "test": true
+      "path": "demo-style/config.json"
     },
     "demo-vega": {
-      "path": "demo-vega/config.json",
-      "test": true
+      "path": "demo-vega/config.json"
     },
     "demo-yaml": {
-      "path": "demo-yaml/config.yaml",
-      "test": true
+      "path": "demo-yaml/config.yaml"
     },
     "demo-ranking-widget": {
-      "path": "demo-ranking-widget/config.json",
-      "test": true
+      "path": "demo-ranking-widget/config.json"
     },
     "demo-choropleth-map": {
-      "path": "demo-choropleth-map/config.json",
-      "test": true
+      "path": "demo-choropleth-map/config.json"
     },
     "example-llm-chatbot": {
-      "path": "example-llm-chatbot/config.json",
-      "test": true
+      "path": "example-llm-chatbot/config.json"
     },
     "example-brush-interactions": {
-      "path": "example-brush-interactions/config.json",
-      "test": true
+      "path": "example-brush-interactions/config.json"
     },
     "example-cleveland": {
-      "path": "example-cleveland/config.json",
-      "test": true
+      "path": "example-cleveland/config.json"
     },
     "example-mvnv": {
-      "path": "example-mvnv/config.json",
-      "test": true
+      "path": "example-mvnv/config.json"
     },
     "library-adaptive-vlat": {
       "path": "library-adaptive-vlat/config.json",
@@ -214,6 +199,14 @@
       "path": "library-sus/config.json",
       "test": true
     },
+    "library-ueq": {
+      "path": "library-ueq/config.json",
+      "test": true
+    },
+    "library-ueq-s": {
+      "path": "library-ueq-s/config.json",
+      "test": true
+    },
     "library-vlat": {
       "path": "library-vlat/config.json",
       "test": true
@@ -223,16 +216,14 @@
       "test": true
     },
     "test-device-restriction": {
-      "path": "test-device-restriction/config.json",
-      "test": true
+      "path": "test-device-restriction/config.json"
     },
     "test-library": {
       "path": "test-library/config.json",
       "test": true
     },
     "test-likert-matrix": {
-      "path": "test-likert-matrix/config.json",
-      "test": true
+      "path": "test-likert-matrix/config.json"
     },
     "test-parser-errors": {
       "path": "test-parser-errors/config.json",
