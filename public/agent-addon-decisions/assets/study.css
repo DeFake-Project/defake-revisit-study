@@ -1,0 +1,29 @@
+.main .responseBlock-belowStimulus,
+.main .responseBlock-aboveStimulus,
+.main .markdown,
+.main .react-component {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 42rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.main .react-component:has(.doc-pair) {
+  max-width: 56rem;
+}
+
+.doc-pair {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  align-items: stretch;
+}
+
+@media (min-width: 700px) {
+  .doc-pair {
+    grid-template-columns: 1fr 1fr;
+  }
+}

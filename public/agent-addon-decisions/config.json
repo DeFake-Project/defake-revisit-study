@@ -24,6 +24,8 @@
     "logoPath": "revisitAssets/revisitLogoSquare.svg",
     "withProgressBar": true,
     "withSidebar": false,
+    "responseDividers": true,
+    "stylesheetPath": "agent-addon-decisions/assets/study.css",
     "autoDownloadStudy": false,
     "urlParticipantIdParam": "PROLIFIC_PID",
     "studyEndMsg": "You can close this page.",
@@ -197,11 +199,6 @@
         }
       ]
     },
-    "section0-intro": {
-      "type": "markdown",
-      "path": "agent-addon-decisions/assets/section0-intro.md",
-      "response": []
-    },
     "intro": {
       "type": "markdown",
       "path": "agent-addon-decisions/assets/intro.md",
@@ -291,6 +288,12 @@
       "type": "questionnaire",
       "response": [
         {
+          "id": "e1-intro",
+          "type": "textOnly",
+          "prompt": "**A few quick questions first**\n\nThese questions check that this study is a fit for you, and they let us describe who took part. About a minute.",
+          "location": "belowStimulus"
+        },
+        {
           "id": "e1",
           "prompt": "In the past 6 months, have you used any AI-agent system, AI coding agent, AI assistant with external tools, or AI automation system?",
           "secondaryText": "Anything where an AI tool does things for you, not just chats with you. Select one.",
@@ -304,7 +307,7 @@
         }
       ]
     },
-    "e2": {
+    "e3": {
       "type": "questionnaire",
       "response": [
         {
@@ -322,12 +325,7 @@
             "Prefer not to say"
           ],
           "location": "belowStimulus"
-        }
-      ]
-    },
-    "e3": {
-      "type": "questionnaire",
-      "response": [
+        },
         {
           "id": "e3",
           "prompt": "In the past 6 months, have you personally done any of the following using something added by a third party — that is, not a built-in feature from the AI system's original maker?",
@@ -362,12 +360,7 @@
           ],
           "location": "belowStimulus",
           "withOther": true
-        }
-      ]
-    },
-    "e5": {
-      "type": "questionnaire",
-      "response": [
+        },
         {
           "id": "e5",
           "prompt": "Which of the following best describes the most recent thing you personally added, enabled, connected, configured, or selected for an AI-agent system?",
@@ -385,12 +378,7 @@
           ],
           "location": "belowStimulus",
           "withOther": true
-        }
-      ]
-    },
-    "e6": {
-      "type": "questionnaire",
-      "response": [
+        },
         {
           "id": "e6",
           "prompt": "In one sentence, what did that item do or help you do?",
@@ -398,12 +386,7 @@
           "type": "longText",
           "location": "belowStimulus",
           "required": true
-        }
-      ]
-    },
-    "e7": {
-      "type": "questionnaire",
-      "response": [
+        },
         {
           "id": "e7",
           "prompt": "How recently did you make that decision?",
@@ -417,12 +400,7 @@
             "I do not remember"
           ],
           "location": "belowStimulus"
-        }
-      ]
-    },
-    "e8": {
-      "type": "questionnaire",
-      "response": [
+        },
         {
           "id": "e8",
           "prompt": "Which of the following best describes your current background?",
@@ -440,12 +418,7 @@
           ],
           "location": "belowStimulus",
           "withOther": true
-        }
-      ]
-    },
-    "e9": {
-      "type": "questionnaire",
-      "response": [
+        },
         {
           "id": "e9",
           "prompt": "How often do you use AI-agent systems with added, connected, or configurable capabilities?",
@@ -482,12 +455,7 @@
           ],
           "location": "belowStimulus",
           "withOther": true
-        }
-      ]
-    },
-    "item2": {
-      "type": "questionnaire",
-      "response": [
+        },
         {
           "id": "item2",
           "prompt": "What do you mainly use these AI tools for?",
@@ -544,12 +512,7 @@
           ],
           "location": "belowStimulus",
           "withOther": true
-        }
-      ]
-    },
-    "item5": {
-      "type": "questionnaire",
-      "response": [
+        },
         {
           "id": "item5",
           "prompt": "In one sentence, what was it meant to help you do?",
@@ -576,12 +539,7 @@
             "Something else"
           ],
           "location": "belowStimulus"
-        }
-      ]
-    },
-    "item7": {
-      "type": "questionnaire",
-      "response": [
+        },
         {
           "id": "item7",
           "prompt": "Which AI tool was this with?",
@@ -598,12 +556,7 @@
           ],
           "location": "belowStimulus",
           "withOther": true
-        }
-      ]
-    },
-    "item8": {
-      "type": "questionnaire",
-      "response": [
+        },
         {
           "id": "item8",
           "prompt": "Where did you first come across it?",
@@ -779,12 +732,7 @@
             "Not sure"
           ],
           "location": "belowStimulus"
-        }
-      ]
-    },
-    "item14": {
-      "type": "questionnaire",
-      "response": [
+        },
         {
           "id": "item14",
           "prompt": "Where do you usually run these AI tools?",
@@ -813,12 +761,7 @@
           "type": "longText",
           "location": "belowStimulus",
           "required": true
-        }
-      ]
-    },
-    "item16": {
-      "type": "questionnaire",
-      "response": [
+        },
         {
           "id": "item16",
           "prompt": "What do you think an add-on can reach by default? For example, can it see your files, or read your email?",
@@ -940,12 +883,7 @@
           "type": "longText",
           "location": "belowStimulus",
           "required": true
-        }
-      ]
-    },
-    "item21": {
-      "type": "questionnaire",
-      "response": [
+        },
         {
           "id": "item21",
           "prompt": "If an add-on did something you did not expect, what would worry you most?",
@@ -1183,7 +1121,6 @@
               }
             ]
           },
-          "e2",
           {
             "id": "p-e3",
             "order": "fixed",
@@ -1210,10 +1147,6 @@
             ]
           },
           "e4",
-          "e5",
-          "e6",
-          "e7",
-          "e8",
           {
             "id": "gate-p-main",
             "order": "fixed",
@@ -1263,7 +1196,6 @@
               }
             ]
           },
-          "section0-intro",
           {
             "id": "rit-e1",
             "order": "fixed",
@@ -1289,7 +1221,6 @@
               }
             ]
           },
-          "e2",
           {
             "id": "rit-e3",
             "order": "fixed",
@@ -1315,20 +1246,15 @@
               }
             ]
           },
-          "e4",
-          "e5",
-          "e6",
-          "e7",
-          "e8",
           {
             "id": "rit-e9",
             "order": "fixed",
             "components": [
-              "e9"
+              "e4"
             ],
             "skip": [
               {
-                "name": "e9",
+                "name": "e4",
                 "check": "response",
                 "responseId": "e9",
                 "value": "",
@@ -1361,7 +1287,6 @@
               }
             ]
           },
-          "section0-intro",
           {
             "id": "neu-e1",
             "order": "fixed",
@@ -1387,7 +1312,6 @@
               }
             ]
           },
-          "e2",
           {
             "id": "neu-e3",
             "order": "fixed",
@@ -1413,20 +1337,15 @@
               }
             ]
           },
-          "e4",
-          "e5",
-          "e6",
-          "e7",
-          "e8",
           {
             "id": "neu-e9",
             "order": "fixed",
             "components": [
-              "e9"
+              "e4"
             ],
             "skip": [
               {
-                "name": "e9",
+                "name": "e4",
                 "check": "response",
                 "responseId": "e9",
                 "value": "",
@@ -1459,7 +1378,6 @@
               }
             ]
           },
-          "section0-intro",
           {
             "id": "utep-e1",
             "order": "fixed",
@@ -1485,7 +1403,6 @@
               }
             ]
           },
-          "e2",
           {
             "id": "utep-e3",
             "order": "fixed",
@@ -1511,20 +1428,15 @@
               }
             ]
           },
-          "e4",
-          "e5",
-          "e6",
-          "e7",
-          "e8",
           {
             "id": "utep-e9",
             "order": "fixed",
             "components": [
-              "e9"
+              "e4"
             ],
             "skip": [
               {
-                "name": "e9",
+                "name": "e4",
                 "check": "response",
                 "responseId": "e9",
                 "value": "",
@@ -1537,7 +1449,6 @@
       },
       "intro",
       "item1",
-      "item2",
       {
         "id": "gate-item3",
         "order": "fixed",
@@ -1556,10 +1467,7 @@
         ]
       },
       "item4",
-      "item5",
       "item6",
-      "item7",
-      "item8",
       "item9",
       {
         "id": "gate-item10",
@@ -1623,9 +1531,7 @@
       },
       "item12text",
       "item13",
-      "item14",
       "item15",
-      "item16",
       {
         "id": "gate-item17",
         "order": "fixed",
@@ -1705,7 +1611,6 @@
       },
       "item19text",
       "item20",
-      "item21",
       {
         "id": "listing1",
         "order": "latinSquare",

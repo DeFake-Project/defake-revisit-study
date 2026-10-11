@@ -1,4 +1,5 @@
 import { Badge, Box, Stack, Text, Title } from '@mantine/core';
+import { ReactNode } from 'react';
 import { StimulusParams } from '../../../store/types';
 
 type ListingParameters = {
@@ -50,7 +51,7 @@ const boundedAsks = [
 export default function ListingCards({ parameters }: StimulusParams<ListingParameters>) {
   if (parameters.listing === 'inbox-bounded' || parameters.listing === 'inbox-broad') {
     return (
-      <Stack maw={720} p="md" gap="md">
+      <Stack gap="md">
         <Text>Imagine you want an AI assistant to help you find things in your email and set up meetings, and you come across this.</Text>
         <Card
           name="InboxLane"
@@ -82,12 +83,12 @@ export default function ListingCards({ parameters }: StimulusParams<ListingParam
       body="Convert, merge, split and clean up documents, Pro. Handles PDFs, Word files, slides and scanned pages, and keeps your original formatting intact."
     />
   );
-  const cards = parameters.docOrder === 'plus-first' ? [plus, original] : [original, plus];
+  const cards: ReactNode[] = parameters.docOrder === 'plus-first' ? [plus, original] : [original, plus];
 
   return (
-    <Stack maw={720} p="md" gap="md">
+    <Stack gap="md">
       <Text>Now imagine you need an add-on that cleans up and converts documents, and you search a marketplace for one. These are the first two results.</Text>
-      {cards}
+      <Box className="doc-pair">{cards}</Box>
     </Stack>
   );
 }
