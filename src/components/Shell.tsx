@@ -28,6 +28,7 @@ import { StepRenderer } from './StepRenderer';
 import { useStorageEngine } from '../storage/storageEngineHooks';
 import { generateSequenceArray } from '../utils/handleRandomSequences';
 import { getStudyConfig, resolveConfigKey } from '../utils/fetchConfig';
+import { resolveRecruitmentEntry } from '../utils/recruitmentEntry';
 import type { AlertModalState, ParticipantMetadata } from '../store/types';
 import { ErrorLoadingConfig } from './ErrorLoadingConfig';
 import { ResourceNotFound } from '../ResourceNotFound';
@@ -89,15 +90,17 @@ export function getShellUiState({
   hasStore,
   isCompletionCheckResolved,
   completionCheckError,
+  entryBlocked = false,
 }: {
   isValidStudyId: boolean;
   hasRoutes: boolean;
   hasStore: boolean;
   isCompletionCheckResolved: boolean;
   completionCheckError: string | null;
+  entryBlocked?: boolean;
 }) {
   return {
-    isLoading: isValidStudyId && (!hasRoutes || !hasStore || !isCompletionCheckResolved),
+    isLoading: isValidStudyId && !entryBlocked && (!hasRoutes || !hasStore || !isCompletionCheckResolved),
     showCompletionCheckError: completionCheckError !== null,
   };
 }
@@ -191,6 +194,7 @@ export function Shell({ globalConfig }: { globalConfig: GlobalConfig }) {
   const [store, setStore] = useState<Nullable<StudyStore>>(null);
   const [isCompletionCheckResolved, setIsCompletionCheckResolved] = useState(false);
   const [completionCheckError, setCompletionCheckError] = useState<string | null>(null);
+  const [incompleteEntryMessage, setIncompleteEntryMessage] = useState<string | null>(null);
   const { storageEngine } = useStorageEngine();
   const [searchParams] = useSearchParams();
 
@@ -220,6 +224,18 @@ export function Shell({ globalConfig }: { globalConfig: GlobalConfig }) {
       if (!storageEngine || !activeConfig || !canonicalStudyId) return;
       setIsCompletionCheckResolved(false);
       setCompletionCheckError(null);
+      setIncompleteEntryMessage(null);
+
+      const recruitmentEntry = resolveRecruitmentEntry(activeConfig.uiConfig.recruitmentEntry, searchParams);
+      if (recruitmentEntry.status === 'incomplete') {
+        if (!isCancelled) {
+          setIncompleteEntryMessage(recruitmentEntry.message);
+          setStore(null);
+          setRoutes([]);
+          setIsCompletionCheckResolved(true);
+        }
+        return;
+      }
 
       let modes: Record<REVISIT_MODE, boolean> | null = null;
       const urlParticipantId = activeConfig.uiConfig.urlParticipantIdParam
@@ -243,6 +259,10 @@ export function Shell({ globalConfig }: { globalConfig: GlobalConfig }) {
 
         // Get or generate participant session
         const searchParamsObject = Object.fromEntries(searchParams.entries());
+        if (recruitmentEntry.status === 'ok') {
+          searchParamsObject.recruitment_arm = recruitmentEntry.arm;
+          searchParamsObject.condition = recruitmentEntry.arm;
+        }
 
         const [resolvedModes, activeHash] = await Promise.all([
           storageEngine.getModes(canonicalStudyId),
@@ -259,7 +279,9 @@ export function Shell({ globalConfig }: { globalConfig: GlobalConfig }) {
           participantId || urlParticipantId,
         );
 
-        if (studyCondition.length > 0 && resolvedModes.developmentModeEnabled) {
+        if (recruitmentEntry.status === 'ok') {
+          participantSession = await storageEngine.recordRecruitmentArm(recruitmentEntry.arm);
+        } else if (studyCondition.length > 0 && resolvedModes.developmentModeEnabled) {
           const updatedSearchParams = {
             ...participantSession.searchParams,
             condition: studyCondition.join(','),
@@ -280,12 +302,14 @@ export function Shell({ globalConfig }: { globalConfig: GlobalConfig }) {
           ))[participantSession.participantConfigHash] as ParsedConfig<StudyConfig>;
         }
 
-        const resolvedCondition = resolveParticipantConditions({
-          urlCondition: studyCondition,
-          participantConditions: participantSession.conditions,
-          participantSearchParamCondition: participantSession.searchParams?.condition,
-          allowUrlOverride: resolvedModes.developmentModeEnabled,
-        });
+        const resolvedCondition = recruitmentEntry.status === 'ok'
+          ? [recruitmentEntry.arm]
+          : resolveParticipantConditions({
+            urlCondition: studyCondition,
+            participantConditions: participantSession.conditions,
+            participantSearchParamCondition: participantSession.searchParams?.condition,
+            allowUrlOverride: resolvedModes.developmentModeEnabled,
+          });
         const filteredParticipantSequence = filterSequenceByCondition(participantSession.sequence, resolvedCondition);
 
         // Initialize the redux stores
@@ -373,7 +397,7 @@ export function Shell({ globalConfig }: { globalConfig: GlobalConfig }) {
         const matchingSequence = generatedSequences[0];
         const fallbackSequence = filterSequenceByCondition(
           matchingSequence,
-          studyCondition,
+          recruitmentEntry.status === 'ok' ? [recruitmentEntry.arm] : studyCondition,
         );
 
         const emptyStore = await studyStoreCreator(
@@ -445,12 +469,20 @@ export function Shell({ globalConfig }: { globalConfig: GlobalConfig }) {
     hasStore: store !== null,
     isCompletionCheckResolved,
     completionCheckError,
+    entryBlocked: incompleteEntryMessage !== null,
   });
 
   let content: ReactNode = null;
 
   if (!isValidStudyId) {
     content = <ResourceNotFound />;
+  } else if (incompleteEntryMessage) {
+    content = (
+      <Stack maw={560} p="xl" gap="md">
+        <Title order={2}>This link looks incomplete</Title>
+        <Text>{incompleteEntryMessage}</Text>
+      </Stack>
+    );
   } else if (routing && store) {
     content = (
       <StudyStoreContext.Provider value={store}>

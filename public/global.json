@@ -1,6 +1,7 @@
 {
   "$schema": "https://raw.githubusercontent.com/revisit-studies/study/v2.4.3/src/parser/GlobalConfigSchema.json",
   "configsList": [
+    "agent-addon-decisions",
     "ontology-technique-eval",
     "varuna-sme-eval-ontology",
     "dndf-scenario-evaluation",
@@ -269,6 +270,9 @@
     "example-VLAT-adaptive": {
       "path": "example-VLAT-adaptive/config.json",
       "test": true
+    },
+    "agent-addon-decisions": {
+      "path": "agent-addon-decisions/config.json"
     },
     "ontology-technique-eval": {
       "path": "ontology-technique-eval/config.json"
