@@ -2,7 +2,7 @@
   "$schema": "https://raw.githubusercontent.com/revisit-studies/study/v2.4.3/src/parser/StudyConfigSchema.json",
   "studyMetadata": {
     "title": "How you decide about AI assistant add-ons",
-    "version": "1.0",
+    "version": "pilot",
     "authors": [
       "Ziming Zhao",
       "Matthew Wright",
@@ -49,12 +49,7 @@
         },
         {
           "key": "email",
-          "label": "University email",
-          "required": true
-        },
-        {
-          "key": "choice",
-          "label": "Interview contact",
+          "label": "University email address",
           "required": true
         }
       ]
@@ -1031,17 +1026,17 @@
       ]
     },
     "item29": {
-      "type": "react-component",
-      "path": "agent-addon-decisions/assets/IdentifierFields.tsx",
-      "parameters": {
-        "title": "How should we reach you?",
-        "body": "Used only to arrange the interview, stored separately from your survey answers, and deleted once it is no longer needed to schedule.",
-        "fieldKeys": [
-          "choice"
-        ],
-        "allowSkip": false
-      },
-      "response": []
+      "type": "questionnaire",
+      "response": [
+        {
+          "id": "item29",
+          "prompt": "What is the best email address or other way to reach you for scheduling?",
+          "secondaryText": "Used only to arrange the interview, then deleted.",
+          "type": "shortText",
+          "location": "belowStimulus",
+          "required": true
+        }
+      ]
     },
     "item30": {
       "type": "questionnaire",
