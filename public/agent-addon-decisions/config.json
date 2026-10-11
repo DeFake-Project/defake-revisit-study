@@ -1,0 +1,1856 @@
+{
+  "$schema": "https://raw.githubusercontent.com/revisit-studies/study/v2.4.3/src/parser/StudyConfigSchema.json",
+  "studyMetadata": {
+    "title": "How you decide about AI assistant add-ons",
+    "version": "pilot",
+    "authors": [
+      "Ziming Zhao",
+      "Matthew Wright",
+      "Saniat Javid Sohrawardi",
+      "Md Armanuzzaman",
+      "HaoRan Zhang"
+    ],
+    "date": "2026-10-11",
+    "description": "Survey of how people decide whether to use third-party add-ons with AI assistants.",
+    "organizations": [
+      "Northeastern University",
+      "Rochester Institute of Technology",
+      "University of Texas at El Paso"
+    ]
+  },
+  "uiConfig": {
+    "contactEmail": "john.sohrawardi@rit.edu",
+    "helpTextPath": "agent-addon-decisions/assets/help.md",
+    "logoPath": "revisitAssets/revisitLogoSquare.svg",
+    "withProgressBar": true,
+    "withSidebar": false,
+    "responseDividers": true,
+    "stylesheetPath": "agent-addon-decisions/assets/study.css",
+    "autoDownloadStudy": false,
+    "urlParticipantIdParam": "PROLIFIC_PID",
+    "studyEndMsg": "You can close this page.",
+    "recruitmentEntry": {
+      "prolificParam": "PROLIFIC_PID",
+      "armParam": "arm",
+      "arms": [
+        "RIT",
+        "NORTHEASTERN",
+        "UTEP"
+      ],
+      "prolificArm": "PROLIFIC",
+      "incompleteLinkMessage": "This link looks incomplete, so the study did not start and nothing was saved. Use the link from Prolific or from your campus email or flyer. If you need help, write to john.sohrawardi@rit.edu."
+    },
+    "identifierCollection": {
+      "retentionDays": 30,
+      "tabLabel": "Identifier info",
+      "fields": [
+        {
+          "key": "name",
+          "label": "Full name",
+          "required": true
+        },
+        {
+          "key": "email",
+          "label": "University email address",
+          "required": true
+        }
+      ]
+    }
+  },
+  "baseComponents": {
+    "listingFollowup": {
+      "response": [
+        {
+          "id": "item22",
+          "prompt": "Would you turn this on?",
+          "secondaryText": "There is no right answer here — we are asking what you would actually do.",
+          "type": "radio",
+          "options": [
+            "Yes",
+            "Probably yes",
+            "Not sure",
+            "Probably not",
+            "No"
+          ],
+          "location": "belowStimulus",
+          "required": false
+        },
+        {
+          "id": "item23",
+          "prompt": "How comfortable would you feel using this with your own email and calendar?",
+          "secondaryText": "Select one.",
+          "type": "radio",
+          "options": [
+            "Very uncomfortable",
+            "Somewhat uncomfortable",
+            "Neither comfortable nor uncomfortable",
+            "Somewhat comfortable",
+            "Very comfortable"
+          ],
+          "location": "belowStimulus",
+          "required": false
+        },
+        {
+          "id": "item24",
+          "prompt": "What in the listing most affected your answer?",
+          "secondaryText": "A sentence is plenty.",
+          "type": "longText",
+          "location": "belowStimulus",
+          "required": false
+        }
+      ]
+    },
+    "docFollowup": {
+      "response": [
+        {
+          "id": "item25",
+          "prompt": "Which of these would you be more likely to use?",
+          "secondaryText": "Select one.",
+          "type": "radio",
+          "options": [
+            "DocPolish",
+            "DocPolish Plus",
+            "Neither of them",
+            "No preference between them"
+          ],
+          "location": "belowStimulus",
+          "required": false
+        },
+        {
+          "id": "item26",
+          "prompt": "What made you answer that way?",
+          "secondaryText": "A sentence is plenty.",
+          "type": "longText",
+          "location": "belowStimulus",
+          "required": false
+        }
+      ]
+    }
+  },
+  "components": {
+    "p-screener-consent": {
+      "type": "markdown",
+      "path": "agent-addon-decisions/assets/screener-consent.md",
+      "response": [
+        {
+          "id": "consentAgree",
+          "prompt": "Your agreement",
+          "secondaryText": "Selecting I agree confirms the statements on this page.",
+          "type": "radio",
+          "options": [
+            "I agree.",
+            "I do not agree."
+          ],
+          "location": "belowStimulus",
+          "required": true
+        },
+        {
+          "id": "gdprConsent",
+          "prompt": "UK, EEA, or Switzerland only",
+          "secondaryText": "Leave this unchecked if you are not in one of those places. We cannot include your responses without it if you are.",
+          "type": "checkbox",
+          "options": [
+            "I explicitly consent to my data being processed as described and transferred to the United States."
+          ],
+          "location": "belowStimulus",
+          "required": false
+        }
+      ]
+    },
+    "p-main-consent": {
+      "type": "markdown",
+      "path": "agent-addon-decisions/assets/main-consent-prolific.md",
+      "response": [
+        {
+          "id": "consentAgree",
+          "prompt": "Your agreement",
+          "secondaryText": "Selecting I agree confirms the statements on this page.",
+          "type": "radio",
+          "options": [
+            "I agree.",
+            "I do not agree."
+          ],
+          "location": "belowStimulus",
+          "required": true
+        },
+        {
+          "id": "gdprConsent",
+          "prompt": "UK, EEA, or Switzerland only",
+          "secondaryText": "Leave this unchecked if you are not in one of those places. We cannot include your responses without it if you are.",
+          "type": "checkbox",
+          "options": [
+            "I explicitly consent to my data being processed as described and transferred to the United States."
+          ],
+          "location": "belowStimulus",
+          "required": false
+        }
+      ]
+    },
+    "u-consent": {
+      "type": "markdown",
+      "path": "agent-addon-decisions/assets/university-consent.md",
+      "response": [
+        {
+          "id": "consentAgree",
+          "prompt": "Your agreement",
+          "secondaryText": "Selecting I agree confirms the statements on this page.",
+          "type": "radio",
+          "options": [
+            "I agree.",
+            "I do not agree."
+          ],
+          "location": "belowStimulus",
+          "required": true
+        }
+      ]
+    },
+    "intro": {
+      "type": "markdown",
+      "path": "agent-addon-decisions/assets/intro.md",
+      "response": []
+    },
+    "debrief-p": {
+      "type": "markdown",
+      "path": "agent-addon-decisions/assets/debrief-prolific.md",
+      "response": [
+        {
+          "id": "ack",
+          "prompt": "Continue",
+          "type": "radio",
+          "options": [
+            "Continue"
+          ],
+          "location": "belowStimulus",
+          "required": true
+        }
+      ]
+    },
+    "debrief-u": {
+      "type": "markdown",
+      "path": "agent-addon-decisions/assets/debrief-university.md",
+      "response": [
+        {
+          "id": "ack",
+          "prompt": "Continue",
+          "type": "radio",
+          "options": [
+            "Continue"
+          ],
+          "location": "belowStimulus",
+          "required": true
+        }
+      ]
+    },
+    "u-ineligible": {
+      "type": "markdown",
+      "path": "agent-addon-decisions/assets/ineligible-university.md",
+      "response": [
+        {
+          "id": "ack",
+          "prompt": "Close",
+          "type": "radio",
+          "options": [
+            "Continue"
+          ],
+          "location": "belowStimulus",
+          "required": true
+        }
+      ]
+    },
+    "u-declined": {
+      "type": "markdown",
+      "path": "agent-addon-decisions/assets/declined.md",
+      "response": [
+        {
+          "id": "ack",
+          "prompt": "Close",
+          "type": "radio",
+          "options": [
+            "Continue"
+          ],
+          "location": "belowStimulus",
+          "required": true
+        }
+      ]
+    },
+    "thank-you": {
+      "type": "markdown",
+      "path": "agent-addon-decisions/assets/thank-you.md",
+      "response": [
+        {
+          "id": "ack",
+          "prompt": "Finish",
+          "type": "radio",
+          "options": [
+            "Continue"
+          ],
+          "location": "belowStimulus",
+          "required": true
+        }
+      ]
+    },
+    "e1": {
+      "type": "questionnaire",
+      "response": [
+        {
+          "id": "e1-intro",
+          "type": "textOnly",
+          "prompt": "**A few quick questions first**\n\nThese questions check that this study is a fit for you, and they let us describe who took part. About a minute.",
+          "location": "belowStimulus"
+        },
+        {
+          "id": "e1",
+          "prompt": "In the past 6 months, have you used any AI-agent system, AI coding agent, AI assistant with external tools, or AI automation system?",
+          "secondaryText": "Anything where an AI tool does things for you, not just chats with you. Select one.",
+          "type": "radio",
+          "options": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "location": "belowStimulus",
+          "required": true
+        }
+      ]
+    },
+    "e3": {
+      "type": "questionnaire",
+      "response": [
+        {
+          "id": "e2",
+          "prompt": "Which of the following includes your age?",
+          "secondaryText": "Select one.",
+          "type": "radio",
+          "options": [
+            "18–24",
+            "25–34",
+            "35–44",
+            "45–54",
+            "55–64",
+            "65 or older",
+            "Prefer not to say"
+          ],
+          "location": "belowStimulus",
+          "required": true
+        },
+        {
+          "id": "e3",
+          "prompt": "In the past 6 months, have you personally done any of the following using something added by a third party — that is, not a built-in feature from the AI system's original maker?",
+          "secondaryText": "Installed or enabled a third-party add-on, extension, plugin, skill, app, or workflow. Connected an AI system to a third-party account, external service, tool, or API. Added or configured a third-party tool server, connector, integration, or repository. Selected or imported a third-party custom agent, custom GPT, action, template, or workflow. Modified an existing agent configuration, integration, workflow, or extension. Created your own tool, workflow, integration, or capability for an AI agent. Anything you turned on, connected, or set up yourself counts, even once.",
+          "type": "radio",
+          "options": [
+            "Yes",
+            "No",
+            "Not sure"
+          ],
+          "location": "belowStimulus",
+          "required": true
+        }
+      ]
+    },
+    "e4": {
+      "type": "questionnaire",
+      "response": [
+        {
+          "id": "e4",
+          "prompt": "Which AI-agent harnesses or environments have you used in the past 6 months?",
+          "secondaryText": "Select all that apply.",
+          "type": "checkbox",
+          "options": [
+            "OpenClaw / Clawdbot",
+            "Claude Desktop, Claude Code, Claude Cowork, or Claude.ai",
+            "ChatGPT Agent, Operator, Apps, custom GPTs, or Codex",
+            "Cursor, Windsurf, GitHub Copilot, VS Code, or another AI coding-agent environment",
+            "An MCP-compatible client, host, or server ecosystem",
+            "Perplexity Computer or another computer-use agent",
+            "A self-hosted or local agent framework",
+            "An enterprise agent platform or internal automation system"
+          ],
+          "location": "belowStimulus",
+          "withOther": true,
+          "required": true
+        },
+        {
+          "id": "e5",
+          "prompt": "Which of the following best describes the most recent thing you personally added, enabled, connected, configured, or selected for an AI-agent system?",
+          "secondaryText": "If more than one label fits, pick the closest.",
+          "type": "radio",
+          "options": [
+            "A skill or instruction/workflow package",
+            "A plugin or extension",
+            "An MCP server, tool, or connector",
+            "An API integration or connector",
+            "A custom agent, GPT, app, or action",
+            "A coding-agent command, rule, extension, or workflow",
+            "A script, repository, template, or package added to an agent environment",
+            "I am not sure"
+          ],
+          "location": "belowStimulus",
+          "withOther": true,
+          "required": true
+        },
+        {
+          "id": "e6",
+          "prompt": "In one sentence, what did that item do or help you do?",
+          "secondaryText": "Plain language is fine — for example, \"read my work email and draft replies.\"",
+          "type": "longText",
+          "location": "belowStimulus",
+          "required": true
+        },
+        {
+          "id": "e7",
+          "prompt": "How recently did you make that decision?",
+          "secondaryText": "Select one.",
+          "type": "radio",
+          "options": [
+            "Within the past week",
+            "Within the past month",
+            "Within the past 3 months",
+            "Within the past 6 months",
+            "I do not remember"
+          ],
+          "location": "belowStimulus",
+          "required": true
+        },
+        {
+          "id": "e8",
+          "prompt": "Which of the following best describes your current background?",
+          "secondaryText": "Select all that apply.",
+          "type": "checkbox",
+          "options": [
+            "Software engineering or development",
+            "IT, systems administration, infrastructure, or DevOps",
+            "Cybersecurity, privacy, digital forensics, or risk management",
+            "Data science, machine learning, or AI research",
+            "Product, design, UX, or user research",
+            "Student",
+            "Technology hobbyist or power user",
+            "Non-technical user exploring AI tools"
+          ],
+          "location": "belowStimulus",
+          "withOther": true,
+          "required": true
+        },
+        {
+          "id": "e9",
+          "prompt": "How often do you use AI-agent systems with added, connected, or configurable capabilities?",
+          "secondaryText": "Select one.",
+          "type": "radio",
+          "options": [
+            "Less than once per month",
+            "A few times per month",
+            "About once per week",
+            "Multiple times per week",
+            "Daily or almost daily"
+          ],
+          "location": "belowStimulus",
+          "required": true
+        }
+      ]
+    },
+    "item1": {
+      "type": "questionnaire",
+      "response": [
+        {
+          "id": "item1",
+          "prompt": "Which kinds of add-ons have you used with an AI assistant?",
+          "secondaryText": "By AI assistant we mean tools like ChatGPT, Claude, Copilot, Cursor, OpenClaw, or a work system with AI built in. Select all that apply.",
+          "type": "checkbox",
+          "options": [
+            "Skills, or packages of instructions or workflows",
+            "Plugins or extensions",
+            "MCP servers or MCP tools",
+            "A connection to another app or account — email, calendar, cloud storage, a work tool",
+            "Custom agents, GPTs, or apps",
+            "Add-ons for a coding tool — commands, rules, or extensions",
+            "Scripts, templates, or code repositories you added yourself",
+            "I am not sure what kind they were"
+          ],
+          "location": "belowStimulus",
+          "withOther": true,
+          "required": false
+        },
+        {
+          "id": "item2",
+          "prompt": "What do you mainly use these AI tools for?",
+          "secondaryText": "Your typical use over the past few months, rather than one-off experiments. Select all that apply.",
+          "type": "checkbox",
+          "options": [
+            "Coding or software development",
+            "Research, analysis, or writing",
+            "Email, calendar, messaging, or scheduling",
+            "Data processing or automation",
+            "System administration or infrastructure",
+            "Web browsing, research, or shopping",
+            "Creative work",
+            "Business, operations, or customer support"
+          ],
+          "location": "belowStimulus",
+          "withOther": true,
+          "required": false
+        }
+      ]
+    },
+    "item3": {
+      "type": "react-component",
+      "path": "agent-addon-decisions/assets/PipedAddon.tsx",
+      "response": [
+        {
+          "id": "item3",
+          "prompt": "Is that the one you would like to tell us about?",
+          "secondaryText": "Pick whichever one you remember most clearly. It does not have to be one you kept.",
+          "type": "radio",
+          "options": [
+            "Yes, let us use that one",
+            "I would rather describe a different one — including one I decided against, or one I removed"
+          ],
+          "location": "belowStimulus",
+          "required": false
+        }
+      ]
+    },
+    "item4": {
+      "type": "questionnaire",
+      "response": [
+        {
+          "id": "item4",
+          "prompt": "What kind of add-on was it?",
+          "secondaryText": "If more than one label fits, pick the closest. I am not sure is a fine answer.",
+          "type": "radio",
+          "options": [
+            "Skill, or a package of instructions or workflows",
+            "Plugin or extension",
+            "MCP server or MCP tool",
+            "A connection to another app or account (email, calendar, cloud storage, a work tool)",
+            "Custom agent, GPT, app, or action",
+            "Script, template, or code repository",
+            "I am not sure"
+          ],
+          "location": "belowStimulus",
+          "withOther": true,
+          "required": false
+        },
+        {
+          "id": "item5",
+          "prompt": "In one sentence, what was it meant to help you do?",
+          "secondaryText": "Plain language is fine — for example, \"read my work email and draft replies.\"",
+          "type": "longText",
+          "location": "belowStimulus",
+          "required": false
+        }
+      ]
+    },
+    "item6": {
+      "type": "questionnaire",
+      "response": [
+        {
+          "id": "item6",
+          "prompt": "Which best describes what you did?",
+          "secondaryText": "What you ended up doing, even if you changed your mind along the way.",
+          "type": "radio",
+          "options": [
+            "I set it up and used it",
+            "I set it up, then turned it off or removed it",
+            "I looked at it and decided not to use it",
+            "I changed the settings on one I already had",
+            "Something else"
+          ],
+          "location": "belowStimulus",
+          "required": false
+        },
+        {
+          "id": "item7",
+          "prompt": "Which AI tool was this with?",
+          "secondaryText": "The assistant or app you were adding it to.",
+          "type": "radio",
+          "options": [
+            "OpenClaw / Clawdbot",
+            "Claude",
+            "ChatGPT",
+            "Cursor, Copilot, VS Code, or another coding tool",
+            "An MCP client or host",
+            "Something self-hosted, or that I built myself",
+            "A work system with AI built in"
+          ],
+          "location": "belowStimulus",
+          "withOther": true,
+          "required": false
+        },
+        {
+          "id": "item8",
+          "prompt": "Where did you first come across it?",
+          "secondaryText": "Where you first saw it, even if you later found it somewhere else as well. Select all that apply.",
+          "type": "checkbox",
+          "options": [
+            "An official marketplace, store, or directory",
+            "GitHub or another code repository",
+            "A package manager or developer tool",
+            "A search engine",
+            "Social media, a forum, Discord, or Reddit",
+            "Someone recommended it — a colleague, friend, or creator I follow",
+            "Documentation, a tutorial, an article, or a video",
+            "The AI assistant itself suggested it",
+            "It was already there, or my organization recommended it"
+          ],
+          "location": "belowStimulus",
+          "withOther": true,
+          "required": false
+        }
+      ]
+    },
+    "item9": {
+      "type": "questionnaire",
+      "response": [
+        {
+          "id": "item9",
+          "prompt": "Please walk us through what happened, from first coming across it to what you decided.",
+          "secondaryText": "Anything you remember looking at, comparing, or trying is useful. A few sentences is plenty.",
+          "type": "longText",
+          "location": "belowStimulus",
+          "required": false
+        }
+      ]
+    },
+    "item10gate": {
+      "type": "questionnaire",
+      "response": [
+        {
+          "id": "item10gate",
+          "prompt": "Before you decided, did you look into it at all?",
+          "secondaryText": "Only what you actually did that time, not what you usually do.",
+          "type": "radio",
+          "options": [
+            "Yes",
+            "No — I went ahead without looking into it further",
+            "I do not remember"
+          ],
+          "location": "belowStimulus",
+          "required": false
+        }
+      ]
+    },
+    "item10list": {
+      "type": "questionnaire",
+      "response": [
+        {
+          "id": "item10list",
+          "prompt": "Before you decided, which of these did you do?",
+          "secondaryText": "Only what you actually did that time.",
+          "type": "checkbox",
+          "options": [
+            "Read the description, documentation, or setup instructions",
+            "Looked at who made it",
+            "Looked at reviews, comments, or discussion about it",
+            "Looked at how many people use it — downloads, stars, installs",
+            "Looked at the actual code, settings, or list of dependencies",
+            "Looked for what accounts or data it would be able to reach",
+            "Asked another person about it",
+            "Asked an AI assistant to check it or explain it",
+            "Tried it somewhere separate first"
+          ],
+          "location": "belowStimulus",
+          "required": false
+        }
+      ]
+    },
+    "item11a": {
+      "type": "questionnaire",
+      "response": [
+        {
+          "id": "item11a",
+          "prompt": "What mattered most in your decision?",
+          "secondaryText": "Up to three. If something that is not listed mattered more, use Other.",
+          "type": "checkbox",
+          "options": [
+            "It did something I needed",
+            "It was easier than setting it up myself",
+            "It came from a source I recognized",
+            "Someone I trust recommended it",
+            "Lots of people seemed to use it",
+            "The description or documentation was clear",
+            "It worked with the setup I already had",
+            "It looked quick to try",
+            "It was cheaper, or lighter to run",
+            "It let me use a model or service I prefer"
+          ],
+          "location": "belowStimulus",
+          "maxSelections": 3,
+          "withOther": true,
+          "required": false
+        }
+      ]
+    },
+    "item11b": {
+      "type": "questionnaire",
+      "response": [
+        {
+          "id": "item11b",
+          "prompt": "What mattered most in your decision?",
+          "secondaryText": "Up to three. If something that is not listed mattered more, use Other.",
+          "type": "checkbox",
+          "options": [
+            "It did not actually do what I needed",
+            "It looked like too much work to set up or maintain",
+            "I did not need it after all",
+            "I did not trust where it came from",
+            "I was not comfortable with what it wanted access to",
+            "It did not work with my setup",
+            "The description or documentation was not clear enough",
+            "It cost too much, or used too much of my computer",
+            "It broke something, or behaved oddly"
+          ],
+          "location": "belowStimulus",
+          "maxSelections": 3,
+          "withOther": true,
+          "required": false
+        }
+      ]
+    },
+    "item12": {
+      "type": "questionnaire",
+      "response": [
+        {
+          "id": "item12",
+          "prompt": "Were there any points where you felt unsure, paused, or changed your mind?",
+          "secondaryText": "For example, something you had to look up, or a step where you stopped for a moment.",
+          "type": "radio",
+          "options": [
+            "No",
+            "Yes",
+            "I do not remember"
+          ],
+          "location": "belowStimulus",
+          "required": false
+        }
+      ]
+    },
+    "item12text": {
+      "type": "questionnaire",
+      "response": [
+        {
+          "id": "item12text",
+          "prompt": "Briefly, what happened?",
+          "secondaryText": "A sentence or two is enough.",
+          "type": "longText",
+          "location": "belowStimulus",
+          "required": false
+        }
+      ]
+    },
+    "item13": {
+      "type": "questionnaire",
+      "response": [
+        {
+          "id": "item13",
+          "prompt": "Roughly how many add-ons do you have turned on or connected right now, across all your AI tools?",
+          "secondaryText": "A rough count is fine. Include ones you set up a while ago and have not turned off.",
+          "type": "radio",
+          "options": [
+            "None right now",
+            "1",
+            "2–5",
+            "6–10",
+            "11–20",
+            "More than 20",
+            "Not sure"
+          ],
+          "location": "belowStimulus",
+          "required": false
+        },
+        {
+          "id": "item14",
+          "prompt": "Where do you usually run these AI tools?",
+          "secondaryText": "Where the tool itself runs, as far as you know — your own computer, a server, or just in a browser. Select all that apply.",
+          "type": "checkbox",
+          "options": [
+            "On my personal computer",
+            "On a work computer",
+            "On a server or cloud machine",
+            "In a container, virtual machine, or sandbox",
+            "In a website or app, without installing anything",
+            "In a system my organization manages",
+            "I do not know"
+          ],
+          "location": "belowStimulus",
+          "required": false
+        }
+      ]
+    },
+    "item15": {
+      "type": "questionnaire",
+      "response": [
+        {
+          "id": "item15",
+          "prompt": "Once you turn on or connect an add-on, what do you think happens next?",
+          "secondaryText": "In your own words. Your best guess is fine — there is no technical answer we are looking for.",
+          "type": "longText",
+          "location": "belowStimulus",
+          "required": false
+        },
+        {
+          "id": "item16",
+          "prompt": "What do you think an add-on can reach by default? For example, can it see your files, or read your email?",
+          "secondaryText": "We are interested in what you assume, not what any documentation says.",
+          "type": "longText",
+          "location": "belowStimulus",
+          "required": false
+        }
+      ]
+    },
+    "item17gate": {
+      "type": "questionnaire",
+      "response": [
+        {
+          "id": "item17gate",
+          "prompt": "As far as you know, can any of your current add-ons reach things outside the chat — files, email, the terminal, accounts, and so on?",
+          "secondaryText": "Your best understanding rather than a checked answer. I do not know is a normal response.",
+          "type": "radio",
+          "options": [
+            "Yes",
+            "No, none of them",
+            "I do not know"
+          ],
+          "location": "belowStimulus",
+          "required": false
+        }
+      ]
+    },
+    "item17list": {
+      "type": "questionnaire",
+      "response": [
+        {
+          "id": "item17list",
+          "prompt": "As far as you know, can any of your current add-ons reach any of these?",
+          "secondaryText": "Select all that apply.",
+          "type": "checkbox",
+          "options": [
+            "Files or folders on my device",
+            "The terminal, shell, or system commands",
+            "Web pages and web browsing",
+            "My email, calendar, or messages",
+            "Cloud storage, documents, or databases",
+            "Passwords, keys, or login tokens",
+            "Code repositories or development tools",
+            "Payment, shopping, or banking services",
+            "Smart-home or other physical devices"
+          ],
+          "location": "belowStimulus",
+          "withOther": true,
+          "required": false
+        }
+      ]
+    },
+    "item18": {
+      "type": "questionnaire",
+      "response": [
+        {
+          "id": "item18",
+          "prompt": "Has an add-on ever surprised you, or done something you did not expect?",
+          "secondaryText": "Anything unexpected counts, whether it turned out well or badly.",
+          "type": "radio",
+          "options": [
+            "No",
+            "Yes",
+            "Not sure"
+          ],
+          "location": "belowStimulus",
+          "required": false
+        }
+      ]
+    },
+    "item18text": {
+      "type": "questionnaire",
+      "response": [
+        {
+          "id": "item18text",
+          "prompt": "What happened?",
+          "secondaryText": "A sentence or two is enough.",
+          "type": "longText",
+          "location": "belowStimulus",
+          "required": false
+        }
+      ]
+    },
+    "item19": {
+      "type": "questionnaire",
+      "response": [
+        {
+          "id": "item19",
+          "prompt": "Have you ever turned off, removed, or decided against an add-on because something about it bothered you?",
+          "secondaryText": "Any reason counts. It does not have to have been a serious one.",
+          "type": "radio",
+          "options": [
+            "No",
+            "Yes",
+            "Not sure"
+          ],
+          "location": "belowStimulus",
+          "required": false
+        }
+      ]
+    },
+    "item19text": {
+      "type": "questionnaire",
+      "response": [
+        {
+          "id": "item19text",
+          "prompt": "Briefly, why?",
+          "secondaryText": "A sentence or two is enough.",
+          "type": "longText",
+          "location": "belowStimulus",
+          "required": false
+        }
+      ]
+    },
+    "item20": {
+      "type": "questionnaire",
+      "response": [
+        {
+          "id": "item20",
+          "prompt": "If you wanted to know more about an add-on before using it, what would you do?",
+          "secondaryText": "Whatever you would realistically do — including nothing.",
+          "type": "longText",
+          "location": "belowStimulus",
+          "required": false
+        },
+        {
+          "id": "item21",
+          "prompt": "If an add-on did something you did not expect, what would worry you most?",
+          "secondaryText": "If nothing much would worry you, that is a valid answer.",
+          "type": "longText",
+          "location": "belowStimulus",
+          "required": false
+        }
+      ]
+    },
+    "listing1-bounded": {
+      "baseComponent": "listingFollowup",
+      "type": "react-component",
+      "path": "agent-addon-decisions/assets/ListingCards.tsx",
+      "parameters": {
+        "listing": "inbox-bounded"
+      }
+    },
+    "listing1-broad": {
+      "baseComponent": "listingFollowup",
+      "type": "react-component",
+      "path": "agent-addon-decisions/assets/ListingCards.tsx",
+      "parameters": {
+        "listing": "inbox-broad"
+      }
+    },
+    "listing2-original-first": {
+      "baseComponent": "docFollowup",
+      "type": "react-component",
+      "path": "agent-addon-decisions/assets/ListingCards.tsx",
+      "parameters": {
+        "listing": "docs",
+        "docOrder": "original-first"
+      }
+    },
+    "listing2-plus-first": {
+      "baseComponent": "docFollowup",
+      "type": "react-component",
+      "path": "agent-addon-decisions/assets/ListingCards.tsx",
+      "parameters": {
+        "listing": "docs",
+        "docOrder": "plus-first"
+      }
+    },
+    "item27": {
+      "type": "questionnaire",
+      "response": [
+        {
+          "id": "item27",
+          "prompt": "When you decide whether to use an add-on, how much does security or privacy usually come into it, compared with things like whether it does the job well?",
+          "secondaryText": "An honest answer is more useful to us than a careful one.",
+          "type": "radio",
+          "options": [
+            "Not at all",
+            "A little",
+            "Somewhat",
+            "Quite a lot",
+            "It is usually the main thing I think about"
+          ],
+          "location": "belowStimulus",
+          "required": false
+        }
+      ]
+    },
+    "item28": {
+      "type": "questionnaire",
+      "response": [
+        {
+          "id": "item28",
+          "prompt": "Would you be willing to join a 30–45 minute follow-up interview?",
+          "secondaryText": "It is a one-on-one video call. You would look at some made-up add-on pages and talk through what you notice. Nothing is installed, you do not share your screen, and saying yes is not a commitment.",
+          "type": "radio",
+          "options": [
+            "Yes",
+            "No"
+          ],
+          "location": "belowStimulus",
+          "required": true
+        }
+      ]
+    },
+    "item29": {
+      "type": "questionnaire",
+      "response": [
+        {
+          "id": "item29",
+          "prompt": "What is the best email address or other way to reach you for scheduling?",
+          "secondaryText": "Used only to arrange the interview, then deleted.",
+          "type": "shortText",
+          "location": "belowStimulus",
+          "required": false
+        }
+      ]
+    },
+    "item30": {
+      "type": "questionnaire",
+      "response": [
+        {
+          "id": "item30",
+          "prompt": "Anything else you would like to tell us about how you use AI assistants or add-ons?",
+          "secondaryText": "Optional — you can leave this blank.",
+          "type": "longText",
+          "location": "belowStimulus",
+          "required": false
+        }
+      ]
+    },
+    "gift": {
+      "type": "react-component",
+      "path": "agent-addon-decisions/assets/IdentifierFields.tsx",
+      "parameters": {
+        "title": "Where should we send your $10 gift card?",
+        "body": "We need this only to send the card. It is stored separately from your survey answers, is not used for research, and is deleted once the card has been sent. If you would rather not give us this, you can skip it — your answers still count and you have already finished.",
+        "fieldKeys": [
+          "name",
+          "email"
+        ],
+        "allowSkip": true,
+        "skipLabel": "Skip — I do not want the gift card"
+      },
+      "response": []
+    },
+    "p-complete": {
+      "type": "react-component",
+      "path": "agent-addon-decisions/assets/ExternalRedirect.tsx",
+      "parameters": {
+        "title": "Returning to Prolific",
+        "body": "Your answers have been submitted. You are being sent back to Prolific so your completion can be recorded.",
+        "url": "https://app.prolific.com/submissions/complete?cc=REPLACE_COMPLETION",
+        "buttonLabel": "Return to Prolific"
+      },
+      "response": [
+        {
+          "id": "ack",
+          "prompt": "Continue",
+          "type": "radio",
+          "options": [
+            "Continue"
+          ],
+          "location": "belowStimulus",
+          "required": true
+        }
+      ]
+    },
+    "p-screenout": {
+      "type": "react-component",
+      "path": "agent-addon-decisions/assets/ExternalRedirect.tsx",
+      "parameters": {
+        "title": "Thank you",
+        "body": "Thank you for answering these questions. You have completed this study and will be paid for it. You may be eligible for other studies from our team in the future.",
+        "url": "https://app.prolific.com/submissions/complete?cc=REPLACE_SCREENOUT",
+        "buttonLabel": "Return to Prolific"
+      },
+      "response": [
+        {
+          "id": "ack",
+          "prompt": "Continue",
+          "type": "radio",
+          "options": [
+            "Continue"
+          ],
+          "location": "belowStimulus",
+          "required": true
+        }
+      ]
+    },
+    "p-return": {
+      "type": "react-component",
+      "path": "agent-addon-decisions/assets/ExternalRedirect.tsx",
+      "parameters": {
+        "title": "You chose not to take part",
+        "body": "Because you did not agree, this study stops here. You are being returned to Prolific. This is not the completion payment for the survey.",
+        "url": "https://app.prolific.com/submissions/complete?cc=REPLACE_RETURN",
+        "buttonLabel": "Return to Prolific"
+      },
+      "response": [
+        {
+          "id": "ack",
+          "prompt": "Continue",
+          "type": "radio",
+          "options": [
+            "Continue"
+          ],
+          "location": "belowStimulus",
+          "required": true
+        }
+      ]
+    }
+  },
+  "sequence": {
+    "order": "fixed",
+    "components": [
+      {
+        "id": "PROLIFIC",
+        "conditional": true,
+        "order": "fixed",
+        "components": [
+          {
+            "id": "gate-p-screener",
+            "order": "fixed",
+            "components": [
+              "p-screener-consent"
+            ],
+            "skip": [
+              {
+                "name": "p-screener-consent",
+                "check": "response",
+                "responseId": "consentAgree",
+                "value": "I do not agree.",
+                "comparison": "equal",
+                "to": "p-return"
+              }
+            ]
+          },
+          {
+            "id": "p-e1",
+            "order": "fixed",
+            "components": [
+              "e1"
+            ],
+            "skip": [
+              {
+                "name": "e1",
+                "check": "response",
+                "responseId": "e1",
+                "value": "No",
+                "comparison": "equal",
+                "to": "p-screenout"
+              },
+              {
+                "name": "e1",
+                "check": "response",
+                "responseId": "e1",
+                "value": "Not sure",
+                "comparison": "equal",
+                "to": "p-screenout"
+              }
+            ]
+          },
+          {
+            "id": "p-e3",
+            "order": "fixed",
+            "components": [
+              "e3"
+            ],
+            "skip": [
+              {
+                "name": "e3",
+                "check": "response",
+                "responseId": "e3",
+                "value": "No",
+                "comparison": "equal",
+                "to": "p-screenout"
+              },
+              {
+                "name": "e3",
+                "check": "response",
+                "responseId": "e3",
+                "value": "Not sure",
+                "comparison": "equal",
+                "to": "p-screenout"
+              }
+            ]
+          },
+          "e4",
+          {
+            "id": "gate-p-main",
+            "order": "fixed",
+            "components": [
+              "p-main-consent"
+            ],
+            "skip": [
+              {
+                "name": "p-main-consent",
+                "check": "response",
+                "responseId": "consentAgree",
+                "value": "I do not agree.",
+                "comparison": "equal",
+                "to": "p-return"
+              },
+              {
+                "name": "p-main-consent",
+                "check": "response",
+                "responseId": "consentAgree",
+                "value": "I agree.",
+                "comparison": "equal",
+                "to": "intro"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "RIT",
+        "conditional": true,
+        "order": "fixed",
+        "components": [
+          {
+            "id": "rit-consent",
+            "order": "fixed",
+            "components": [
+              "u-consent"
+            ],
+            "skip": [
+              {
+                "name": "u-consent",
+                "check": "response",
+                "responseId": "consentAgree",
+                "value": "I do not agree.",
+                "comparison": "equal",
+                "to": "u-declined"
+              }
+            ]
+          },
+          {
+            "id": "rit-e1",
+            "order": "fixed",
+            "components": [
+              "e1"
+            ],
+            "skip": [
+              {
+                "name": "e1",
+                "check": "response",
+                "responseId": "e1",
+                "value": "No",
+                "comparison": "equal",
+                "to": "u-ineligible"
+              },
+              {
+                "name": "e1",
+                "check": "response",
+                "responseId": "e1",
+                "value": "Not sure",
+                "comparison": "equal",
+                "to": "u-ineligible"
+              }
+            ]
+          },
+          {
+            "id": "rit-e3",
+            "order": "fixed",
+            "components": [
+              "e3"
+            ],
+            "skip": [
+              {
+                "name": "e3",
+                "check": "response",
+                "responseId": "e3",
+                "value": "No",
+                "comparison": "equal",
+                "to": "u-ineligible"
+              },
+              {
+                "name": "e3",
+                "check": "response",
+                "responseId": "e3",
+                "value": "Not sure",
+                "comparison": "equal",
+                "to": "u-ineligible"
+              }
+            ]
+          },
+          {
+            "id": "rit-e9",
+            "order": "fixed",
+            "components": [
+              "e4"
+            ],
+            "skip": [
+              {
+                "name": "e4",
+                "check": "response",
+                "responseId": "e9",
+                "value": "",
+                "comparison": "notEqual",
+                "to": "intro"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "NORTHEASTERN",
+        "conditional": true,
+        "order": "fixed",
+        "components": [
+          {
+            "id": "neu-consent",
+            "order": "fixed",
+            "components": [
+              "u-consent"
+            ],
+            "skip": [
+              {
+                "name": "u-consent",
+                "check": "response",
+                "responseId": "consentAgree",
+                "value": "I do not agree.",
+                "comparison": "equal",
+                "to": "u-declined"
+              }
+            ]
+          },
+          {
+            "id": "neu-e1",
+            "order": "fixed",
+            "components": [
+              "e1"
+            ],
+            "skip": [
+              {
+                "name": "e1",
+                "check": "response",
+                "responseId": "e1",
+                "value": "No",
+                "comparison": "equal",
+                "to": "u-ineligible"
+              },
+              {
+                "name": "e1",
+                "check": "response",
+                "responseId": "e1",
+                "value": "Not sure",
+                "comparison": "equal",
+                "to": "u-ineligible"
+              }
+            ]
+          },
+          {
+            "id": "neu-e3",
+            "order": "fixed",
+            "components": [
+              "e3"
+            ],
+            "skip": [
+              {
+                "name": "e3",
+                "check": "response",
+                "responseId": "e3",
+                "value": "No",
+                "comparison": "equal",
+                "to": "u-ineligible"
+              },
+              {
+                "name": "e3",
+                "check": "response",
+                "responseId": "e3",
+                "value": "Not sure",
+                "comparison": "equal",
+                "to": "u-ineligible"
+              }
+            ]
+          },
+          {
+            "id": "neu-e9",
+            "order": "fixed",
+            "components": [
+              "e4"
+            ],
+            "skip": [
+              {
+                "name": "e4",
+                "check": "response",
+                "responseId": "e9",
+                "value": "",
+                "comparison": "notEqual",
+                "to": "intro"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "UTEP",
+        "conditional": true,
+        "order": "fixed",
+        "components": [
+          {
+            "id": "utep-consent",
+            "order": "fixed",
+            "components": [
+              "u-consent"
+            ],
+            "skip": [
+              {
+                "name": "u-consent",
+                "check": "response",
+                "responseId": "consentAgree",
+                "value": "I do not agree.",
+                "comparison": "equal",
+                "to": "u-declined"
+              }
+            ]
+          },
+          {
+            "id": "utep-e1",
+            "order": "fixed",
+            "components": [
+              "e1"
+            ],
+            "skip": [
+              {
+                "name": "e1",
+                "check": "response",
+                "responseId": "e1",
+                "value": "No",
+                "comparison": "equal",
+                "to": "u-ineligible"
+              },
+              {
+                "name": "e1",
+                "check": "response",
+                "responseId": "e1",
+                "value": "Not sure",
+                "comparison": "equal",
+                "to": "u-ineligible"
+              }
+            ]
+          },
+          {
+            "id": "utep-e3",
+            "order": "fixed",
+            "components": [
+              "e3"
+            ],
+            "skip": [
+              {
+                "name": "e3",
+                "check": "response",
+                "responseId": "e3",
+                "value": "No",
+                "comparison": "equal",
+                "to": "u-ineligible"
+              },
+              {
+                "name": "e3",
+                "check": "response",
+                "responseId": "e3",
+                "value": "Not sure",
+                "comparison": "equal",
+                "to": "u-ineligible"
+              }
+            ]
+          },
+          {
+            "id": "utep-e9",
+            "order": "fixed",
+            "components": [
+              "e4"
+            ],
+            "skip": [
+              {
+                "name": "e4",
+                "check": "response",
+                "responseId": "e9",
+                "value": "",
+                "comparison": "notEqual",
+                "to": "intro"
+              }
+            ]
+          }
+        ]
+      },
+      "intro",
+      "item1",
+      {
+        "id": "gate-item3",
+        "order": "fixed",
+        "components": [
+          "item3"
+        ],
+        "skip": [
+          {
+            "name": "item3",
+            "check": "response",
+            "responseId": "item3",
+            "value": "Yes, let us use that one",
+            "comparison": "equal",
+            "to": "item6"
+          }
+        ]
+      },
+      "item4",
+      "item6",
+      "item9",
+      {
+        "id": "gate-item10",
+        "order": "fixed",
+        "components": [
+          "item10gate"
+        ],
+        "skip": [
+          {
+            "name": "item10gate",
+            "check": "response",
+            "responseId": "item10gate",
+            "value": "No — I went ahead without looking into it further",
+            "comparison": "equal",
+            "to": "reasons"
+          },
+          {
+            "name": "item10gate",
+            "check": "response",
+            "responseId": "item10gate",
+            "value": "I do not remember",
+            "comparison": "equal",
+            "to": "reasons"
+          }
+        ]
+      },
+      "item10list",
+      {
+        "id": "reasons",
+        "order": "dynamic",
+        "functionPath": "agent-addon-decisions/assets/chooseReasons.ts",
+        "components": [
+          "item11a",
+          "item11b"
+        ]
+      },
+      {
+        "id": "gate-item12",
+        "order": "fixed",
+        "components": [
+          "item12"
+        ],
+        "skip": [
+          {
+            "name": "item12",
+            "check": "response",
+            "responseId": "item12",
+            "value": "No",
+            "comparison": "equal",
+            "to": "item13"
+          },
+          {
+            "name": "item12",
+            "check": "response",
+            "responseId": "item12",
+            "value": "I do not remember",
+            "comparison": "equal",
+            "to": "item13"
+          }
+        ]
+      },
+      "item12text",
+      "item13",
+      "item15",
+      {
+        "id": "gate-item17",
+        "order": "fixed",
+        "components": [
+          "item17gate"
+        ],
+        "skip": [
+          {
+            "name": "item17gate",
+            "check": "response",
+            "responseId": "item17gate",
+            "value": "No, none of them",
+            "comparison": "equal",
+            "to": "item18"
+          },
+          {
+            "name": "item17gate",
+            "check": "response",
+            "responseId": "item17gate",
+            "value": "I do not know",
+            "comparison": "equal",
+            "to": "item18"
+          }
+        ]
+      },
+      "item17list",
+      {
+        "id": "gate-item18",
+        "order": "fixed",
+        "components": [
+          "item18"
+        ],
+        "skip": [
+          {
+            "name": "item18",
+            "check": "response",
+            "responseId": "item18",
+            "value": "No",
+            "comparison": "equal",
+            "to": "item19"
+          },
+          {
+            "name": "item18",
+            "check": "response",
+            "responseId": "item18",
+            "value": "Not sure",
+            "comparison": "equal",
+            "to": "item19"
+          }
+        ]
+      },
+      "item18text",
+      {
+        "id": "gate-item19",
+        "order": "fixed",
+        "components": [
+          "item19"
+        ],
+        "skip": [
+          {
+            "name": "item19",
+            "check": "response",
+            "responseId": "item19",
+            "value": "No",
+            "comparison": "equal",
+            "to": "item20"
+          },
+          {
+            "name": "item19",
+            "check": "response",
+            "responseId": "item19",
+            "value": "Not sure",
+            "comparison": "equal",
+            "to": "item20"
+          }
+        ]
+      },
+      "item19text",
+      "item20",
+      {
+        "id": "listing1",
+        "order": "latinSquare",
+        "numSamples": 1,
+        "components": [
+          "listing1-bounded",
+          "listing1-broad"
+        ]
+      },
+      {
+        "id": "listing2",
+        "order": "latinSquare",
+        "numSamples": 1,
+        "components": [
+          "listing2-original-first",
+          "listing2-plus-first"
+        ]
+      },
+      "item27",
+      {
+        "id": "gate-item28",
+        "order": "fixed",
+        "components": [
+          "item28"
+        ],
+        "skip": [
+          {
+            "name": "item28",
+            "check": "response",
+            "responseId": "item28",
+            "value": "No",
+            "comparison": "equal",
+            "to": "item30"
+          }
+        ]
+      },
+      "item29",
+      "item30",
+      {
+        "id": "PROLIFIC",
+        "conditional": true,
+        "order": "fixed",
+        "components": [
+          "debrief-p",
+          {
+            "id": "p-complete-wrap",
+            "order": "fixed",
+            "components": [
+              "p-complete"
+            ],
+            "skip": [
+              {
+                "name": "p-complete",
+                "check": "response",
+                "responseId": "ack",
+                "value": "Continue",
+                "comparison": "equal",
+                "to": "end"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "RIT",
+        "conditional": true,
+        "order": "fixed",
+        "components": [
+          "debrief-u",
+          "gift",
+          {
+            "id": "thanks-rit",
+            "order": "fixed",
+            "components": [
+              "thank-you"
+            ],
+            "skip": [
+              {
+                "name": "thank-you",
+                "check": "response",
+                "responseId": "ack",
+                "value": "Continue",
+                "comparison": "equal",
+                "to": "end"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "NORTHEASTERN",
+        "conditional": true,
+        "order": "fixed",
+        "components": [
+          "debrief-u",
+          "gift",
+          {
+            "id": "thanks-neu",
+            "order": "fixed",
+            "components": [
+              "thank-you"
+            ],
+            "skip": [
+              {
+                "name": "thank-you",
+                "check": "response",
+                "responseId": "ack",
+                "value": "Continue",
+                "comparison": "equal",
+                "to": "end"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "UTEP",
+        "conditional": true,
+        "order": "fixed",
+        "components": [
+          "debrief-u",
+          "gift",
+          {
+            "id": "thanks-utep",
+            "order": "fixed",
+            "components": [
+              "thank-you"
+            ],
+            "skip": [
+              {
+                "name": "thank-you",
+                "check": "response",
+                "responseId": "ack",
+                "value": "Continue",
+                "comparison": "equal",
+                "to": "end"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "screenout-wrap",
+        "order": "fixed",
+        "components": [
+          "p-screenout"
+        ],
+        "skip": [
+          {
+            "name": "p-screenout",
+            "check": "response",
+            "responseId": "ack",
+            "value": "Continue",
+            "comparison": "equal",
+            "to": "end"
+          }
+        ]
+      },
+      {
+        "id": "return-wrap",
+        "order": "fixed",
+        "components": [
+          "p-return"
+        ],
+        "skip": [
+          {
+            "name": "p-return",
+            "check": "response",
+            "responseId": "ack",
+            "value": "Continue",
+            "comparison": "equal",
+            "to": "end"
+          }
+        ]
+      },
+      {
+        "id": "ineligible-wrap",
+        "order": "fixed",
+        "components": [
+          "u-ineligible"
+        ],
+        "skip": [
+          {
+            "name": "u-ineligible",
+            "check": "response",
+            "responseId": "ack",
+            "value": "Continue",
+            "comparison": "equal",
+            "to": "end"
+          }
+        ]
+      },
+      {
+        "id": "declined-wrap",
+        "order": "fixed",
+        "components": [
+          "u-declined"
+        ],
+        "skip": [
+          {
+            "name": "u-declined",
+            "check": "response",
+            "responseId": "ack",
+            "value": "Continue",
+            "comparison": "equal",
+            "to": "end"
+          }
+        ]
+      }
+    ]
+  }
+}

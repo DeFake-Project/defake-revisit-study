@@ -321,6 +321,54 @@ export interface UIConfig {
   participantNameField?: string;
   /** The path to the external stylesheet file. */
   stylesheetPath?: string;
+  /**
+   * Opt-in entry check. When omitted, study startup is unchanged.
+   * When set, a participant record is created only after the query string
+   * resolves to a known arm.
+   */
+  recruitmentEntry?: RecruitmentEntryConfig;
+  /**
+   * Opt-in store for direct identifiers (name, email, id, choice).
+   * When omitted, no identifier records are written and the analysis tab is hidden.
+   * Values are stored apart from survey answers.
+   */
+  identifierCollection?: IdentifierCollectionConfig;
+}
+
+/** Query-string rules for studies that must refuse an incomplete or conflicting entry link. */
+export interface RecruitmentEntryConfig {
+  /** Query parameter that carries a panel participant id, such as PROLIFIC_PID. */
+  prolificParam: string;
+  /** Query parameter that carries a named arm, such as arm. */
+  armParam: string;
+  /** Accepted arm values. Matching is case-insensitive; the stored value is the one listed here. */
+  arms: string[];
+  /** Arm stored when prolificParam is present and armParam is not. */
+  prolificArm: string;
+  /** Shown when the link is missing, conflicting, or unrecognized. No participant record is created. */
+  incompleteLinkMessage: string;
+}
+
+/** One optional identifier field. A study lists only the fields it actually collects. */
+export interface IdentifierFieldConfig {
+  /** name, email, id, or choice. */
+  key: 'name' | 'email' | 'id' | 'choice';
+  /** Label shown to the participant and as the analysis column header. */
+  label: string;
+  /** Whether the participant must fill this field in before submitting. Defaults to false. */
+  required?: boolean;
+  /** When present, the field is a single-choice list. Otherwise it is a text field. */
+  options?: string[];
+}
+
+/** Study-level settings for the separate identifier store. */
+export interface IdentifierCollectionConfig {
+  /** Days after a record is saved before it becomes eligible for deletion. */
+  retentionDays: number;
+  /** Fields this study may store. Omitted keys are not shown. */
+  fields: IdentifierFieldConfig[];
+  /** Analysis tab label. Defaults to Identifier info. */
+  tabLabel?: string;
 }
 
 /**
@@ -1636,6 +1684,11 @@ export interface DynamicBlock {
   functionPath: string;
   /** The parameters that are passed to the function. These can be used within your function to render different things. */
   parameters?: Record<string, unknown>;
+  /**
+   * Component ids the function may return. Participants still see only what the function selects.
+   * Listing them here marks the components as used, so a dynamic choice does not raise an unused-component warning.
+   */
+  components?: string[];
   /** The conditional property shows the block only when the URL condition matches its `id`. */
   conditional?: boolean;
 }

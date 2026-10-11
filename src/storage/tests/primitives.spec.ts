@@ -96,6 +96,35 @@ describe.each([
     expect(updatedHash).toBe(configHash);
   });
 
+  test('identifier records are stored apart from participant answers', async () => {
+    const participantSession = await storageEngine.initializeParticipantSession({}, configSimple, participantMetadata);
+    const record = await storageEngine.saveIdentifierFields(
+      participantSession.participantId,
+      { name: 'Ada Lovelace', email: 'ada@rit.edu' },
+      30,
+    );
+
+    expect(record.fields).toEqual({ name: 'Ada Lovelace', email: 'ada@rit.edu' });
+    expect(record.deleteAfter).toBeGreaterThan(record.savedAt);
+
+    const participants = await storageEngine.getAllParticipantsData(studyId);
+    const stored = participants.find((participant) => participant.participantId === participantSession.participantId);
+    expect(stored?.answers).toEqual({});
+    expect(JSON.stringify(stored)).not.toContain('ada@rit.edu');
+
+    const merged = await storageEngine.saveIdentifierFields(
+      participantSession.participantId,
+      { choice: 'interview@example.edu' },
+      30,
+    );
+    expect(merged.fields.name).toBe('Ada Lovelace');
+    expect(merged.fields.choice).toBe('interview@example.edu');
+
+    expect(await storageEngine.deleteDueIdentifierRecords(studyId, Date.now())).toBe(0);
+    expect(await storageEngine.deleteDueIdentifierRecords(studyId, merged.deleteAfter)).toBe(1);
+    expect(await storageEngine.getIdentifierRecord(participantSession.participantId)).toBeNull();
+  });
+
   // getAllSequenceAssignments test
   test('getAllSequenceAssignments returns sequence assignment for participant', async () => {
     const participantSession = await storageEngine.initializeParticipantSession({}, configSimple, participantMetadata);

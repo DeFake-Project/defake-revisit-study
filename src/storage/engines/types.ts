@@ -9,6 +9,11 @@ import { shouldPreferCachedParticipantData } from './utils/participantDataRecove
 import { RevisitNotification } from '../../utils/notifications';
 import { parseConditionParam } from '../../utils/handleConditionLogic';
 import {
+  IdentifierRecord,
+  isIdentifierRecord,
+  mergeIdentifierFields,
+} from '../identifierRecords';
+import {
   ParticipantTags, Tag, TaglessEditedText, TranscribedAudio,
 } from '../../analysis/individualStudy/thinkAloud/types';
 import {
@@ -123,6 +128,8 @@ export type StorageObject<T extends StorageObjectType> =
   ? ParticipantTags
   : T extends 'tags'
   ? Tag[]
+  : T extends 'identifierRecord'
+  ? IdentifierRecord
   : Blob; // Fallback for any random string
 
 interface CloudStorageEngineError {
@@ -1279,6 +1286,81 @@ export abstract class StorageEngine {
       minTime,
       maxTime,
     };
+  }
+
+  // Writes direct identifiers to a sibling object. Does not touch participant answers.
+  async saveIdentifierFields(
+    participantId: string,
+    fields: IdentifierRecord['fields'],
+    retentionDays: number,
+  ): Promise<IdentifierRecord> {
+    await this.verifyStudyDatabase();
+    const existing = await this.getIdentifierRecord(participantId);
+    const record = mergeIdentifierFields(existing, participantId, fields, retentionDays, Date.now());
+    await this._pushToStorage(`identifiers/${participantId}`, 'identifierRecord', record);
+    return record;
+  }
+
+  async getIdentifierRecord(participantId: string, studyId?: string): Promise<IdentifierRecord | null> {
+    const stored = await this._getFromStorage(
+      `identifiers/${participantId}`,
+      'identifierRecord',
+      studyId,
+    );
+    return isIdentifierRecord(stored) ? stored : null;
+  }
+
+  async getAllIdentifierRecords(studyId: string): Promise<IdentifierRecord[]> {
+    const participantIds = await this.getAllParticipantIds(studyId);
+    const records = await Promise.all(
+      participantIds.map((participantId) => this.getIdentifierRecord(participantId, studyId)),
+    );
+    return records.filter((record): record is IdentifierRecord => record !== null);
+  }
+
+  async deleteIdentifierRecord(participantId: string): Promise<void> {
+    await this._deleteFromStorage(`identifiers/${participantId}`, 'identifierRecord');
+  }
+
+  async deleteDueIdentifierRecords(studyId: string, now = Date.now()): Promise<number> {
+    await this.initializeStudyDb(studyId);
+    const records = await this.getAllIdentifierRecords(studyId);
+    const due = records.filter((record) => record.deleteAfter <= now);
+    await Promise.all(due.map((record) => this.deleteIdentifierRecord(record.participantId)));
+    return due.length;
+  }
+
+  // Stores the resolved recruitment arm on the participant without requiring development mode.
+  async recordRecruitmentArm(arm: string): Promise<ParticipantData> {
+    await this.verifyStudyDatabase();
+
+    if (!this.participantData || !this.currentParticipantId) {
+      throw new Error('Participant not initialized');
+    }
+
+    const alreadyRecorded = this.participantData.searchParams.recruitment_arm === arm
+      && this.participantData.conditions?.length === 1
+      && this.participantData.conditions[0] === arm;
+
+    if (!alreadyRecorded) {
+      this.participantData = {
+        ...this.participantData,
+        searchParams: {
+          ...this.participantData.searchParams,
+          recruitment_arm: arm,
+          condition: arm,
+        },
+        conditions: [arm],
+      };
+      await this.persistCurrentParticipantData({ immediate: true });
+      try {
+        await this._updateSequenceAssignmentFields(this.currentParticipantId, { conditions: [arm] });
+      } catch {
+        // Sequence assignments are created only while data collection is enabled.
+      }
+    }
+
+    return this.participantData;
   }
 
   // Save the answer into the local participant data and queue a debounced write to storage.
