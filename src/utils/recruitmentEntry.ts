@@ -50,6 +50,31 @@ type StudyWithEntry = {
  * Finds the single study whose recruitmentEntry accepts the current arm query.
  * Returns null when no study opts in, the arm is absent, or more than one study matches.
  */
+/**
+ * Query string for a home-screen condition badge.
+ * Studies with recruitmentEntry are opened with arm= or PROLIFIC_PID=, not condition=.
+ * Returns null when this condition is not one of that study's entry values.
+ */
+export function recruitmentEntrySearch(
+  entry: RecruitmentEntryConfig | undefined,
+  conditionId: string,
+): string | null {
+  if (!entry) {
+    return null;
+  }
+
+  if (conditionId.toLowerCase() === entry.prolificArm.toLowerCase()) {
+    return `${entry.prolificParam}=test`;
+  }
+
+  const arm = entry.arms.find((candidate) => candidate.toLowerCase() === conditionId.toLowerCase());
+  if (!arm) {
+    return null;
+  }
+
+  return `${entry.armParam}=${arm}`;
+}
+
 export function findStudyForRecruitmentArm(
   configs: Record<string, StudyWithEntry>,
   params: ParamSource,

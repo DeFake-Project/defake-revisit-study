@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { findStudyForRecruitmentArm, resolveRecruitmentEntry } from './recruitmentEntry';
+import { findStudyForRecruitmentArm, recruitmentEntrySearch, resolveRecruitmentEntry } from './recruitmentEntry';
 import { RecruitmentEntryConfig } from '../parser/types';
 
 const entry: RecruitmentEntryConfig = {
@@ -37,6 +37,20 @@ describe('resolveRecruitmentEntry', () => {
     expect(resolveRecruitmentEntry(entry, params(''))).toMatchObject({ status: 'incomplete' });
     expect(resolveRecruitmentEntry(entry, params('arm=CMU'))).toMatchObject({ status: 'incomplete' });
     expect(resolveRecruitmentEntry(entry, params('PROLIFIC_PID=abc&arm=RIT'))).toMatchObject({ status: 'incomplete' });
+  });
+});
+
+describe('recruitmentEntrySearch', () => {
+  it('uses the arm parameter for a campus code', () => {
+    expect(recruitmentEntrySearch(entry, 'RIT')).toBe('arm=RIT');
+  });
+
+  it('uses a placeholder Prolific id for the Prolific block', () => {
+    expect(recruitmentEntrySearch(entry, 'PROLIFIC')).toBe('PROLIFIC_PID=test');
+  });
+
+  it('leaves ordinary studies on the condition parameter', () => {
+    expect(recruitmentEntrySearch(undefined, 'RIT')).toBeNull();
   });
 });
 
