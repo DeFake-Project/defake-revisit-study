@@ -72,7 +72,8 @@
             "Probably not",
             "No"
           ],
-          "location": "belowStimulus"
+          "location": "belowStimulus",
+          "required": false
         },
         {
           "id": "item23",
@@ -86,14 +87,16 @@
             "Somewhat comfortable",
             "Very comfortable"
           ],
-          "location": "belowStimulus"
+          "location": "belowStimulus",
+          "required": false
         },
         {
           "id": "item24",
           "prompt": "What in the listing most affected your answer?",
           "secondaryText": "A sentence is plenty.",
           "type": "longText",
-          "location": "belowStimulus"
+          "location": "belowStimulus",
+          "required": false
         }
       ]
     },
@@ -110,14 +113,16 @@
             "Neither of them",
             "No preference between them"
           ],
-          "location": "belowStimulus"
+          "location": "belowStimulus",
+          "required": false
         },
         {
           "id": "item26",
           "prompt": "What made you answer that way?",
           "secondaryText": "A sentence is plenty.",
           "type": "longText",
-          "location": "belowStimulus"
+          "location": "belowStimulus",
+          "required": false
         }
       ]
     }
@@ -303,7 +308,8 @@
             "No",
             "Not sure"
           ],
-          "location": "belowStimulus"
+          "location": "belowStimulus",
+          "required": true
         }
       ]
     },
@@ -324,7 +330,8 @@
             "65 or older",
             "Prefer not to say"
           ],
-          "location": "belowStimulus"
+          "location": "belowStimulus",
+          "required": true
         },
         {
           "id": "e3",
@@ -336,7 +343,8 @@
             "No",
             "Not sure"
           ],
-          "location": "belowStimulus"
+          "location": "belowStimulus",
+          "required": true
         }
       ]
     },
@@ -359,7 +367,8 @@
             "An enterprise agent platform or internal automation system"
           ],
           "location": "belowStimulus",
-          "withOther": true
+          "withOther": true,
+          "required": true
         },
         {
           "id": "e5",
@@ -377,7 +386,8 @@
             "I am not sure"
           ],
           "location": "belowStimulus",
-          "withOther": true
+          "withOther": true,
+          "required": true
         },
         {
           "id": "e6",
@@ -399,7 +409,8 @@
             "Within the past 6 months",
             "I do not remember"
           ],
-          "location": "belowStimulus"
+          "location": "belowStimulus",
+          "required": true
         },
         {
           "id": "e8",
@@ -417,7 +428,8 @@
             "Non-technical user exploring AI tools"
           ],
           "location": "belowStimulus",
-          "withOther": true
+          "withOther": true,
+          "required": true
         },
         {
           "id": "e9",
@@ -431,7 +443,8 @@
             "Multiple times per week",
             "Daily or almost daily"
           ],
-          "location": "belowStimulus"
+          "location": "belowStimulus",
+          "required": true
         }
       ]
     },
@@ -454,7 +467,8 @@
             "I am not sure what kind they were"
           ],
           "location": "belowStimulus",
-          "withOther": true
+          "withOther": true,
+          "required": false
         },
         {
           "id": "item2",
@@ -472,7 +486,8 @@
             "Business, operations, or customer support"
           ],
           "location": "belowStimulus",
-          "withOther": true
+          "withOther": true,
+          "required": false
         }
       ]
     },
@@ -489,7 +504,8 @@
             "Yes, let us use that one",
             "I would rather describe a different one — including one I decided against, or one I removed"
           ],
-          "location": "belowStimulus"
+          "location": "belowStimulus",
+          "required": false
         }
       ]
     },
@@ -511,7 +527,8 @@
             "I am not sure"
           ],
           "location": "belowStimulus",
-          "withOther": true
+          "withOther": true,
+          "required": false
         },
         {
           "id": "item5",
@@ -519,7 +536,7 @@
           "secondaryText": "Plain language is fine — for example, \"read my work email and draft replies.\"",
           "type": "longText",
           "location": "belowStimulus",
-          "required": true
+          "required": false
         }
       ]
     },
@@ -538,7 +555,8 @@
             "I changed the settings on one I already had",
             "Something else"
           ],
-          "location": "belowStimulus"
+          "location": "belowStimulus",
+          "required": false
         },
         {
           "id": "item7",
@@ -555,7 +573,8 @@
             "A work system with AI built in"
           ],
           "location": "belowStimulus",
-          "withOther": true
+          "withOther": true,
+          "required": false
         },
         {
           "id": "item8",
@@ -574,7 +593,8 @@
             "It was already there, or my organization recommended it"
           ],
           "location": "belowStimulus",
-          "withOther": true
+          "withOther": true,
+          "required": false
         }
       ]
     },
@@ -587,7 +607,7 @@
           "secondaryText": "Anything you remember looking at, comparing, or trying is useful. A few sentences is plenty.",
           "type": "longText",
           "location": "belowStimulus",
-          "required": true
+          "required": false
         }
       ]
     },
@@ -604,7 +624,8 @@
             "No — I went ahead without looking into it further",
             "I do not remember"
           ],
-          "location": "belowStimulus"
+          "location": "belowStimulus",
+          "required": false
         }
       ]
     },
@@ -627,7 +648,8 @@
             "Asked an AI assistant to check it or explain it",
             "Tried it somewhere separate first"
           ],
-          "location": "belowStimulus"
+          "location": "belowStimulus",
+          "required": false
         }
       ]
     },
@@ -652,9 +674,9 @@
             "It let me use a model or service I prefer"
           ],
           "location": "belowStimulus",
-          "minSelections": 1,
           "maxSelections": 3,
-          "withOther": true
+          "withOther": true,
+          "required": false
         }
       ]
     },
@@ -678,9 +700,9 @@
             "It broke something, or behaved oddly"
           ],
           "location": "belowStimulus",
-          "minSelections": 1,
           "maxSelections": 3,
-          "withOther": true
+          "withOther": true,
+          "required": false
         }
       ]
     },
@@ -697,7 +719,8 @@
             "Yes",
             "I do not remember"
           ],
-          "location": "belowStimulus"
+          "location": "belowStimulus",
+          "required": false
         }
       ]
     },
@@ -710,7 +733,7 @@
           "secondaryText": "A sentence or two is enough.",
           "type": "longText",
           "location": "belowStimulus",
-          "required": true
+          "required": false
         }
       ]
     },
@@ -731,7 +754,8 @@
             "More than 20",
             "Not sure"
           ],
-          "location": "belowStimulus"
+          "location": "belowStimulus",
+          "required": false
         },
         {
           "id": "item14",
@@ -747,7 +771,8 @@
             "In a system my organization manages",
             "I do not know"
           ],
-          "location": "belowStimulus"
+          "location": "belowStimulus",
+          "required": false
         }
       ]
     },
@@ -760,7 +785,7 @@
           "secondaryText": "In your own words. Your best guess is fine — there is no technical answer we are looking for.",
           "type": "longText",
           "location": "belowStimulus",
-          "required": true
+          "required": false
         },
         {
           "id": "item16",
@@ -768,7 +793,7 @@
           "secondaryText": "We are interested in what you assume, not what any documentation says.",
           "type": "longText",
           "location": "belowStimulus",
-          "required": true
+          "required": false
         }
       ]
     },
@@ -785,7 +810,8 @@
             "No, none of them",
             "I do not know"
           ],
-          "location": "belowStimulus"
+          "location": "belowStimulus",
+          "required": false
         }
       ]
     },
@@ -809,7 +835,8 @@
             "Smart-home or other physical devices"
           ],
           "location": "belowStimulus",
-          "withOther": true
+          "withOther": true,
+          "required": false
         }
       ]
     },
@@ -826,7 +853,8 @@
             "Yes",
             "Not sure"
           ],
-          "location": "belowStimulus"
+          "location": "belowStimulus",
+          "required": false
         }
       ]
     },
@@ -839,7 +867,7 @@
           "secondaryText": "A sentence or two is enough.",
           "type": "longText",
           "location": "belowStimulus",
-          "required": true
+          "required": false
         }
       ]
     },
@@ -856,7 +884,8 @@
             "Yes",
             "Not sure"
           ],
-          "location": "belowStimulus"
+          "location": "belowStimulus",
+          "required": false
         }
       ]
     },
@@ -869,7 +898,7 @@
           "secondaryText": "A sentence or two is enough.",
           "type": "longText",
           "location": "belowStimulus",
-          "required": true
+          "required": false
         }
       ]
     },
@@ -882,7 +911,7 @@
           "secondaryText": "Whatever you would realistically do — including nothing.",
           "type": "longText",
           "location": "belowStimulus",
-          "required": true
+          "required": false
         },
         {
           "id": "item21",
@@ -890,7 +919,7 @@
           "secondaryText": "If nothing much would worry you, that is a valid answer.",
           "type": "longText",
           "location": "belowStimulus",
-          "required": true
+          "required": false
         }
       ]
     },
@@ -943,7 +972,8 @@
             "Quite a lot",
             "It is usually the main thing I think about"
           ],
-          "location": "belowStimulus"
+          "location": "belowStimulus",
+          "required": false
         }
       ]
     },
@@ -959,7 +989,8 @@
             "Yes",
             "No"
           ],
-          "location": "belowStimulus"
+          "location": "belowStimulus",
+          "required": true
         }
       ]
     },
@@ -972,7 +1003,7 @@
           "secondaryText": "Used only to arrange the interview, then deleted.",
           "type": "shortText",
           "location": "belowStimulus",
-          "required": true
+          "required": false
         }
       ]
     },
