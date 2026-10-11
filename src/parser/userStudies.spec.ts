@@ -40,11 +40,8 @@ describe('user studies from production fork', () => {
     const parsed = await parseStudyConfig(text);
     expect(parsed.errors, JSON.stringify(parsed.errors, null, 2)).toEqual([]);
     if (studyId === 'agent-addon-decisions') {
-      const unused = parsed.warnings.filter((warning) => warning.category === 'unused-component').map((warning) => warning.message);
-      expect(unused).toEqual([
-        'Component `item11a` is defined in components object but not used deterministically in the sequence',
-        'Component `item11b` is defined in components object but not used deterministically in the sequence',
-      ]);
+      const unused = parsed.warnings.filter((warning) => warning.category === 'unused-component');
+      expect(unused).toEqual([]);
       const [sequence] = generateSequenceArray(parsed);
       const flat = getSequenceFlatMap(sequence);
       const listing1 = flat.filter((id) => id === 'listing1-bounded' || id === 'listing1-broad');

@@ -1590,7 +1590,11 @@
       {
         "id": "reasons",
         "order": "dynamic",
-        "functionPath": "agent-addon-decisions/assets/chooseReasons.ts"
+        "functionPath": "agent-addon-decisions/assets/chooseReasons.ts",
+        "components": [
+          "item11a",
+          "item11b"
+        ]
       },
       {
         "id": "gate-item12",

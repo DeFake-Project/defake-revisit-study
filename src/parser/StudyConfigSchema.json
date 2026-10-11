@@ -955,6 +955,13 @@
       "additionalProperties": false,
       "description": "The DynamicBlock interface is used to define a block where displayed components are controlled by a function. This is useful when you want to generate the sequence based on answers to previous questions or other factors.\n\nThe functionPath property is a path to the function that generates the components. This should be a relative path from the src/public folder.\n\nHere's an example of how to use the DynamicBlock:\n\n```json {   \"id\": \"funcBlock\",   \"order\": \"dynamic\",   \"functionPath\": \"<study-name>/assets/function.js\",   \"parameters\": {     \"param1\": \"value1\",     \"param2\": \"value2\"   } } ```",
       "properties": {
+        "components": {
+          "description": "Component ids the function may return. Participants still see only what the function selects. Listing them here marks the components as used, so a dynamic choice does not raise an unused-component warning.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "conditional": {
           "description": "The conditional property shows the block only when the URL condition matches its `id`.",
           "type": "boolean"

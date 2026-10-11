@@ -1684,6 +1684,11 @@ export interface DynamicBlock {
   functionPath: string;
   /** The parameters that are passed to the function. These can be used within your function to render different things. */
   parameters?: Record<string, unknown>;
+  /**
+   * Component ids the function may return. Participants still see only what the function selects.
+   * Listing them here marks the components as used, so a dynamic choice does not raise an unused-component warning.
+   */
+  components?: string[];
   /** The conditional property shows the block only when the URL condition matches its `id`. */
   conditional?: boolean;
 }
