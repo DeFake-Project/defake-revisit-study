@@ -56,13 +56,13 @@ export const ROUND_PAGES: RoundPageContent[] = [
     title: 'What you told us',
     tone: 'default',
     paragraphs: [
-      'Thank you for your Round 1 answers. Sixteen of you took part, from media literacy education, fact-checking, human factors, misinformation research and digital forensics. Your comments agreed with each other more often than we expected.',
-      'You backed the core of STOP&SCAN. **14 of 15** agreed the five elements are the right ones. Against SIFT, **13 of 14** picked STOP&SCAN as more reliable when search results mislead, and **11 of 14** as more likely to lead to a cautious judgement.',
-      'You also found the full process too heavy for daily life. Twelve of you said so in your comments, and 9 said the pause fails when people are rushed or upset. A pause made sense to all **16** of you for Rekha\'s scam call and to **5 of 15** for Dana\'s weather map.',
-      'So every change follows one idea. STOP decides how much effort the rest of the check gets. Each letter keeps its place and gets one focused change.',
-      '**How each page works.** The tinted box holds the new text, in the words the public will see. Two closed panels above the box hold why we changed the element (your Round 1 results) and how we justify the change (the research, with full references). Panels below hold the teaching tables and the research still needed. Open any panel you want.',
-      '**How to rate.** Rate each change from 1 (strongly disagree) to 5 (strongly agree). For a 1, 2 or 3, tell us what you would change. Some of your feedback shapes the framework on the pages ahead. The rest goes into the paper, mainly the discussion and future research.',
-      'The questionnaire takes about **10 minutes**. Figures refer to the 16 experts on the panel. Where fewer answered an item, the figure shows how many did. Counts from comments are out of the 15 of you who wrote comments.',
+      'Thank you for your Round 1 answers. Sixteen experts took part. They worked in media literacy education, fact-checking, human factors, misinformation research, and digital forensics. Their comments agreed more often than we expected.',
+      'The panel supported the main parts of STOP&SCAN. **14 of 15** agreed that the five elements are the right ones. **13 of 14** said STOP&SCAN is more reliable than SIFT when search results are misleading. **11 of 14** said STOP&SCAN is more likely to lead to a careful judgement.',
+      'The panel also said that the full process is too much work for daily use. Twelve experts said this in their comments. Nine said people may not pause when they feel rushed or upset. All **16** experts saw a reason to pause for Rekha\'s scam call. Only **5 of 15** saw a reason to pause for Dana\'s weather map.',
+      'All changes follow one idea: STOP decides how much effort the rest of the check needs. Each letter stays in the same place. Each letter gets one main change.',
+      '**How each page works.** The tinted box shows the new text that the public will see. The two closed panels above it explain why we made the change and what research supports it. The panels below show teaching material and questions for future research. You may open any panel.',
+      '**How to rate.** Rate each change from 1 (strongly disagree) to 5 (strongly agree). If you choose 1, 2, or 3, tell us what you would change. Some of your feedback appears in the framework on later pages. We will discuss the rest in the research paper.',
+      'The questionnaire takes about **10 minutes**. Most numbers refer to all 16 experts. If fewer people answered a question, we show that number. Comment counts refer to the 15 experts who wrote comments.',
     ],
     ratings: [],
   },
@@ -72,36 +72,36 @@ export const ROUND_PAGES: RoundPageContent[] = [
     big: 'STOP',
     title: 'Pause, and set the effort',
     tone: 'stop',
-    lead: 'STOP now asks whether you need to check at all. If you do, three questions set how much effort each SCAN letter gets.',
+    lead: 'STOP first asks whether you need to check the content. If you do, three questions decide how much effort each SCAN letter needs.',
     why: {
       summary: '16 of 16 saw a reason to pause for the scam call, 5 of 15 for the weather map',
       paragraphs: [
-        'People pause least when they most need to. Rushed, scared or angry people skip the pause, and 9 of you made this point. All **16** of you saw a reason to pause before Rekha sent money. Only **5 of 15** saw one before Dana reshared a weather map.',
-        'Twelve of you said running every step on everything is unrealistic, and several asked for effort to follow the stakes. Four of you asked for the claim being checked to be named, and two more answers showed the confusion. Without a named claim, your reading of Marcus\'s photo split **8 to 8**.',
+        'People may skip the pause when they feel rushed, scared, or angry. Nine experts made this point. All **16** experts saw a reason to pause before Rekha sent money. Only **5 of 15** saw a reason to pause before Dana shared a weather map.',
+        'Twelve experts said it is not realistic to use every step on all content. Several said the effort should depend on what could go wrong. Four asked us to name the exact claim being checked. Without a clear claim, the panel split **8 to 8** on Marcus\'s photo.',
       ],
     },
     how: {
       summary: '7 sources',
       paragraphs: [
-        'The entry question has two parts because content reaches you in two ways. Some content you act on, by liking, sharing, replying or paying. Other content you scroll past, and the content still shapes what you believe. One earlier exposure made a false headline seem more accurate a week later, even with a warning label (Pennycook, Cannon and Rand, 2018). Judging accuracy the first time you see a claim wiped out this later effect, for claims people knew enough to question (Brashier, Eliseev and Marsh, 2020). So the second part asks at first sight.',
-        'Both parts act as a filter. People stop noticing warnings they see over and over, and the drop shows in brain activity within one session and across days (Anderson et al., 2015, Vance et al., 2017). A pause which fires on every post would wear out the same way.',
-        'The three questions set the effort before any evidence comes in. How hard people think follows a feeling of being right, and this feeling tracks how familiar and fluent something seems more than whether the content is accurate (Ackerman and Thompson, 2017). Stakes give a steadier signal. Each question also works as an if-then cue, and specific if-then plans turn intentions into action far more often than broad goals (Gollwitzer, 1999).',
-        'Pressure gets its own question because scams run on pressure. Urgency, authority and a plea to help someone push victims to act before they think (Stajano and Wilson, 2011).',
+        'The first question has two parts because content affects you in two ways. You may act on content by liking, sharing, replying, or paying. Content may also change what you believe, even if you scroll past it. Seeing a false headline once made it seem more accurate one week later, even when it had a warning label (Pennycook, Cannon and Rand, 2018). Asking people to judge a claim when they first saw it removed this later effect for claims they knew enough to question (Brashier, Eliseev and Marsh, 2020).',
+        'The two parts act as a filter. People stop noticing warnings when they see them too often (Anderson et al., 2015; Vance et al., 2017). A pause on every post may have the same problem.',
+        'The three questions set the effort before you look at the evidence. A familiar or easy-to-read claim can feel correct even when it is not (Ackerman and Thompson, 2017). The possible harm gives a more stable guide. The questions also create clear if-then plans. These plans help people act on their goals (Gollwitzer, 1999).',
+        'Pressure has its own question because scams often create pressure. Urgency, authority, and requests to help someone can make people act before they think (Stajano and Wilson, 2011).',
       ],
       references: ['pennycook2018', 'brashier2020', 'anderson2015', 'vance2017', 'ackerman2017', 'gollwitzer1999', 'stajano2011'],
     },
     userbox: {
       caption: 'The new STOP, in the words people will see',
       pieces: [
-        { kind: 'paragraph', text: 'Pause when you want to like, share, reply to or act on something. Pause too when a post changes what you think about a person, a group or a place. Ask yourself two things.' },
+        { kind: 'paragraph', text: 'Pause before you like, share, reply to, or act on something. Also pause if a post changes what you think about a person, group, or place. Ask yourself two questions.' },
         { kind: 'questions', items: ['Do I care to engage with this?', 'Does this change what I think about someone or something?'] },
-        { kind: 'rule', text: 'Two no\'s, scroll on. A yes to either, ask three more.' },
+        { kind: 'rule', text: 'If both answers are no, keep scrolling. If either answer is yes, ask three more questions.' },
         {
           kind: 'steps',
           items: [
             'What is my first reaction, and is anything rushing me?',
             'What is this telling me, asking me to do, or warning me about?',
-            'What happens if I\'m wrong, and how hard is the damage to undo?',
+            'What could happen if I am wrong? How hard would it be to undo the harm?',
           ],
         },
         {
@@ -109,11 +109,11 @@ export const ROUND_PAGES: RoundPageContent[] = [
           rows: [
             { tone: LIGHT, name: 'Light check', text: 'Little at stake, easy to undo, nothing rushing you.' },
             { tone: MODERATE, name: 'Moderate check', text: 'Something at stake, but a mistake is fixable.' },
-            { tone: DEEP, name: 'Deep check', text: 'A lot at stake, no way to undo, or many people reached.' },
+            { tone: DEEP, name: 'Deep check', text: 'A lot is at stake, the harm is hard to undo, or the content will reach many people.' },
             { tone: EVERY, name: 'Rushed or unsure', text: 'Go one level deeper.' },
           ],
         },
-        { kind: 'paragraph', text: 'If the message asks you to pay, sign in or send a code, send nothing until you finish the check. If the message warns you, go to the official source yourself and skip its links and numbers.' },
+        { kind: 'paragraph', text: 'If a message asks you to pay, sign in, or send a code, do not send anything until you finish the check. If a message gives a warning, contact the official source yourself. Do not use the links or phone numbers in the message.' },
       ],
     },
     teaching: {
@@ -171,20 +171,20 @@ export const ROUND_PAGES: RoundPageContent[] = [
     big: 'S',
     title: 'Source',
     tone: 'default',
-    lead: 'Source now grows with the effort level, from a glance at who posted the content to tracing where the claim started. The deep check asks what the source gains.',
+    lead: 'The Source check now changes with the effort level. A light check looks at who posted the content. A deep check finds where the claim started and asks what the source may gain.',
     why: {
       summary: '15 of 16 found Dana\'s reshare plausible because the account was real',
       paragraphs: [
-        'A real account is where most checks stopped. **15 of 16** found Dana\'s reshare plausible, since the weather service account was genuine. Thirteen of the 15 of you who wrote comments said a source-only or tool-only check would have misled someone or left a case open.',
-        '**12 of 16** disagreed SIFT gives enough guidance when a trusted source publishes a fake (R11), a consensus. Six of you said neither framework asks who gains from a claim.',
+        'Most checks stopped after finding a real account. **15 of 16** experts found Dana\'s shared post believable because the weather service account was real. Thirteen of the 15 experts who wrote comments said that checking only the source or a tool could mislead someone or leave the answer unclear.',
+        '**12 of 16** disagreed that SIFT gives enough guidance when a trusted source publishes false content (R11). Six said that neither framework asks who gains from a claim.',
       ],
     },
     how: {
       summary: '5 sources',
       paragraphs: [
-        'Professional fact-checkers judge a source by leaving the page and reading what others say about the source. Historians and students who stayed on the page were fooled more often (Wineburg and McGrew, 2019). The moderate and deep checks look outside the post for this reason. "Who is behind the information?" opens civic online reasoning (McGrew et al., 2018). We add what they gain.',
-        'The first account you see is often not where a claim started. Disinformation spreads through networks where a few accounts seed a claim and many others, some coordinated and some sincere, pass the claim on (Starbird, Arif and Wilson, 2019). So the deep check covers who started a claim and who spreads the claim.',
-        'A real source tells you who posted something. Whether the content is true is a separate question. Missing provenance settles nothing either. When provenance data was incomplete, people in one study came to disbelieve honest media (Feng et al., 2023). And "this is fake" has a source of its own, since calling real evidence fake is a known escape route (Chesney and Citron, 2019).',
+        'Professional fact-checkers leave the page and read what other sources say about it. Historians and students who stayed on the page were more often misled (Wineburg and McGrew, 2019). This is why moderate and deep checks look outside the post. Civic online reasoning starts with the question, "Who is behind the information?" (McGrew et al., 2018). We also ask what that source may gain.',
+        'The first account you see may not be where the claim started. A few accounts may start a false claim. Many other accounts may then spread it, either together or without knowing it is false (Starbird, Arif and Wilson, 2019). The deep check therefore asks who started and spread the claim.',
+        'A real account only tells you who posted the content. It does not tell you whether the content is true. Missing information about where content came from also proves nothing. In one study, incomplete source history made people doubt real media (Feng et al., 2023). A statement such as "this is fake" also has a source. People sometimes call real evidence fake to avoid it (Chesney and Citron, 2019).',
       ],
       references: ['wineburg2019', 'mcgrew2018', 'starbird2019', 'feng2023', 'chesney2019'],
     },
@@ -194,9 +194,9 @@ export const ROUND_PAGES: RoundPageContent[] = [
         {
           kind: 'levels',
           rows: [
-            { tone: LIGHT, name: 'Light check', text: 'Look at the account which posted what you see. If a friend reshared the post, look past your friend to the account they got the post from.' },
+            { tone: LIGHT, name: 'Light check', text: 'Look at the account that posted the content. If a friend shared the post, find the account that your friend got it from.' },
             { tone: MODERATE, name: 'Moderate check', text: 'Look at the account\'s record. Is the account real? How old is the account, and what else has the owner posted?' },
-            { tone: DEEP, name: 'Deep check', text: 'Find the first poster, and look at who is spreading the claim. What do they gain if you believe or share the post?' },
+            { tone: DEEP, name: 'Deep check', text: 'Find the first account that posted the claim. Look at who is spreading it. What might they gain if you believe or share it?' },
             { tone: EVERY, name: 'Every level', text: 'A real or official account tells you who posted something. Whether the content is true is a separate question. A claim like "this is fake" or "this is AI" has a source too.' },
           ],
         },
@@ -235,20 +235,20 @@ export const ROUND_PAGES: RoundPageContent[] = [
     big: 'C',
     title: 'Content',
     tone: 'default',
-    lead: 'Content now opens with checks which need no special skill, names the common pressure tricks, and puts visual signs and tools last.',
+    lead: 'The Content step now starts with checks that need no special skill. It names common pressure tactics. Visual signs and tools come last.',
     why: {
       summary: 'Useful in 52 of 62 step ratings, lowest for Ellen at 11 of 15',
       paragraphs: [
-        'Spotting fakes by eye is expert work, and AI keeps raising the bar. You rated Content useful in **52 of 62** step ratings. Ellen\'s case scored lowest, **11 of 15**, where the step leaned on image inspection and detectors. Rekha\'s case needed no forensic skill at all.',
-        'Four of you asked Content to start with what the content shows and asks of you, ahead of the pixels. Six of you said neither framework asks who gains from a claim, and one of you called the missing manipulation tricks a serious gap.',
+        'Finding false content by sight takes expert skill, and AI makes this harder. The panel rated Content useful in **52 of 62** step ratings. Ellen\'s case had the lowest score: **11 of 15**. That case depended on looking at an image and using detectors. Rekha\'s case needed no forensic skill.',
+        'Four experts asked us to start with what the content shows or asks you to do, before looking at pixels. Six said neither framework asks who gains from a claim. One said that missing manipulation tactics was a serious gap.',
       ],
     },
     how: {
       summary: '3 sources',
       paragraphs: [
-        'People cannot tell AI-generated faces from real ones by eye. In one study accuracy sat at 48%, near chance, and training lifted accuracy only to 59% (Nightingale and Farid, 2022). Eye checks come last for this reason.',
-        'Naming the tricks works better. Short videos which taught common manipulation techniques improved people\'s ability to spot those techniques in new posts, in the lab and in a field test on YouTube (Roozenbeek et al., 2022). Scams lean on a short list of levers, including urgency, authority, and a plea to help someone in need (Stajano and Wilson, 2011). Content names these.',
-        'The one-sentence claim from STOP gives Content a fixed target. Your split on Marcus\'s photo came from two claims sharing one post.',
+        'People cannot reliably tell AI-generated faces from real faces by sight. In one study, people were correct 48% of the time. Training raised this to only 59% (Nightingale and Farid, 2022). This is why visual checks come last.',
+        'It is more useful to name common tactics. Short teaching videos helped people find manipulation tactics in new posts. This worked in a lab and in a YouTube field test (Roozenbeek et al., 2022). Scams often use urgency, authority, or requests to help someone (Stajano and Wilson, 2011). Content names these tactics.',
+        'STOP puts the claim into one sentence. This gives the Content step one clear target. The panel split on Marcus\'s photo because one post contained two different claims.',
       ],
       references: ['nightingale2022', 'roozenbeek2022', 'stajano2011'],
     },
@@ -260,7 +260,7 @@ export const ROUND_PAGES: RoundPageContent[] = [
           rows: [
             { tone: LIGHT, name: 'Light check', text: 'What exactly does the content say, or ask you to do? Keep the sentence from STOP in view.' },
             { tone: MODERATE, name: 'Moderate check', text: 'Find details worth checking, such as names, places and dates. Note what the content leaves out.' },
-            { tone: DEEP, name: 'Deep check', text: 'Look for pressure, such as a rush, strong emotion, or someone posing as a person you trust. Then look at the image or sound itself. Treat anything odd as a lead for Alignment, since eyes and single tools miss good fakes.' },
+            { tone: DEEP, name: 'Deep check', text: 'Look for pressure. This may include urgency, strong emotion, or someone pretending to be a person you trust. Then check the image or sound. If something seems odd, check it in Alignment. Your eyes and one tool can both miss a good fake.' },
           ],
         },
       ],
@@ -306,21 +306,21 @@ export const ROUND_PAGES: RoundPageContent[] = [
     big: 'A',
     title: 'Alignment',
     tone: 'default',
-    lead: 'Alignment gets a plain question, a three-part test for independent evidence, and fixed rules for AI answers and tools.',
+    lead: 'Alignment now starts with one clear question. It has a three-part test for independent evidence and clear rules for AI answers and tools.',
     why: {
       summary: '2 of 16 agreed a non-expert would be able to judge independence',
       paragraphs: [
-        'Independence was the weakest point of Round 1. **2 of 16** agreed a non-expert would be able to tell whether two pieces of evidence are independent (R4), and 7 disagreed. The two-kinds threshold reached **10 of 15** (R3), short of consensus. Ten of you named independence as the weak point, and 3 proposed a test.',
-        'Eleven of you warned people treat AI assistants as evidence, and 9 said the same of detectors. **14 of 16** found the route where Ellen relies on a platform AI assistant plausible. Eight of you singled out calling Manoj back as the decisive step in Rekha\'s case.',
+        'Independent evidence was the weakest part of Round 1. Only **2 of 16** agreed that a non-expert could tell whether two pieces of evidence are independent (R4). Seven disagreed. **10 of 15** supported requiring two kinds of evidence (R3), which was below our consensus level. Ten experts named independence as a weak point. Three suggested a test.',
+        'Eleven experts warned that people may treat AI assistant answers as evidence. Nine gave the same warning about detectors. **14 of 16** thought it was believable that Ellen would rely on a platform AI assistant. Eight said that calling Manoj back was the key step in Rekha\'s case.',
       ],
     },
     how: {
       summary: '5 sources',
       paragraphs: [
-        'People treat repeats of one source as separate confirmations. A claim backed by several people who all cited one original source persuaded about as much as a claim backed by independent sources (Yousif, Aboody and Keil, 2019). The test asks where each piece came from for this reason.',
-        'Searching online does not fix this alone. People who searched to check false news became more likely to believe the story, because search returned low-quality pages repeating the claim (Aslett et al., 2024).',
-        'Automated advice gets more trust than its accuracy earns. People over-rely on automation they cannot inspect (Parasuraman and Riley, 1997), and trust in a tool should follow how reliable the tool is in the case at hand (Lee and See, 2004). Asking people to form their own view before they see an AI answer cut over-reliance in a CSCW study (Buçinca, Malaya and Gajos, 2021). So an AI answer or a detector result is a lead to check, never a piece of evidence alone.',
-        'Different methods look at different things. A reverse image search finds earlier copies, and a metadata viewer reads the file\'s history. A change of method counts best for this reason.',
+        'People may count copies of one source as separate confirmations. In one study, several people repeating one original source were almost as convincing as truly independent sources (Yousif, Aboody and Keil, 2019). The test therefore asks where each piece of evidence came from.',
+        'An online search does not always solve this problem. Searching for false news sometimes made people more likely to believe it. This happened when search results showed poor-quality pages that repeated the claim (Aslett et al., 2024).',
+        'People may trust automated advice too much, especially when they cannot inspect how it works (Parasuraman and Riley, 1997). Trust should depend on how reliable the tool is for the current case (Lee and See, 2004). In one study, people relied less on AI when they formed their own view before seeing the AI answer (Buçinca, Malaya and Gajos, 2021). An AI answer or detector result should therefore be a clue to check. It is not enough evidence by itself.',
+        'Different tools check different things. A reverse image search finds older copies. A metadata viewer reads the file history. For this reason, using different methods gives stronger evidence.',
       ],
       references: ['yousif2019', 'aslett2024', 'parasuraman1997', 'lee2004', 'bucinca2021'],
     },
@@ -331,18 +331,18 @@ export const ROUND_PAGES: RoundPageContent[] = [
         {
           kind: 'steps',
           items: [
-            '**What two things point the same way?** Anything counts, such as who posted the content, what the content shows, what others report, or what a person says when you reach them yourself.',
-            '**Do they come from different places?** Two count once if one copied the other, if both quote the same spokesperson, or if both come from someone with a stake in the answer.',
-            '**If you used tools, are they different?** The same tool twice counts once. A different method, such as a reverse image search and a detector, counts best.',
+            '**What two things support the same answer?** This may include who posted the content, what the content shows, what other sources report, or what a person tells you when you contact them.',
+            '**Do they come from different places?** Count them only once if one copied the other. Also count them once if both quote the same person or come from people who benefit from the same answer.',
+            '**If you used tools, are they different?** Using the same tool twice counts as one check. Different methods are better, such as a reverse image search and a detector.',
           ],
         },
-        { kind: 'paragraph', text: 'Two pass, and the question is settled. Otherwise the answer is "not sure yet", and "not sure yet" is a fine answer. An AI assistant\'s answer, detectors which disagree, and finding nothing never count alone. Check what they point to.' },
+        { kind: 'paragraph', text: 'If two independent checks support the same answer, the question is settled. Otherwise, the answer is "not sure yet". That is a valid answer. An AI assistant answer is not enough by itself. Disagreeing detectors are not enough. Finding nothing is also not enough. Check the evidence that these tools point to.' },
         {
           kind: 'levels',
           rows: [
             { tone: LIGHT, name: 'Light check', text: 'One thing outside this source which agrees. Your Source check counts as the other piece.' },
             { tone: MODERATE, name: 'Moderate check', text: 'One independent source, or a check through a channel you control, such as calling back a number you already have.' },
-            { tone: DEEP, name: 'Deep check', text: 'Independent evidence which rules out the most likely other explanation, and a channel you control for any request.' },
+            { tone: DEEP, name: 'Deep check', text: 'Find independent evidence that rules out the most likely other explanation. For a request, also use a contact method that you control.' },
           ],
         },
       ],
@@ -375,7 +375,7 @@ export const ROUND_PAGES: RoundPageContent[] = [
     ratings: [
       { id: 'align_indep', prompt: 'The three-part independence test' },
       { id: 'align_ai', prompt: 'The rule for AI answers and tools' },
-      { id: 'align_callback', prompt: 'Option. For a request, one confirmation through a channel the requester cannot control, such as calling back a saved number, settles the case alone' },
+      { id: 'align_callback', prompt: 'Optional rule: For a request, one confirmation through a contact method the requester cannot control is enough. For example, call a saved number.' },
     ],
   },
   {
@@ -384,21 +384,21 @@ export const ROUND_PAGES: RoundPageContent[] = [
     big: 'N',
     title: 'Now Reflect',
     tone: 'default',
-    lead: 'Now Reflect becomes two short questions, and "not sure yet" always comes with an action.',
+    lead: 'Now Reflect now has two short questions. If the answer is "not sure yet", you still choose a safe action.',
     why: {
       summary: 'Useful in 49 of 63 step ratings, the lowest of the four checking steps',
       paragraphs: [
-        'Now Reflect scored lowest of the four checking steps, useful in **49 of 63** step ratings and **11 of 16** for both Ellen\'s and Rekha\'s cases. Six of you said the step repeats earlier findings and arrives after the decision which mattered.',
-        'On "not sure yet" the panel split. Seven of you valued the result, and 6 doubted people would accept one. Whether people would accept an unresolved result (R5) drew **8 of 16** in agreement, the widest spread among the STOP&SCAN statements. **4 of 16** would have closed Ellen\'s case, which the design leaves open.',
+        'Now Reflect had the lowest score of the four checking steps. It was rated useful in **49 of 63** step ratings and by **11 of 16** experts for both Ellen\'s and Rekha\'s cases. Six experts said the step repeats earlier findings and comes after the important decision.',
+        'The panel was divided about "not sure yet". Seven experts valued this result. Six were unsure that people would accept it. **8 of 16** agreed that people would accept an unresolved result (R5). This question had the widest range of answers among the STOP&SCAN statements. **4 of 16** would have closed Ellen\'s case, but the framework leaves it open.',
       ],
     },
     how: {
       summary: '6 sources',
       paragraphs: [
-        'Good reasoning ends with two moves. First you check where you stand, then you make one control decision, to answer, to hold back or to keep going (Nelson and Narens, 1990, Ackerman and Thompson, 2017). Now Reflect takes this shape and drops the recount of earlier steps.',
-        'The comparison uses the reaction you noted at STOP. Memory is a poor record here, since people misremember what they believed once they know the outcome (Fischhoff, 1975).',
-        'Holding back an answer raises accuracy when the judgement behind the hold is sound (Koriat and Goldsmith, 1996). People also answer at a broader level they are sure of, in place of no answer at all (Goldsmith, Koriat and Weinberg-Eliezer, 2002). The extra line for "not sure yet" rests on both findings.',
-        'A short judgement at the moment of sharing changes behaviour. Asking people to rate accuracy before sharing cut intended sharing of false headlines by 37% and of true ones by 18% (Jahanbakhsh et al., 2021). These were stated intentions in an online study.',
+        'Good reasoning ends with two actions. First, you decide where you stand. Then, you decide whether to answer, wait, or keep checking (Nelson and Narens, 1990; Ackerman and Thompson, 2017). Now Reflect uses this structure. It no longer asks you to repeat the earlier steps.',
+        'You compare the result with the reaction you recorded at STOP. Memory is not reliable for this task. Once people know the result, they may remember their earlier belief incorrectly (Fischhoff, 1975).',
+        'Waiting to answer can improve accuracy when the decision to wait is sound (Koriat and Goldsmith, 1996). People may also give a broader answer that they are sure about instead of giving no answer (Goldsmith, Koriat and Weinberg-Eliezer, 2002). These findings support the extra line for "not sure yet".',
+        'A short accuracy judgement before sharing can change behaviour. In one online study, it reduced planned sharing of false headlines by 37% and true headlines by 18% (Jahanbakhsh et al., 2021). The study measured what people said they planned to share, not what they actually shared.',
       ],
       references: ['nelson1990', 'ackerman2017', 'fischhoff1975', 'koriat1996', 'goldsmith2002', 'jahanbakhsh2021'],
     },
@@ -408,11 +408,11 @@ export const ROUND_PAGES: RoundPageContent[] = [
         {
           kind: 'steps',
           items: [
-            'Where did I land, compared with my first reaction? Supported, contradicted, or not sure yet.',
+            'What is my result compared with my first reaction? Supported, contradicted, or not sure yet.',
             'What do I do now?',
           ],
         },
-        { kind: 'paragraph', text: '"Not sure yet" never means doing nothing. Take the step which leaves a way back, such as not sharing or not paying. Then add one line on what you are sure of and what would settle the rest.' },
+        { kind: 'paragraph', text: '"Not sure yet" does not mean doing nothing. Choose an action that you can reverse, such as waiting before you share or pay. Then write one line about what you know and what evidence would answer the remaining question.' },
         {
           kind: 'levels',
           rows: [
@@ -461,31 +461,31 @@ export const ROUND_PAGES: RoundPageContent[] = [
     eyebrow: 'Page 7 of 8',
     title: 'How the check runs',
     tone: 'default',
-    lead: 'The order of the letters stays fixed, and STOP sets the effort for each one.',
+    lead: 'The letters always stay in the same order. STOP decides how much effort each letter needs.',
     why: {
       summary: '12 of you found the full sequence too heavy, 7 wanted the order kept',
       paragraphs: [
-        'You split on running every letter every time. Twelve of you found the full sequence too heavy for everyday use. Seven of you wanted the fixed order kept, because the order builds the habit. **7 of 14** judged SIFT easier to teach, against **3** for STOP&SCAN (R15), and **8 of 15** would recommend STOP&SCAN to someone with no training (R17).',
-        'One of you warned a shortcut turns into stopping after one check. In Rekha\'s case, **6 of 16** judged the evidence enough after Content.',
+        'The panel was divided about using every letter every time. Twelve experts said the full sequence is too much work for daily use. Seven wanted to keep the fixed order because it helps build a habit. **7 of 14** said SIFT is easier to teach, compared with **3** for STOP&SCAN (R15). **8 of 15** would recommend STOP&SCAN to someone with no training (R17).',
+        'One expert warned that a shortcut may cause people to stop after one check. In Rekha\'s case, **6 of 16** thought there was enough evidence after Content.',
       ],
     },
     how: {
       summary: '4 sources',
       paragraphs: [
-        'Scaffolding means support which fades as skill grows (Wood, Bruner and Ross, 1976). Learners do best when they study worked examples first and the steps fade one at a time (Renkl and Atkinson, 2003). Learning mode follows this pattern.',
-        'Habits form when the same steps repeat in the same order. In one study, simple daily habits took a median of 66 days to become automatic (Lally et al., 2010). A path which changes from case to case would not settle into a habit.',
-        'The path stays fixed because people judge poorly when they have checked enough. The feeling of being done follows fluency more than accuracy (Ackerman and Thompson, 2017). A fixed end at Now Reflect takes this call away from the person.',
-        'Effort levels say what each letter does, with no time limit. The same check takes one person seconds and another several minutes, and a clock would add the pressure STOP treats as a warning sign.',
+        'Scaffolding is support that becomes smaller as a person gains skill (Wood, Bruner and Ross, 1976). Learners do well when they first study full examples. The support can then be removed one step at a time (Renkl and Atkinson, 2003). Learning mode follows this pattern.',
+        'Habits form when people repeat the same steps in the same order. In one study, simple daily habits took a median of 66 days to become automatic (Lally et al., 2010). A different path for every case would be harder to turn into a habit.',
+        'The path also stays fixed because people may stop checking too early. Feeling finished often depends more on how easy the task feels than on whether the answer is correct (Ackerman and Thompson, 2017). A fixed ending at Now Reflect removes this decision.',
+        'Effort levels explain what to do at each letter. There is no time limit. The same check may take one person a few seconds and another person several minutes. A clock would also add pressure, which STOP treats as a warning sign.',
       ],
       references: ['wood1976', 'renkl2003', 'lally2010', 'ackerman2017'],
     },
     userbox: {
       caption: 'In the words people will see',
       pieces: [
-        { kind: 'paragraph', text: 'Every letter, every time. STOP sets how much effort each letter gets. If you find something which raises the stakes, put more effort into the letters left, never less. Every check ends at Now Reflect.' },
+        { kind: 'paragraph', text: 'Use every letter, every time. STOP decides how much effort each letter needs. If you find a new risk, use more effort for the letters that remain. Never reduce the effort. Every check ends with Now Reflect.' },
       ],
     },
-    example: 'For a meme, each letter is a glance. For a request for money, each letter gets a deep check, and one call to a number you already know still settles the request in a minute.',
+    example: 'For a low-risk meme, each letter may take only a quick look. For a request for money, each letter needs a deep check. One call to a number you already know may still confirm the request in one minute.',
     teaching: {
       summary: 'The two modes, and each letter at each effort level',
       tables: [
@@ -494,7 +494,7 @@ export const ROUND_PAGES: RoundPageContent[] = [
           columns: ['Mode', 'What the mode means'],
           rows: [
             ['Learning', 'All five elements in full, in order, practised on worked cases'],
-            ['Everyday', 'The entry questions and the three STOP questions, then all four SCAN letters in order at the effort STOP sets, usually light. For a request, Alignment is the call-back. For information, Alignment is the decisive detail or one independent source'],
+            ['Everyday', 'Answer the entry questions and the three STOP questions. Then use all four SCAN letters in order, at the effort level set by STOP. This will usually be a light check. For a request, Alignment means contacting the person through a method you control. For information, Alignment means finding a key detail or one independent source'],
           ],
         },
         {
@@ -528,8 +528,8 @@ export const ROUND_PAGES: RoundPageContent[] = [
     title: 'What we kept',
     tone: 'default',
     paragraphs: [
-      'We kept the five elements and their order. **14 of 15** agreed they are the right ones (R1). We kept the line between what the evidence shows and what you do about the evidence, which **14 of 16** agreed with (R7). We kept counting independent evidence found, rather than steps completed, also **14 of 16** (R2).',
-      'Some of you raised platform design, workplace procedures such as call-back rules and family code words, and media literacy campaigns. These work alongside STOP&SCAN as other layers of protection, and the paper discusses them.',
+      'We kept the five elements in the same order. **14 of 15** agreed that these are the right elements (R1). We also kept a clear difference between what the evidence shows and what you decide to do. **14 of 16** agreed with this difference (R7). Finally, we kept counting independent evidence instead of counting completed steps. **14 of 16** agreed with this approach (R2).',
+      'Some experts also discussed platform design, workplace rules, family code words, and media literacy campaigns. These can work with STOP&SCAN as extra layers of protection. We discuss them in the research paper.',
     ],
     ratings: [],
     openPrompt: 'Is there anything else you would like to tell us?',

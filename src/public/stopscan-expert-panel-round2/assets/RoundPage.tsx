@@ -301,7 +301,7 @@ export default function RoundPage({ parameters, answers }: StimulusParams<RoundP
           <Box p="sm" style={{ background: '#fff4e0', borderRadius: 24, border: `1px solid ${SS.hairline}` }}>
             <Badge mb={6} style={{ background: SS.fuel, color: SS.fuelInk }}>First time in this study</Badge>
             <Text size="sm">
-              You did not take part in Round 1. The summary below is what that panel told us, written as if speaking to them. Your answers in this round are reported separately from theirs.
+              You did not complete Round 1. The summary below describes what the Round 1 panel told us. Some text speaks directly to that panel. We will report your answers separately from theirs.
             </Text>
           </Box>
         ) : null}

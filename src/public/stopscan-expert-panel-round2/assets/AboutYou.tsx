@@ -9,7 +9,7 @@ export default function AboutYou({ answers }: StimulusParams<Record<string, neve
       <Stack className="ss-page" gap="md" maw={720} mx="auto" p="md">
         <StudyHeading eyebrow="Background" title="About you" icon="users" />
         <Text>
-          You completed the first-round questionnaire, so we already have these background answers. Continue to return to the revised framework.
+          You completed the Round 1 questionnaire, so we already have your background answers. Continue to the revised framework.
         </Text>
       </Stack>
     );
@@ -19,17 +19,17 @@ export default function AboutYou({ answers }: StimulusParams<Record<string, neve
     <Stack className="ss-page" gap="md" maw={720} mx="auto" p="md">
       <StudyHeading eyebrow="Background" title="About you" icon="users" />
       <Text>
-        You did not take part in the first round, so we do not already have these answers.
+        You did not complete Round 1, so we do not have your background answers.
       </Text>
-      <Text>Please answer the same four short questions the first round used. They ask about:</Text>
+      <Text>Please answer the same four short questions used in Round 1. They ask about:</Text>
       <List>
         <List.Item>your main area of professional work;</List.Item>
         <List.Item>other related areas you work in;</List.Item>
         <List.Item>your approximate years of experience, given as a range; and</List.Item>
-        <List.Item>your familiarity with existing verification methods, including SIFT or lateral reading.</List.Item>
+        <List.Item>how well you know existing verification methods, including SIFT and lateral reading.</List.Item>
       </List>
       <Text>
-        These questions help us understand how professional background may shape responses. We do not ask for your name, institution, or job title. You may skip any of them.
+        These questions help us understand how professional background may affect answers. We do not ask for your name, institution, or job title. You may skip any question.
       </Text>
       <Text fw={600}>Estimated time: about 2 minutes.</Text>
     </Stack>

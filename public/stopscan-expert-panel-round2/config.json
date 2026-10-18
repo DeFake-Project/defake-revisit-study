@@ -27,7 +27,7 @@
     "enumerateQuestions": true,
     "previousButtonText": "Back",
     "nextButtonText": "Next",
-    "studyEndMsg": "Thank you. If you finished the questionnaire, your answers are recorded. If you chose not to take part, nothing further is asked of you. You may close this window."
+    "studyEndMsg": "Thank you. We recorded your answers. You may now close this window."
   },
   "components": {
     "consent": {
@@ -35,14 +35,14 @@
       "path": "stopscan-expert-panel-round2/assets/consent.html",
       "nextButtonLocation": "sidebar",
       "previousButton": false,
-      "instruction": "Please read the consent document, then confirm in the sidebar.",
+      "instruction": "Read the consent form. Then use the checkboxes below.",
       "instructionLocation": "sidebar",
       "sidebarWidth": 440,
       "response": [
         {
           "id": "consent_eu_transfer",
-          "prompt": "If you are in the EEA, the UK, or Switzerland: I explicitly consent to my data being processed as described and transferred to the United States.",
-          "secondaryText": "Leave this unchecked if you are not in the EEA, the UK, or Switzerland.",
+          "prompt": "If I am in the EEA, the UK, or Switzerland, I agree that my data may be used as described and transferred to the United States.",
+          "secondaryText": "If you are not in one of these places, leave this box unchecked.",
           "location": "sidebar",
           "type": "checkbox",
           "required": false,
@@ -52,8 +52,8 @@
         },
         {
           "id": "consent_participate",
-          "prompt": "I am 18 years of age or older, and I consent to take part in this round of the study.",
-          "secondaryText": "Checking this records your agreement.",
+          "prompt": "I am 18 or older, and I agree to take part in this round of the study.",
+          "secondaryText": "Checking this box records your agreement.",
           "location": "sidebar",
           "type": "checkbox",
           "required": true,
@@ -73,12 +73,12 @@
       "instructionLocation": "sidebar",
       "previousButton": true,
       "withSidebar": true,
-      "instruction": "Tell us whether you completed the first-round questionnaire.",
+      "instruction": "Tell us whether you completed the Round 1 questionnaire.",
       "response": [
         {
           "id": "took_part",
           "prompt": "Did you complete the first-round STOP&SCAN questionnaire?",
-          "secondaryText": "If you did, we will not ask the background questions again.",
+          "secondaryText": "If you completed it, we will skip the background questions and the original framework.",
           "location": "sidebar",
           "type": "radio",
           "required": true,
@@ -96,7 +96,7 @@
       "instructionLocation": "sidebar",
       "previousButton": true,
       "withSidebar": true,
-      "instruction": "These background questions are only for people who did not take part in the first round. You may skip any of them.",
+      "instruction": "These questions are for people who did not complete Round 1. You may skip any question.",
       "response": [
         {
           "id": "B1",
@@ -161,7 +161,7 @@
     "original-framework": {
       "type": "react-component",
       "path": "stopscan-expert-panel-round2/assets/OriginalFramework.tsx",
-      "instruction": "This is the STOP&SCAN version reviewed in the first round. Continue when you have read it.",
+      "instruction": "This is the STOP&SCAN version reviewed in Round 1. Read it, then select Next.",
       "instructionLocation": "aboveStimulus",
       "nextButtonLocation": "belowStimulus",
       "previousButton": true,
@@ -174,7 +174,7 @@
       "parameters": {
         "pageId": "intro"
       },
-      "instruction": "There is nothing to rate on this page. Continue when you have read the summary.",
+      "instruction": "Read the summary, then select Next. There is nothing to rate on this page.",
       "instructionLocation": "aboveStimulus",
       "nextButtonLocation": "belowStimulus",
       "previousButton": true,
@@ -187,7 +187,7 @@
       "parameters": {
         "pageId": "stop"
       },
-      "instruction": "Rate each change below the text. A comment is required for a rating of 1, 2, or 3.",
+      "instruction": "Rate each change below. If you choose 1, 2, or 3, you must add a comment.",
       "instructionLocation": "aboveStimulus",
       "nextButtonLocation": "belowStimulus",
       "previousButton": true,
@@ -217,7 +217,7 @@
       "parameters": {
         "pageId": "source"
       },
-      "instruction": "Rate the change below the text. A comment is required for a rating of 1, 2, or 3.",
+      "instruction": "Rate the change below. If you choose 1, 2, or 3, you must add a comment.",
       "instructionLocation": "aboveStimulus",
       "nextButtonLocation": "belowStimulus",
       "previousButton": true,
@@ -239,7 +239,7 @@
       "parameters": {
         "pageId": "content"
       },
-      "instruction": "Rate the change below the text. A comment is required for a rating of 1, 2, or 3.",
+      "instruction": "Rate the change below. If you choose 1, 2, or 3, you must add a comment.",
       "instructionLocation": "aboveStimulus",
       "nextButtonLocation": "belowStimulus",
       "previousButton": true,
@@ -261,7 +261,7 @@
       "parameters": {
         "pageId": "alignment"
       },
-      "instruction": "Rate each change below the text. A comment is required for a rating of 1, 2, or 3.",
+      "instruction": "Rate each change below. If you choose 1, 2, or 3, you must add a comment.",
       "instructionLocation": "aboveStimulus",
       "nextButtonLocation": "belowStimulus",
       "previousButton": true,
@@ -285,7 +285,7 @@
         },
         {
           "id": "align_callback",
-          "prompt": "Option. For a request, one confirmation through a channel the requester cannot control, such as calling back a saved number, settles the case alone",
+          "prompt": "Optional rule: For a request, one confirmation through a contact method the requester cannot control is enough. For example, call a saved number.",
           "location": "belowStimulus",
           "type": "custom",
           "path": "stopscan-expert-panel-round2/assets/AgreementRating.tsx",
@@ -299,7 +299,7 @@
       "parameters": {
         "pageId": "reflect"
       },
-      "instruction": "Rate each change below the text. A comment is required for a rating of 1, 2, or 3.",
+      "instruction": "Rate each change below. If you choose 1, 2, or 3, you must add a comment.",
       "instructionLocation": "aboveStimulus",
       "nextButtonLocation": "belowStimulus",
       "previousButton": true,
@@ -329,7 +329,7 @@
       "parameters": {
         "pageId": "run"
       },
-      "instruction": "Rate each change below the text. A comment is required for a rating of 1, 2, or 3.",
+      "instruction": "Rate each change below. If you choose 1, 2, or 3, you must add a comment.",
       "instructionLocation": "aboveStimulus",
       "nextButtonLocation": "belowStimulus",
       "previousButton": true,
@@ -378,7 +378,7 @@
     "acknowledgment": {
       "type": "react-component",
       "path": "stopscan-expert-panel-round2/assets/AcknowledgmentPage.tsx",
-      "instruction": "Being named is optional. You can leave this blank.",
+      "instruction": "Being named is optional. You may leave this blank.",
       "instructionLocation": "aboveStimulus",
       "nextButtonLocation": "belowStimulus",
       "previousButton": true,
@@ -397,7 +397,7 @@
     "review": {
       "type": "react-component",
       "path": "stopscan-expert-panel-round2/assets/ReviewAnswers.tsx",
-      "instruction": "Check your answers, then submit. Use Back to change anything.",
+      "instruction": "Check your answers. Use Back if you want to change them. Then submit.",
       "instructionLocation": "aboveStimulus",
       "nextButtonLocation": "belowStimulus",
       "nextButtonText": "Submit answers",

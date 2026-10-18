@@ -10,7 +10,7 @@ import { tookPartInRoundOne } from './answers';
 import { StudyHeading } from './chrome';
 import { SS } from './theme';
 
-export const ORIGINAL_FRAMEWORK_INTRO = 'You did not take part in the first round, so this page shows the STOP&SCAN version those experts reviewed. The pages after this one show the revised framework, one change at a time. You do not need to memorize this version.';
+export const ORIGINAL_FRAMEWORK_INTRO = 'You did not complete Round 1. This page shows the original STOP&SCAN framework reviewed in that round. The next pages show the revised framework, one change at a time. You do not need to remember every detail on this page.';
 
 export default function OriginalFramework({ answers }: StimulusParams<Record<string, never>>) {
   if (tookPartInRoundOne(answers) === true) {
@@ -18,7 +18,7 @@ export default function OriginalFramework({ answers }: StimulusParams<Record<str
       <Stack className="ss-page" gap="md" maw={720} mx="auto" p="md">
         <StudyHeading eyebrow="First-round version" title="STOP&SCAN, as the first round reviewed it" icon="book" />
         <Text>
-          You completed the first-round questionnaire, so you have already seen this version. Continue to the revised framework.
+          You completed the Round 1 questionnaire, so you have already seen this version. Continue to the revised framework.
         </Text>
       </Stack>
     );

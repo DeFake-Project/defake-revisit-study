@@ -1,9 +1,9 @@
 # Before the questionnaire
 
-This round is open to the experts invited to the first round, whether or not you completed that questionnaire.
+You can join this round even if you did not complete the Round 1 questionnaire.
 
-**If you took part,** we already have your background answers, and you have already seen STOP&SCAN. We will not ask those again.
+**If you completed Round 1,** we already have your background answers. You have also seen STOP&SCAN. We will not show these questions or the original framework again.
 
-**If you did not,** we will ask the same short background questions the first round used, and show you the version of STOP&SCAN that round reviewed, before the revised framework.
+**If you did not complete Round 1,** we will ask a few short background questions. We will then show you the original version of STOP&SCAN before you see the revised version.
 
-Your answer here is not linked to your first-round responses. Please answer in the sidebar.
+We will not connect this answer to your Round 1 responses. Please answer the question in the sidebar.

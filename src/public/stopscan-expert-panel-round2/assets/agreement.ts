@@ -42,7 +42,7 @@ export function commentRequired(rating: number | null): boolean {
 
 export function commentHint(rating: number | null): string {
   if (rating == null) {
-    return 'Comment (optional, required for a rating of 1, 2 or 3)';
+    return 'Comment (required if you choose 1, 2, or 3)';
   }
   if (commentRequired(rating)) {
     return 'What would you change, and why?';
@@ -56,7 +56,7 @@ export function validateAgreement(value: JsonValue | null | undefined): string |
     return 'Please choose a rating.';
   }
   if (commentRequired(parsed.rating) && parsed.comment.trim().length === 0) {
-    return 'Please tell us what you would change, and why.';
+    return 'Please tell us what you would change and why.';
   }
   return null;
 }

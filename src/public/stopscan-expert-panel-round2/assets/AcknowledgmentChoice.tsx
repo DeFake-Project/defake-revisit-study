@@ -41,7 +41,7 @@ export default function AcknowledgmentChoice({
     <Stack gap="sm">
       <Radio.Group
         label="Would you like to be named in the acknowledgments?"
-        description="Optional. If you leave this blank, or choose not to be named, you will not be named."
+        description="This is optional. If you leave it blank or choose no, we will not name you."
         value={current.named}
         onChange={(next) => update({ named: next === ACK_YES ? ACK_YES : ACK_NO })}
       >
@@ -53,15 +53,15 @@ export default function AcknowledgmentChoice({
       {current.named === ACK_YES ? (
         <Stack gap="sm">
           <TextInput
-            label="Name as you would like it to appear"
-            description="If you leave this blank, you will not be named."
+            label="How should your name appear?"
+            description="We will not name you if you leave this blank."
             value={current.name}
             onChange={(event) => update({ name: event.currentTarget.value })}
             onBlur={() => field.onBlur()}
             disabled={disabled}
           />
           <TextInput
-            label="Affiliation, if you want it listed"
+            label="Affiliation to list"
             description="Optional."
             value={current.affiliation}
             onChange={(event) => update({ affiliation: event.currentTarget.value })}
@@ -69,7 +69,7 @@ export default function AcknowledgmentChoice({
             disabled={disabled}
           />
           <Text size="sm" c="dimmed">
-            Named panelists are listed alphabetically, without field, years of experience, or participant code. No rating, response, or quotation is attributed to a named person. The research team will be able to see the name you give alongside your responses in this round.
+            We list names in alphabetical order. We do not list your field, years of experience, or participant code. We do not connect any rating, answer, or quotation to your name. The research team can see your name with your answers from this round.
           </Text>
         </Stack>
       ) : null}

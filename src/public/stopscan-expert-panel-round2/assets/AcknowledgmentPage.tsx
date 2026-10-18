@@ -6,16 +6,17 @@ export default function AcknowledgmentPage() {
     <Stack className="ss-page" gap="md" maw={780} mx="auto" p="md">
       <StudyHeading eyebrow="Optional" title="Being named in the acknowledgments" icon="badge" />
       <Text>
-        Some experts in the first round asked whether they could be credited for their contribution. You can choose to be listed by name in the acknowledgments of publications from this study, as a member of the expert panel.
+        Some Round 1 experts asked to receive credit for their work. You may choose to be named as a member of the expert panel in study publications.
       </Text>
       <List spacing="xs">
-        <List.Item>Named panelists are listed alphabetically, without field, years of experience, or participant code.</List.Item>
-        <List.Item>No publication will attribute a rating, response, or quotation to a named person.</List.Item>
-        <List.Item>The name you give is stored with your responses in this round. Members of the research team will be able to see it.</List.Item>
+        <List.Item>We list named panel members in alphabetical order.</List.Item>
+        <List.Item>We do not list their field, years of experience, or participant code.</List.Item>
+        <List.Item>We do not connect any rating, answer, or quotation to a named person.</List.Item>
+        <List.Item>We store the name you give with your answers from this round. The research team can see it.</List.Item>
         <List.Item>If you change your mind, email the Principal Investigator at john.sohrawardi@rit.edu.</List.Item>
       </List>
       <Text size="sm" c="dimmed">
-        Leaving the question blank, or choosing not to be named, means you will not be named. The choice is below.
+        If you leave the question blank or choose no, we will not name you.
       </Text>
     </Stack>
   );

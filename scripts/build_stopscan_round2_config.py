@@ -22,27 +22,27 @@ RATING_PATH = "stopscan-expert-panel-round2/assets/AgreementRating.tsx"
 
 # Prompts match the round 2 questionnaire guide. Order is the page order.
 PAGES = [
-    ("intro", "There is nothing to rate on this page. Continue when you have read the summary.", []),
-    ("stop", "Rate each change below the text. A comment is required for a rating of 1, 2, or 3.", [
+    ("intro", "Read the summary, then select Next. There is nothing to rate on this page.", []),
+    ("stop", "Rate each change below. If you choose 1, 2, or 3, you must add a comment.", [
         ("stop_entry", "The two entry questions, and scrolling on when both answers are no"),
         ("stop_questions", "The three questions, and how they set the effort level"),
     ]),
-    ("source", "Rate the change below the text. A comment is required for a rating of 1, 2, or 3.", [
+    ("source", "Rate the change below. If you choose 1, 2, or 3, you must add a comment.", [
         ("source", "The new Source, with a check for each effort level"),
     ]),
-    ("content", "Rate the change below the text. A comment is required for a rating of 1, 2, or 3.", [
+    ("content", "Rate the change below. If you choose 1, 2, or 3, you must add a comment.", [
         ("content", "The new Content, opening with checks which need no special skill"),
     ]),
-    ("alignment", "Rate each change below the text. A comment is required for a rating of 1, 2, or 3.", [
+    ("alignment", "Rate each change below. If you choose 1, 2, or 3, you must add a comment.", [
         ("align_indep", "The three-part independence test"),
         ("align_ai", "The rule for AI answers and tools"),
-        ("align_callback", "Option. For a request, one confirmation through a channel the requester cannot control, such as calling back a saved number, settles the case alone"),
+        ("align_callback", "Optional rule: For a request, one confirmation through a contact method the requester cannot control is enough. For example, call a saved number."),
     ]),
-    ("reflect", "Rate each change below the text. A comment is required for a rating of 1, 2, or 3.", [
+    ("reflect", "Rate each change below. If you choose 1, 2, or 3, you must add a comment.", [
         ("reflect_questions", "The two questions and the undo rule"),
         ("reflect_table", "The table of actions"),
     ]),
-    ("run", "Rate each change below the text. A comment is required for a rating of 1, 2, or 3.", [
+    ("run", "Rate each change below. If you choose 1, 2, or 3, you must add a comment.", [
         ("run_order", "A fixed order with effort set by STOP"),
         ("run_modes", "The two modes"),
     ]),
@@ -84,14 +84,14 @@ components["consent"] = {
     "path": "stopscan-expert-panel-round2/assets/consent.html",
     "nextButtonLocation": "sidebar",
     "previousButton": False,
-    "instruction": "Please read the consent document, then confirm in the sidebar.",
+    "instruction": "Read the consent form. Then use the checkboxes below.",
     "instructionLocation": "sidebar",
     "sidebarWidth": 440,
     "response": [
         {
             "id": "consent_eu_transfer",
-            "prompt": "If you are in the EEA, the UK, or Switzerland: I explicitly consent to my data being processed as described and transferred to the United States.",
-            "secondaryText": "Leave this unchecked if you are not in the EEA, the UK, or Switzerland.",
+            "prompt": "If I am in the EEA, the UK, or Switzerland, I agree that my data may be used as described and transferred to the United States.",
+            "secondaryText": "If you are not in one of these places, leave this box unchecked.",
             "location": "sidebar",
             "type": "checkbox",
             "required": False,
@@ -99,8 +99,8 @@ components["consent"] = {
         },
         {
             "id": "consent_participate",
-            "prompt": "I am 18 years of age or older, and I consent to take part in this round of the study.",
-            "secondaryText": "Checking this records your agreement.",
+            "prompt": "I am 18 or older, and I agree to take part in this round of the study.",
+            "secondaryText": "Checking this box records your agreement.",
             "location": "sidebar",
             "type": "checkbox",
             "required": True,
@@ -117,12 +117,12 @@ components["participation"] = {
     "instructionLocation": "sidebar",
     "previousButton": True,
     "withSidebar": True,
-    "instruction": "Tell us whether you completed the first-round questionnaire.",
+    "instruction": "Tell us whether you completed the Round 1 questionnaire.",
     "response": [
         {
             "id": "took_part",
             "prompt": "Did you complete the first-round STOP&SCAN questionnaire?",
-            "secondaryText": "If you did, we will not ask the background questions again.",
+            "secondaryText": "If you completed it, we will skip the background questions and the original framework.",
             "location": "sidebar",
             "type": "radio",
             "required": True,
@@ -138,7 +138,7 @@ components["about-you"] = {
     "instructionLocation": "sidebar",
     "previousButton": True,
     "withSidebar": True,
-    "instruction": "These background questions are only for people who did not take part in the first round. You may skip any of them.",
+    "instruction": "These questions are for people who did not complete Round 1. You may skip any question.",
     "response": [
         {
             "id": "B1",
@@ -185,7 +185,7 @@ components["about-you"] = {
 components["original-framework"] = {
     "type": "react-component",
     "path": "stopscan-expert-panel-round2/assets/OriginalFramework.tsx",
-    "instruction": "This is the STOP&SCAN version reviewed in the first round. Continue when you have read it.",
+    "instruction": "This is the STOP&SCAN version reviewed in Round 1. Read it, then select Next.",
     "instructionLocation": "aboveStimulus",
     "nextButtonLocation": "belowStimulus",
     "previousButton": True,
@@ -212,7 +212,7 @@ components["kept"] = reading_page(
 components["acknowledgment"] = {
     "type": "react-component",
     "path": "stopscan-expert-panel-round2/assets/AcknowledgmentPage.tsx",
-    "instruction": "Being named is optional. You can leave this blank.",
+    "instruction": "Being named is optional. You may leave this blank.",
     "instructionLocation": "aboveStimulus",
     "nextButtonLocation": "belowStimulus",
     "previousButton": True,
@@ -232,7 +232,7 @@ components["acknowledgment"] = {
 components["review"] = {
     "type": "react-component",
     "path": "stopscan-expert-panel-round2/assets/ReviewAnswers.tsx",
-    "instruction": "Check your answers, then submit. Use Back to change anything.",
+    "instruction": "Check your answers. Use Back if you want to change them. Then submit.",
     "instructionLocation": "aboveStimulus",
     "nextButtonLocation": "belowStimulus",
     "nextButtonText": "Submit answers",
@@ -270,7 +270,7 @@ config = {
         "enumerateQuestions": True,
         "previousButtonText": "Back",
         "nextButtonText": "Next",
-        "studyEndMsg": "Thank you. If you finished the questionnaire, your answers are recorded. If you chose not to take part, nothing further is asked of you. You may close this window.",
+        "studyEndMsg": "Thank you. We recorded your answers. You may now close this window.",
     },
     "components": components,
     "sequence": {
