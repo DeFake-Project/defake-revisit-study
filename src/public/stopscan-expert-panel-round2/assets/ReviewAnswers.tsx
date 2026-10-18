@@ -1,24 +1,13 @@
 import {
-  Badge, Box, Stack, Text, Title,
+  Badge, Box, Stack, Text,
 } from '@mantine/core';
 import { StimulusParams } from '../../../store/types';
 import { agreementLabel, parseAgreement } from './agreement';
 import { collectAnswers } from './answers';
+import { StudyHeading } from './chrome';
 import { parseAcknowledgment } from './AcknowledgmentChoice';
 import { RATING_ITEMS, pageById, ROUND_PAGES } from './pages';
-
-function pillColor(rating: number | null): string {
-  if (rating == null) {
-    return 'gray';
-  }
-  if (rating <= 2) {
-    return 'red';
-  }
-  if (rating === 3) {
-    return 'yellow';
-  }
-  return 'green';
-}
+import { SS, ratingTone } from './theme';
 
 export default function ReviewAnswers({ answers }: StimulusParams<Record<string, never>>) {
   const saved = collectAnswers(answers);
@@ -27,11 +16,8 @@ export default function ReviewAnswers({ answers }: StimulusParams<Record<string,
   const acknowledgment = parseAcknowledgment(saved.acknowledgment);
 
   return (
-    <Stack gap="md" maw={780} mx="auto" p="md">
-      <div>
-        <Text size="xs" tt="uppercase" fw={600} c="dimmed" style={{ letterSpacing: '0.08em' }}>Before you submit</Text>
-        <Title order={2} mt={4}>Review your answers</Title>
-      </div>
+    <Stack className="ss-page" gap="md" maw={780} mx="auto" p="md">
+      <StudyHeading eyebrow="Before you submit" title="Review your answers" icon="clipboard" />
       <Text>
         <Text span fw={700}>{`${rated}`}</Text>
         {` of ${RATING_ITEMS.length} changes rated. Use Back to change any answer.`}
@@ -41,11 +27,14 @@ export default function ReviewAnswers({ answers }: StimulusParams<Record<string,
           const parsed = parseAgreement(saved[item.id]);
           const page = ROUND_PAGES.find((candidate) => candidate.ratings.some((rating) => rating.id === item.id));
           return (
-            <Box key={item.id} pb="xs" style={{ borderBottom: '1px solid var(--mantine-color-gray-3)' }}>
+            <Box key={item.id} pb="xs" style={{ borderBottom: `1px solid ${SS.hairline}` }}>
               <Text size="xs" tt="uppercase" c="dimmed" fw={600}>{page?.big || page?.title || pageById(page?.id || '')?.title}</Text>
-              <Box style={{ display: 'flex', justifyContent: 'space-between', gap: 12, alignItems: 'flex-start' }}>
+              <Box style={{
+                display: 'flex', justifyContent: 'space-between', gap: 12, alignItems: 'flex-start',
+              }}
+              >
                 <Text size="sm">{item.prompt}</Text>
-                <Badge color={pillColor(parsed.rating)} variant={parsed.rating == null ? 'outline' : 'filled'}>
+                <Badge variant={parsed.rating == null ? 'outline' : 'filled'} style={ratingTone(parsed.rating)}>
                   {agreementLabel(parsed.rating)}
                 </Badge>
               </Box>

@@ -4,31 +4,22 @@ import {
 import { StimulusParams } from '../../../store/types';
 import { tookPartInRoundOne } from './answers';
 import {
+  Icon, IconName, IconTile, StepIcon,
+} from './chrome';
+import {
   LevelRow, LevelTone, RoundPageContent, TableSpec, UserPiece, pageById,
 } from './pages';
 import { referenceById } from './references';
+import { PageTheme, SS, pageTheme } from './theme';
 
 export type RoundPageParams = {
   pageId: string;
 };
 
-const TONE = {
-  default: {
-    big: '#27509b',
-    box: '#e6edf9',
-    light: '#dfe9f7',
-    moderate: '#c3d5f0',
-    deep: '#9fbbe6',
-    bar: '#27509b',
-  },
-  stop: {
-    big: '#b4561c',
-    box: '#fbeee4',
-    light: '#f8e4d4',
-    moderate: '#f3d3ba',
-    deep: '#ebc09a',
-    bar: '#b4561c',
-  },
+const PAGE_MARK: Record<string, IconName> = {
+  intro: 'users',
+  run: 'route',
+  kept: 'check',
 };
 
 function RichText({ text, size = 'sm' }: { text: string; size?: string }) {
@@ -74,8 +65,7 @@ function ReferenceList({ ids }: { ids: string[] }) {
   );
 }
 
-function LevelList({ rows, tone }: { rows: LevelRow[]; tone: 'default' | 'stop' }) {
-  const colors = TONE[tone];
+function LevelList({ rows, theme }: { rows: LevelRow[]; theme: PageTheme }) {
   const fill: Record<LevelTone, string> = {
     light: '33%',
     moderate: '66%',
@@ -83,9 +73,9 @@ function LevelList({ rows, tone }: { rows: LevelRow[]; tone: 'default' | 'stop' 
     every: '0%',
   };
   const background: Record<LevelTone, string> = {
-    light: colors.light,
-    moderate: colors.moderate,
-    deep: colors.deep,
+    light: theme.wash,
+    moderate: theme.mid,
+    deep: `color-mix(in srgb, ${theme.accent} 32%, white)`,
     every: 'transparent',
   };
 
@@ -101,11 +91,11 @@ function LevelList({ rows, tone }: { rows: LevelRow[]; tone: 'default' | 'stop' 
             gridTemplateColumns: 'minmax(140px, 160px) 1fr',
             gap: 10,
             alignItems: 'baseline',
-            borderRadius: 6,
+            borderRadius: 12,
             background: background[row.tone],
           }}
         >
-          <Text size="xs" fw={600} tt="uppercase" style={{ letterSpacing: '0.04em' }}>
+          <Text size="xs" fw={600} tt="uppercase" c={SS.ink} style={{ letterSpacing: '0.04em' }}>
             {row.tone !== 'every' ? (
               <Box
                 component="span"
@@ -116,20 +106,20 @@ function LevelList({ rows, tone }: { rows: LevelRow[]; tone: 'default' | 'stop' 
                   height: 8,
                   borderRadius: 2,
                   verticalAlign: 'middle',
-                  background: `linear-gradient(90deg, ${colors.bar} ${fill[row.tone]}, #d9dee7 ${fill[row.tone]})`,
+                  background: `linear-gradient(90deg, ${theme.accent} ${fill[row.tone]}, rgba(31,22,53,0.15) ${fill[row.tone]})`,
                 }}
               />
             ) : null}
             {row.name}
           </Text>
-          <Text size="sm">{row.text}</Text>
+          <Text size="sm" c={SS.ink}>{row.text}</Text>
         </Box>
       ))}
     </Stack>
   );
 }
 
-function UserPieces({ pieces, tone }: { pieces: UserPiece[]; tone: 'default' | 'stop' }) {
+function UserPieces({ pieces, theme }: { pieces: UserPiece[]; theme: PageTheme }) {
   return (
     <Stack gap="sm">
       {pieces.map((piece, index) => {
@@ -156,7 +146,7 @@ function UserPieces({ pieces, tone }: { pieces: UserPiece[]; tone: 'default' | '
             </List>
           );
         }
-        return <LevelList key={key} rows={piece.rows} tone={tone} />;
+        return <LevelList key={key} rows={piece.rows} theme={theme} />;
       })}
     </Stack>
   );
@@ -190,9 +180,12 @@ function DataTable({ table }: { table: TableSpec }) {
   );
 }
 
-function panelControl(label: string, summary: string) {
+function panelControl(label: string, summary: string, icon: IconName) {
   return (
     <Accordion.Control>
+      <Box component="span" mr={8} style={{ color: SS.primary, verticalAlign: 'middle' }}>
+        <Icon name={icon} size={16} />
+      </Box>
       <Text span fw={600}>{label}</Text>
       <Text span c="dimmed" size="sm" ml="sm">{summary}</Text>
     </Accordion.Control>
@@ -200,26 +193,31 @@ function panelControl(label: string, summary: string) {
 }
 
 function PageBody({ page }: { page: RoundPageContent }) {
-  const colors = TONE[page.tone];
+  const theme = pageTheme(page.id);
   const upper = [page.why ? 'why' : null, page.how ? 'how' : null].filter((value): value is string => value !== null);
   const lower = [page.teaching ? 'teaching' : null, page.research ? 'research' : null].filter((value): value is string => value !== null);
 
   return (
     <Stack gap="md">
-      <div>
-        <Text size="xs" tt="uppercase" fw={600} c="dimmed" style={{ letterSpacing: '0.08em' }}>{page.eyebrow}</Text>
-        <Title order={2} mt={4}>
-          {page.big ? <Text span inherit c={colors.big} mr="sm">{page.big}</Text> : null}
-          {page.title}
-        </Title>
-      </div>
+      <Box style={{ display: 'flex', gap: 14, alignItems: 'flex-start' }}>
+        {theme.icon
+          ? <StepIcon name={theme.icon} tile={theme.tile} />
+          : <IconTile tile={theme.tile}><Icon name={PAGE_MARK[page.id] || 'book'} /></IconTile>}
+        <div>
+          <Text size="xs" tt="uppercase" fw={700} c={SS.primary} style={{ letterSpacing: '0.05em' }}>{page.eyebrow}</Text>
+          <Title order={2} mt={4} style={{ fontFamily: 'Outfit, sans-serif' }}>
+            {page.big ? <Text span inherit c={theme.accent} mr="sm">{page.big}</Text> : null}
+            {page.title}
+          </Title>
+        </div>
+      </Box>
       {page.lead ? <Text size="lg" style={{ maxWidth: '62ch' }}>{page.lead}</Text> : null}
       {page.paragraphs?.map((paragraph) => <RichText key={paragraph} text={paragraph} size="md" />)}
       {upper.length > 0 ? (
         <Accordion multiple variant="separated" radius="md">
           {page.why ? (
             <Accordion.Item value="why">
-              {panelControl('Why this changed', page.why.summary)}
+              {panelControl('Why this changed', page.why.summary, 'message')}
               <Accordion.Panel>
                 <Stack gap="sm">
                   {page.why.paragraphs.map((paragraph) => <RichText key={paragraph} text={paragraph} />)}
@@ -229,7 +227,7 @@ function PageBody({ page }: { page: RoundPageContent }) {
           ) : null}
           {page.how ? (
             <Accordion.Item value="how">
-              {panelControl('How we justify the change', page.how.summary)}
+              {panelControl('How we justify the change', page.how.summary, 'book')}
               <Accordion.Panel>
                 <Stack gap="sm">
                   {page.how.paragraphs.map((paragraph) => <RichText key={paragraph} text={paragraph} />)}
@@ -241,15 +239,15 @@ function PageBody({ page }: { page: RoundPageContent }) {
         </Accordion>
       ) : null}
       {page.userbox ? (
-        <Box p="md" style={{ background: colors.box, borderRadius: 8 }}>
+        <Box p="md" style={{ background: theme.wash, borderRadius: 24, border: `1px solid ${SS.hairline}` }}>
           <Text size="xs" tt="uppercase" fw={600} c="dimmed" mb="sm" style={{ letterSpacing: '0.06em' }}>
             {page.userbox.caption}
           </Text>
-          <UserPieces pieces={page.userbox.pieces} tone={page.tone} />
+          <UserPieces pieces={page.userbox.pieces} theme={theme} />
         </Box>
       ) : null}
       {page.example ? (
-        <Text size="sm" pl="sm" style={{ borderLeft: '3px solid var(--mantine-color-gray-4)', maxWidth: '68ch' }}>
+        <Text size="sm" pl="sm" style={{ borderLeft: `3px solid ${theme.accent}`, maxWidth: '68ch' }}>
           <Text span fw={600}>Example. </Text>
           {page.example}
         </Text>
@@ -263,7 +261,7 @@ function PageBody({ page }: { page: RoundPageContent }) {
         >
           {page.teaching ? (
             <Accordion.Item value="teaching">
-              {panelControl('For learning and teaching', page.teaching.summary)}
+              {panelControl('For learning and teaching', page.teaching.summary, 'list')}
               <Accordion.Panel>
                 <Stack gap="md">
                   {page.teaching.tables.map((table) => <DataTable key={table.caption || table.columns.join('|')} table={table} />)}
@@ -273,7 +271,7 @@ function PageBody({ page }: { page: RoundPageContent }) {
           ) : null}
           {page.research ? (
             <Accordion.Item value="research">
-              {panelControl('Research still needed', `${page.research.items.length} open questions`)}
+              {panelControl('Research still needed', `${page.research.items.length} open questions`, 'search')}
               <Accordion.Panel>
                 <List spacing={6}>
                   {page.research.items.map((item) => <List.Item key={item}><Text size="sm">{item}</Text></List.Item>)}
@@ -297,11 +295,11 @@ export default function RoundPage({ parameters, answers }: StimulusParams<RoundP
   const showNewParticipantNote = page.id === 'intro' && tookPartInRoundOne(answers) === false;
 
   return (
-    <Box maw={780} mx="auto" p="md">
+    <Box className="ss-page" maw={780} mx="auto" p="md">
       <Stack gap="md">
         {showNewParticipantNote ? (
-          <Box p="sm" style={{ background: '#fff7d6', borderRadius: 8 }}>
-            <Badge variant="light" color="yellow" mb={6}>First time in this study</Badge>
+          <Box p="sm" style={{ background: '#fff4e0', borderRadius: 24, border: `1px solid ${SS.hairline}` }}>
+            <Badge mb={6} style={{ background: SS.fuel, color: SS.fuelInk }}>First time in this study</Badge>
             <Text size="sm">
               You did not take part in Round 1. The summary below is what that panel told us, written as if speaking to them. Your answers in this round are reported separately from theirs.
             </Text>

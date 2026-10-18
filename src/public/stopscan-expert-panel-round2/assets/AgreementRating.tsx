@@ -6,18 +6,9 @@ import { CustomResponseParams, CustomResponseValidate } from '../../../store/typ
 import {
   AGREEMENT_SCALE, commentHint, commentRequired, parseAgreement, validateAgreement,
 } from './agreement';
+import { SS } from './theme';
 
 export const validate: CustomResponseValidate = (value) => validateAgreement(value);
-
-function scaleColor(value: number): string {
-  if (value <= 2) {
-    return 'red';
-  }
-  if (value === 3) {
-    return 'yellow';
-  }
-  return 'green';
-}
 
 export default function AgreementRating({
   response,
@@ -39,8 +30,8 @@ export default function AgreementRating({
   };
 
   return (
-    <Stack gap="xs">
-      <Text fw={600}>{response.prompt}</Text>
+    <Stack gap="xs" className="ss-page ss-rate">
+      <Text fw={600} c={SS.ink}>{response.prompt}</Text>
       <Radio.Group
         value={current.rating == null ? '' : String(current.rating)}
         onChange={(next) => update({ rating: Number(next) })}
@@ -52,14 +43,14 @@ export default function AgreementRating({
               key={option.value}
               value={String(option.value)}
               disabled={disabled}
-              radius="md"
+              radius="lg"
               p="xs"
               style={{ flex: '1 1 120px' }}
             >
               <Stack gap={2} align="center">
-                <Radio.Indicator color={scaleColor(option.value)} />
-                <Text fw={600} size="sm">{option.value}</Text>
-                <Text size="xs" ta="center">{option.label}</Text>
+                <Radio.Indicator color="blue" />
+                <Text fw={700} size="sm" c={SS.primary}>{option.value}</Text>
+                <Text size="xs" ta="center" c={SS.ink}>{option.label}</Text>
               </Stack>
             </Radio.Card>
           ))}
@@ -76,7 +67,7 @@ export default function AgreementRating({
         autosize
         required={commentRequired(current.rating)}
       />
-      {error ? <Text c="red" size="sm">{error === 'Empty input' ? 'Please choose a rating.' : error}</Text> : null}
+      {error ? <Text c={SS.error} size="sm">{error === 'Empty input' ? 'Please choose a rating.' : error}</Text> : null}
     </Stack>
   );
 }

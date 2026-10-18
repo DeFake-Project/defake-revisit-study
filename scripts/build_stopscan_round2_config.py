@@ -49,18 +49,6 @@ PAGES = [
 ]
 
 
-def confirm(response_id, prompt):
-    return {
-        "id": response_id,
-        "prompt": prompt,
-        "location": "sidebar",
-        "type": "checkbox",
-        "required": True,
-        "options": ["I confirm"],
-        "requiredValue": ["I confirm"],
-    }
-
-
 def rating(response_id, prompt):
     return {
         "id": response_id,
@@ -100,29 +88,10 @@ components["consent"] = {
     "instructionLocation": "sidebar",
     "sidebarWidth": 440,
     "response": [
-        confirm(
-            "consent_read",
-            "I have read this document and have had the chance to ask questions.",
-        ),
-        confirm(
-            "consent_voluntary",
-            "I understand that participation is voluntary, that I may skip any question, and that I may stop at any time without giving a reason.",
-        ),
-        confirm(
-            "consent_recording",
-            "I understand that my responses in this round are recorded without my name unless I choose to be acknowledged, that time spent on each page is logged, and that de-identified quotations may be published.",
-        ),
-        confirm(
-            "consent_acknowledgment",
-            "I understand that being named in the acknowledgments is optional, that I will be asked about it at the end, and that if I give my name the research team will see it with my responses, but no publication will attribute my responses to me by name.",
-        ),
-        confirm(
-            "consent_age",
-            "I am 18 years of age or older.",
-        ),
         {
             "id": "consent_eu_transfer",
-            "prompt": "(Participants in the EEA, UK, or Switzerland) I explicitly consent to my data being processed as described and transferred to the United States.",
+            "prompt": "If you are in the EEA, the UK, or Switzerland: I explicitly consent to my data being processed as described and transferred to the United States.",
+            "secondaryText": "Leave this unchecked if you are not in the EEA, the UK, or Switzerland.",
             "location": "sidebar",
             "type": "checkbox",
             "required": False,
@@ -130,12 +99,13 @@ components["consent"] = {
         },
         {
             "id": "consent_participate",
-            "prompt": "I consent to take part in this round of the study.",
-            "secondaryText": "Selecting consent records your agreement.",
+            "prompt": "I am 18 years of age or older, and I consent to take part in this round of the study.",
+            "secondaryText": "Checking this records your agreement.",
             "location": "sidebar",
-            "type": "radio",
+            "type": "checkbox",
             "required": True,
-            "options": ["I consent", "I do not consent"],
+            "options": ["I consent"],
+            "requiredValue": ["I consent"],
         },
     ],
 }
@@ -292,6 +262,7 @@ config = {
         "contactEmail": "john.sohrawardi@rit.edu",
         "helpTextPath": "stopscan-expert-panel-round2/assets/help.md",
         "logoPath": "revisitAssets/revisitLogoSquare.svg",
+        "stylesheetPath": "stopscan-expert-panel-round2/assets/study.css",
         "withProgressBar": True,
         "autoDownloadStudy": False,
         "withSidebar": True,
@@ -316,14 +287,6 @@ config = {
                 ],
                 # Skip targets have to sit after this block. `intro` is the next component.
                 "skip": [
-                    {
-                        "name": "consent",
-                        "check": "response",
-                        "responseId": "consent_participate",
-                        "value": "I do not consent",
-                        "comparison": "equal",
-                        "to": "end",
-                    },
                     {
                         "name": "participation",
                         "check": "response",

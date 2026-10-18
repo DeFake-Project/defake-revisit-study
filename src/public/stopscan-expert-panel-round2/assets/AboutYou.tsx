@@ -1,12 +1,13 @@
-import { List, Stack, Text, Title } from '@mantine/core';
+import { List, Stack, Text } from '@mantine/core';
 import { StimulusParams } from '../../../store/types';
 import { tookPartInRoundOne } from './answers';
+import { StudyHeading } from './chrome';
 
 export default function AboutYou({ answers }: StimulusParams<Record<string, never>>) {
   if (tookPartInRoundOne(answers) === true) {
     return (
-      <Stack gap="md" maw={720} mx="auto" p="md">
-        <Title order={2}>About you</Title>
+      <Stack className="ss-page" gap="md" maw={720} mx="auto" p="md">
+        <StudyHeading eyebrow="Background" title="About you" icon="users" />
         <Text>
           You completed the first-round questionnaire, so we already have these background answers. Continue to return to the revised framework.
         </Text>
@@ -15,8 +16,8 @@ export default function AboutYou({ answers }: StimulusParams<Record<string, neve
   }
 
   return (
-    <Stack gap="md" maw={720} mx="auto" p="md">
-      <Title order={2}>About you</Title>
+    <Stack className="ss-page" gap="md" maw={720} mx="auto" p="md">
+      <StudyHeading eyebrow="Background" title="About you" icon="users" />
       <Text>
         You did not take part in the first round, so we do not already have these answers.
       </Text>

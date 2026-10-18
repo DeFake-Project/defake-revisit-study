@@ -1,12 +1,10 @@
-import { List, Stack, Text, Title } from '@mantine/core';
+import { List, Stack, Text } from '@mantine/core';
+import { StudyHeading } from './chrome';
 
 export default function AcknowledgmentPage() {
   return (
-    <Stack gap="md" maw={780} mx="auto" p="md">
-      <div>
-        <Text size="xs" tt="uppercase" fw={600} c="dimmed" style={{ letterSpacing: '0.08em' }}>Optional</Text>
-        <Title order={2} mt={4}>Being named in the acknowledgments</Title>
-      </div>
+    <Stack className="ss-page" gap="md" maw={780} mx="auto" p="md">
+      <StudyHeading eyebrow="Optional" title="Being named in the acknowledgments" icon="badge" />
       <Text>
         Some experts in the first round asked whether they could be credited for their contribution. You can choose to be listed by name in the acknowledgments of publications from this study, as a member of the expert panel.
       </Text>

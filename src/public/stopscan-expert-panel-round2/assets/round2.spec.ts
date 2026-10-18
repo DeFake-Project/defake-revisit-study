@@ -52,14 +52,6 @@ describe('STOP&SCAN round 2 questionnaire', () => {
       components: ['consent', 'participation', 'about-you', 'original-framework'],
       skip: [
         {
-          name: 'consent',
-          check: 'response',
-          responseId: 'consent_participate',
-          value: 'I do not consent',
-          comparison: 'equal',
-          to: 'end',
-        },
-        {
           name: 'participation',
           check: 'response',
           responseId: 'took_part',
@@ -99,6 +91,9 @@ describe('STOP&SCAN round 2 questionnaire', () => {
 
   it('puts an at-a-glance summary on the round 2 consent', () => {
     expect(consentHtml).toMatch(/aria-label="At a glance"/);
+    expect(consentHtml).toMatch(/class="glance"/);
+    expect(consentHtml).toMatch(/glance-card/g);
+    expect((consentHtml.match(/class="glance-card"/g) || []).length).toBe(5);
     expect(consentHtml).toMatch(/At a glance/);
     expect(consentHtml).toMatch(/10 to 15 minutes/);
     expect(consentHtml).toMatch(/whether or not you took part/);
@@ -106,6 +101,25 @@ describe('STOP&SCAN round 2 questionnaire', () => {
     expect(consentHtml).toMatch(/Rochester Institute of Technology/);
     expect(consentHtml).toMatch(/University of Bologna is not a controller/);
     expect(consentHtml).toMatch(/john\.sohrawardi@rit\.edu/);
+    expect(consentHtml).toMatch(/#004cd7/);
     expect(consentHtml).not.toMatch(/Builder note/);
+  });
+
+  it('asks only for Europe transfer consent and one age-and-consent checkbox', () => {
+    const responses = roundTwoConfig.components.consent.response;
+    expect(responses.map((response: { id: string }) => response.id)).toEqual([
+      'consent_eu_transfer',
+      'consent_participate',
+    ]);
+    expect(responses[0]).toMatchObject({ type: 'checkbox', required: false });
+    expect(responses[1]).toMatchObject({
+      type: 'checkbox',
+      required: true,
+      options: ['I consent'],
+      requiredValue: ['I consent'],
+    });
+    expect(responses[1].prompt).toMatch(/18 years of age or older/);
+    expect(responses[1].prompt).toMatch(/consent to take part/);
+    expect(JSON.stringify(responses)).not.toMatch(/I do not consent/);
   });
 });
