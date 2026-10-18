@@ -1,0 +1,513 @@
+{
+  "$schema": "https://raw.githubusercontent.com/revisit-studies/study/v2.4.3/src/parser/StudyConfigSchema.json",
+  "studyMetadata": {
+    "title": "STOP&SCAN Expert Panel, Round 2",
+    "version": "round2",
+    "authors": [
+      "Saniat Javid Sohrawardi",
+      "Kelly Wu",
+      "Fatma Aksu"
+    ],
+    "date": "2026-10-18",
+    "description": "Delphi round 2. Experts rate revisions to STOP&SCAN. Participants who did not complete round 1 answer the round 1 background questions and read the original framework first.",
+    "organizations": [
+      "Rochester Institute of Technology",
+      "University of Bologna"
+    ]
+  },
+  "uiConfig": {
+    "contactEmail": "john.sohrawardi@rit.edu",
+    "helpTextPath": "stopscan-expert-panel-round2/assets/help.md",
+    "logoPath": "revisitAssets/revisitLogoSquare.svg",
+    "withProgressBar": true,
+    "autoDownloadStudy": false,
+    "withSidebar": true,
+    "sidebarWidth": 400,
+    "enumerateQuestions": true,
+    "previousButtonText": "Back",
+    "nextButtonText": "Next",
+    "studyEndMsg": "Thank you. If you finished the questionnaire, your answers are recorded. If you chose not to take part, nothing further is asked of you. You may close this window."
+  },
+  "components": {
+    "consent": {
+      "type": "website",
+      "path": "stopscan-expert-panel-round2/assets/consent.html",
+      "nextButtonLocation": "sidebar",
+      "previousButton": false,
+      "instruction": "Please read the consent document, then confirm in the sidebar.",
+      "instructionLocation": "sidebar",
+      "sidebarWidth": 440,
+      "response": [
+        {
+          "id": "consent_read",
+          "prompt": "I have read this document and have had the chance to ask questions.",
+          "location": "sidebar",
+          "type": "checkbox",
+          "required": true,
+          "options": [
+            "I confirm"
+          ],
+          "requiredValue": [
+            "I confirm"
+          ]
+        },
+        {
+          "id": "consent_voluntary",
+          "prompt": "I understand that participation is voluntary, that I may skip any question, and that I may stop at any time without giving a reason.",
+          "location": "sidebar",
+          "type": "checkbox",
+          "required": true,
+          "options": [
+            "I confirm"
+          ],
+          "requiredValue": [
+            "I confirm"
+          ]
+        },
+        {
+          "id": "consent_recording",
+          "prompt": "I understand that my responses in this round are recorded without my name unless I choose to be acknowledged, that time spent on each page is logged, and that de-identified quotations may be published.",
+          "location": "sidebar",
+          "type": "checkbox",
+          "required": true,
+          "options": [
+            "I confirm"
+          ],
+          "requiredValue": [
+            "I confirm"
+          ]
+        },
+        {
+          "id": "consent_acknowledgment",
+          "prompt": "I understand that being named in the acknowledgments is optional, that I will be asked about it at the end, and that if I give my name the research team will see it with my responses, but no publication will attribute my responses to me by name.",
+          "location": "sidebar",
+          "type": "checkbox",
+          "required": true,
+          "options": [
+            "I confirm"
+          ],
+          "requiredValue": [
+            "I confirm"
+          ]
+        },
+        {
+          "id": "consent_age",
+          "prompt": "I am 18 years of age or older.",
+          "location": "sidebar",
+          "type": "checkbox",
+          "required": true,
+          "options": [
+            "I confirm"
+          ],
+          "requiredValue": [
+            "I confirm"
+          ]
+        },
+        {
+          "id": "consent_eu_transfer",
+          "prompt": "(Participants in the EEA, UK, or Switzerland) I explicitly consent to my data being processed as described and transferred to the United States.",
+          "location": "sidebar",
+          "type": "checkbox",
+          "required": false,
+          "options": [
+            "I consent to transfer"
+          ]
+        },
+        {
+          "id": "consent_participate",
+          "prompt": "I consent to take part in this round of the study.",
+          "secondaryText": "Selecting consent records your agreement.",
+          "location": "sidebar",
+          "type": "radio",
+          "required": true,
+          "options": [
+            "I consent",
+            "I do not consent"
+          ]
+        }
+      ]
+    },
+    "participation": {
+      "type": "markdown",
+      "path": "stopscan-expert-panel-round2/assets/participation.md",
+      "nextButtonLocation": "sidebar",
+      "instructionLocation": "sidebar",
+      "previousButton": true,
+      "withSidebar": true,
+      "instruction": "Tell us whether you completed the first-round questionnaire.",
+      "response": [
+        {
+          "id": "took_part",
+          "prompt": "Did you complete the first-round STOP&SCAN questionnaire?",
+          "secondaryText": "If you did, we will not ask the background questions again.",
+          "location": "sidebar",
+          "type": "radio",
+          "required": true,
+          "options": [
+            "Yes — I completed the first-round questionnaire",
+            "No — I did not take part in the first round"
+          ]
+        }
+      ]
+    },
+    "about-you": {
+      "type": "react-component",
+      "path": "stopscan-expert-panel-round2/assets/AboutYou.tsx",
+      "nextButtonLocation": "sidebar",
+      "instructionLocation": "sidebar",
+      "previousButton": true,
+      "withSidebar": true,
+      "instruction": "These background questions are only for people who did not take part in the first round. You may skip any of them.",
+      "response": [
+        {
+          "id": "B1",
+          "prompt": "Which area best describes most of your professional work?",
+          "location": "sidebar",
+          "type": "radio",
+          "required": false,
+          "options": [
+            "Digital media forensics",
+            "Computer science",
+            "Human factors, user experience, or social sciences",
+            "Misinformation or disinformation research",
+            "Media literacy education",
+            "Fact-checking or verification journalism"
+          ],
+          "withOther": true
+        },
+        {
+          "id": "B2",
+          "prompt": "Do you also work regularly in any of these other areas?",
+          "location": "sidebar",
+          "type": "checkbox",
+          "required": false,
+          "options": [
+            "Digital media forensics",
+            "Computer science",
+            "Human factors, user experience, or social sciences",
+            "Misinformation or disinformation research",
+            "Media literacy education",
+            "Fact-checking or verification journalism"
+          ]
+        },
+        {
+          "id": "B3",
+          "prompt": "About how long have you worked in this field?",
+          "location": "sidebar",
+          "type": "radio",
+          "required": false,
+          "options": [
+            "Under 3 years",
+            "3–7 years",
+            "8–15 years",
+            "More than 15 years"
+          ]
+        },
+        {
+          "id": "B4",
+          "prompt": "How familiar are you with SIFT, the Four Moves, or lateral reading?",
+          "location": "sidebar",
+          "type": "radio",
+          "required": false,
+          "options": [
+            "I am not familiar with them",
+            "I have heard of them but have not used them",
+            "I have used or taught them occasionally",
+            "I use or teach them regularly",
+            "I have contributed to work on them"
+          ]
+        }
+      ]
+    },
+    "original-framework": {
+      "type": "react-component",
+      "path": "stopscan-expert-panel-round2/assets/OriginalFramework.tsx",
+      "instruction": "This is the STOP&SCAN version reviewed in the first round. Continue when you have read it.",
+      "instructionLocation": "aboveStimulus",
+      "nextButtonLocation": "belowStimulus",
+      "previousButton": true,
+      "withSidebar": false,
+      "response": []
+    },
+    "intro": {
+      "type": "react-component",
+      "path": "stopscan-expert-panel-round2/assets/RoundPage.tsx",
+      "parameters": {
+        "pageId": "intro"
+      },
+      "instruction": "There is nothing to rate on this page. Continue when you have read the summary.",
+      "instructionLocation": "aboveStimulus",
+      "nextButtonLocation": "belowStimulus",
+      "previousButton": true,
+      "withSidebar": false,
+      "response": []
+    },
+    "stop": {
+      "type": "react-component",
+      "path": "stopscan-expert-panel-round2/assets/RoundPage.tsx",
+      "parameters": {
+        "pageId": "stop"
+      },
+      "instruction": "Rate each change below the text. A comment is required for a rating of 1, 2, or 3.",
+      "instructionLocation": "aboveStimulus",
+      "nextButtonLocation": "belowStimulus",
+      "previousButton": true,
+      "withSidebar": false,
+      "response": [
+        {
+          "id": "stop_entry",
+          "prompt": "The two entry questions, and scrolling on when both answers are no",
+          "location": "belowStimulus",
+          "type": "custom",
+          "path": "stopscan-expert-panel-round2/assets/AgreementRating.tsx",
+          "required": true
+        },
+        {
+          "id": "stop_questions",
+          "prompt": "The three questions, and how they set the effort level",
+          "location": "belowStimulus",
+          "type": "custom",
+          "path": "stopscan-expert-panel-round2/assets/AgreementRating.tsx",
+          "required": true
+        }
+      ]
+    },
+    "source": {
+      "type": "react-component",
+      "path": "stopscan-expert-panel-round2/assets/RoundPage.tsx",
+      "parameters": {
+        "pageId": "source"
+      },
+      "instruction": "Rate the change below the text. A comment is required for a rating of 1, 2, or 3.",
+      "instructionLocation": "aboveStimulus",
+      "nextButtonLocation": "belowStimulus",
+      "previousButton": true,
+      "withSidebar": false,
+      "response": [
+        {
+          "id": "source",
+          "prompt": "The new Source, with a check for each effort level",
+          "location": "belowStimulus",
+          "type": "custom",
+          "path": "stopscan-expert-panel-round2/assets/AgreementRating.tsx",
+          "required": true
+        }
+      ]
+    },
+    "content": {
+      "type": "react-component",
+      "path": "stopscan-expert-panel-round2/assets/RoundPage.tsx",
+      "parameters": {
+        "pageId": "content"
+      },
+      "instruction": "Rate the change below the text. A comment is required for a rating of 1, 2, or 3.",
+      "instructionLocation": "aboveStimulus",
+      "nextButtonLocation": "belowStimulus",
+      "previousButton": true,
+      "withSidebar": false,
+      "response": [
+        {
+          "id": "content",
+          "prompt": "The new Content, opening with checks which need no special skill",
+          "location": "belowStimulus",
+          "type": "custom",
+          "path": "stopscan-expert-panel-round2/assets/AgreementRating.tsx",
+          "required": true
+        }
+      ]
+    },
+    "alignment": {
+      "type": "react-component",
+      "path": "stopscan-expert-panel-round2/assets/RoundPage.tsx",
+      "parameters": {
+        "pageId": "alignment"
+      },
+      "instruction": "Rate each change below the text. A comment is required for a rating of 1, 2, or 3.",
+      "instructionLocation": "aboveStimulus",
+      "nextButtonLocation": "belowStimulus",
+      "previousButton": true,
+      "withSidebar": false,
+      "response": [
+        {
+          "id": "align_indep",
+          "prompt": "The three-part independence test",
+          "location": "belowStimulus",
+          "type": "custom",
+          "path": "stopscan-expert-panel-round2/assets/AgreementRating.tsx",
+          "required": true
+        },
+        {
+          "id": "align_ai",
+          "prompt": "The rule for AI answers and tools",
+          "location": "belowStimulus",
+          "type": "custom",
+          "path": "stopscan-expert-panel-round2/assets/AgreementRating.tsx",
+          "required": true
+        },
+        {
+          "id": "align_callback",
+          "prompt": "Option. For a request, one confirmation through a channel the requester cannot control, such as calling back a saved number, settles the case alone",
+          "location": "belowStimulus",
+          "type": "custom",
+          "path": "stopscan-expert-panel-round2/assets/AgreementRating.tsx",
+          "required": true
+        }
+      ]
+    },
+    "reflect": {
+      "type": "react-component",
+      "path": "stopscan-expert-panel-round2/assets/RoundPage.tsx",
+      "parameters": {
+        "pageId": "reflect"
+      },
+      "instruction": "Rate each change below the text. A comment is required for a rating of 1, 2, or 3.",
+      "instructionLocation": "aboveStimulus",
+      "nextButtonLocation": "belowStimulus",
+      "previousButton": true,
+      "withSidebar": false,
+      "response": [
+        {
+          "id": "reflect_questions",
+          "prompt": "The two questions and the undo rule",
+          "location": "belowStimulus",
+          "type": "custom",
+          "path": "stopscan-expert-panel-round2/assets/AgreementRating.tsx",
+          "required": true
+        },
+        {
+          "id": "reflect_table",
+          "prompt": "The table of actions",
+          "location": "belowStimulus",
+          "type": "custom",
+          "path": "stopscan-expert-panel-round2/assets/AgreementRating.tsx",
+          "required": true
+        }
+      ]
+    },
+    "run": {
+      "type": "react-component",
+      "path": "stopscan-expert-panel-round2/assets/RoundPage.tsx",
+      "parameters": {
+        "pageId": "run"
+      },
+      "instruction": "Rate each change below the text. A comment is required for a rating of 1, 2, or 3.",
+      "instructionLocation": "aboveStimulus",
+      "nextButtonLocation": "belowStimulus",
+      "previousButton": true,
+      "withSidebar": false,
+      "response": [
+        {
+          "id": "run_order",
+          "prompt": "A fixed order with effort set by STOP",
+          "location": "belowStimulus",
+          "type": "custom",
+          "path": "stopscan-expert-panel-round2/assets/AgreementRating.tsx",
+          "required": true
+        },
+        {
+          "id": "run_modes",
+          "prompt": "The two modes",
+          "location": "belowStimulus",
+          "type": "custom",
+          "path": "stopscan-expert-panel-round2/assets/AgreementRating.tsx",
+          "required": true
+        }
+      ]
+    },
+    "kept": {
+      "type": "react-component",
+      "path": "stopscan-expert-panel-round2/assets/RoundPage.tsx",
+      "parameters": {
+        "pageId": "kept"
+      },
+      "instruction": "The comment below is optional.",
+      "instructionLocation": "aboveStimulus",
+      "nextButtonLocation": "belowStimulus",
+      "previousButton": true,
+      "withSidebar": false,
+      "response": [
+        {
+          "id": "open_final",
+          "prompt": "Is there anything else you would like to tell us?",
+          "secondaryText": "Optional.",
+          "location": "belowStimulus",
+          "type": "longText",
+          "required": false
+        }
+      ]
+    },
+    "acknowledgment": {
+      "type": "react-component",
+      "path": "stopscan-expert-panel-round2/assets/AcknowledgmentPage.tsx",
+      "instruction": "Being named is optional. You can leave this blank.",
+      "instructionLocation": "aboveStimulus",
+      "nextButtonLocation": "belowStimulus",
+      "previousButton": true,
+      "withSidebar": false,
+      "response": [
+        {
+          "id": "acknowledgment",
+          "prompt": "Acknowledgment",
+          "location": "belowStimulus",
+          "type": "custom",
+          "path": "stopscan-expert-panel-round2/assets/AcknowledgmentChoice.tsx",
+          "required": false
+        }
+      ]
+    },
+    "review": {
+      "type": "react-component",
+      "path": "stopscan-expert-panel-round2/assets/ReviewAnswers.tsx",
+      "instruction": "Check your answers, then submit. Use Back to change anything.",
+      "instructionLocation": "aboveStimulus",
+      "nextButtonLocation": "belowStimulus",
+      "nextButtonText": "Submit answers",
+      "previousButton": true,
+      "withSidebar": false,
+      "response": []
+    }
+  },
+  "sequence": {
+    "order": "fixed",
+    "components": [
+      {
+        "id": "opening",
+        "order": "fixed",
+        "components": [
+          "consent",
+          "participation",
+          "about-you",
+          "original-framework"
+        ],
+        "skip": [
+          {
+            "name": "consent",
+            "check": "response",
+            "responseId": "consent_participate",
+            "value": "I do not consent",
+            "comparison": "equal",
+            "to": "end"
+          },
+          {
+            "name": "participation",
+            "check": "response",
+            "responseId": "took_part",
+            "value": "Yes — I completed the first-round questionnaire",
+            "comparison": "equal",
+            "to": "intro"
+          }
+        ]
+      },
+      "intro",
+      "stop",
+      "source",
+      "content",
+      "alignment",
+      "reflect",
+      "run",
+      "kept",
+      "acknowledgment",
+      "review"
+    ]
+  }
+}
