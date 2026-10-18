@@ -83,7 +83,7 @@ describe('STOP&SCAN round 2 questionnaire', () => {
       roundOne.map((response: { prompt: string }) => response.prompt),
     );
     expect(roundTwo.every((response: { required: boolean }) => response.required === false)).toBe(true);
-    expect(ORIGINAL_FRAMEWORK_INTRO).toMatch(/did not take part/i);
+    expect(ORIGINAL_FRAMEWORK_INTRO).toMatch(/did not complete Round 1/i);
     expect(STOPSCAN_OVERVIEW.elements.map((element) => element.title)).toEqual([
       'STOP', 'Source', 'Content', 'Alignment', 'Now Reflect',
     ]);
@@ -118,8 +118,8 @@ describe('STOP&SCAN round 2 questionnaire', () => {
       options: ['I consent'],
       requiredValue: ['I consent'],
     });
-    expect(responses[1].prompt).toMatch(/18 years of age or older/);
-    expect(responses[1].prompt).toMatch(/consent to take part/);
+    expect(responses[1].prompt).toMatch(/18 or older/);
+    expect(responses[1].prompt).toMatch(/agree to take part/);
     expect(JSON.stringify(responses)).not.toMatch(/I do not consent/);
   });
 });
