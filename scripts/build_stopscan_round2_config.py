@@ -35,7 +35,7 @@ PAGES = [
     ]),
     ("alignment", "Rate each change below. If you choose 1, 2, or 3, you must add a comment.", [
         ("align_indep", "The three-part independence test"),
-        ("align_ai", "The rule for AI answers and tools"),
+        ("align_ai", "The rule that AI answers and tool results are clues to check, not evidence by themselves"),
         ("align_callback", "Optional rule: For a request, one confirmation through a contact method the requester cannot control is enough. For example, call a saved number."),
     ]),
     ("reflect", "Rate each change below. If you choose 1, 2, or 3, you must add a comment.", [

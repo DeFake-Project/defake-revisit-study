@@ -374,7 +374,7 @@ export const ROUND_PAGES: RoundPageContent[] = [
     },
     ratings: [
       { id: 'align_indep', prompt: 'The three-part independence test' },
-      { id: 'align_ai', prompt: 'The rule for AI answers and tools' },
+      { id: 'align_ai', prompt: 'The rule that AI answers and tool results are clues to check, not evidence by themselves' },
       { id: 'align_callback', prompt: 'Optional rule: For a request, one confirmation through a contact method the requester cannot control is enough. For example, call a saved number.' },
     ],
   },

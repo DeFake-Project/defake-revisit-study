@@ -277,7 +277,7 @@
         },
         {
           "id": "align_ai",
-          "prompt": "The rule for AI answers and tools",
+          "prompt": "The rule that AI answers and tool results are clues to check, not evidence by themselves",
           "location": "belowStimulus",
           "type": "custom",
           "path": "stopscan-expert-panel-round2/assets/AgreementRating.tsx",
