@@ -40,7 +40,12 @@ describe('STOP&SCAN round 2 questionnaire', () => {
       id: 'open_final',
       required: false,
     });
-    expect(roundTwoConfig.components.kept).toBeUndefined();
+    expect(roundTwoConfig.components.kept).toMatchObject({
+      type: 'markdown',
+      path: 'stopscan-expert-panel-round2/assets/legacy-kept.md',
+      response: [],
+    });
+    expect(JSON.stringify(roundTwoConfig.sequence)).not.toContain('"kept"');
   });
 
   it('keeps the Round 1 thank-you out of the shared intro copy', () => {
