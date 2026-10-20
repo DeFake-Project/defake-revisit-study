@@ -206,19 +206,6 @@ for page_id, instruction, ratings in PAGES:
         })
     components[page_id] = reading_page(page_id, instruction, responses)
 
-# Compatibility for sessions that saved the earlier eight-page sequence.
-# New sequences do not include this component.
-components["kept"] = {
-    "type": "markdown",
-    "path": "stopscan-expert-panel-round2/assets/legacy-kept.md",
-    "instruction": "This step moved to the previous page. Select Next to continue.",
-    "instructionLocation": "aboveStimulus",
-    "nextButtonLocation": "belowStimulus",
-    "previousButton": True,
-    "withSidebar": False,
-    "response": [],
-}
-
 components["acknowledgment"] = {
     "type": "react-component",
     "path": "stopscan-expert-panel-round2/assets/AcknowledgmentPage.tsx",
@@ -255,7 +242,7 @@ config = {
     "$schema": "https://raw.githubusercontent.com/revisit-studies/study/v2.4.3/src/parser/StudyConfigSchema.json",
     "studyMetadata": {
         "title": "STOP&SCAN Expert Panel, Round 2",
-        "version": "round2",
+        "version": "round-2",
         "authors": [
             "Saniat Javid Sohrawardi",
             "Kelly Wu",

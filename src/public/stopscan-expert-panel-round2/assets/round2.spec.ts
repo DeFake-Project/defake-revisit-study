@@ -1,5 +1,6 @@
 import { readFileSync } from 'fs';
 import { describe, expect, it } from 'vitest';
+import { parseStudyConfig } from '../../../parser/parser';
 import { validateAgreement } from './agreement';
 import { TOOK_PART_YES } from './participation';
 import { RATING_ITEMS, ROUND_ONE_THANK_YOU, ROUND_PAGES } from './pages';
@@ -40,12 +41,15 @@ describe('STOP&SCAN round 2 questionnaire', () => {
       id: 'open_final',
       required: false,
     });
-    expect(roundTwoConfig.components.kept).toMatchObject({
-      type: 'markdown',
-      path: 'stopscan-expert-panel-round2/assets/legacy-kept.md',
-      response: [],
-    });
+    expect(roundTwoConfig.components.kept).toBeUndefined();
+    expect(roundTwoConfig.studyMetadata.version).toBe('round-2');
     expect(JSON.stringify(roundTwoConfig.sequence)).not.toContain('"kept"');
+  });
+
+  it('parses without an unused-component warning', async () => {
+    const parsed = await parseStudyConfig(readFileSync('public/stopscan-expert-panel-round2/config.json', 'utf8'));
+    expect(parsed.errors).toEqual([]);
+    expect(parsed.warnings.filter((warning) => warning.category === 'unused-component')).toEqual([]);
   });
 
   it('keeps the Round 1 thank-you out of the shared intro copy', () => {
