@@ -19,10 +19,12 @@ describe('user studies from production fork', () => {
     expect(globalConfig.configsList).toContain('varuna-sme-eval-ontology');
     expect(globalConfig.configsList).toContain('dndf-scenario-evaluation');
     expect(globalConfig.configsList).toContain('stopscan-expert-panel');
+    expect(globalConfig.configsList).toContain('stopscan-expert-panel-round2');
     expect(globalConfig.configs['ontology-technique-eval']?.test).toBeUndefined();
     expect(globalConfig.configs['varuna-sme-eval-ontology']?.test).toBeUndefined();
     expect(globalConfig.configs['dndf-scenario-evaluation']?.test).toBeUndefined();
     expect(globalConfig.configs['stopscan-expert-panel']?.test).toBeUndefined();
+    expect(globalConfig.configs['stopscan-expert-panel-round2']?.test).toBeUndefined();
     expect(globalConfig.configs.tutorial?.test).toBeUndefined();
     expect(globalConfig.configs['demo-html']?.test).toBe(true);
   });
@@ -32,6 +34,7 @@ describe('user studies from production fork', () => {
     'varuna-sme-eval-ontology',
     'dndf-scenario-evaluation',
     'stopscan-expert-panel',
+    'stopscan-expert-panel-round2',
   ])('parses %s without errors', async (studyId) => {
     const text = readFileSync(`public/${studyId}/config.json`, 'utf8');
     const parsed = await parseStudyConfig(text);

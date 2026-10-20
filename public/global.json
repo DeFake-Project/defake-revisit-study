@@ -5,6 +5,7 @@
     "varuna-sme-eval-ontology",
     "dndf-scenario-evaluation",
     "stopscan-expert-panel",
+    "stopscan-expert-panel-round2",
     "tutorial",
     "tutorial-replication",
     "demo-html",
@@ -281,6 +282,9 @@
     },
     "stopscan-expert-panel": {
       "path": "stopscan-expert-panel/config.json"
+    },
+    "stopscan-expert-panel-round2": {
+      "path": "stopscan-expert-panel-round2/config.json"
     }
   }
 }
