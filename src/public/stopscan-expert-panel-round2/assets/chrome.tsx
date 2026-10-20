@@ -151,7 +151,6 @@ export function StepIcon({ name, tile }: { name: StepIconName; tile: string }) {
 const PAGE_ICONS: Record<string, IconName> = {
   intro: 'users',
   run: 'route',
-  kept: 'check',
   about: 'users',
   original: 'book',
   acknowledgment: 'badge',

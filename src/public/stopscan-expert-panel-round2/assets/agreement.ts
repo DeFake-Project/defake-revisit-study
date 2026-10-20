@@ -42,7 +42,7 @@ export function commentRequired(rating: number | null): boolean {
 
 export function commentHint(rating: number | null): string {
   if (rating == null) {
-    return 'Comment (required if you choose 1, 2, or 3)';
+    return 'Comment (please tell us what you would change if you choose 1, 2, or 3)';
   }
   if (commentRequired(rating)) {
     return 'What would you change, and why?';

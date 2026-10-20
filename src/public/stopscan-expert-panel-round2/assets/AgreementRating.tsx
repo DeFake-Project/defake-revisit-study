@@ -58,7 +58,7 @@ export default function AgreementRating({
       </Radio.Group>
       <Textarea
         label={hint}
-        description={commentRequired(current.rating) ? 'Required for this rating.' : undefined}
+        description={commentRequired(current.rating) ? 'Please add a comment for this rating.' : undefined}
         value={current.comment}
         onChange={(event) => update({ comment: event.currentTarget.value })}
         onBlur={() => field.onBlur()}

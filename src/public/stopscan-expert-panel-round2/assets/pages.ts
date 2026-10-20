@@ -40,6 +40,7 @@ export type RoundPageContent = {
   example?: string;
   teaching?: { summary: string; tables: TableSpec[]; startOpen?: boolean };
   research?: { items: string[]; references?: string[] };
+  closingParagraphs?: string[];
   ratings: RatingSpec[];
   openPrompt?: string;
 };
@@ -49,16 +50,18 @@ const MODERATE = 'moderate' as const;
 const DEEP = 'deep' as const;
 const EVERY = 'every' as const;
 
+export const ROUND_ONE_THANK_YOU = 'Thank you for your Round 1 answers.';
+
 export const ROUND_PAGES: RoundPageContent[] = [
   {
     id: 'intro',
-    eyebrow: 'Page 1 of 8',
+    eyebrow: 'Page 1 of 7',
     title: 'What you told us',
     tone: 'default',
     paragraphs: [
-      'Thank you for your Round 1 answers. Sixteen experts took part. They worked in media literacy education, fact-checking, human factors, misinformation research, and digital forensics. Their comments agreed more often than we expected.',
+      'Sixteen experts took part in Round 1. They worked in media literacy education, fact-checking, human factors, misinformation research, and digital forensics. Their comments agreed more often than we expected.',
       'The panel supported the main parts of STOP&SCAN. **14 of 15** agreed that the five elements are the right ones. **13 of 14** said STOP&SCAN is more reliable than SIFT when search results are misleading. **11 of 14** said STOP&SCAN is more likely to lead to a careful judgement.',
-      'The panel also said that the full process is too much work for daily use. Twelve experts said this in their comments. Nine said people may not pause when they feel rushed or upset. All **16** experts saw a reason to pause for Rekha\'s scam call. Only **5 of 15** saw a reason to pause for Dana\'s weather map.',
+      'The panel also said that the full process is too much work for daily use. Twelve experts said this in their comments. Nine said people may not pause when they feel rushed or upset. In one case, a scam caller asked Rekha to send money. All **16** experts saw a reason to pause. In another case, Dana wanted to share a weather map from a real weather service account. Only **5 of 15** saw a reason to pause.',
       'All changes follow one idea: STOP decides how much effort the rest of the check needs. Each letter stays in the same place. Each letter gets one main change.',
       '**How each page works.** The tinted box shows the new text that the public will see. The two closed panels above it explain why we made the change and what research supports it. The panels below show teaching material and questions for future research. You may open any panel.',
       '**How to rate.** Rate each change from 1 (strongly disagree) to 5 (strongly agree). If you choose 1, 2, or 3, tell us what you would change. Some of your feedback appears in the framework on later pages. We will discuss the rest in the research paper.',
@@ -68,7 +71,7 @@ export const ROUND_PAGES: RoundPageContent[] = [
   },
   {
     id: 'stop',
-    eyebrow: 'Page 2 of 8',
+    eyebrow: 'Page 2 of 7',
     big: 'STOP',
     title: 'Pause, and set the effort',
     tone: 'stop',
@@ -76,8 +79,8 @@ export const ROUND_PAGES: RoundPageContent[] = [
     why: {
       summary: '16 of 16 saw a reason to pause for the scam call, 5 of 15 for the weather map',
       paragraphs: [
-        'People may skip the pause when they feel rushed, scared, or angry. Nine experts made this point. All **16** experts saw a reason to pause before Rekha sent money. Only **5 of 15** saw a reason to pause before Dana shared a weather map.',
-        'Twelve experts said it is not realistic to use every step on all content. Several said the effort should depend on what could go wrong. Four asked us to name the exact claim being checked. Without a clear claim, the panel split **8 to 8** on Marcus\'s photo.',
+        'People may skip the pause when they feel rushed, scared, or angry. Nine experts made this point. All **16** experts saw a reason to pause before the person in the scam-call case sent money. Only **5 of 15** saw a reason to pause before the person in the weather-map case shared the post.',
+        'Twelve experts said it is not realistic to use every step on all content. Several said the effort should depend on what could go wrong. Four asked us to name the exact claim being checked. Without a clear claim, the panel split **8 to 8** on the rally-photo case.',
       ],
     },
     how: {
@@ -113,7 +116,7 @@ export const ROUND_PAGES: RoundPageContent[] = [
             { tone: EVERY, name: 'Rushed or unsure', text: 'Go one level deeper.' },
           ],
         },
-        { kind: 'paragraph', text: 'If a message asks you to pay, sign in, or send a code, do not send anything until you finish the check. If a message gives a warning, contact the official source yourself. Do not use the links or phone numbers in the message.' },
+        { kind: 'paragraph', text: 'For a request to pay, sign in, or send a code, pause the action until you finish the check. For a warning, do not use the links or phone numbers in the message. If possible, consult the official source through a contact method you find yourself. For other information, continue with SCAN.' },
       ],
     },
     teaching: {
@@ -167,22 +170,22 @@ export const ROUND_PAGES: RoundPageContent[] = [
   },
   {
     id: 'source',
-    eyebrow: 'Page 3 of 8',
+    eyebrow: 'Page 3 of 7',
     big: 'S',
     title: 'Source',
     tone: 'default',
     lead: 'The Source check now changes with the effort level. A light check looks at who posted the content. A deep check finds where the claim started and asks what the source may gain.',
     why: {
-      summary: '15 of 16 found Dana\'s reshare plausible because the account was real',
+      summary: '15 of 16 found the weather-map reshare plausible because the account was real',
       paragraphs: [
-        'Most checks stopped after finding a real account. **15 of 16** experts found Dana\'s shared post believable because the weather service account was real. Thirteen of the 15 experts who wrote comments said that checking only the source or a tool could mislead someone or leave the answer unclear.',
-        '**12 of 16** disagreed that SIFT gives enough guidance when a trusted source publishes false content (R11). Six said that neither framework asks who gains from a claim.',
+        'Most checks stopped after finding a real account. **15 of 16** experts found the shared weather map believable because the weather service account was real. Thirteen of the 15 experts who wrote comments said that checking only the source or a tool could mislead someone or leave the answer unclear.',
+        '**12 of 16** disagreed that SIFT gives enough guidance when a trusted source publishes false content. Six said that neither framework asks who gains from a claim.',
       ],
     },
     how: {
       summary: '5 sources',
       paragraphs: [
-        'Professional fact-checkers leave the page and read what other sources say about it. Historians and students who stayed on the page were more often misled (Wineburg and McGrew, 2019). This is why moderate and deep checks look outside the post. Civic online reasoning starts with the question, "Who is behind the information?" (McGrew et al., 2018). We also ask what that source may gain.',
+        'Professional fact-checkers leave the original post and check what other sources say. Historians and students who looked only at the original page were more often misled (Wineburg and McGrew, 2019). This is why moderate and deep checks look beyond the post. Civic online reasoning starts with the question, "Who is behind the information?" (McGrew et al., 2018). We also ask what that source may gain.',
         'The first account you see may not be where the claim started. A few accounts may start a false claim. Many other accounts may then spread it, either together or without knowing it is false (Starbird, Arif and Wilson, 2019). The deep check therefore asks who started and spread the claim.',
         'A real account only tells you who posted the content. It does not tell you whether the content is true. Missing information about where content came from also proves nothing. In one study, incomplete source history made people doubt real media (Feng et al., 2023). A statement such as "this is fake" also has a source. People sometimes call real evidence fake to avoid it (Chesney and Citron, 2019).',
       ],
@@ -194,7 +197,7 @@ export const ROUND_PAGES: RoundPageContent[] = [
         {
           kind: 'levels',
           rows: [
-            { tone: LIGHT, name: 'Light check', text: 'Look at the account that posted the content. If a friend shared the post, find the account that your friend got it from.' },
+            { tone: LIGHT, name: 'Light check', text: 'Look at the account that posted the content. If a friend shared the post, find the account that your friend got it from. This only shows where the content came from. It does not show that the content is true.' },
             { tone: MODERATE, name: 'Moderate check', text: 'Look at the account\'s record. Is the account real? How old is the account, and what else has the owner posted?' },
             { tone: DEEP, name: 'Deep check', text: 'Find the first account that posted the claim. Look at who is spreading it. What might they gain if you believe or share it?' },
             { tone: EVERY, name: 'Every level', text: 'A real or official account tells you who posted something. Whether the content is true is a separate question. A claim like "this is fake" or "this is AI" has a source too.' },
@@ -202,7 +205,7 @@ export const ROUND_PAGES: RoundPageContent[] = [
         },
       ],
     },
-    example: 'Ellen finds the senator\'s photo on his office\'s official page. A light check shows a real account. A deep check asks what the office gains, and the office gains if people believe the senator is well. So the photo still needs a second, independent piece of evidence at Alignment.',
+    example: 'A post claims that a senator is healthy and includes a photo from the senator\'s official page. A light check confirms that the account is real. A deep check asks what the office may gain if people believe the claim. The photo still needs a second, independent piece of evidence at Alignment.',
     teaching: {
       summary: 'Source at each effort level, with counterfactuals',
       tables: [
@@ -231,15 +234,15 @@ export const ROUND_PAGES: RoundPageContent[] = [
   },
   {
     id: 'content',
-    eyebrow: 'Page 4 of 8',
+    eyebrow: 'Page 4 of 7',
     big: 'C',
     title: 'Content',
     tone: 'default',
     lead: 'The Content step now starts with checks that need no special skill. It names common pressure tactics. Visual signs and tools come last.',
     why: {
-      summary: 'Useful in 52 of 62 step ratings, lowest for Ellen at 11 of 15',
+      summary: 'Useful in 52 of 62 step ratings, lowest for the senator-photo case at 11 of 15',
       paragraphs: [
-        'Finding false content by sight takes expert skill, and AI makes this harder. The panel rated Content useful in **52 of 62** step ratings. Ellen\'s case had the lowest score: **11 of 15**. That case depended on looking at an image and using detectors. Rekha\'s case needed no forensic skill.',
+        'Finding false content by sight takes expert skill, and AI makes this harder. The panel rated Content useful in **52 of 62** step ratings. The senator-photo case had the lowest score: **11 of 15**. That case depended on looking at an image and using detectors. The scam-call case needed no forensic skill.',
         'Four experts asked us to start with what the content shows or asks you to do, before looking at pixels. Six said neither framework asks who gains from a claim. One said that missing manipulation tactics was a serious gap.',
       ],
     },
@@ -248,7 +251,7 @@ export const ROUND_PAGES: RoundPageContent[] = [
       paragraphs: [
         'People cannot reliably tell AI-generated faces from real faces by sight. In one study, people were correct 48% of the time. Training raised this to only 59% (Nightingale and Farid, 2022). This is why visual checks come last.',
         'It is more useful to name common tactics. Short teaching videos helped people find manipulation tactics in new posts. This worked in a lab and in a YouTube field test (Roozenbeek et al., 2022). Scams often use urgency, authority, or requests to help someone (Stajano and Wilson, 2011). Content names these tactics.',
-        'STOP puts the claim into one sentence. This gives the Content step one clear target. The panel split on Marcus\'s photo because one post contained two different claims.',
+        'STOP puts the claim into one sentence. This gives the Content step one clear target. The panel split on the rally photo because one post contained two different claims.',
       ],
       references: ['nightingale2022', 'roozenbeek2022', 'stajano2011'],
     },
@@ -265,7 +268,7 @@ export const ROUND_PAGES: RoundPageContent[] = [
         },
       ],
     },
-    example: 'Dana\'s weather map names towns which do not exist. She finds this by reading the labels, with no image analysis.',
+    example: 'The weather map names towns that do not exist. The person checking it finds this by reading the labels, with no image analysis.',
     teaching: {
       summary: 'Content at each effort level, and the pressure tricks',
       tables: [
@@ -302,7 +305,7 @@ export const ROUND_PAGES: RoundPageContent[] = [
   },
   {
     id: 'alignment',
-    eyebrow: 'Page 5 of 8',
+    eyebrow: 'Page 5 of 7',
     big: 'A',
     title: 'Alignment',
     tone: 'default',
@@ -310,8 +313,8 @@ export const ROUND_PAGES: RoundPageContent[] = [
     why: {
       summary: '2 of 16 agreed a non-expert would be able to judge independence',
       paragraphs: [
-        'Independent evidence was the weakest part of Round 1. Only **2 of 16** agreed that a non-expert could tell whether two pieces of evidence are independent (R4). Seven disagreed. **10 of 15** supported requiring two kinds of evidence (R3), which was below our consensus level. Ten experts named independence as a weak point. Three suggested a test.',
-        'Eleven experts warned that people may treat AI assistant answers as evidence. Nine gave the same warning about detectors. **14 of 16** thought it was believable that Ellen would rely on a platform AI assistant. Eight said that calling Manoj back was the key step in Rekha\'s case.',
+        'Independent evidence was the weakest part of Round 1. Only **2 of 16** agreed that a non-expert could tell whether two pieces of evidence are independent. Seven disagreed. **10 of 15** supported requiring two kinds of evidence, which was below our consensus level. Ten experts named independence as a weak point. Three suggested a test.',
+        'Eleven experts warned that people may treat AI assistant answers as evidence. Nine gave the same warning about detectors. **14 of 16** thought it was believable that someone checking the senator photo would rely on a platform AI assistant. Eight said that calling the family member on his saved number was the key step in the scam-call case.',
       ],
     },
     how: {
@@ -354,9 +357,9 @@ export const ROUND_PAGES: RoundPageContent[] = [
           caption: 'Each row pairs evidence which counts as two with a near miss which counts once.',
           columns: ['Counts as two', 'Counts once', 'Why'],
           rows: [
-            ['Wire-service photos and a local station\'s video of the rally, shot by different crews (Marcus)', 'Three news sites which all quote the campaign\'s spokesperson', 'All three rest on one statement from a party to the claim'],
-            ['The office\'s photo and a date-limited reverse image search with no older copy (Ellen)', 'The senator\'s website and his office\'s Facebook page', 'The office runs both channels'],
-            ['Calling Manoj back on his saved number (Rekha)', 'Calling back the number which called you', 'The caller controls this number'],
+            ['Wire-service photos and a local station\'s video of the rally, shot by different crews', 'Three news sites which all quote the campaign\'s spokesperson', 'All three rest on one statement from a party to the claim'],
+            ['The office\'s photo and a date-limited reverse image search with no older copy', 'The senator\'s website and his office\'s Facebook page', 'The office runs both channels'],
+            ['Calling a family member on a saved number', 'Calling back the number which called you', 'The caller controls this number'],
             ['A viral video of a flooded road and the transport authority\'s own road-closure page', 'The same video reposted by fifty accounts', 'Reposts are copies of one report'],
             ['A detector result and an eyewitness video from someone unconnected', 'An AI assistant\'s verdict on the same image', 'An assistant\'s verdict never counts alone'],
             ['Two different detectors, or a reverse image search and a metadata viewer, on the same photo', 'The same detector run on two copies of the photo', 'One tool used twice is one check'],
@@ -380,7 +383,7 @@ export const ROUND_PAGES: RoundPageContent[] = [
   },
   {
     id: 'reflect',
-    eyebrow: 'Page 6 of 8',
+    eyebrow: 'Page 6 of 7',
     big: 'N',
     title: 'Now Reflect',
     tone: 'default',
@@ -388,8 +391,8 @@ export const ROUND_PAGES: RoundPageContent[] = [
     why: {
       summary: 'Useful in 49 of 63 step ratings, the lowest of the four checking steps',
       paragraphs: [
-        'Now Reflect had the lowest score of the four checking steps. It was rated useful in **49 of 63** step ratings and by **11 of 16** experts for both Ellen\'s and Rekha\'s cases. Six experts said the step repeats earlier findings and comes after the important decision.',
-        'The panel was divided about "not sure yet". Seven experts valued this result. Six were unsure that people would accept it. **8 of 16** agreed that people would accept an unresolved result (R5). This question had the widest range of answers among the STOP&SCAN statements. **4 of 16** would have closed Ellen\'s case, but the framework leaves it open.',
+        'Now Reflect had the lowest score of the four checking steps. It was rated useful in **49 of 63** step ratings and by **11 of 16** experts for both the senator-photo and scam-call cases. Six experts said the step repeats earlier findings and comes after the important decision.',
+        'The panel was divided about "not sure yet". Seven experts valued this result. Six were unsure that people would accept it. **8 of 16** agreed that people would accept an unresolved result. This question had the widest range of answers among the STOP&SCAN statements. **4 of 16** would have closed the case about the senator\'s health, but the framework leaves it open.',
       ],
     },
     how: {
@@ -421,7 +424,7 @@ export const ROUND_PAGES: RoundPageContent[] = [
         },
       ],
     },
-    example: 'Ellen writes "Not sure yet, so I\'m holding and not sharing. The photo is real, but the date isn\'t confirmed. A dated original would settle the rest."',
+    example: 'For the senator photo, the person checking it writes: "Not sure yet, so I\'m holding and not sharing. The photo is real, but the date isn\'t confirmed. A dated original would settle the rest."',
     teaching: {
       summary: 'The table of actions, and the extra line',
       startOpen: true,
@@ -458,15 +461,15 @@ export const ROUND_PAGES: RoundPageContent[] = [
   },
   {
     id: 'run',
-    eyebrow: 'Page 7 of 8',
-    title: 'How the check runs',
+    eyebrow: 'Page 7 of 7',
+    title: 'The final scaffold',
     tone: 'default',
     lead: 'The letters always stay in the same order. STOP decides how much effort each letter needs.',
     why: {
-      summary: '12 of you found the full sequence too heavy, 7 wanted the order kept',
+      summary: '12 experts found the full sequence too heavy, 7 wanted the order kept',
       paragraphs: [
-        'The panel was divided about using every letter every time. Twelve experts said the full sequence is too much work for daily use. Seven wanted to keep the fixed order because it helps build a habit. **7 of 14** said SIFT is easier to teach, compared with **3** for STOP&SCAN (R15). **8 of 15** would recommend STOP&SCAN to someone with no training (R17).',
-        'One expert warned that a shortcut may cause people to stop after one check. In Rekha\'s case, **6 of 16** thought there was enough evidence after Content.',
+        'The panel was divided about using every letter every time. Twelve experts said the full sequence is too much work for daily use. Seven wanted to keep the fixed order because it helps build a habit. **7 of 14** said SIFT is easier to teach, compared with **3** for STOP&SCAN. **8 of 15** would recommend STOP&SCAN to someone with no training.',
+        'One expert warned that a shortcut may cause people to stop after one check. In the scam-call case, **6 of 16** thought there was enough evidence after Content.',
       ],
     },
     how: {
@@ -517,21 +520,13 @@ export const ROUND_PAGES: RoundPageContent[] = [
         'Whether learning mode carries over into everyday use, and how long the habit lasts.',
       ],
     },
+    closingParagraphs: [
+      'Some experts also discussed platform design, workplace rules, family code words, and media literacy campaigns. These can work with STOP&SCAN as extra layers of protection. We discuss them in the research paper.',
+    ],
     ratings: [
       { id: 'run_order', prompt: 'A fixed order with effort set by STOP' },
       { id: 'run_modes', prompt: 'The two modes' },
     ],
-  },
-  {
-    id: 'kept',
-    eyebrow: 'Page 8 of 8',
-    title: 'What we kept',
-    tone: 'default',
-    paragraphs: [
-      'We kept the five elements in the same order. **14 of 15** agreed that these are the right elements (R1). We also kept a clear difference between what the evidence shows and what you decide to do. **14 of 16** agreed with this difference (R7). Finally, we kept counting independent evidence instead of counting completed steps. **14 of 16** agreed with this approach (R2).',
-      'Some experts also discussed platform design, workplace rules, family code words, and media literacy campaigns. These can work with STOP&SCAN as extra layers of protection. We discuss them in the research paper.',
-    ],
-    ratings: [],
     openPrompt: 'Is there anything else you would like to tell us?',
   },
 ];

@@ -25,35 +25,31 @@ export type StepIconName = 'stop' | 'source' | 'content' | 'alignment' | 'reflec
 export type PageTheme = {
   accent: string;
   wash: string;
-  mid: string;
   tile: string;
   icon?: StepIconName;
 };
 
 export const PAGE_THEMES: Record<string, PageTheme> = {
   intro: {
-    accent: SS.primary, wash: SS.primaryFixed, mid: '#b5c4ff', tile: SS.primary,
+    accent: SS.primary, wash: SS.primaryFixed, tile: SS.primary,
   },
   stop: {
-    accent: SS.stop, wash: '#fde7ec', mid: '#f7b7c4', tile: SS.stop, icon: 'stop',
+    accent: SS.stop, wash: '#fde7ec', tile: SS.stop, icon: 'stop',
   },
   source: {
-    accent: SS.source, wash: '#e3f7fa', mid: '#a5e4ee', tile: SS.source, icon: 'source',
+    accent: SS.source, wash: '#e3f7fa', tile: SS.source, icon: 'source',
   },
   content: {
-    accent: SS.content, wash: '#e5f6e9', mid: '#a9deb4', tile: SS.content, icon: 'content',
+    accent: SS.content, wash: '#e5f6e9', tile: SS.content, icon: 'content',
   },
   alignment: {
-    accent: SS.alignment, wash: '#fceaf9', mid: '#f4c4ef', tile: SS.alignment, icon: 'alignment',
+    accent: SS.alignment, wash: '#fceaf9', tile: SS.alignment, icon: 'alignment',
   },
   reflect: {
-    accent: SS.reflect, wash: '#fff1e4', mid: '#ffd0a3', tile: SS.reflect, icon: 'reflect',
+    accent: SS.reflect, wash: '#fff1e4', tile: SS.reflect, icon: 'reflect',
   },
   run: {
-    accent: SS.primary, wash: SS.primaryFixed, mid: '#b5c4ff', tile: SS.primary,
-  },
-  kept: {
-    accent: SS.primary, wash: SS.primaryFixed, mid: '#b5c4ff', tile: SS.primary,
+    accent: SS.primary, wash: SS.primaryFixed, tile: SS.primary,
   },
 };
 

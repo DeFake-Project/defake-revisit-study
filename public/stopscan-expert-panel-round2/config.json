@@ -187,7 +187,7 @@
       "parameters": {
         "pageId": "stop"
       },
-      "instruction": "Rate each change below. If you choose 1, 2, or 3, you must add a comment.",
+      "instruction": "Rate each change below. If you choose 1, 2, or 3, please tell us what you would change.",
       "instructionLocation": "aboveStimulus",
       "nextButtonLocation": "belowStimulus",
       "previousButton": true,
@@ -217,7 +217,7 @@
       "parameters": {
         "pageId": "source"
       },
-      "instruction": "Rate the change below. If you choose 1, 2, or 3, you must add a comment.",
+      "instruction": "Rate the change below. If you choose 1, 2, or 3, please tell us what you would change.",
       "instructionLocation": "aboveStimulus",
       "nextButtonLocation": "belowStimulus",
       "previousButton": true,
@@ -239,7 +239,7 @@
       "parameters": {
         "pageId": "content"
       },
-      "instruction": "Rate the change below. If you choose 1, 2, or 3, you must add a comment.",
+      "instruction": "Rate the change below. If you choose 1, 2, or 3, please tell us what you would change.",
       "instructionLocation": "aboveStimulus",
       "nextButtonLocation": "belowStimulus",
       "previousButton": true,
@@ -261,7 +261,7 @@
       "parameters": {
         "pageId": "alignment"
       },
-      "instruction": "Rate each change below. If you choose 1, 2, or 3, you must add a comment.",
+      "instruction": "Rate each change below. If you choose 1, 2, or 3, please tell us what you would change.",
       "instructionLocation": "aboveStimulus",
       "nextButtonLocation": "belowStimulus",
       "previousButton": true,
@@ -299,7 +299,7 @@
       "parameters": {
         "pageId": "reflect"
       },
-      "instruction": "Rate each change below. If you choose 1, 2, or 3, you must add a comment.",
+      "instruction": "Rate each change below. If you choose 1, 2, or 3, please tell us what you would change.",
       "instructionLocation": "aboveStimulus",
       "nextButtonLocation": "belowStimulus",
       "previousButton": true,
@@ -329,7 +329,7 @@
       "parameters": {
         "pageId": "run"
       },
-      "instruction": "Rate each change below. If you choose 1, 2, or 3, you must add a comment.",
+      "instruction": "Rate each change below. If you choose 1, 2, or 3, please tell us what you would change. The final question is optional.",
       "instructionLocation": "aboveStimulus",
       "nextButtonLocation": "belowStimulus",
       "previousButton": true,
@@ -350,21 +350,7 @@
           "type": "custom",
           "path": "stopscan-expert-panel-round2/assets/AgreementRating.tsx",
           "required": true
-        }
-      ]
-    },
-    "kept": {
-      "type": "react-component",
-      "path": "stopscan-expert-panel-round2/assets/RoundPage.tsx",
-      "parameters": {
-        "pageId": "kept"
-      },
-      "instruction": "The comment below is optional.",
-      "instructionLocation": "aboveStimulus",
-      "nextButtonLocation": "belowStimulus",
-      "previousButton": true,
-      "withSidebar": false,
-      "response": [
+        },
         {
           "id": "open_final",
           "prompt": "Is there anything else you would like to tell us?",
@@ -436,7 +422,6 @@
       "alignment",
       "reflect",
       "run",
-      "kept",
       "acknowledgment",
       "review"
     ]

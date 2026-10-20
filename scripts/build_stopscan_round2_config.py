@@ -23,26 +23,26 @@ RATING_PATH = "stopscan-expert-panel-round2/assets/AgreementRating.tsx"
 # Prompts match the round 2 questionnaire guide. Order is the page order.
 PAGES = [
     ("intro", "Read the summary, then select Next. There is nothing to rate on this page.", []),
-    ("stop", "Rate each change below. If you choose 1, 2, or 3, you must add a comment.", [
+    ("stop", "Rate each change below. If you choose 1, 2, or 3, please tell us what you would change.", [
         ("stop_entry", "The two entry questions, and scrolling on when both answers are no"),
         ("stop_questions", "The three questions, and how they set the effort level"),
     ]),
-    ("source", "Rate the change below. If you choose 1, 2, or 3, you must add a comment.", [
+    ("source", "Rate the change below. If you choose 1, 2, or 3, please tell us what you would change.", [
         ("source", "The new Source, with a check for each effort level"),
     ]),
-    ("content", "Rate the change below. If you choose 1, 2, or 3, you must add a comment.", [
+    ("content", "Rate the change below. If you choose 1, 2, or 3, please tell us what you would change.", [
         ("content", "The new Content, opening with checks which need no special skill"),
     ]),
-    ("alignment", "Rate each change below. If you choose 1, 2, or 3, you must add a comment.", [
+    ("alignment", "Rate each change below. If you choose 1, 2, or 3, please tell us what you would change.", [
         ("align_indep", "The three-part independence test"),
         ("align_ai", "The rule that AI answers and tool results are clues to check, not evidence by themselves"),
         ("align_callback", "Optional rule: For a request, one confirmation through a contact method the requester cannot control is enough. For example, call a saved number."),
     ]),
-    ("reflect", "Rate each change below. If you choose 1, 2, or 3, you must add a comment.", [
+    ("reflect", "Rate each change below. If you choose 1, 2, or 3, please tell us what you would change.", [
         ("reflect_questions", "The two questions and the undo rule"),
         ("reflect_table", "The table of actions"),
     ]),
-    ("run", "Rate each change below. If you choose 1, 2, or 3, you must add a comment.", [
+    ("run", "Rate each change below. If you choose 1, 2, or 3, please tell us what you would change. The final question is optional.", [
         ("run_order", "A fixed order with effort set by STOP"),
         ("run_modes", "The two modes"),
     ]),
@@ -194,20 +194,17 @@ components["original-framework"] = {
 }
 
 for page_id, instruction, ratings in PAGES:
-    components[page_id] = reading_page(page_id, instruction, [rating(rid, prompt) for rid, prompt in ratings])
-
-components["kept"] = reading_page(
-    "kept",
-    "The comment below is optional.",
-    [{
-        "id": "open_final",
-        "prompt": "Is there anything else you would like to tell us?",
-        "secondaryText": "Optional.",
-        "location": "belowStimulus",
-        "type": "longText",
-        "required": False,
-    }],
-)
+    responses = [rating(rid, prompt) for rid, prompt in ratings]
+    if page_id == "run":
+        responses.append({
+            "id": "open_final",
+            "prompt": "Is there anything else you would like to tell us?",
+            "secondaryText": "Optional.",
+            "location": "belowStimulus",
+            "type": "longText",
+            "required": False,
+        })
+    components[page_id] = reading_page(page_id, instruction, responses)
 
 components["acknowledgment"] = {
     "type": "react-component",
@@ -304,7 +301,6 @@ config = {
             "alignment",
             "reflect",
             "run",
-            "kept",
             "acknowledgment",
             "review",
         ],

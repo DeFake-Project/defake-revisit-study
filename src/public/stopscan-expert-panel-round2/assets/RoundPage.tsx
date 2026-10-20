@@ -8,6 +8,7 @@ import {
 } from './chrome';
 import {
   LevelRow, LevelTone, RoundPageContent, TableSpec, UserPiece, pageById,
+  ROUND_ONE_THANK_YOU,
 } from './pages';
 import { referenceById } from './references';
 import { PageTheme, SS, pageTheme } from './theme';
@@ -19,7 +20,6 @@ export type RoundPageParams = {
 const PAGE_MARK: Record<string, IconName> = {
   intro: 'users',
   run: 'route',
-  kept: 'check',
 };
 
 function RichText({ text, size = 'sm' }: { text: string; size?: string }) {
@@ -73,9 +73,9 @@ function LevelList({ rows, theme }: { rows: LevelRow[]; theme: PageTheme }) {
     every: '0%',
   };
   const background: Record<LevelTone, string> = {
-    light: theme.wash,
-    moderate: theme.mid,
-    deep: `color-mix(in srgb, ${theme.accent} 32%, white)`,
+    light: `color-mix(in srgb, ${theme.accent} 10%, white)`,
+    moderate: `color-mix(in srgb, ${theme.accent} 22%, white)`,
+    deep: `color-mix(in srgb, ${theme.accent} 38%, white)`,
     every: 'transparent',
   };
 
@@ -135,7 +135,20 @@ function UserPieces({ pieces, theme }: { pieces: UserPiece[]; theme: PageTheme }
           );
         }
         if (piece.kind === 'rule') {
-          return <Text key={key} c="dimmed" size="sm">{piece.text}</Text>;
+          return (
+            <Box
+              key={key}
+              px="md"
+              py="sm"
+              style={{
+                background: SS.white,
+                border: `2px solid ${theme.accent}`,
+                borderRadius: 12,
+              }}
+            >
+              <Text fw={700} size="md" c={SS.ink}>{piece.text}</Text>
+            </Box>
+          );
         }
         if (piece.kind === 'steps') {
           return (
@@ -153,14 +166,21 @@ function UserPieces({ pieces, theme }: { pieces: UserPiece[]; theme: PageTheme }
 }
 
 function DataTable({ table }: { table: TableSpec }) {
+  const minWidth = Math.max(720, table.columns.length * 180);
+  const cellStyle = {
+    wordBreak: 'normal' as const,
+    overflowWrap: 'normal' as const,
+    hyphens: 'none' as const,
+  };
+
   return (
     <Stack gap={6}>
       {table.caption ? <Text size="sm" c="dimmed">{table.caption}</Text> : null}
-      <Table.ScrollContainer minWidth={560}>
+      <Table.ScrollContainer minWidth={minWidth}>
         <Table withTableBorder withColumnBorders verticalSpacing="xs" horizontalSpacing="xs" fz="sm">
           <Table.Thead>
             <Table.Tr>
-              {table.columns.map((column) => <Table.Th key={column}>{column}</Table.Th>)}
+              {table.columns.map((column) => <Table.Th key={column} style={cellStyle}>{column}</Table.Th>)}
             </Table.Tr>
           </Table.Thead>
           <Table.Tbody>
@@ -168,8 +188,8 @@ function DataTable({ table }: { table: TableSpec }) {
               <Table.Tr key={row.join('|')}>
                 {row.map((cell, index) => (
                   index === 0
-                    ? <Table.Th key={`${cell}-0`} scope="row">{cell}</Table.Th>
-                    : <Table.Td key={`${cell}-${index}`}>{cell}</Table.Td>
+                    ? <Table.Th key={`${cell}-0`} scope="row" style={cellStyle}>{cell}</Table.Th>
+                    : <Table.Td key={`${cell}-${index}`} style={cellStyle}>{cell}</Table.Td>
                 ))}
               </Table.Tr>
             ))}
@@ -192,7 +212,13 @@ function panelControl(label: string, summary: string, icon: IconName) {
   );
 }
 
-function PageBody({ page }: { page: RoundPageContent }) {
+function PageBody({
+  page,
+  showRoundOneThankYou,
+}: {
+  page: RoundPageContent;
+  showRoundOneThankYou: boolean;
+}) {
   const theme = pageTheme(page.id);
   const upper = [page.why ? 'why' : null, page.how ? 'how' : null].filter((value): value is string => value !== null);
   const lower = [page.teaching ? 'teaching' : null, page.research ? 'research' : null].filter((value): value is string => value !== null);
@@ -211,6 +237,7 @@ function PageBody({ page }: { page: RoundPageContent }) {
           </Title>
         </div>
       </Box>
+      {showRoundOneThankYou ? <Text fw={700}>{ROUND_ONE_THANK_YOU}</Text> : null}
       {page.lead ? <Text size="lg" style={{ maxWidth: '62ch' }}>{page.lead}</Text> : null}
       {page.paragraphs?.map((paragraph) => <RichText key={paragraph} text={paragraph} size="md" />)}
       {upper.length > 0 ? (
@@ -282,6 +309,7 @@ function PageBody({ page }: { page: RoundPageContent }) {
           ) : null}
         </Accordion>
       ) : null}
+      {page.closingParagraphs?.map((paragraph) => <RichText key={paragraph} text={paragraph} size="md" />)}
     </Stack>
   );
 }
@@ -292,7 +320,9 @@ export default function RoundPage({ parameters, answers }: StimulusParams<RoundP
     return <Text c="red">{`Unknown page ${parameters.pageId}`}</Text>;
   }
 
-  const showNewParticipantNote = page.id === 'intro' && tookPartInRoundOne(answers) === false;
+  const roundOneStatus = tookPartInRoundOne(answers);
+  const showNewParticipantNote = page.id === 'intro' && roundOneStatus === false;
+  const showRoundOneThankYou = page.id === 'intro' && roundOneStatus === true;
 
   return (
     <Box className="ss-page" maw={780} mx="auto" p="md">
@@ -301,11 +331,11 @@ export default function RoundPage({ parameters, answers }: StimulusParams<RoundP
           <Box p="sm" style={{ background: '#fff4e0', borderRadius: 24, border: `1px solid ${SS.hairline}` }}>
             <Badge mb={6} style={{ background: SS.fuel, color: SS.fuelInk }}>First time in this study</Badge>
             <Text size="sm">
-              You did not complete Round 1. The summary below describes what the Round 1 panel told us. Some text speaks directly to that panel. We will report your answers separately from theirs.
+              You did not complete Round 1. The summary below describes what the Round 1 panel told us. We will report your answers separately from theirs.
             </Text>
           </Box>
         ) : null}
-        <PageBody page={page} />
+        <PageBody page={page} showRoundOneThankYou={showRoundOneThankYou} />
       </Stack>
     </Box>
   );

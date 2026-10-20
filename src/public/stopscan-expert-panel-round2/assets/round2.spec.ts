@@ -2,7 +2,7 @@ import { readFileSync } from 'fs';
 import { describe, expect, it } from 'vitest';
 import { validateAgreement } from './agreement';
 import { TOOK_PART_YES } from './participation';
-import { RATING_ITEMS, ROUND_PAGES } from './pages';
+import { RATING_ITEMS, ROUND_ONE_THANK_YOU, ROUND_PAGES } from './pages';
 import { ORIGINAL_FRAMEWORK_INTRO } from './OriginalFramework';
 import { STOPSCAN_OVERVIEW } from '../../stopscan-expert-panel/assets/content';
 
@@ -11,9 +11,9 @@ const roundOneConfig = JSON.parse(readFileSync('public/stopscan-expert-panel/con
 const roundTwoConfig = JSON.parse(readFileSync('public/stopscan-expert-panel-round2/config.json', 'utf8'));
 
 describe('STOP&SCAN round 2 questionnaire', () => {
-  it('follows the eight-page guide and the eleven agreement ratings', () => {
+  it('uses seven review pages and the eleven agreement ratings', () => {
     expect(ROUND_PAGES.map((page) => page.id)).toEqual([
-      'intro', 'stop', 'source', 'content', 'alignment', 'reflect', 'run', 'kept',
+      'intro', 'stop', 'source', 'content', 'alignment', 'reflect', 'run',
     ]);
     expect(RATING_ITEMS.map((item) => item.id)).toEqual([
       'stop_entry',
@@ -29,11 +29,24 @@ describe('STOP&SCAN round 2 questionnaire', () => {
       'run_modes',
     ]);
     expect(ROUND_PAGES.find((page) => page.id === 'intro')?.ratings).toEqual([]);
-    expect(ROUND_PAGES.find((page) => page.id === 'kept')?.openPrompt).toMatch(/anything else/i);
+    expect(ROUND_PAGES.find((page) => page.id === 'run')?.openPrompt).toMatch(/anything else/i);
+    expect(ROUND_PAGES.find((page) => page.id === 'run')?.closingParagraphs).toHaveLength(1);
     expect(ROUND_PAGES.find((page) => page.id === 'reflect')?.teaching?.startOpen).toBe(true);
     const configured = ['stop', 'source', 'content', 'alignment', 'reflect', 'run']
-      .flatMap((pageId) => roundTwoConfig.components[pageId].response.map((response: { id: string }) => response.id));
+      .flatMap((pageId) => roundTwoConfig.components[pageId].response.map((response: { id: string }) => response.id))
+      .filter((responseId) => responseId !== 'open_final');
     expect(configured).toEqual(RATING_ITEMS.map((item) => item.id));
+    expect(roundTwoConfig.components.run.response.at(-1)).toMatchObject({
+      id: 'open_final',
+      required: false,
+    });
+    expect(roundTwoConfig.components.kept).toBeUndefined();
+  });
+
+  it('keeps the Round 1 thank-you out of the shared intro copy', () => {
+    const intro = ROUND_PAGES.find((page) => page.id === 'intro');
+    expect(ROUND_ONE_THANK_YOU).toBe('Thank you for your Round 1 answers.');
+    expect(intro?.paragraphs?.join(' ')).not.toContain(ROUND_ONE_THANK_YOU);
   });
 
   it('requires a comment only when the rating is below agree', () => {
@@ -69,7 +82,6 @@ describe('STOP&SCAN round 2 questionnaire', () => {
       'alignment',
       'reflect',
       'run',
-      'kept',
       'acknowledgment',
       'review',
     ]);
