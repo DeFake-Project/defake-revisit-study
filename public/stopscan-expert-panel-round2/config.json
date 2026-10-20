@@ -2,7 +2,7 @@
   "$schema": "https://raw.githubusercontent.com/revisit-studies/study/v2.4.3/src/parser/StudyConfigSchema.json",
   "studyMetadata": {
     "title": "STOP&SCAN Expert Panel, Round 2",
-    "version": "round2",
+    "version": "round-2",
     "authors": [
       "Saniat Javid Sohrawardi",
       "Kelly Wu",
@@ -360,16 +360,6 @@
           "required": false
         }
       ]
-    },
-    "kept": {
-      "type": "markdown",
-      "path": "stopscan-expert-panel-round2/assets/legacy-kept.md",
-      "instruction": "This step moved to the previous page. Select Next to continue.",
-      "instructionLocation": "aboveStimulus",
-      "nextButtonLocation": "belowStimulus",
-      "previousButton": true,
-      "withSidebar": false,
-      "response": []
     },
     "acknowledgment": {
       "type": "react-component",

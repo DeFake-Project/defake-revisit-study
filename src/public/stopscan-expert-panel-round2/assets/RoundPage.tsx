@@ -315,17 +315,6 @@ function PageBody({
 }
 
 export default function RoundPage({ parameters, answers }: StimulusParams<RoundPageParams>) {
-  if (parameters.pageId === 'kept') {
-    return (
-      <Box className="ss-page" maw={780} mx="auto" p="md">
-        <StudyHeading eyebrow="Study update" title="This step has moved" icon="check" />
-        <Text mt="md">
-          The optional final comment is now at the bottom of The final scaffold. If the old optional question appears below, you may leave it blank and select Next.
-        </Text>
-      </Box>
-    );
-  }
-
   const page = pageById(parameters.pageId);
   if (!page) {
     return <Text c="red">{`Unknown page ${parameters.pageId}`}</Text>;
