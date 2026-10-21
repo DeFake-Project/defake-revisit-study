@@ -26,7 +26,7 @@ describe('user studies from production fork', () => {
     expect(globalConfig.configs['stopscan-expert-panel']?.test).toBeUndefined();
     expect(globalConfig.configs['stopscan-expert-panel-round2']?.test).toBeUndefined();
     expect(globalConfig.configs.tutorial?.test).toBeUndefined();
-    expect(globalConfig.configs['demo-html']?.test).toBe(true);
+    expect(globalConfig.configs['demo-html']?.test).toBeUndefined();
   });
 
   it.each([
