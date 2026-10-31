@@ -60,7 +60,7 @@ Screened-out people do not see the debrief or the gift-card page. They never saw
 
 ## What each arm answers
 
-Items 1–30 are the same words, in the same order, for every arm. Do not reorder them. Consent, E1–E9, and the interview yes/no are required. The other survey questions can be left blank. The gift-card name and university email are required only if the participant chooses to submit that page; the page itself can still be skipped. Questions that do not decide the next page share a page: E2 with E3, E4 through E9, items 1–2, 4–5, 6–8, 13–14, 15–16, and 20–21. A question stays on its own page when the answer decides whether the next page appears. Questions, consent text, and the InboxLane card are capped at 42rem and centered. DocPolish and DocPolish Plus sit side by side when the window is at least 700px wide, and stack below that. Nothing before the listings names security, privacy, or risk. Item 10 (what they did before deciding) has to stay ahead of item 11 (what mattered). Items 15 and 16 (open questions about access) have to stay ahead of the access checklist. Item 27 is the only item that names security, and it stays after the listings.
+Items 1–30 are the same words, in the same order, for every arm. Do not reorder them. Consent, E1–E9, item 6, and the interview yes/no are required. Item 6 is required because it chooses the reasons list. The other survey questions can be left blank. The gift-card name and university email are required only if the participant chooses to submit that page; the page itself can still be skipped. Questions that do not decide the next page share a page: E2 with E3, E4 through E9, items 1–2, 4–5, 6–8, 13–14, 15–16, and 20–21. A question stays on its own page when the answer decides whether the next page appears. Questions, consent text, and the InboxLane card are capped at 42rem and centered. DocPolish and DocPolish Plus sit side by side when the window is at least 700px wide, and stack below that. Nothing before the listings names security, privacy, or risk. Item 10 (what they did before deciding) has to stay ahead of item 11 (what mattered). Items 15 and 16 (open questions about access) have to stay ahead of the access checklist. Item 27 is the only item that names security, and it stays after the listings.
 
 Prolific answers E1–E9 after the screener consent and before the main-survey consent. Campus participants have no separate screener, so the same nine items run inline after the university consent, before item 1. They are numbered E1–E9 in both arms so items 1–30 keep their numbers.
 
@@ -69,8 +69,8 @@ E3 is one question: Yes, No, or Not sure. The stem lists the six third-party act
 A few later items are split so a single answer can branch:
 
 - Item 3 shows the sentence they typed at E6 and asks whether to talk about that add-on. "Yes, let us use that one" skips items 4 and 5.
-- Item 10 asks whether they looked into it at all. The checklist appears only on Yes.
-- Item 11 is one of two lists. The decline list is shown when item 6 is "turned it off or removed it" or "decided not to use it." Everyone else sees the keep list. Up to three selections.
+- Item 10 asks whether they did any research or checks before deciding. The checklist appears only on Yes.
+- Item 11 is one of two lists. The decline list is shown when item 6 is "used it, and later turned it off or removed it," "turned it off or removed it without really using it," or "decided not to use it." Everyone else sees the keep list. Up to three selections.
 - Item 17 asks whether any current add-on can reach things outside the chat. The inventory appears only on Yes.
 - Items 12, 18, and 19 ask for a short follow-up only on Yes.
 - Item 28 skips the contact question on No.

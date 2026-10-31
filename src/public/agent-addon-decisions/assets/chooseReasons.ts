@@ -3,7 +3,8 @@ import { JumpFunctionParameters, JumpFunctionReturnVal } from '../../../store/ty
 import { findResponseValue, hasResponse } from './answerLookup';
 
 const DECLINE = new Set([
-  'I set it up, then turned it off or removed it',
+  'I set it up, used it, and later turned it off or removed it',
+  'I set it up, then turned it off or removed it without really using it',
   'I looked at it and decided not to use it',
 ]);
 

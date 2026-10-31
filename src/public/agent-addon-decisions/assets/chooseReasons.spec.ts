@@ -13,7 +13,8 @@ function answersWith(item6: string): ParticipantData['answers'] {
 describe('reasonsComponent', () => {
   it('shows the decline list when the add-on was removed or refused', () => {
     expect(reasonsComponent(answersWith('I looked at it and decided not to use it'))).toBe('item11b');
-    expect(reasonsComponent(answersWith('I set it up, then turned it off or removed it'))).toBe('item11b');
+    expect(reasonsComponent(answersWith('I set it up, used it, and later turned it off or removed it'))).toBe('item11b');
+    expect(reasonsComponent(answersWith('I set it up, then turned it off or removed it without really using it'))).toBe('item11b');
   });
 
   it('shows the keep list otherwise', () => {

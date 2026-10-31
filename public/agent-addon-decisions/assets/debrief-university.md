@@ -1,6 +1,10 @@
-# What we didn't tell you at the start
+# About this study
 
-Thank you. Every add-on, author, product, and company you saw was invented by us. None exists. No listing was a trap, and no response was scored.
+Thank you for taking part in this survey.
+
+Everything in the two listings was fictional. The add-ons, authors, products, companies, and listings were made up for this study. They do not represent real products or services. There were no trick questions, and your answers were not judged as right or wrong.
+
+A few details differed between people. Those are described below.
 
 **The email and calendar listing.** Half of the people taking this survey saw a version that spelled out exactly what the add-on would be able to do — read your inbox, add events to one named calendar, not delete anything, expire after 30 days, not keep your message text, and check with you before sending anything. The other half saw a version whose whole description of what it wanted was one line: "Access your mailbox and calendar so InboxLane can help you." Everything else about the two was identical. You saw one of them, chosen at random.
 

@@ -93,7 +93,7 @@
         {
           "id": "item24",
           "prompt": "What in the listing most affected your answer?",
-          "secondaryText": "A sentence is plenty.",
+          "secondaryText": "A sentence is plenty. For example: the rating, the install count, what it asked to access, who made it, or how recently it was updated.",
           "type": "longText",
           "location": "belowStimulus",
           "required": false
@@ -118,7 +118,7 @@
         },
         {
           "id": "item26",
-          "prompt": "What made you answer that way?",
+          "prompt": "What influenced your decision?",
           "secondaryText": "A sentence is plenty.",
           "type": "longText",
           "location": "belowStimulus",
@@ -399,7 +399,7 @@
         },
         {
           "id": "e7",
-          "prompt": "How recently did you make that decision?",
+          "prompt": "How recently did you add, enable, or connect that item?",
           "secondaryText": "Select one.",
           "type": "radio",
           "options": [
@@ -550,13 +550,14 @@
           "type": "radio",
           "options": [
             "I set it up and used it",
-            "I set it up, then turned it off or removed it",
+            "I set it up, used it, and later turned it off or removed it",
+            "I set it up, then turned it off or removed it without really using it",
             "I looked at it and decided not to use it",
             "I changed the settings on one I already had",
             "Something else"
           ],
           "location": "belowStimulus",
-          "required": false
+          "required": true
         },
         {
           "id": "item7",
@@ -616,12 +617,12 @@
       "response": [
         {
           "id": "item10gate",
-          "prompt": "Before you decided, did you look into it at all?",
+          "prompt": "Before you decided, did you do any research or checks on it?",
           "secondaryText": "Only what you actually did that time, not what you usually do.",
           "type": "radio",
           "options": [
-            "Yes",
-            "No — I went ahead without looking into it further",
+            "Yes, I looked into it first",
+            "No, I did not look into it beforehand",
             "I do not remember"
           ],
           "location": "belowStimulus",
@@ -658,7 +659,7 @@
       "response": [
         {
           "id": "item11a",
-          "prompt": "What mattered most in your decision?",
+          "prompt": "What mattered most in deciding to use it?",
           "secondaryText": "Up to three. If something that is not listed mattered more, use Other.",
           "type": "checkbox",
           "options": [
@@ -685,7 +686,7 @@
       "response": [
         {
           "id": "item11b",
-          "prompt": "What mattered most in your decision?",
+          "prompt": "What mattered most in deciding not to use it, or in turning it off?",
           "secondaryText": "Up to three. If something that is not listed mattered more, use Other.",
           "type": "checkbox",
           "options": [
@@ -962,7 +963,7 @@
       "response": [
         {
           "id": "item27",
-          "prompt": "When you decide whether to use an add-on, how much does security or privacy usually come into it, compared with things like whether it does the job well?",
+          "prompt": "When deciding whether to use an add-on, how much do security and privacy influence your decision compared with its features and usefulness?",
           "secondaryText": "An honest answer is more useful to us than a careful one.",
           "type": "radio",
           "options": [
@@ -1511,7 +1512,7 @@
             "name": "item10gate",
             "check": "response",
             "responseId": "item10gate",
-            "value": "No — I went ahead without looking into it further",
+            "value": "No, I did not look into it beforehand",
             "comparison": "equal",
             "to": "reasons"
           },
