@@ -1,6 +1,6 @@
 import {
   ActionIcon,
-  Flex, Image, Select, Title, Space, Grid, AppShell, Button,
+  Flex, Image, Select, Title, Space, Grid, AppShell, Button, Text,
 } from '@mantine/core';
 
 import { useLocation, useNavigate, useParams } from 'react-router';
@@ -10,14 +10,18 @@ import { PREFIX } from '../../utils/Prefix';
 import { useAuth } from '../../store/hooks/useAuth';
 import { canManageUsers } from '../../utils/userPermissions';
 
+const STUDY_SCHEMA_VERSION_REGEX = /\/study\/(v\d+\.\d+\.\d+)\//;
+
 export function AppHeader({
   studyIds,
   selectedStudyId,
   studyHref,
+  studyConfigs,
 }: {
   studyIds: string[];
   selectedStudyId?: string;
   studyHref?: string;
+  studyConfigs?: Record<string, { $schema: string } | null>;
 }) {
   const navigate = useNavigate();
   const { studyId } = useParams();
@@ -28,6 +32,10 @@ export function AppHeader({
   const showSignIn = !user.determiningStatus && !isSignedInAppUser && !location.pathname.startsWith('/login');
 
   const selectorData = studyIds.map((id) => ({ value: id, label: id })).sort((a, b) => a.label.localeCompare(b.label));
+  const revisitVersion = studyIds
+    .map((id) => studyConfigs?.[id]?.$schema.match(STUDY_SCHEMA_VERSION_REGEX)?.[1])
+    .filter((version): version is string => version !== undefined)
+    .sort((a, b) => b.localeCompare(a, undefined, { numeric: true }))[0];
 
   const inAnalysis = location.pathname.includes('analysis');
 
@@ -46,8 +54,8 @@ export function AppHeader({
 
         <Grid.Col span={6}>
           <Flex
-            justify="flex-end"
             align="center"
+            justify="flex-end"
             direction="row"
           >
             {inAnalysis && (
@@ -65,6 +73,8 @@ export function AppHeader({
                 </Button>
               </>
             )}
+
+            {revisitVersion && <Text c="dimmed" size="sm" mr="sm">{`reVISit ${revisitVersion}`}</Text>}
 
             {showSignIn && (
               <Button variant="subtle" onClick={() => navigate('/login')} mr="sm">
