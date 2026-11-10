@@ -70,10 +70,11 @@
             "Probably yes",
             "Not sure",
             "Probably not",
-            "No"
+            "No",
+            "Prefer not to say"
           ],
           "location": "belowStimulus",
-          "required": false
+          "required": true
         },
         {
           "id": "item23",
@@ -85,10 +86,11 @@
             "Somewhat uncomfortable",
             "Neither comfortable nor uncomfortable",
             "Somewhat comfortable",
-            "Very comfortable"
+            "Very comfortable",
+            "Prefer not to say"
           ],
           "location": "belowStimulus",
-          "required": false
+          "required": true
         },
         {
           "id": "item24",
@@ -114,7 +116,7 @@
             "No preference between them"
           ],
           "location": "belowStimulus",
-          "required": false
+          "required": true
         },
         {
           "id": "item26",
@@ -505,7 +507,7 @@
             "I would rather describe a different one — including one I decided against, or one I removed"
           ],
           "location": "belowStimulus",
-          "required": false
+          "required": true
         }
       ]
     },
@@ -557,6 +559,7 @@
             "Something else"
           ],
           "location": "belowStimulus",
+          "withOther": true,
           "required": true
         },
         {
@@ -626,7 +629,7 @@
             "I do not remember"
           ],
           "location": "belowStimulus",
-          "required": false
+          "required": true
         }
       ]
     },
@@ -721,7 +724,7 @@
             "I do not remember"
           ],
           "location": "belowStimulus",
-          "required": false
+          "required": true
         }
       ]
     },
@@ -812,7 +815,7 @@
             "I do not know"
           ],
           "location": "belowStimulus",
-          "required": false
+          "required": true
         }
       ]
     },
@@ -855,7 +858,7 @@
             "Not sure"
           ],
           "location": "belowStimulus",
-          "required": false
+          "required": true
         }
       ]
     },
@@ -886,7 +889,7 @@
             "Not sure"
           ],
           "location": "belowStimulus",
-          "required": false
+          "required": true
         }
       ]
     },
@@ -971,10 +974,11 @@
             "A little",
             "Somewhat",
             "Quite a lot",
-            "It is usually the main thing I think about"
+            "It is usually the main thing I think about",
+            "Prefer not to say"
           ],
           "location": "belowStimulus",
-          "required": false
+          "required": true
         }
       ]
     },
@@ -1279,20 +1283,10 @@
             ]
           },
           {
-            "id": "rit-e9",
+            "id": "rit-e4",
             "order": "fixed",
             "components": [
               "e4"
-            ],
-            "skip": [
-              {
-                "name": "e4",
-                "check": "response",
-                "responseId": "e9",
-                "value": "",
-                "comparison": "notEqual",
-                "to": "intro"
-              }
             ]
           }
         ]
@@ -1370,20 +1364,10 @@
             ]
           },
           {
-            "id": "neu-e9",
+            "id": "neu-e4",
             "order": "fixed",
             "components": [
               "e4"
-            ],
-            "skip": [
-              {
-                "name": "e4",
-                "check": "response",
-                "responseId": "e9",
-                "value": "",
-                "comparison": "notEqual",
-                "to": "intro"
-              }
             ]
           }
         ]
@@ -1461,20 +1445,10 @@
             ]
           },
           {
-            "id": "utep-e9",
+            "id": "utep-e4",
             "order": "fixed",
             "components": [
               "e4"
-            ],
-            "skip": [
-              {
-                "name": "e4",
-                "check": "response",
-                "responseId": "e9",
-                "value": "",
-                "comparison": "notEqual",
-                "to": "intro"
-              }
             ]
           }
         ]

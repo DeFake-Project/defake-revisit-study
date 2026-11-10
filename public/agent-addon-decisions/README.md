@@ -60,7 +60,7 @@ Screened-out people do not see the debrief or the gift-card page. They never saw
 
 ## What each arm answers
 
-Items 1–30 are the same words, in the same order, for every arm. Do not reorder them. Consent, E1–E9, item 6, and the interview yes/no are required. Item 6 is required because it chooses the reasons list. The other survey questions can be left blank. The gift-card name and university email are required only if the participant chooses to submit that page; the page itself can still be skipped. Questions that do not decide the next page share a page: E2 with E3, E4 through E9, items 1–2, 4–5, 6–8, 13–14, 15–16, and 20–21. A question stays on its own page when the answer decides whether the next page appears. Questions, consent text, and the InboxLane card are capped at 42rem and centered. DocPolish and DocPolish Plus sit side by side when the window is at least 700px wide, and stack below that. Nothing before the listings names security, privacy, or risk. Item 10 (what they did before deciding) has to stay ahead of item 11 (what mattered). Items 15 and 16 (open questions about access) have to stay ahead of the access checklist. Item 27 is the only item that names security, and it stays after the listings.
+Items 1–30 are the same words, in the same order, for every arm. Do not reorder them. Consent, E1–E9, and the answers that choose the next page are required: items 3, 6, 10 (the yes/no), 12, 17 (the yes/no), 18, 19, and 28, plus the closed listing answers 22, 23, and 25, and item 27. Each of those already has a non-committal answer, including "Prefer not to say" on items 22, 23, and 27. The checklists behind a Yes, the free-text follow-ups, and items 24, 26, 29, and 30 can be left blank. The gift-card name and university email are required only if the participant chooses to submit that page; the page itself can still be skipped. Questions that do not decide the next page share a page: E2 with E3, E4 through E9, items 1–2, 4–5, 6–8, 13–14, 15–16, and 20–21. A question stays on its own page when the answer decides whether the next page appears. Questions, consent text, and the InboxLane card are capped at 42rem and centered. DocPolish and DocPolish Plus sit side by side when the window is at least 700px wide, and stack below that. Nothing before the listings names security, privacy, or risk. Item 10 (what they did before deciding) has to stay ahead of item 11 (what mattered). Items 15 and 16 (open questions about access) have to stay ahead of the access checklist. Item 27 is the only item that names security, and it stays after the listings.
 
 Prolific answers E1–E9 after the screener consent and before the main-survey consent. Campus participants have no separate screener, so the same nine items run inline after the university consent, before item 1. They are numbered E1–E9 in both arms so items 1–30 keep their numbers.
 
@@ -69,9 +69,9 @@ E3 is one question: Yes, No, or Not sure. The stem lists the six third-party act
 A few later items are split so a single answer can branch:
 
 - Item 3 shows the sentence they typed at E6 and asks whether to talk about that add-on. "Yes, let us use that one" skips items 4 and 5.
-- Item 10 asks whether they did any research or checks before deciding. The checklist appears only on Yes.
-- Item 11 is one of two lists. The decline list is shown when item 6 is "used it, and later turned it off or removed it," "turned it off or removed it without really using it," or "decided not to use it." Everyone else sees the keep list. Up to three selections.
-- Item 17 asks whether any current add-on can reach things outside the chat. The inventory appears only on Yes.
+- Item 10 asks whether they did any research or checks before deciding. "Yes, I looked into it first" shows the checklist. "No, I did not look into it beforehand" and "I do not remember" are answers on that gate, not boxes in the checklist. An export that looks for those strings inside the item 10 checkbox array will find an empty array. Read `item10gate`.
+- Item 11 is one of two lists. The decline list is shown when item 6 is exactly "used it, and later turned it off or removed it," "turned it off or removed it without really using it," or "decided not to use it." "Set it up and used it," "changed the settings," "Something else," and the Other write-in show the keep list. The match is the whole answer, not a substring. Up to three selections.
+- Item 17 asks whether any current add-on can reach things outside the chat. Yes shows the inventory. "No, none of them" and "I do not know" are gate answers, not boxes in that inventory. Read `item17gate`.
 - Items 12, 18, and 19 ask for a short follow-up only on Yes.
 - Item 28 skips the contact question on No.
 
@@ -96,7 +96,7 @@ The three Prolific URLs are on `p-complete`, `p-screenout`, and `p-return` in th
 - `cc=REPLACE_SCREENOUT`
 - `cc=REPLACE_RETURN`
 
-Replace those three strings in `config.json` before launch. The same constants are also in `src/public/agent-addon-decisions/assets/prolificUrls.ts`.
+Replace those three strings in `config.json`, and the same three constants in `src/public/agent-addon-decisions/assets/prolificUrls.ts`, before launch. `yarn build` runs `scripts/assert-no-prolific-placeholders.mjs` first and stops while either file still contains `REPLACE_` followed by capital letters. That is deliberate: a finished participant would not be marked complete on Prolific, and would not be paid.
 
 ## Gift card records
 
@@ -113,6 +113,10 @@ The interview contact (item 29) is not part of this collection. It is a survey a
 - Prolific sees two consents: the screener, then the main survey after they qualify. Each has an optional UK/EEA/Switzerland checkbox. It is not required for people outside those places.
 - Campus sees one consent, covering eligibility and the survey. It has no GDPR section. It says an ineligible path is unpaid, and that the gift-card page can be skipped.
 - Interview consents are not in this survey. Item 28 only records willingness.
+
+## Duplicate arm ids
+
+`PROLIFIC`, `RIT`, `NORTHEASTERN`, and `UTEP` each appear twice in the top-level sequence: once for consent and eligibility, once for the debrief and exit. Conditional blocks are kept or dropped one at a time, by whether that block's id is the participant's arm. The id is not a unique key, so the second block is not overwritten by the first. A test in `surveyFlow.spec.ts` asserts that a Prolific sequence contains both the screener and `debrief-p`, and that each campus sequence contains its own thank-you block. Do not collapse these ids in a future upgrade that starts indexing blocks by id. A skip to one of these ids would land on the first block with that id, which is the entry, not the exit. Nothing in this study skips to those ids.
 
 ## Before Wave 1
 

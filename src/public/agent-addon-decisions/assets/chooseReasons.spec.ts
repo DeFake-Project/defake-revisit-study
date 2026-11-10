@@ -11,14 +11,21 @@ function answersWith(item6: string): ParticipantData['answers'] {
 }
 
 describe('reasonsComponent', () => {
-  it('shows the decline list when the add-on was removed or refused', () => {
-    expect(reasonsComponent(answersWith('I looked at it and decided not to use it'))).toBe('item11b');
-    expect(reasonsComponent(answersWith('I set it up, used it, and later turned it off or removed it'))).toBe('item11b');
-    expect(reasonsComponent(answersWith('I set it up, then turned it off or removed it without really using it'))).toBe('item11b');
+  it.each([
+    ['I set it up and used it', 'item11a'],
+    ['I changed the settings on one I already had', 'item11a'],
+    ['Something else', 'item11a'],
+    ['other', 'item11a'],
+    ['I set it up, used it, and later turned it off or removed it', 'item11b'],
+    ['I set it up, then turned it off or removed it without really using it', 'item11b'],
+    ['I looked at it and decided not to use it', 'item11b'],
+  ] as const)('maps %j to %s', (answer, component) => {
+    expect(reasonsComponent(answersWith(answer))).toBe(component);
   });
 
-  it('shows the keep list otherwise', () => {
-    expect(reasonsComponent(answersWith('I set it up and used it'))).toBe('item11a');
-    expect(reasonsComponent(answersWith('Something else'))).toBe('item11a');
+  it('does not match a shared substring of the removal answers', () => {
+    expect(() => reasonsComponent(answersWith('I set it up'))).toThrow(/no reasons list/);
+    expect(() => reasonsComponent(answersWith('turned it off or removed it'))).toThrow(/no reasons list/);
+    expect(() => reasonsComponent(answersWith(''))).toThrow(/no reasons list/);
   });
 });
