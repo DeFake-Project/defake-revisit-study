@@ -8,14 +8,17 @@ import '@mantine/dates/styles.css';
 import '@mantine/notifications/styles.css';
 import { GlobalConfigParser } from './GlobalConfigParser';
 import { theme } from './theme';
+import { ApplicationErrorBoundary } from './components/ApplicationErrorBoundary';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <StorageEngineProvider>
-      <MantineProvider theme={theme}>
+    <MantineProvider theme={theme}>
+      <ApplicationErrorBoundary>
         <Notifications />
-        <GlobalConfigParser />
-      </MantineProvider>
-    </StorageEngineProvider>
+        <StorageEngineProvider>
+          <GlobalConfigParser />
+        </StorageEngineProvider>
+      </ApplicationErrorBoundary>
+    </MantineProvider>
   </React.StrictMode>,
 );

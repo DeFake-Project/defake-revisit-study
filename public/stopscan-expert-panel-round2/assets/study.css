@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&family=Outfit:wght@500;600;700&display=swap');
+
+:root {
+  --mantine-color-blue-6: #004cd7;
+  --mantine-color-blue-filled: #004cd7;
+  --mantine-color-blue-filled-hover: #2665fd;
+  --mantine-color-blue-light: #dce1ff;
+  --mantine-color-blue-light-color: #00164d;
+  --mantine-color-blue-light-hover: #c9d2ff;
+  --mantine-color-defakeTeal-6: #004cd7 !important;
+  --mantine-color-defakeTeal-filled: #004cd7 !important;
+  --mantine-color-defakeTeal-filled-hover: #2665fd !important;
+  --mantine-primary-color-filled: #004cd7 !important;
+  --mantine-primary-color-filled-hover: #2665fd !important;
+}
+
+body,
+main {
+  background-color: #fbf8f2 !important;
+  background-image: radial-gradient(#241b3a05 1px, transparent 1px) !important;
+  background-size: 24px 24px !important;
+  color: #1f1635;
+}
+
+.header {
+  background: rgba(251, 248, 242, 0.92);
+  backdrop-filter: blur(10px);
+}
+
+.studyBrowser {
+  background: #ffffff;
+}
+
+.ss-page {
+  color: #1f1635;
+  font-family: "Nunito Sans", system-ui, sans-serif;
+}
+
+.ss-page .mantine-Title-root {
+  font-family: Outfit, system-ui, sans-serif;
+  color: #1f1635;
+}
+
+.ss-page .mantine-Accordion-item {
+  background: #ffffff;
+  border: 1px solid rgba(31, 22, 53, 0.1);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.ss-page .mantine-Accordion-control {
+  background: #ffffff;
+}
+
+.ss-page .mantine-Accordion-control:hover {
+  background: #f6f0e4;
+}
+
+.ss-rate [role="radio"] {
+  background: #ffffff;
+  border-color: rgba(31, 22, 53, 0.1);
+  border-radius: 16px;
+}
+
+.ss-rate [role="radio"][data-checked] {
+  border-color: #004cd7;
+  background: #dce1ff;
+}
+
+button[data-variant="filled"]:not(:disabled):not([data-disabled]),
+.m_77c9d27d:not(:disabled):not([data-disabled]) {
+  --button-bg: #004cd7 !important;
+  --button-hover: #2665fd !important;
+  background: #004cd7 !important;
+  background-color: #004cd7 !important;
+  border-radius: 999px !important;
+}
+
+button[data-variant="filled"]:not(:disabled):hover,
+.m_77c9d27d:not(:disabled):hover {
+  --button-hover: #2665fd !important;
+  background: #2665fd !important;
+  background-color: #2665fd !important;
+}
+
+.ss-original .mantine-ThemeIcon-root {
+  background: #004cd7;
+  color: #ffffff;
+}

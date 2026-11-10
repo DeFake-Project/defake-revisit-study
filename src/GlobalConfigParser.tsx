@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import {
   BrowserRouter, Route, Routes, useNavigate, useSearchParams,
 } from 'react-router';
@@ -24,6 +24,7 @@ import { useStorageEngine } from './storage/storageEngineHooks';
 import { PageTitle } from './utils/PageTitle';
 import { shouldProtectAnalysisRoute } from './utils/analysisRouteAccess';
 import { findStudyForRecruitmentArm } from './utils/recruitmentEntry';
+import { StartupErrorScreen } from './components/StartupErrorScreen';
 
 async function fetchGlobalConfigArray() {
   const globalFile = await fetch(`${PREFIX}global.json`);
@@ -31,7 +32,13 @@ async function fetchGlobalConfigArray() {
   return parseGlobalConfig(configs);
 }
 
-function HomeRoute({ globalConfig }: { globalConfig: GlobalConfig }) {
+function HomeRoute({
+  globalConfig,
+  onStartupError,
+}: {
+  globalConfig: GlobalConfig;
+  onStartupError: (error: unknown) => void;
+}) {
   const [studyConfigs, setStudyConfigs] = useState<Record<string, ParsedConfig<StudyConfig> | null>>({});
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
@@ -46,12 +53,17 @@ function HomeRoute({ globalConfig }: { globalConfig: GlobalConfig }) {
       }
     }
 
-    fetchData(globalConfig);
+    fetchData(globalConfig).catch((error) => {
+      console.error('Error loading study configs:', error);
+      if (!cancelled) {
+        onStartupError(error);
+      }
+    });
 
     return () => {
       cancelled = true;
     };
-  }, [globalConfig]);
+  }, [globalConfig, onStartupError]);
 
   useEffect(() => {
     const studyId = findStudyForRecruitmentArm(studyConfigs, searchParams);
@@ -68,7 +80,7 @@ function HomeRoute({ globalConfig }: { globalConfig: GlobalConfig }) {
         padding="md"
         header={{ height: 70 }}
       >
-        <AppHeader studyIds={globalConfig.configsList} />
+        <AppHeader studyIds={globalConfig.configsList} studyConfigs={studyConfigs} />
         <ConfigSwitcher
           globalConfig={globalConfig}
           studyConfigs={studyConfigs}
@@ -80,17 +92,34 @@ function HomeRoute({ globalConfig }: { globalConfig: GlobalConfig }) {
 
 export function GlobalConfigParser() {
   const [globalConfig, setGlobalConfig] = useState<Nullable<GlobalConfig>>(null);
+  const [startupError, setStartupError] = useState<{ error: unknown } | null>(null);
+  const handleStartupError = useCallback((error: unknown) => {
+    setStartupError({ error });
+  }, []);
 
   useEffect(() => {
     if (globalConfig) {
       return undefined;
     }
 
-    fetchGlobalConfigArray().then((gc) => {
-      setGlobalConfig(gc);
-    });
+    let cancelled = false;
 
-    return undefined;
+    fetchGlobalConfigArray()
+      .then((gc) => {
+        if (!cancelled) {
+          setGlobalConfig(gc);
+        }
+      })
+      .catch((error) => {
+        console.error('Error loading global config:', error);
+        if (!cancelled) {
+          setStartupError({ error });
+        }
+      });
+
+    return () => {
+      cancelled = true;
+    };
   }, [globalConfig]);
 
   // Initialize storage engine
@@ -100,13 +129,24 @@ export function GlobalConfigParser() {
       return undefined;
     }
 
-    async function fn() {
-      const _storageEngine = await initializeStorageEngine();
-      setStorageEngine(_storageEngine);
-    }
-    fn();
+    let cancelled = false;
 
-    return undefined;
+    initializeStorageEngine()
+      .then((_storageEngine) => {
+        if (!cancelled) {
+          setStorageEngine(_storageEngine);
+        }
+      })
+      .catch((error) => {
+        console.error('Error initializing storage engine:', error);
+        if (!cancelled) {
+          setStartupError({ error });
+        }
+      });
+
+    return () => {
+      cancelled = true;
+    };
   }, [setStorageEngine, storageEngine]);
 
   const analysisProtectedCallback = async (studyId: string) => {
@@ -117,6 +157,10 @@ export function GlobalConfigParser() {
     return shouldProtectAnalysisRoute(studyId, globalConfig, storageEngine);
   };
 
+  if (startupError) {
+    return <StartupErrorScreen error={startupError.error} />;
+  }
+
   return globalConfig ? (
     <BrowserRouter basename={PREFIX}>
       <AuthProvider>
@@ -124,7 +168,12 @@ export function GlobalConfigParser() {
           <Routes>
             <Route
               path="/"
-              element={<HomeRoute globalConfig={globalConfig} />}
+              element={(
+                <HomeRoute
+                  globalConfig={globalConfig}
+                  onStartupError={handleStartupError}
+                />
+              )}
             />
             <Route
               path="/:studyId/*"
