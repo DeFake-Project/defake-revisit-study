@@ -18,7 +18,7 @@ function Card({
   asks?: string[];
 }) {
   return (
-    <Box p="md" style={{ border: '1px solid var(--mantine-color-gray-4)', borderRadius: 8 }}>
+    <Box className="listing-card" style={{ border: '1px solid var(--mantine-color-gray-4)', borderRadius: 8 }}>
       <Title order={3}>{name}</Title>
       <Text size="sm" c="dimmed">
         {publisher}

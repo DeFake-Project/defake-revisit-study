@@ -22,6 +22,38 @@
   align-items: stretch;
 }
 
+.listing-card {
+  padding: var(--mantine-spacing-md);
+}
+
+@media (max-width: 699px) {
+  .doc-pair {
+    gap: 0.5rem;
+  }
+
+  .listing-card {
+    padding: 0.65rem 0.75rem;
+  }
+
+  .main input:not([type='radio']):not([type='checkbox']),
+  .main textarea {
+    font-size: 16px;
+  }
+
+  .main label:has(input[placeholder='Other']) {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .main input[placeholder='Other'] {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    margin-top: 0.35rem;
+    box-sizing: border-box;
+  }
+}
+
 @media (min-width: 700px) {
   .doc-pair {
     grid-template-columns: 1fr 1fr;
