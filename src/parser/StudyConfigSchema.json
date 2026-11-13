@@ -959,6 +959,13 @@
       "additionalProperties": false,
       "description": "The DynamicBlock interface is used to define a block where displayed components are controlled by a function. This is useful when you want to generate the sequence based on answers to previous questions or other factors.\n\nThe functionPath property is a path to the function that generates the components. This should be a relative path from the src/public folder.\n\nHere's an example of how to use the DynamicBlock:\n\n```json {   \"id\": \"funcBlock\",   \"order\": \"dynamic\",   \"functionPath\": \"<study-name>/assets/function.js\",   \"parameters\": {     \"param1\": \"value1\",     \"param2\": \"value2\"   } } ```",
       "properties": {
+        "components": {
+          "description": "Component ids the function may return. Participants still see only what the function selects. Listing them here marks the components as used, so a dynamic choice does not raise an unused-component warning.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "conditional": {
           "description": "The conditional property shows the block only when the URL condition matches its `id`.",
           "type": "boolean"
@@ -986,6 +993,68 @@
         "id",
         "order",
         "functionPath"
+      ],
+      "type": "object"
+    },
+    "IdentifierCollectionConfig": {
+      "additionalProperties": false,
+      "description": "Study-level settings for the separate identifier store.",
+      "properties": {
+        "fields": {
+          "description": "Fields this study may store. Omitted keys are not shown.",
+          "items": {
+            "$ref": "#/definitions/IdentifierFieldConfig"
+          },
+          "type": "array"
+        },
+        "retentionDays": {
+          "description": "Days after a record is saved before it becomes eligible for deletion.",
+          "type": "number"
+        },
+        "tabLabel": {
+          "description": "Analysis tab label. Defaults to Identifier info.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "retentionDays",
+        "fields"
+      ],
+      "type": "object"
+    },
+    "IdentifierFieldConfig": {
+      "additionalProperties": false,
+      "description": "One optional identifier field. A study lists only the fields it actually collects.",
+      "properties": {
+        "key": {
+          "description": "name, email, id, or choice.",
+          "enum": [
+            "name",
+            "email",
+            "id",
+            "choice"
+          ],
+          "type": "string"
+        },
+        "label": {
+          "description": "Label shown to the participant and as the analysis column header.",
+          "type": "string"
+        },
+        "options": {
+          "description": "When present, the field is a single-choice list. Otherwise it is a text field.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "required": {
+          "description": "Whether the participant must fill this field in before submitting. Defaults to false.",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "key",
+        "label"
       ],
       "type": "object"
     },
@@ -3042,6 +3111,43 @@
       ],
       "type": "object"
     },
+    "RecruitmentEntryConfig": {
+      "additionalProperties": false,
+      "description": "Query-string rules for studies that must refuse an incomplete or conflicting entry link.",
+      "properties": {
+        "armParam": {
+          "description": "Query parameter that carries a named arm, such as arm.",
+          "type": "string"
+        },
+        "arms": {
+          "description": "Accepted arm values. Matching is case-insensitive; the stored value is the one listed here.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "incompleteLinkMessage": {
+          "description": "Shown when the link is missing, conflicting, or unrecognized. No participant record is created.",
+          "type": "string"
+        },
+        "prolificArm": {
+          "description": "Arm stored when prolificParam is present and armParam is not.",
+          "type": "string"
+        },
+        "prolificParam": {
+          "description": "Query parameter that carries a panel participant id, such as PROLIFIC_PID.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "prolificParam",
+        "armParam",
+        "arms",
+        "prolificArm",
+        "incompleteLinkMessage"
+      ],
+      "type": "object"
+    },
     "RepeatedComponentBlockCondition": {
       "additionalProperties": false,
       "description": "The RepeatedComponentBlockCondition interface is used to define a SkipCondition based on the number of correct or incorrect repeated components. You might use this if you need to check if an attention check was failed multiple times. This is similar to the [ComponentBlockCondition](../ComponentBlockCondition), but it only checks a specific repeated component.\n\nHere's an example of how to use the RepeatedComponentBlockCondition:\n\n```json {  ...  \"skip\": [    {      \"name\": \"attentionCheck\",      \"check\": \"repeatedComponent\",      \"condition\": \"numIncorrect\",      \"value\": 2,      \"to\": \"end\"    }  ]  ... } ```\n\nIn this example, when the number of incorrect responses to the repeated component with the name \"attentionCheck\" is two, the participant will be redirected to the end of the study. If the number of incorrect responses is less than two, the participant will continue to the next component in the sequence.",
@@ -3765,6 +3871,10 @@
           "description": "The path to the help text file. This is displayed when a participant clicks help. Markdown is supported.",
           "type": "string"
         },
+        "identifierCollection": {
+          "$ref": "#/definitions/IdentifierCollectionConfig",
+          "description": "Opt-in store for direct identifiers (name, email, id, choice). When omitted, no identifier records are written and the analysis tab is hidden. Values are stored apart from survey answers."
+        },
         "instructionLocation": {
           "$ref": "#/definitions/ConfigResponseBlockLocation",
           "description": "The location of the instructions."
@@ -3824,6 +3934,10 @@
         "recordScreenFPS": {
           "description": "Desired fps for recording screen. If possible, this value will be used, but if it's not possible, the user agent will use the closest possible match.",
           "type": "number"
+        },
+        "recruitmentEntry": {
+          "$ref": "#/definitions/RecruitmentEntryConfig",
+          "description": "Opt-in entry check. When omitted, study startup is unchanged. When set, a participant record is created only after the query string resolves to a known arm."
         },
         "responseDividers": {
           "description": "Whether to show the response dividers. Defaults to false.",

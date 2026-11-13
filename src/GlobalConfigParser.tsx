@@ -1,5 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router';
+import {
+  BrowserRouter, Route, Routes, useNavigate, useSearchParams,
+} from 'react-router';
 import { ModalsProvider } from '@mantine/modals';
 import { AppShell } from '@mantine/core';
 import { ConfigSwitcher } from './components/ConfigSwitcher';
@@ -21,6 +23,7 @@ import { initializeStorageEngine } from './storage/initialize';
 import { useStorageEngine } from './storage/storageEngineHooks';
 import { PageTitle } from './utils/PageTitle';
 import { shouldProtectAnalysisRoute } from './utils/analysisRouteAccess';
+import { findStudyForRecruitmentArm } from './utils/recruitmentEntry';
 import { StartupErrorScreen } from './components/StartupErrorScreen';
 
 async function fetchGlobalConfigArray() {
@@ -37,6 +40,8 @@ function HomeRoute({
   onStartupError: (error: unknown) => void;
 }) {
   const [studyConfigs, setStudyConfigs] = useState<Record<string, ParsedConfig<StudyConfig> | null>>({});
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     let cancelled = false;
@@ -59,6 +64,14 @@ function HomeRoute({
       cancelled = true;
     };
   }, [globalConfig, onStartupError]);
+
+  useEffect(() => {
+    const studyId = findStudyForRecruitmentArm(studyConfigs, searchParams);
+    if (!studyId) {
+      return;
+    }
+    navigate(`/${studyId}${window.location.search}`, { replace: true });
+  }, [navigate, searchParams, studyConfigs]);
 
   return (
     <>

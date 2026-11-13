@@ -84,6 +84,9 @@ function verifyStudySkip(
   };
 
   if (isDynamicBlock(sequence)) {
+    if (sequence.id) {
+      removeTargetInPlace(sequence.id);
+    }
     return;
   }
 

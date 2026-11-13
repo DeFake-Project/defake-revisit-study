@@ -19,6 +19,7 @@ import { REVISIT_MODE } from '../storage/engines/types';
 import { useAuth } from '../store/hooks/useAuth';
 import { isCloudStorageEngine } from '../storage/engines/utils/storageEngineHelpers';
 import { getSequenceConditions } from '../utils/handleConditionLogic';
+import { recruitmentEntrySearch } from '../utils/recruitmentEntry';
 import { useStudyRecordings } from '../utils/useStudyRecordings';
 import { useDeviceRules } from '../utils/useDeviceRules';
 import { getUnmetDeviceRestrictionLines, getUnmetDeviceRestrictionTooltip } from './interface/DeviceRestrictionString';
@@ -127,12 +128,15 @@ function StudyCard({
     [selectedConditions],
   );
 
-  const studyUrl = useMemo(
-    () => (selectedStudyConditions.length > 0
-      ? `${PREFIX}${url}?condition=${selectedStudyConditions.join(',')}`
-      : `${PREFIX}${url}`),
-    [selectedStudyConditions, url],
-  );
+  const studyUrl = useMemo(() => {
+    if (selectedStudyConditions.length !== 1) {
+      return selectedStudyConditions.length > 1
+        ? `${PREFIX}${url}?condition=${selectedStudyConditions.join(',')}`
+        : `${PREFIX}${url}`;
+    }
+    const entrySearch = recruitmentEntrySearch(config.uiConfig.recruitmentEntry, selectedStudyConditions[0]);
+    return entrySearch ? `${PREFIX}${url}?${entrySearch}` : `${PREFIX}${url}?condition=${selectedStudyConditions[0]}`;
+  }, [config.uiConfig.recruitmentEntry, selectedStudyConditions, url]);
 
   return (
     <Card key={configName} shadow="sm" radius="md" my="sm" withBorder>
@@ -237,7 +241,13 @@ function StudyCard({
               <Flex direction="row" align="center" gap="xs" mt="sm" wrap="wrap">
                 {conditions.map((condition) => {
                   const conditionUrl = new URL(`${PREFIX}${url}`, window.location.origin);
-                  conditionUrl.searchParams.set('condition', condition);
+                  const entrySearch = recruitmentEntrySearch(config.uiConfig.recruitmentEntry, condition);
+                  if (entrySearch) {
+                    const separator = entrySearch.indexOf('=');
+                    conditionUrl.searchParams.set(entrySearch.slice(0, separator), entrySearch.slice(separator + 1));
+                  } else {
+                    conditionUrl.searchParams.set('condition', condition);
+                  }
                   const conditionUrlString = conditionUrl.toString();
 
                   return (

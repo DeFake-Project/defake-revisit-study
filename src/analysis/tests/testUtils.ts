@@ -41,6 +41,6 @@ export function createMockStudyConfig(overrides: Partial<StudyConfig> = {}): Stu
     sequence: {
       ...baseConfig.sequence,
       ...overrides.sequence,
-    },
+    } as StudyConfig['sequence'],
   };
 }

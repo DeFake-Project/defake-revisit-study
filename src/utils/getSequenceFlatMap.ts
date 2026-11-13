@@ -15,13 +15,23 @@ export function findFuncBlock(name: string, sequence: StudyConfig['sequence']): 
   return allFuncBlocks.find((funcBlock) => funcBlock.id === name);
 }
 
+function dynamicBlockComponentNames(block: DynamicBlock): string[] {
+  return block.components ?? [];
+}
+
 export function getSequenceFlatMapWithInterruptions(sequence: StudyConfig['sequence']): string[] {
   if (isDynamicBlock(sequence)) {
-    return [];
+    return dynamicBlockComponentNames(sequence);
   }
 
   return [
-    ...sequence.components.flatMap((component) => (typeof component === 'string' ? component : (isDynamicBlock(component) ? [] : getSequenceFlatMapWithInterruptions(component)))),
+    ...sequence.components.flatMap((component) => (
+      typeof component === 'string'
+        ? component
+        : (isDynamicBlock(component)
+          ? dynamicBlockComponentNames(component)
+          : getSequenceFlatMapWithInterruptions(component))
+    )),
     ...sequence.interruptions?.flatMap((interruption) => interruption.components) || [],
   ];
 }

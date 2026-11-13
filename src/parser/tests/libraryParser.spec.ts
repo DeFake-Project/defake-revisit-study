@@ -679,9 +679,9 @@ describe('Library Macro Expansion', () => {
     });
 
     test('handles undefined/null components array gracefully', () => {
+      // @ts-expect-error intentionally passing undefined to test edge case
       const sequence: StudyConfig['sequence'] = {
         order: 'fixed',
-        // @ts-expect-error intentionally passing undefined to test edge case
         components: undefined,
       };
 
