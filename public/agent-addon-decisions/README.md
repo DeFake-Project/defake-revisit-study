@@ -96,7 +96,7 @@ The three Prolific URLs are on `p-complete`, `p-screenout`, and `p-return` in th
 - `cc=REPLACE_SCREENOUT`
 - `cc=REPLACE_RETURN`
 
-Replace those three strings in `config.json`, and the same three constants in `src/public/agent-addon-decisions/assets/prolificUrls.ts`, before launch. `yarn build` runs `scripts/assert-no-prolific-placeholders.mjs` first and stops while either file still contains `REPLACE_` followed by capital letters. That is deliberate: a finished participant would not be marked complete on Prolific, and would not be paid.
+Replace those three strings in `config.json`, and the same three constants in `src/public/agent-addon-decisions/assets/prolificUrls.ts`, before launch. `yarn deploy` and `yarn deploy:preview` run `scripts/assert-no-prolific-placeholders.mjs` first and stop while either file still contains `REPLACE_` followed by capital letters. `yarn build` itself still compiles, so continuous integration can check the app before the live codes exist.
 
 ## Gift card records
 

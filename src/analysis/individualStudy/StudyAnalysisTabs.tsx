@@ -441,6 +441,8 @@ export function StudyAnalysisTabs({ globalConfig }: { globalConfig: GlobalConfig
     );
   }
 
+  const identifierCollection = studyConfig?.uiConfig?.identifierCollection;
+
   return (
     <>
       <AppHeader studyIds={accessibleStudyIds} selectedStudyId={displayStudyId} studyHref={routeStudyId ? `/${routeStudyId}` : undefined} studyConfigs={studyConfig && displayStudyId ? { [displayStudyId]: studyConfig } : undefined} />
@@ -640,9 +642,9 @@ export function StudyAnalysisTabs({ globalConfig }: { globalConfig: GlobalConfig
                     <Tabs.Tab value="live-monitor" leftSection={<IconDashboard size={16} />} disabled={!liveMonitorEnabled}>Live Monitor</Tabs.Tab>
                   </span>
                 </Tooltip>
-                {studyConfig?.uiConfig.identifierCollection && (
+                {identifierCollection && (
                   <Tabs.Tab value="identifiers" leftSection={<IconId size={16} />}>
-                    {studyConfig.uiConfig.identifierCollection.tabLabel?.trim() || 'Identifier info'}
+                    {identifierCollection.tabLabel?.trim() || 'Identifier info'}
                   </Tabs.Tab>
                 )}
                 <Tabs.Tab value="config" leftSection={<IconFileCode size={16} />}>Config</Tabs.Tab>
@@ -693,12 +695,12 @@ export function StudyAnalysisTabs({ globalConfig }: { globalConfig: GlobalConfig
                     </Center>
                   )}
               </Tabs.Panel>
-              {studyConfig?.uiConfig.identifierCollection && (
+              {identifierCollection && (
                 <Tabs.Panel style={{ overflow: 'auto' }} value="identifiers" pt="xs">
                   <IdentifierRecordsView
                     studyId={canonicalStudyId ?? routeStudyId}
                     storageEngine={storageEngine}
-                    collection={studyConfig.uiConfig.identifierCollection}
+                    collection={identifierCollection}
                   />
                 </Tabs.Panel>
               )}
